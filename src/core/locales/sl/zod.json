@@ -1,0 +1,112 @@
+{
+	"errors": {
+		"invalid_type": "Pričakovan {{expected}}, prejet {{received}}",
+		"invalid_type_received_undefined": "Zahtevan",
+		"invalid_literal": "Neveljavna vrednost, pričakovano {{expected}}",
+		"unrecognized_keys": "Neznana ključa v objektu: {{- keys}}",
+		"invalid_union": "Neveljaven vnos",
+		"invalid_union_discriminator": "Neveljavna vrednost razlikovalnika. Pričakovano {{- options}}",
+		"invalid_enum_value": "Neveljavna vrednost vrste. Pričakovano {{- options}}, prejeto '{{received}}'",
+		"invalid_arguments": "Neveljavni argumenti funkcije",
+		"invalid_return_type": "Neveljavni vrsta povratne vrednosti funkcije",
+		"invalid_date": "Neveljaven datum",
+		"custom": "Neveljaven vnos",
+		"invalid_intersection_types": "Preslikave presečišča se ni bilo mogoče združiti",
+		"not_multiple_of": "Število mora biti večkratnik {{multipleOf}}",
+		"not_finite": "Število mora biti končno",
+		"invalid_string": {
+			"email": "Neveljaven {{validation}}.",
+			"url": "Neveljaven {{validation}}.",
+			"uuid": "Neveljaven {{validation}}.",
+			"cuid": "Neveljaven {{validation}}.",
+			"regex": "Neveljaven",
+			"datetime": "Neveljaven {{validation}}",
+			"startsWith": "Neveljaven vnos: mora se začeti z \"{{startsWith}}\"",
+			"endsWith": "Neveljaven vnos: mora se končati z \"{{endsWith}}\""
+		},
+		"too_small": {
+			"array": {
+				"exact": "Polje mora vsebovati natanko {{minimum}} element(ov).",
+				"inclusive": "Polje mora vsebovati vsaj {{minimum}} element(ov).",
+				"not_inclusive": "Polje mora vsebovati več kot {{minimum}} element(ov)."
+			},
+			"string": {
+				"exact": "Polje mora vsebovati natanko {{minimum}} znak(ov).",
+				"inclusive": "Polje mora vsebovati vsaj {{minimum}} znak(ov).",
+				"not_inclusive": "Polje mora vsebovati več kot {{minimum}} znak(ov)."
+			},
+			"number": {
+				"exact": "Število mora biti natanko {{minimum}}",
+				"inclusive": "Število mora biti večje od ali enako {{minimum}}",
+				"not_inclusive": "Število mora biti večje od {{minimum}}"
+			},
+			"set": {
+				"exact": "Neveljaven vnos",
+				"inclusive": "Neveljaven vnos",
+				"not_inclusive": "Neveljaven vnos"
+			},
+			"date": {
+				"exact": "Datum mora biti natanko {{- minimum, datetime}}",
+				"inclusive": "Datum mora biti večji od ali enak {{- minimum, datetime}}",
+				"not_inclusive": "Datum mora biti večji od {{- minimum, datetime}}"
+			}
+		},
+		"too_big": {
+			"array": {
+				"exact": "Polje mora vsebovati natanko {{maximum}} element(ov)",
+				"inclusive": "Polje mora vsebovati največ {{maximum}} element(ov)",
+				"not_inclusive": "Polje mora vsebovati manj kot {{maximum}} element(ov)"
+			},
+			"string": {
+				"exact": "Niz mora vsebovati natanko {{maximum}} znak(ov)",
+				"inclusive": "Niz mora vsebovati največ {{maximum}} znak(ov)",
+				"not_inclusive": "Niz mora vsebovati manj kot {{maximum}} znak(ov)"
+			},
+			"number": {
+				"exact": "Število mora biti natanko {{maximum}}",
+				"inclusive": "Število mora biti manjše od ali enako {{maximum}}",
+				"not_inclusive": "Število mora biti manjše od {{maximum}}"
+			},
+			"set": {
+				"exact": "Neveljaven vnos",
+				"inclusive": "Neveljaven vnos",
+				"not_inclusive": "Neveljaven vnos"
+			},
+			"date": {
+				"exact": "Datum mora biti natanko {{- maximum, datetime}}",
+				"inclusive": "Datum mora biti manjši od ali enak {{- maximum, datetime}}",
+				"not_inclusive": "Datum mora biti manjši od {{- maximum, datetime}}"
+			}
+		}
+	},
+	"validacije": {
+		"email": "e-naslov",
+		"url": "url",
+		"uuid": "uuid",
+		"cuid": "cuid",
+		"regex": "regex",
+		"datetime": "datetime"
+	},
+	"vrste": {
+		"funkcija": "funkcija",
+		"število": "število",
+		"niz": "niz",
+		"nan": "nan",
+		"celo število": "celo število",
+		"plavajoča decimalna": "plavajoča decimalna",
+		"logična vrednost": "logična vrednost",
+		"datum": "datum",
+		"veliko število": "veliko število",
+		"nedefinirano": "nedefinirano",
+		"simbol": "simbol",
+		"null": "null",
+		"polje": "polje",
+		"objekt": "objekt",
+		"neznano": "neznano",
+		"obljuba": "obljuba",
+		"prazno": "prazno",
+		"nikoli": "nikoli",
+		"zemljevid": "zemljevid",
+		"nabor": "nabor"
+	}
+}
