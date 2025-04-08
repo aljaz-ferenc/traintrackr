@@ -1,45 +1,72 @@
-import { Suspense, lazy } from "react";
-import { RouterProvider, createBrowserRouter } from "react-router";
-import { ProtectedRoute } from "./components/ProtectedRoute/ProtectedRoute.tsx";
+import {Suspense, lazy} from "react";
+import {RouterProvider, createBrowserRouter} from "react-router";
+import {ProtectedRoute} from "./components/ProtectedRoute/ProtectedRoute.tsx";
 import RouteFallback from "./components/RouteFallback/RouteFallback.tsx";
 import Provider from "./provider";
-import Auth from "./routes/Auth.tsx";
-const About = lazy(() => import("./routes/About"));
-const Home = lazy(() => import("./routes/Home"));
+import SignIn from "./routes/SignIn.tsx";
+import SignUp from "./routes/SignUp.tsx";
+import AppLayout from "./components/layouts/AppLayout.tsx";
+
+const Dashboard = lazy(() => import("./routes/Dashboard.tsx"));
+const TodaysWorkout = lazy(() => import("./routes/TodaysWorkout.tsx"));
+const NewMesocycle = lazy(() => import("./routes/NewMesocycle.tsx"));
+const MyMesocycles = lazy(() => import("./routes/MyMesocycles.tsx"));
+const Nutrition = lazy(() => import("./routes/Nutrition.tsx"));
+const Settings = lazy(() => import("./routes/Settings.tsx"));
 
 const router = createBrowserRouter([
-	{
-		path: "/auth",
-		Component: Auth,
-	},
-	{
-		path: "/",
-		element: (
-			<ProtectedRoute>
-				<Suspense fallback={<RouteFallback />}>
-					<Home />
-				</Suspense>
-			</ProtectedRoute>
-		),
-	},
-	{
-		path: "/about",
-		element: (
-			<ProtectedRoute>
-				<Suspense fallback={<RouteFallback />}>
-					<About />
-				</Suspense>
-			</ProtectedRoute>
-		),
-	},
+    {
+        path: "/sign-in/*",
+        Component: SignIn,
+    },
+    {
+        path: "/sign-up/*",
+        Component: SignUp,
+    },
+    {
+        path: "/",
+        element: (
+            <ProtectedRoute>
+                <Suspense fallback={<RouteFallback/>}>
+                    <AppLayout/>
+                </Suspense>
+            </ProtectedRoute>
+        ),
+        children: [
+            {
+                path: '/dashboard',
+                element: <Dashboard/>,
+            },
+            {
+                path: '/todays-workout',
+                element: <TodaysWorkout/>
+            },
+            {
+                path: '/new-mesocycle',
+                element: <NewMesocycle/>
+            },
+            {
+                path: '/my-mesocycles',
+                element: <MyMesocycles/>
+            },
+            {
+                path: '/nutrition',
+                element: <Nutrition/>
+            },
+            {
+                path: 'settings',
+                element: <Settings/>
+            }
+        ],
+    },
 ]);
 
 function App() {
-	return (
-		<Provider>
-			<RouterProvider router={router} />
-		</Provider>
-	);
+    return (
+        <Provider>
+            <RouterProvider router={router}/>
+        </Provider>
+    );
 }
 
 export default App;
