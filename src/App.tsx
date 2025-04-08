@@ -1,18 +1,18 @@
 import {Suspense, lazy} from "react";
 import {RouterProvider, createBrowserRouter} from "react-router";
-import {ProtectedRoute} from "./components/ProtectedRoute/ProtectedRoute.tsx";
-import RouteFallback from "./components/RouteFallback/RouteFallback.tsx";
+import {ProtectedRoute} from "@/components/ProtectedRoute/ProtectedRoute.tsx";
+import RouteFallback from "@/components/RouteFallback/RouteFallback.tsx";
 import Provider from "./provider";
 import SignIn from "./routes/SignIn.tsx";
 import SignUp from "./routes/SignUp.tsx";
 import AppLayout from "./components/layouts/AppLayout.tsx";
 
-const Dashboard = lazy(() => import("./routes/Dashboard.tsx"));
-const TodaysWorkout = lazy(() => import("./routes/TodaysWorkout.tsx"));
-const NewMesocycle = lazy(() => import("./routes/NewMesocycle.tsx"));
-const MyMesocycles = lazy(() => import("./routes/MyMesocycles.tsx"));
-const Nutrition = lazy(() => import("./routes/Nutrition.tsx"));
-const Settings = lazy(() => import("./routes/Settings.tsx"));
+const Dashboard = lazy(() => import("@/routes/Dashboard.tsx"));
+const TodaysWorkout = lazy(() => import("@/routes/TodaysWorkout.tsx"));
+const NewMesocycle = lazy(() => import("@/routes/NewMesocycle.tsx"));
+const MyMesocycles = lazy(() => import("@/routes/MyMesocycles.tsx"));
+const Nutrition = lazy(() => import("@/routes/Nutrition.tsx"));
+const Settings = lazy(() => import("@/routes/Settings.tsx"));
 
 const router = createBrowserRouter([
     {
