@@ -1,12 +1,19 @@
 import { RouterProvider, createBrowserRouter } from "react-router";
+import Provider from "./provider";
+import About from "./routes/About.tsx";
+import Home from "./routes/Home.tsx";
 
 const router = createBrowserRouter([
-	{ path: "/", element: <div>Home Page</div> },
-	{ path: "/test", element: <div>Test Page</div> },
+	{ path: "/", Component: Home },
+	{ path: "/about", Component: About },
 ]);
 
 function App() {
-	return <RouterProvider router={router} />;
+	return (
+		<Provider>
+			<RouterProvider router={router} />
+		</Provider>
+	);
 }
 
 export default App;
