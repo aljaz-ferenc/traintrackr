@@ -1,4 +1,5 @@
 import type { PropsWithChildren, ReactNode } from "react";
+import ClerkProviderComponent from "./ClerkProvider.tsx";
 import ReactQueryProvider from "./ReactQueryProvider.tsx";
 
 type ProviderProps = {} & PropsWithChildren;
@@ -21,7 +22,10 @@ const composeProviders = (providers: React.FC<{ children: ReactNode }>[]) => {
 	});
 };
 
-const Providers = composeProviders([ReactQueryProvider]);
+const Providers = composeProviders([
+	ReactQueryProvider,
+	ClerkProviderComponent,
+]);
 
 export default function Provider({ children }: ProviderProps) {
 	return <Providers>{children}</Providers>;
