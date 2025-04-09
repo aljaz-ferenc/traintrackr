@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label.tsx";
 import { Separator } from "@/components/ui/separator";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group.tsx";
 import Workout from "@/components/workout/Workout.tsx";
+import useCreateMesocycle from "@/hooks/api/useCreateMesocycle.ts";
 import { useNewMesoStore } from "@/state/NewMesoStore.ts";
 import { useShallow } from "zustand/react/shallow";
 
@@ -41,8 +42,11 @@ export default function NewMesocycle() {
 		]),
 	);
 
+	const { mutateAsync } = useCreateMesocycle();
+
 	const handleCreateMeso = () => {
-		console.log(constructMesocycle());
+		const newMeso = constructMesocycle("testUser");
+		mutateAsync(newMeso);
 	};
 
 	return (

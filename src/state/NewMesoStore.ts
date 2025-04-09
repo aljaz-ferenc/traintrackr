@@ -13,6 +13,7 @@ export type Mesocycle = {
 	includeDeload: boolean;
 	splitType: "synchronized" | "asynchronized";
 	workouts: Workout[];
+	createdBy: string;
 };
 
 export type Exercise = {
@@ -51,6 +52,7 @@ export const useNewMesoStore = create<NewMesoStore>((set, getState) => ({
 	includeDeload: false,
 	splitType: "synchronized",
 	workouts: [],
+	createdBy: "",
 	updateMesoTitle: (mesoTitle) => set((state) => ({ ...state, mesoTitle })),
 	updateMesoDuration: (mesoDuration) =>
 		set((state) => ({ ...state, mesoDuration })),
@@ -73,7 +75,7 @@ export const useNewMesoStore = create<NewMesoStore>((set, getState) => ({
 				w.id === workoutId ? updatedWorkout : w,
 			),
 		})),
-	constructMesocycle: () => {
+	constructMesocycle: (createdBy: Mesocycle["createdBy"]) => {
 		const { mesoTitle, mesoDuration, includeDeload, splitType, workouts } =
 			getState();
 		return {
@@ -82,6 +84,7 @@ export const useNewMesoStore = create<NewMesoStore>((set, getState) => ({
 			includeDeload,
 			splitType,
 			workouts,
+			createdBy,
 		};
 	},
 	setWorkoutDay: (workoutId, day) => {
