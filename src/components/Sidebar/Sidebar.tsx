@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button.tsx";
-import useCreateUser, { type User } from "@/hooks/api/useCreateUser.ts";
+import useCreateUser from "@/hooks/api/useCreateUser.ts";
 import { UserButton } from "@clerk/clerk-react";
 import {
 	Dumbbell,
@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import type React from "react";
 import SidebarItem from "./SidebarItem.tsx";
+import type {User} from "@/core/types.ts";
 
 export type TSidebarItem = {
 	path: string;
@@ -61,7 +62,11 @@ const fakeUser: User = {
 	firstName: "firstName",
 	lastName: "lastName",
 	image: "image",
-	activeMesocycle: null,
+	activeMesocycle: {
+		mesoId: '67f69328f5e5b6c596cc9326',
+		startDate: new Date(),
+		endDate: new Date()
+	},
 };
 
 export default function AppSidebar() {

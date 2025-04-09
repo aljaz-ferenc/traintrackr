@@ -1,9 +1,10 @@
-import { Mesocycle } from "@/state/NewMesoStore.ts";
 import { useQuery } from "@tanstack/react-query";
+import {Endpoints} from "@/core/endpoints.ts";
+import type {Mesocycle} from "@/core/types.ts";
 
 async function fetchAllMesocycles() {
 	try {
-		const data = await fetch("http://localhost:4000/api/v1/mesocycles");
+		const data = await fetch(Endpoints.mesocycles);
 		return await data.json();
 	} catch {
 		throw new Error("Error fetching mesocycles");
@@ -12,6 +13,7 @@ async function fetchAllMesocycles() {
 
 export default function useGetAllMesocycles() {
 	return useQuery<{ mesocycles: Mesocycle[] }>({
+		//TODO: invalidate query that fetches mesos by user
 		queryKey: ["mesocycles"],
 		queryFn: fetchAllMesocycles,
 	});

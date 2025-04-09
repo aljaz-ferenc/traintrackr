@@ -9,8 +9,9 @@ import Workout from "@/components/workout/Workout.tsx";
 import useCreateMesocycle from "@/hooks/api/useCreateMesocycle.ts";
 import { useNewMesoStore } from "@/state/NewMesoStore.ts";
 import { useShallow } from "zustand/react/shallow";
+import RouteTitle from "@/components/shared/RouteTitle.tsx";
 
-const mesoDurationOptions = [4, 6, 8, 10];
+const mesoDurationOptions = [4, 6, 8, 10, 12];
 const mesoSplitTypeOptions = ["synchronized", "asynchronized"];
 
 export default function NewMesocycle() {
@@ -44,13 +45,14 @@ export default function NewMesocycle() {
 
 	const { mutateAsync } = useCreateMesocycle();
 
-	const handleCreateMeso = () => {
+	const handleCreateMeso = async () => {
 		const newMeso = constructMesocycle("testUser");
-		mutateAsync(newMeso);
+		await mutateAsync(newMeso);
 	};
 
 	return (
 		<section className="w-[600px] flex flex-col gap-5">
+			<RouteTitle title='New Mesocycle'/>
 			<div className="flex flex-col gap-5">
 				<div>
 					<Label>Mesocycle Name</Label>

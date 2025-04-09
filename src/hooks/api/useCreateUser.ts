@@ -1,14 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-
-export type User = {
-	clerkId: string;
-	email: string;
-	username?: string;
-	firstName?: string;
-	lastName?: string;
-	image?: string;
-	activeMesocycle: string;
-};
+import type {User} from "@/core/types.ts";
 
 async function fetchCreateUser(user: User) {
 	const res = await fetch("http://localhost:4000/api/v1/users", {

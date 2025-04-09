@@ -1,9 +1,10 @@
 import type { Mesocycle } from "@/state/NewMesoStore.ts";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router";
+import {Endpoints} from "@/core/endpoints.ts";
 
 async function fetchCreateMesocycle(mesocycle: Omit<Mesocycle, "_id">) {
-	await fetch("http://localhost:4000/api/v1/mesocycles", {
+	await fetch(Endpoints.mesocycles, {
 		body: JSON.stringify(mesocycle),
 		mode: "cors",
 		method: "POST",

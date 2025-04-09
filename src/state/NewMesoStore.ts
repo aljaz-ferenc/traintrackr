@@ -1,27 +1,5 @@
 import { create } from "zustand";
-
-export type Workout = {
-	id: string;
-	day: number;
-	exercises: Exercise[];
-};
-
-export type Mesocycle = {
-	_id: string;
-	title: string;
-	duration: number;
-	includeDeload: boolean;
-	splitType: "synchronized" | "asynchronized";
-	workouts: Workout[];
-	createdBy: string;
-};
-
-export type Exercise = {
-	id: string;
-	name: string;
-	primaryMuscle: string;
-	secondaryMuscles: string[];
-};
+import type {Exercise, Mesocycle, Workout} from "@/core/types.ts";
 
 type NewMesoStore = {
 	mesoTitle: string;
