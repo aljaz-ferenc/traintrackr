@@ -38,8 +38,12 @@ const weekDays = [
 
 export default function Workout({ workout, editable = false }: WorkoutProps) {
 	const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-	const [removeWorkout, setWorkoutDay] = useNewMesoStore(
-		useShallow((state) => [state.removeWorkout, state.setWorkoutDay]),
+	const [removeWorkout, setWorkoutDay, splitType] = useNewMesoStore(
+		useShallow((state) => [
+			state.removeWorkout,
+			state.setWorkoutDay,
+			state.splitType,
+		]),
 	);
 
 	const handleRemoveWorkout = () => {
@@ -53,7 +57,12 @@ export default function Workout({ workout, editable = false }: WorkoutProps) {
 				<div className="flex gap-2 items-center">
 					<Select
 						onValueChange={(val) =>
-							setWorkoutDay(workout.id, weekDays.indexOf(val))
+							setWorkoutDay(
+								workout.id,
+								splitType === "synchronized"
+									? weekDays.indexOf(val)
+									: weekDays.indexOf(val) + 1,
+							)
 						}
 					>
 						<SelectTrigger className="w-full">
@@ -62,9 +71,11 @@ export default function Workout({ workout, editable = false }: WorkoutProps) {
 								className="bg-white capitalize"
 							/>
 							<SelectContent>
-								{weekDays.map((day) => (
+								{weekDays.map((day, index) => (
 									<SelectItem value={day} key={day} className="capitalize">
-										<span className="capitalize">{day}</span>
+										<span className="capitalize">
+											{splitType === "synchronized" ? day : index + 1}
+										</span>
 									</SelectItem>
 								))}
 							</SelectContent>
