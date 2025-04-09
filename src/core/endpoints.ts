@@ -6,4 +6,5 @@ export class Endpoints {
     static mesocycles = `${BASE_URL}/mesocycles`
     static mesocycle = (mesoId: Mesocycle['_id']) => `${BASE_URL}/mesocycles/${mesoId}`
     static activateMeso = `${BASE_URL}/mesocycles/activate`
+    static user = (clerkId: string) => `${BASE_URL}/users/${clerkId}`
 }
