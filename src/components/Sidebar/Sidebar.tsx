@@ -1,3 +1,5 @@
+import { Button } from "@/components/ui/button.tsx";
+import useCreateUser, { type User } from "@/hooks/api/useCreateUser.ts";
 import { UserButton } from "@clerk/clerk-react";
 import {
 	Dumbbell,
@@ -51,12 +53,31 @@ const menuItems: TSidebarItem[] = [
 	},
 ];
 
+//TODO: delete
+const fakeUser: User = {
+	clerkId: "clerkid",
+	email: "test@test.com",
+	username: "username",
+	firstName: "firstName",
+	lastName: "lastName",
+	image: "image",
+	activeMesocycle: null,
+};
+
 export default function AppSidebar() {
+	const { mutateAsync } = useCreateUser();
+
 	return (
 		<aside className="flex flex-col border-r min-h-screen">
 			{menuItems.map((item) => (
 				<SidebarItem key={item.path} item={item} />
 			))}
+
+			{/*//TODO: remove*/}
+			<Button onClick={() => mutateAsync(fakeUser)} type="button">
+				Create Fake User
+			</Button>
+
 			<div className="mt-auto m-2">
 				<UserButton />
 			</div>

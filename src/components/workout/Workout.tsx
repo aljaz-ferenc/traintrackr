@@ -26,7 +26,7 @@ type WorkoutProps = {
 	editable: boolean;
 };
 
-const weekDays = [
+export const weekDays = [
 	"sunday",
 	"monday",
 	"tuesday",
