@@ -12,11 +12,13 @@ import { useShallow } from "zustand/react/shallow";
 type ExercisesListProps = {
 	exercises: Exercise[];
 	workoutId: Workout["id"];
+	editable: boolean;
 };
 
 export default function ExercisesList({
 	exercises,
 	workoutId,
+	editable,
 }: ExercisesListProps) {
 	const [setExercises, removeExercise] = useNewMesoStore(
 		useShallow((state) => [
@@ -37,11 +39,13 @@ export default function ExercisesList({
 						value={exercise}
 						key={exercise.id}
 						dragControls={controls}
+						dragListener={editable}
 					>
 						<div
 							className={cn([
 								"bg-blue-100 mb-2 p-2 rounded flex items-center justify-between relative",
 								index === exercises.length - 1 && "mb-0",
+								editable && "cursor-grab",
 							])}
 						>
 							<div className="flex flex-col gap-2 select-none">
@@ -50,11 +54,13 @@ export default function ExercisesList({
 								</Badge>
 								{exercise.name}
 							</div>
-							<X
-								className="cursor-pointer"
-								color={"red"}
-								onClick={() => removeExercise(workoutId, exercise.id)}
-							/>
+							{editable && (
+								<X
+									className="cursor-pointer"
+									color={"red"}
+									onClick={() => removeExercise(workoutId, exercise.id)}
+								/>
+							)}
 						</div>
 					</Reorder.Item>
 				);

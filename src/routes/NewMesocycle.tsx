@@ -132,7 +132,7 @@ export default function NewMesocycle() {
 				</Button>
 				<div className="flex gap-5">
 					{workouts.map((workout) => (
-						<Workout key={workout.id} workout={workout} />
+						<Workout key={workout.id} workout={workout} editable />
 					))}
 				</div>
 			</div>

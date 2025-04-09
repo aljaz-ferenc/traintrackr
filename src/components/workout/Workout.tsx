@@ -17,13 +17,13 @@ import {
 	type Workout as TWorkout,
 	useNewMesoStore,
 } from "@/state/NewMesoStore.ts";
-import { getDay } from "date-fns";
 import { Ellipsis } from "lucide-react";
 import { useState } from "react";
 import { useShallow } from "zustand/react/shallow";
 
 type WorkoutProps = {
 	workout: TWorkout;
+	editable: boolean;
 };
 
 const weekDays = [
@@ -36,10 +36,7 @@ const weekDays = [
 	"saturday",
 ];
 
-const now = new Date();
-console.log(getDay(now));
-
-export default function Workout({ workout }: WorkoutProps) {
+export default function Workout({ workout, editable = false }: WorkoutProps) {
 	const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 	const [removeWorkout, setWorkoutDay] = useNewMesoStore(
 		useShallow((state) => [state.removeWorkout, state.setWorkoutDay]),
@@ -52,39 +49,47 @@ export default function Workout({ workout }: WorkoutProps) {
 
 	return (
 		<article className="p-2 border-gray-400 rounded flex flex-col gap-2 min-w-xs border">
-			<div className="flex gap-2 items-center">
-				<Select
-					onValueChange={(val) =>
-						setWorkoutDay(workout.id, weekDays.indexOf(val))
-					}
-				>
-					<SelectTrigger className="w-full">
-						<SelectValue
-							placeholder="Select day"
-							className="bg-white capitalize"
-						/>
-						<SelectContent>
-							{weekDays.map((day) => (
-								<SelectItem value={day} key={day} className="capitalize">
-									<span className="capitalize">{day}</span>
-								</SelectItem>
-							))}
-						</SelectContent>
-					</SelectTrigger>
-				</Select>
-				<Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
-					<PopoverTrigger>
-						<Ellipsis />
-					</PopoverTrigger>
-					<PopoverContent side="top" className="w-min p-0">
-						<Button onClick={handleRemoveWorkout} variant="destructive">
-							Delete Workout
-						</Button>
-					</PopoverContent>
-				</Popover>
-			</div>
-			<ExercisesList exercises={workout.exercises} workoutId={workout.id} />
-			<SelectExerciseModal workoutId={workout.id} />
+			{editable ? (
+				<div className="flex gap-2 items-center">
+					<Select
+						onValueChange={(val) =>
+							setWorkoutDay(workout.id, weekDays.indexOf(val))
+						}
+					>
+						<SelectTrigger className="w-full">
+							<SelectValue
+								placeholder="Select day"
+								className="bg-white capitalize"
+							/>
+							<SelectContent>
+								{weekDays.map((day) => (
+									<SelectItem value={day} key={day} className="capitalize">
+										<span className="capitalize">{day}</span>
+									</SelectItem>
+								))}
+							</SelectContent>
+						</SelectTrigger>
+					</Select>
+					<Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
+						<PopoverTrigger>
+							<Ellipsis />
+						</PopoverTrigger>
+						<PopoverContent side="top" className="w-min p-0">
+							<Button onClick={handleRemoveWorkout} variant="destructive">
+								Delete Workout
+							</Button>
+						</PopoverContent>
+					</Popover>
+				</div>
+			) : (
+				<p className="uppercase font-bold">{weekDays[workout.day]}</p>
+			)}
+			<ExercisesList
+				editable={editable}
+				exercises={workout.exercises}
+				workoutId={workout.id}
+			/>
+			{editable && <SelectExerciseModal workoutId={workout.id} />}
 		</article>
 	);
 }
