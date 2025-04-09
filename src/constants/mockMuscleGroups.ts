@@ -1,0 +1,15 @@
+export const mockMuscleGroups = [
+	"biceps",
+	"triceps",
+	"shoulders",
+	"traps",
+	"lats",
+	"chest",
+	"core",
+	"forearms",
+	"glutes",
+	"quads",
+	"hamstrings",
+	"calves",
+	"lower back",
+];

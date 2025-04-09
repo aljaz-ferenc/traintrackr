@@ -1,52 +1,90 @@
-import {useNewMesoStore, type Workout as TWorkout} from "@/state/NewMesoStore.ts";
-import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select.tsx";
-import {Button} from "@/components/ui/button.tsx";
-import {Ellipsis} from "lucide-react";
+import { Button } from "@/components/ui/button.tsx";
 import {
-    Popover,
-    PopoverContent,
-    PopoverTrigger,
-} from "@/components/ui/popover"
-import {useState} from "react";
-import {useShallow} from "zustand/react/shallow";
-
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+} from "@/components/ui/popover";
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/components/ui/select.tsx";
+import ExercisesList from "@/components/workout/ExercisesList.tsx";
+import SelectExerciseModal from "@/components/workout/SelectExerciseModal.tsx";
+import {
+	type Workout as TWorkout,
+	useNewMesoStore,
+} from "@/state/NewMesoStore.ts";
+import { getDay } from "date-fns";
+import { Ellipsis } from "lucide-react";
+import { useState } from "react";
+import { useShallow } from "zustand/react/shallow";
 
 type WorkoutProps = {
-    workout: TWorkout
-}
+	workout: TWorkout;
+};
 
-const weekDays = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
+const weekDays = [
+	"sunday",
+	"monday",
+	"tuesday",
+	"wednesday",
+	"thursday",
+	"friday",
+	"saturday",
+];
 
-export default function Workout({workout}: WorkoutProps) {
-    const [isPopoverOpen, setIsPopoverOpen] = useState(false)
-    const [removeWorkout] = useNewMesoStore(useShallow(state => [state.removeWorkout]))
+const now = new Date();
+console.log(getDay(now));
 
-    const handleRemoveWorkout = () => {
-        removeWorkout(workout.id)
-        setIsPopoverOpen(false)
-    }
+export default function Workout({ workout }: WorkoutProps) {
+	const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+	const [removeWorkout, setWorkoutDay] = useNewMesoStore(
+		useShallow((state) => [state.removeWorkout, state.setWorkoutDay]),
+	);
 
-    return (
-        <article className='p-2 border-gray-400 rounded flex flex-col gap-2'>
-            <div className='flex gap-2 items-center'>
-                <Select>
-                    <SelectTrigger className='w-full'>
-                        <SelectValue placeholder='Select day' className='bg-white'/>
-                        <SelectContent>
-                            {weekDays.map(day => <SelectItem value={day} key={day} className='capitalize'>{day}</SelectItem>)}
-                        </SelectContent>
-                    </SelectTrigger>
-                </Select>
-                <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
-                    <PopoverTrigger>
-                        <Ellipsis/>
-                    </PopoverTrigger>
-                    <PopoverContent side='top' className='w-min p-0'>
-                        <Button onClick={handleRemoveWorkout} variant='destructive'>Delete Workout</Button>
-                    </PopoverContent>
-                </Popover>
-            </div>
-            <Button variant='outline'>+ Add muscle group</Button>
-        </article>
-    )
+	const handleRemoveWorkout = () => {
+		removeWorkout(workout.id);
+		setIsPopoverOpen(false);
+	};
+
+	return (
+		<article className="p-2 border-gray-400 rounded flex flex-col gap-2 min-w-xs border">
+			<div className="flex gap-2 items-center">
+				<Select
+					onValueChange={(val) =>
+						setWorkoutDay(workout.id, weekDays.indexOf(val))
+					}
+				>
+					<SelectTrigger className="w-full">
+						<SelectValue
+							placeholder="Select day"
+							className="bg-white capitalize"
+						/>
+						<SelectContent>
+							{weekDays.map((day) => (
+								<SelectItem value={day} key={day} className="capitalize">
+									<span className="capitalize">{day}</span>
+								</SelectItem>
+							))}
+						</SelectContent>
+					</SelectTrigger>
+				</Select>
+				<Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
+					<PopoverTrigger>
+						<Ellipsis />
+					</PopoverTrigger>
+					<PopoverContent side="top" className="w-min p-0">
+						<Button onClick={handleRemoveWorkout} variant="destructive">
+							Delete Workout
+						</Button>
+					</PopoverContent>
+				</Popover>
+			</div>
+			<ExercisesList exercises={workout.exercises} workoutId={workout.id} />
+			<SelectExerciseModal workoutId={workout.id} />
+		</article>
+	);
 }
