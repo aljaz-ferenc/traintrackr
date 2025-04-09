@@ -7,7 +7,7 @@ export type Workout = {
 };
 
 export type Mesocycle = {
-	id: string;
+	_id: string;
 	title: string;
 	duration: number;
 	includeDeload: boolean;
@@ -36,7 +36,9 @@ type NewMesoStore = {
 	addWorkout: (workout: Workout) => void;
 	removeWorkout: (workoutId: Workout["id"]) => void;
 	updateWorkout: (workoutId: Workout["id"], workout: Workout) => void;
-	constructMesocycle: () => Omit<Mesocycle, "id">;
+	constructMesocycle: (
+		createdBy: Mesocycle["createdBy"],
+	) => Omit<Mesocycle, "_id">;
 	setWorkoutDay: (workoutId: Workout["id"], day: Workout["day"]) => void;
 	setExercises: (workoutId: Workout["id"], exercises: Exercise[]) => void;
 	addExerciseToWorkout: (workoutId: Workout["id"], exercise: Exercise) => void;

@@ -1,7 +1,8 @@
 import type { Mesocycle } from "@/state/NewMesoStore.ts";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useNavigate } from "react-router";
 
-async function fetchCreateMesocycle(mesocycle: Omit<Mesocycle, "id">) {
+async function fetchCreateMesocycle(mesocycle: Omit<Mesocycle, "_id">) {
 	await fetch("http://localhost:4000/api/v1/mesocycles", {
 		body: JSON.stringify(mesocycle),
 		mode: "cors",
@@ -13,9 +14,16 @@ async function fetchCreateMesocycle(mesocycle: Omit<Mesocycle, "id">) {
 }
 
 export default function useCreateMesocycle() {
+	const queryClient = useQueryClient();
+	const navigate = useNavigate();
+
 	return useMutation({
 		mutationKey: ["meso-create"],
-		mutationFn: (mesocycle: Omit<Mesocycle, "id">) =>
+		mutationFn: (mesocycle: Omit<Mesocycle, "_id">) =>
 			fetchCreateMesocycle(mesocycle),
+		onSuccess: async () => {
+			await queryClient.invalidateQueries({ queryKey: ["mesocycles"] });
+			navigate("/my-mesocycles");
+		},
 	});
 }

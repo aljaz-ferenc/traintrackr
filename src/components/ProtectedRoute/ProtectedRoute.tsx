@@ -10,7 +10,7 @@ export function ProtectedRoute({ children }: { children: React.ReactNode }) {
 	}
 
 	if (!isSignedIn) {
-		return <Navigate to="/auth" replace />;
+		return <Navigate to="/sign-in" replace />;
 	}
 
 	return <>{children}</>;
