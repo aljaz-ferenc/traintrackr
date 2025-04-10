@@ -5,9 +5,10 @@ import {Popover, PopoverContent, PopoverTrigger} from "@/components/ui/popover.t
 import {Button} from "@/components/ui/button.tsx";
 import {useState} from "react";
 import useDeleteMesocycle from "@/hooks/api/useDeleteMesocycle.ts";
-import type {Workout as TWorkout, Mesocycle, User} from '@/core/types.ts'
-import useActivateMesocycle from "@/hooks/api/useActivateMesocycle.ts";
+import type {Workout as TWorkout, Mesocycle} from '@/core/types.ts'
+import useActivateMesocycle, {type ActivateMesoPayload} from "@/hooks/api/useActivateMesocycle.ts";
 import {addWeeks, previousMonday} from "date-fns";
+import {useAuth} from "@clerk/clerk-react";
 
 type MesocyclesAccordionProps = {
     mesocycles: Mesocycle[]
@@ -16,6 +17,7 @@ type MesocyclesAccordionProps = {
 export default function MesocyclesAccordion({mesocycles}: MesocyclesAccordionProps) {
     //TODO: create popover component?
     const [isPopoverOpen, setIsPopoverOpen] = useState(false)
+    const {userId} = useAuth()
     const {mutateAsync: deleteMeso} = useDeleteMesocycle()
     const {mutateAsync: activateMeso} = useActivateMesocycle()
 
@@ -27,12 +29,13 @@ export default function MesocyclesAccordion({mesocycles}: MesocyclesAccordionPro
         const startDate = previousMonday(new Date())
         const endDate = addWeeks(new Date(), meso.duration + 1)
 
-        const activeMesocycle: User['activeMesocycle'] = {
-            mesoId: meso._id,
+        const activeMesocycle: ActivateMesoPayload = {
+            mesocycle: meso._id,
             startDate,
             endDate
         }
-        await activateMeso({clerkId: 'clerkid', activeMesocycle})
+
+        await activateMeso({clerkId: userId as string, activeMesocycle})
     }
 
     return (

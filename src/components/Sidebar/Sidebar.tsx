@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button.tsx";
-import useCreateUser from "@/hooks/api/useCreateUser.ts";
+// import { Button } from "@/components/ui/button.tsx";
+// import useCreateUser from "@/hooks/api/useCreateUser.ts";
 import { UserButton } from "@clerk/clerk-react";
 import {
 	Dumbbell,
@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import type React from "react";
 import SidebarItem from "./SidebarItem.tsx";
-import type {User} from "@/core/types.ts";
+// import type {User} from "@/core/types.ts";
 
 export type TSidebarItem = {
 	path: string;
@@ -55,22 +55,22 @@ const menuItems: TSidebarItem[] = [
 ];
 
 //TODO: delete
-const fakeUser: User = {
-	clerkId: "clerkid",
-	email: "test@test.com",
-	username: "username",
-	firstName: "firstName",
-	lastName: "lastName",
-	image: "image",
-	activeMesocycle: {
-		mesoId: '67f69328f5e5b6c596cc9326',
-		startDate: new Date(),
-		endDate: new Date()
-	},
-};
+// const fakeUser: User = {
+// 	clerkId: "clerkid",
+// 	email: "test@test.com",
+// 	username: "username",
+// 	firstName: "firstName",
+// 	lastName: "lastName",
+// 	image: "image",
+// 	activeMesocycle: {
+// 		mesoId: '67f69328f5e5b6c596cc9326',
+// 		startDate: new Date(),
+// 		endDate: new Date()
+// 	},
+// };
 
 export default function AppSidebar() {
-	const { mutateAsync } = useCreateUser();
+	// const { mutateAsync } = useCreateUser();
 
 	return (
 		<aside className="flex flex-col border-r min-h-screen">
@@ -79,12 +79,12 @@ export default function AppSidebar() {
 			))}
 
 			{/*//TODO: remove*/}
-			<Button onClick={() => mutateAsync(fakeUser)} type="button">
-				Create Fake User
-			</Button>
+			{/*<Button onClick={() => mutateAsync(fakeUser)} type="button">*/}
+			{/*	Create Fake User*/}
+			{/*</Button>*/}
 
 			<div className="mt-auto m-2">
-				<UserButton />
+				<UserButton showName />
 			</div>
 		</aside>
 	);

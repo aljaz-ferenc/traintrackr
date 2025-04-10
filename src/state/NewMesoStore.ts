@@ -1,16 +1,16 @@
-import type { Exercise, Mesocycle, Workout } from "@/core/types.ts";
+import type {Exercise, Mesocycle, SplitType, Workout} from "@/core/types.ts";
 import { create } from "zustand";
 
 type NewMesoStore = {
 	mesoTitle: string;
 	mesoDuration: Mesocycle["duration"];
 	includeDeload: Mesocycle["includeDeload"];
-	splitType: "synchronized" | "asynchronized";
+	splitType: SplitType;
 	workouts: Workout[];
 	updateMesoTitle: (mesoTitle: Mesocycle["title"]) => void;
 	updateMesoDuration: (mesoDuration: Mesocycle["duration"]) => void;
 	toggleIncludeDeload: (value: Mesocycle["includeDeload"]) => void;
-	setMesoSplitType: (splitType: "synchronized" | "asynchronized") => void;
+	setMesoSplitType: (splitType: SplitType) => void;
 	addWorkout: (workout: Workout) => void;
 	removeWorkout: (workoutId: Workout["id"]) => void;
 	updateWorkout: (workoutId: Workout["id"], workout: Workout) => void;
@@ -31,7 +31,7 @@ export const useNewMesoStore = create<NewMesoStore>((set, getState) => ({
 	mesoTitle: "",
 	mesoDuration: 4,
 	includeDeload: false,
-	splitType: "synchronized",
+	splitType: "synchronous",
 	workouts: [],
 	createdBy: "",
 	updateMesoTitle: (mesoTitle) => set((state) => ({ ...state, mesoTitle })),

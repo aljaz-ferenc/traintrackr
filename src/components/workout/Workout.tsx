@@ -59,7 +59,7 @@ export default function Workout({ workout, editable = false }: WorkoutProps) {
 						onValueChange={(val) =>
 							setWorkoutDay(
 								workout.id,
-								splitType === "synchronized"
+								splitType === "synchronous"
 									? weekDays.indexOf(val)
 									: weekDays.indexOf(val) + 1,
 							)
@@ -74,7 +74,7 @@ export default function Workout({ workout, editable = false }: WorkoutProps) {
 								{weekDays.map((day, index) => (
 									<SelectItem value={day} key={day} className="capitalize">
 										<span className="capitalize">
-											{splitType === "synchronized" ? day : index + 1}
+											{splitType === "synchronous" ? day : index + 1}
 										</span>
 									</SelectItem>
 								))}
@@ -95,7 +95,10 @@ export default function Workout({ workout, editable = false }: WorkoutProps) {
 							</Button>
 							<Button
 								className="w-full"
-								onClick={() => cloneWorkout(workout.id)}
+								onClick={() => {
+									cloneWorkout(workout.id)
+									setIsPopoverOpen(false)
+								}}
 								variant="secondary"
 							>
 								Clone Workout

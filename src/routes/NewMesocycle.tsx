@@ -12,7 +12,7 @@ import { useShallow } from "zustand/react/shallow";
 import RouteTitle from "@/components/shared/RouteTitle.tsx";
 
 const mesoDurationOptions = [4, 6, 8, 10, 12];
-const mesoSplitTypeOptions = ["synchronized", "asynchronized"];
+const mesoSplitTypeOptions = ["synchronous", "asynchronous"];
 
 export default function NewMesocycle() {
 	const [
@@ -51,7 +51,7 @@ export default function NewMesocycle() {
 	};
 
 	return (
-		<section className="w-[600px] flex flex-col gap-5">
+		<section className="w-[1200px] flex flex-col gap-5">
 			<RouteTitle title='New Mesocycle'/>
 			<div className="flex flex-col gap-5">
 				<div>
@@ -112,11 +112,11 @@ export default function NewMesocycle() {
 							content={
 								<div className="flex flex-col gap-1">
 									<span>
-										<strong>Synchronized: </strong>
+										<strong>Synchronous: </strong>
 										Workouts follow a fixed weekly schedule (7-day split).
 									</span>
 									<span>
-										<strong>Asynchronized: </strong>
+										<strong>Asynchronous: </strong>
 										Workouts repeat in order without fixed days.
 									</span>
 								</div>

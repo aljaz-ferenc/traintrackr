@@ -13,7 +13,7 @@ export default function useGetUser() {
 
 	return useQuery<{ user: User }>({
 		queryKey: ["user", { clerkId: userId }],
-		//TODO: use real clerkId
-		queryFn: () => fetchUser("clerkid" as string),
+		queryFn: () => fetchUser(userId as string),
+		enabled: !!userId
 	});
 }

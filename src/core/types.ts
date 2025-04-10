@@ -16,20 +16,29 @@ export type ExerciseWithSets = Exercise & {
     sets: Set[]
 }
 
-type WeekNumber = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
-
 export type WorkoutLog = {
     _id: string,
-    mesoTitle: string,
-    workouts: Record<WeekNumber, Workout<ExerciseWithSets>>
+    mesoTitle: Mesocycle['title']
+    mesoDuration: Mesocycle['duration']
+    includeDeload: boolean,
+    splitType: SplitType,
+    createdBy: User['_id']
+    weeks: LogWeek[]
 }
+
+export type LogWeek = {
+    weekNumber: number,
+    workouts: Workout<ExerciseWithSets>[]
+}
+
+export type SplitType = "synchronous" | "asynchronous"
 
 export type Mesocycle = {
     _id: string;
     title: string;
     duration: number;
     includeDeload: boolean;
-    splitType: "synchronized" | "asynchronized";
+    splitType: SplitType;
     workouts: Workout[];
     createdBy: string;
 };
@@ -41,6 +50,7 @@ export type Set = {
 }
 
 export type User = {
+    _id: string,
     clerkId: string;
     email: string;
     username?: string;
@@ -48,7 +58,7 @@ export type User = {
     lastName?: string;
     image?: string;
     activeMesocycle: {
-        mesoId: string,
+        mesocycle: Mesocycle,
         startDate: Date,
         endDate: Date
     } | null;

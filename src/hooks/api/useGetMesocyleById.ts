@@ -10,6 +10,7 @@ async function fetchMesocycleById(mesoId: Mesocycle['_id']) {
 export default function useGetMesocycleById(mesoId: Mesocycle['_id']) {
     return useQuery<{ mesocycle: Mesocycle }>({
         queryKey: ['mesocycle', {mesoId}],
-        queryFn: () => fetchMesocycleById(mesoId)
+        queryFn: () => fetchMesocycleById(mesoId),
+        enabled: !!mesoId
     })
 }
