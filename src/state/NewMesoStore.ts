@@ -1,5 +1,5 @@
+import type { Exercise, Mesocycle, Workout } from "@/core/types.ts";
 import { create } from "zustand";
-import type {Exercise, Mesocycle, Workout} from "@/core/types.ts";
 
 type NewMesoStore = {
 	mesoTitle: string;
@@ -24,6 +24,7 @@ type NewMesoStore = {
 		workoutId: Workout["id"],
 		exerciseId: Exercise["id"],
 	) => void;
+	cloneWorkout: (workoutId: Workout["id"]) => void;
 };
 
 export const useNewMesoStore = create<NewMesoStore>((set, getState) => ({
@@ -122,5 +123,14 @@ export const useNewMesoStore = create<NewMesoStore>((set, getState) => ({
 				...state,
 				workouts: updatedWorkouts,
 			};
+		}),
+	cloneWorkout: (workoutId) =>
+		set((state) => {
+			const workout = state.workouts.find((w) => w.id === workoutId);
+			if (!workout) return state;
+
+			const clonedWorkout = { ...workout, id: crypto.randomUUID() };
+
+			return { ...state, workouts: [...state.workouts, clonedWorkout] };
 		}),
 }));
