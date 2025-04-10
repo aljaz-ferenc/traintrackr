@@ -10,11 +10,14 @@ import useCreateMesocycle from "@/hooks/api/useCreateMesocycle.ts";
 import { useNewMesoStore } from "@/state/NewMesoStore.ts";
 import { useShallow } from "zustand/react/shallow";
 import RouteTitle from "@/components/shared/RouteTitle.tsx";
+import useUserStore from "@/state/UserStore.ts";
 
 const mesoDurationOptions = [4, 6, 8, 10, 12];
 const mesoSplitTypeOptions = ["synchronous", "asynchronous"];
 
 export default function NewMesocycle() {
+	const [userId] = useUserStore(useShallow(state => [state.user?._id]))
+
 	const [
 		mesoTitle,
 		mesoDuration,
@@ -46,7 +49,7 @@ export default function NewMesocycle() {
 	const { mutateAsync } = useCreateMesocycle();
 
 	const handleCreateMeso = async () => {
-		const newMeso = constructMesocycle("testUser");
+		const newMeso = constructMesocycle(userId as string);
 		await mutateAsync(newMeso);
 	};
 

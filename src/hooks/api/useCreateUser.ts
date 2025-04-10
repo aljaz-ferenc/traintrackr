@@ -1,8 +1,9 @@
 import { useMutation } from "@tanstack/react-query";
 import type {User} from "@/core/types.ts";
+import {Endpoints} from "@/core/endpoints.ts";
 
-async function fetchCreateUser(user: User) {
-	const res = await fetch("http://localhost:4000/api/v1/users", {
+async function fetchCreateUser(user: Partial<User>) {
+	const res = await fetch(Endpoints.createUser, {
 		method: "POST",
 		body: JSON.stringify(user),
 		headers: {
@@ -15,6 +16,6 @@ async function fetchCreateUser(user: User) {
 export default function useCreateUser() {
 	return useMutation({
 		mutationKey: ["user-create"],
-		mutationFn: (user: User) => fetchCreateUser(user),
+		mutationFn: (user: Partial<User>) => fetchCreateUser(user),
 	});
 }

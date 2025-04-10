@@ -11,6 +11,7 @@ export default function AppLayout() {
 
     useEffect(() => {
         if (!data || isLoading) return
+        console.log('data: ', data)
         setUser(data.user)
     }, [data, isLoading, setUser])
 

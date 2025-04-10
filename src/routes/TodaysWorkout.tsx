@@ -2,18 +2,20 @@ import RouteTitle from "@/components/shared/RouteTitle.tsx";
 import {Input} from "@/components/ui/Input.tsx";
 import {Button} from "@/components/ui/button.tsx";
 import {weekDays} from "@/components/workout/Workout.tsx";
-import type {Set as TSet} from "@/core/types.ts";
+import type {Exercise, Set as TSet, Workout} from "@/core/types.ts";
 import useGetMesocycleById from "@/hooks/api/useGetMesocyleById.ts";
 import {useTodaysWorkoutStore} from "@/state/TodaysWorkoutStore.ts";
-import {getDay} from "date-fns";
+import {differenceInWeeks, getDay} from "date-fns";
 import {X} from "lucide-react";
 import {useEffect} from "react";
 import {useShallow} from "zustand/react/shallow";
 import useUserStore from "@/state/UserStore.ts";
+import useCompleteWorkout from "@/hooks/api/useCompleteWorkout.ts";
 
 export default function TodaysWorkout() {
     const [user] = useUserStore(useShallow(state => [state.user]))
     const {data, isLoading} = useGetMesocycleById(user?.activeMesocycle?.mesocycle._id as string);
+    const {mutateAsync} = useCompleteWorkout()
     const [
         exercises,
         setExercises,
@@ -46,8 +48,10 @@ export default function TodaysWorkout() {
         return <>No active mesocycle.</>;
     }
 
-    const handleCompleteWorkout = () => {
-        constructLog(data.mesocycle);
+    const handleCompleteWorkout = async () => {
+        const log = constructLog(user?.activeMesocycle?.startDate as Date, todaysWorkout as Workout<Exercise>, user?.activeMesocycle?.mesocycle._id as string);
+        console.log(log)
+        await mutateAsync(log)
     };
 
     if (isLoading || !data) {
@@ -63,9 +67,8 @@ export default function TodaysWorkout() {
             <RouteTitle title="Today's Workout"/>
             <div className="bg-blue-100 p-2 flex flex-col gap-1 mb-2">
                 <span className="uppercase">{data.mesocycle.title}</span>
-                {/*//TODO: calculate week*/}
                 <span className="text-xl font-bold uppercase">
-					Week 1/6 - {weekDays[todaysWorkout?.day]}
+					Week {differenceInWeeks(new Date(), user?.activeMesocycle?.startDate as Date) + 1}/6 - {weekDays[todaysWorkout?.day]}
 				</span>
             </div>
             <ul className="flex flex-col gap-2 mb-2">
