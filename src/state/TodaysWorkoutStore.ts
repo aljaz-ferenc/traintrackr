@@ -1,4 +1,11 @@
-import type { Exercise, ExerciseWithSets, Workout } from "@/core/types.ts";
+import type {
+	Exercise,
+	ExerciseWithSets,
+	Mesocycle,
+	User,
+	Workout,
+} from "@/core/types.ts";
+import type { CompleteWorkoutPayload } from "@/hooks/api/useCompleteWorkout.ts";
 import { differenceInWeeks } from "date-fns";
 import { create } from "zustand";
 
@@ -16,8 +23,9 @@ type TodaysWorkoutStore = {
 	constructLog: (
 		startDate: Date,
 		todaysWorkout: Workout<Exercise>,
-		mesoId: string,
-	) => { weekNumber: number; workout: Workout<ExerciseWithSets> };
+		mesoId: Mesocycle["_id"],
+		userId: User["_id"],
+	) => CompleteWorkoutPayload;
 };
 
 export const useTodaysWorkoutStore = create<TodaysWorkoutStore>(
@@ -94,7 +102,7 @@ export const useTodaysWorkoutStore = create<TodaysWorkoutStore>(
 				return { ...state, exercises: updatedExercises };
 			}),
 
-		constructLog: (startDate, todaysWorkout, mesoId) => {
+		constructLog: (startDate, todaysWorkout, mesoId, userId) => {
 			const now = new Date();
 
 			return {
@@ -106,6 +114,7 @@ export const useTodaysWorkoutStore = create<TodaysWorkoutStore>(
 					exercises: getState().exercises,
 					completedAt: now,
 				},
+				userId,
 			};
 		},
 	}),

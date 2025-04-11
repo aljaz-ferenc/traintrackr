@@ -1,27 +1,42 @@
-import {useMutation} from "@tanstack/react-query";
-import {Endpoints} from "@/core/endpoints.ts";
-import type {ExerciseWithSets, Workout} from "@/core/types.ts";
+import { Endpoints } from "@/core/endpoints.ts";
+import type {
+	ExerciseWithSets,
+	Mesocycle,
+	User,
+	Workout,
+} from "@/core/types.ts";
+import { useAuth } from "@clerk/clerk-react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-type CompleteWorkoutPayload = {
-    weekNumber: number
-    workout: Workout<ExerciseWithSets>
-    mesoId: string
+export type CompleteWorkoutPayload = {
+	weekNumber: number;
+	workout: Workout<ExerciseWithSets>;
+	mesoId: Mesocycle["_id"];
+	userId: User["_id"];
+};
+
+async function fetchCompleteWorkout(payload: CompleteWorkoutPayload) {
+	const res = await fetch(Endpoints.logs, {
+		body: JSON.stringify(payload),
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+		},
+	});
+	return await res.json();
 }
 
-async function fetchCompleteWorkout(payload: CompleteWorkoutPayload){
-    const res = await fetch(Endpoints.logs, {
-        body: JSON.stringify(payload),
-        method: 'PUT',
-        headers: {
-            'Content-Type':'application/json'
-        }
-    })
-    return await res.json()
-}
+export default function useCompleteWorkout() {
+	const queryClient = useQueryClient();
+	const { userId } = useAuth();
 
-export default function useCompleteWorkout(){
-    return useMutation({
-        mutationKey: ['workout-complete'],
-        mutationFn: (payload: CompleteWorkoutPayload) => fetchCompleteWorkout(payload)
-    })
+	return useMutation({
+		mutationKey: ["workout-complete"],
+		mutationFn: (payload: CompleteWorkoutPayload) =>
+			fetchCompleteWorkout(payload),
+		onSuccess: async () =>
+			await queryClient.invalidateQueries({
+				queryKey: ["user", { clerkId: userId }],
+			}),
+	});
 }

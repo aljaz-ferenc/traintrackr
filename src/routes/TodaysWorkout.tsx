@@ -7,7 +7,7 @@ import useCompleteWorkout from "@/hooks/api/useCompleteWorkout.ts";
 import useGetMesocycleById from "@/hooks/api/useGetMesocyleById.ts";
 import { useTodaysWorkoutStore } from "@/state/TodaysWorkoutStore.ts";
 import useUserStore from "@/state/UserStore.ts";
-import { differenceInWeeks, getDay } from "date-fns";
+import { differenceInWeeks, getDay, isToday } from "date-fns";
 import { X } from "lucide-react";
 import { useEffect } from "react";
 import { useShallow } from "zustand/react/shallow";
@@ -54,8 +54,8 @@ export default function TodaysWorkout() {
 			user?.activeMesocycle?.startDate as Date,
 			todaysWorkout as Workout<Exercise>,
 			user?.activeMesocycle?.mesocycle._id as string,
+			user?._id as string,
 		);
-		console.log(log);
 		await mutateAsync(log);
 	};
 
@@ -67,6 +67,9 @@ export default function TodaysWorkout() {
 		return <div>No workout?</div>;
 	}
 
+	if (user?.lastWorkout && isToday(new Date(user.lastWorkout))) {
+		return <>Today's workout completed.</>;
+	}
 	return (
 		<section className="w-[600px]">
 			<RouteTitle title="Today's Workout" />
