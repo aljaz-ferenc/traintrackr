@@ -11,6 +11,7 @@ import { differenceInWeeks, getDay, isToday } from "date-fns";
 import { X } from "lucide-react";
 import { useEffect } from "react";
 import { useShallow } from "zustand/react/shallow";
+import RouteFallback from "@/components/RouteFallback/RouteFallback.tsx";
 
 export default function TodaysWorkout() {
 	const [user] = useUserStore(useShallow((state) => [state.user]));
@@ -44,6 +45,10 @@ export default function TodaysWorkout() {
 		if (!data || exercises.length || !todaysWorkout) return;
 		setExercises(todaysWorkout.exercises);
 	}, [data, exercises.length, setExercises, todaysWorkout]);
+
+	if(isLoading){
+		return <RouteFallback/>
+	}
 
 	if (!data) {
 		return <>No active mesocycle.</>;

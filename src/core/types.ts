@@ -50,7 +50,6 @@ export type Set = {
 export type UserWeight = {
 	value: number;
 	date: Date;
-	units: "kg" | "lb";
 };
 
 export type UserStats = {
@@ -71,5 +70,7 @@ export type User = {
 		startDate: Date;
 		endDate: Date;
 	} | null;
-	stats?: UserStats;
+	stats?: {
+		weight: UserWeight[]
+	}
 };

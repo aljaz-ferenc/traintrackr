@@ -78,18 +78,16 @@ const fakeUser: Partial<User> = {
 	firstName: "firstName",
 	lastName: "lastName",
 	image: "image",
-	// activeMesocycle: {
-	// 	mesoId: '67f69328f5e5b6c596cc9326',
-	// 	startDate: new Date(),
-	// 	endDate: new Date()
-	// },
+	stats: {
+		weight: []
+	}
 };
 
 export default function AppSidebar() {
 	const { mutateAsync } = useCreateUser();
 
 	return (
-		<aside className="flex flex-col border-r min-h-screen">
+		<aside className="flex flex-col border-r min-h-screen p-2 gap-2">
 			{menuItems.map((item) => (
 				<SidebarItem key={item.path} item={item} />
 			))}

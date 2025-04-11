@@ -22,7 +22,7 @@ export default function AppLayout() {
     return (
         <div className="flex min-h-screen">
             <Sidebar/>
-            <main className="mx-auto py-10">
+            <main className="mx-auto py-10 min-h-screen">
                 <Outlet/>
             </main>
         </div>
