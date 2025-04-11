@@ -11,4 +11,5 @@ export class Endpoints {
 	static createUser = `${BASE_URL}/users`;
 	static logs = `${BASE_URL}/logs`;
 	static getLogs = (userId: User["_id"]) => `${BASE_URL}/logs/${userId}`;
+	static stats = (userId: User["_id"]) => `${BASE_URL}/users/${userId}/stats`;
 }

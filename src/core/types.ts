@@ -47,6 +47,16 @@ export type Set = {
 	id: string;
 };
 
+export type UserWeight = {
+	value: number;
+	date: Date;
+	units: "kg" | "lb";
+};
+
+export type UserStats = {
+	weight: UserWeight;
+};
+
 export type User = {
 	_id: string;
 	clerkId: string;
@@ -61,4 +71,5 @@ export type User = {
 		startDate: Date;
 		endDate: Date;
 	} | null;
+	stats?: UserStats;
 };
