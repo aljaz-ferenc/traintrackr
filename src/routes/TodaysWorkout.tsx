@@ -1,138 +1,159 @@
 import RouteTitle from "@/components/shared/RouteTitle.tsx";
-import {Input} from "@/components/ui/Input.tsx";
-import {Button} from "@/components/ui/button.tsx";
-import {weekDays} from "@/components/workout/Workout.tsx";
-import type {Exercise, Set as TSet, Workout} from "@/core/types.ts";
-import useGetMesocycleById from "@/hooks/api/useGetMesocyleById.ts";
-import {useTodaysWorkoutStore} from "@/state/TodaysWorkoutStore.ts";
-import {differenceInWeeks, getDay} from "date-fns";
-import {X} from "lucide-react";
-import {useEffect} from "react";
-import {useShallow} from "zustand/react/shallow";
-import useUserStore from "@/state/UserStore.ts";
+import { Input } from "@/components/ui/Input.tsx";
+import { Button } from "@/components/ui/button.tsx";
+import { weekDays } from "@/components/workout/Workout.tsx";
+import type { Exercise, Set as TSet, Workout } from "@/core/types.ts";
 import useCompleteWorkout from "@/hooks/api/useCompleteWorkout.ts";
+import useGetMesocycleById from "@/hooks/api/useGetMesocyleById.ts";
+import { useTodaysWorkoutStore } from "@/state/TodaysWorkoutStore.ts";
+import useUserStore from "@/state/UserStore.ts";
+import { differenceInWeeks, getDay } from "date-fns";
+import { X } from "lucide-react";
+import { useEffect } from "react";
+import { useShallow } from "zustand/react/shallow";
 
 export default function TodaysWorkout() {
-    const [user] = useUserStore(useShallow(state => [state.user]))
-    const {data, isLoading} = useGetMesocycleById(user?.activeMesocycle?.mesocycle._id as string);
-    const {mutateAsync} = useCompleteWorkout()
-    const [
-        exercises,
-        setExercises,
-        addSetToExercise,
-        removeSetFromExercise,
-        updateSet,
-        constructLog,
-    ] = useTodaysWorkoutStore(
-        useShallow((state) => [
-            state.exercises,
-            state.setExercises,
-            state.addSetToExercise,
-            state.removeSetFromExercise,
-            state.updateSet,
-            state.constructLog,
-        ]),
-    );
+	const [user] = useUserStore(useShallow((state) => [state.user]));
+	const { data, isLoading } = useGetMesocycleById(
+		user?.activeMesocycle?.mesocycle._id as string,
+	);
+	const { mutateAsync } = useCompleteWorkout();
+	const [
+		exercises,
+		setExercises,
+		addSetToExercise,
+		removeSetFromExercise,
+		updateSet,
+		constructLog,
+	] = useTodaysWorkoutStore(
+		useShallow((state) => [
+			state.exercises,
+			state.setExercises,
+			state.addSetToExercise,
+			state.removeSetFromExercise,
+			state.updateSet,
+			state.constructLog,
+		]),
+	);
 
+	const todaysWorkout = data?.mesocycle.workouts.find(
+		(workout) => workout.day === getDay(new Date()),
+	);
 
-    const todaysWorkout = data?.mesocycle.workouts.find(
-        (workout) => workout.day === getDay(new Date()),
-    );
+	useEffect(() => {
+		if (!data || exercises.length || !todaysWorkout) return;
+		setExercises(todaysWorkout.exercises);
+	}, [data, exercises.length, setExercises, todaysWorkout]);
 
-    useEffect(() => {
-        if (!data || exercises.length || !todaysWorkout) return;
-        setExercises(todaysWorkout.exercises);
-    }, [data, exercises.length, setExercises, todaysWorkout]);
+	if (!data) {
+		return <>No active mesocycle.</>;
+	}
 
-    if (!data) {
-        return <>No active mesocycle.</>;
-    }
+	const handleCompleteWorkout = async () => {
+		const log = constructLog(
+			user?.activeMesocycle?.startDate as Date,
+			todaysWorkout as Workout<Exercise>,
+			user?.activeMesocycle?.mesocycle._id as string,
+		);
+		console.log(log);
+		await mutateAsync(log);
+	};
 
-    const handleCompleteWorkout = async () => {
-        const log = constructLog(user?.activeMesocycle?.startDate as Date, todaysWorkout as Workout<Exercise>, user?.activeMesocycle?.mesocycle._id as string);
-        console.log(log)
-        await mutateAsync(log)
-    };
+	if (isLoading || !data) {
+		return <div>Loading...</div>;
+	}
 
-    if (isLoading || !data) {
-        return <div>Loading...</div>;
-    }
+	if (!todaysWorkout) {
+		return <div>No workout?</div>;
+	}
 
-    if (!todaysWorkout) {
-        return <div>No workout?</div>;
-    }
-
-    return (
-        <section className="w-[600px]">
-            <RouteTitle title="Today's Workout"/>
-            <div className="bg-blue-100 p-2 flex flex-col gap-1 mb-2">
-                <span className="uppercase">{data.mesocycle.title}</span>
-                <span className="text-xl font-bold uppercase">
-					Week {differenceInWeeks(new Date(), user?.activeMesocycle?.startDate as Date) + 1}/6 - {weekDays[todaysWorkout?.day]}
+	return (
+		<section className="w-[600px]">
+			<RouteTitle title="Today's Workout" />
+			<div className="bg-blue-100 p-2 flex flex-col gap-1 mb-2">
+				<span className="uppercase">{data.mesocycle.title}</span>
+				<span className="text-xl font-bold uppercase">
+					Week{" "}
+					{differenceInWeeks(
+						new Date(),
+						user?.activeMesocycle?.startDate as Date,
+					) + 1}
+					/6 - {weekDays[todaysWorkout?.day]}
 				</span>
-            </div>
-            <ul className="flex flex-col gap-2 mb-2">
-                {exercises.map((exercise, exerciseIndex) => (
-                    // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-                    <li key={exerciseIndex} className="bg-blue-100 p-2">
-                        <span className="uppercase font-bold">{exercise.name}</span>
-                        <table className="table-auto w-full border-separate border-spacing-2">
-                            <thead>
-                            <tr>
-                                <th>SET</th>
-                                <th>WEIGHT</th>
-                                <th>REPS</th>
-                                <th/>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {exercise.sets.map((set: TSet, setIndex: number) => (
-                                <tr key={set.id}>
-                                    <td>{setIndex + 1}</td>
-                                    <td>
-                                        <Input
-                                            className="bg-white"
-                                            onChange={(e) =>
-                                                updateSet(
-                                                    exerciseIndex,
-                                                    set.id,
-                                                    "weight",
-                                                    e.target.value,
-                                                )
-                                            }
-                                        />
-                                    </td>
-                                    <td>
-                                        <Input className="bg-white"/>
-                                    </td>
-                                    <td>
-                                        <Button
-                                            variant="ghost"
-                                            className="cursor-pointer"
-                                            onClick={() =>
-                                                removeSetFromExercise(exerciseIndex, set.id)
-                                            }
-                                        >
-                                            <X color="red"/>
-                                        </Button>
-                                    </td>
-                                </tr>
-                            ))}
-                            </tbody>
-                        </table>
-                        <Button
-                            className="uppercase cursor-pointer"
-                            type="button"
-                            onClick={() => addSetToExercise(exerciseIndex)}
-                        >
-                            ADD SET
-                        </Button>
-                    </li>
-                ))}
-            </ul>
-            <Button className="w-full" onClick={() => handleCompleteWorkout()}>
-                Complete Workout
-            </Button>
-        </section>
-    );
+			</div>
+			<ul className="flex flex-col gap-2 mb-2">
+				{exercises.map((exercise, exerciseIndex) => (
+					// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+					<li key={exerciseIndex} className="bg-blue-100 p-2">
+						<span className="uppercase font-bold">{exercise.name}</span>
+						<table className="table-auto w-full border-separate border-spacing-2">
+							<thead>
+								<tr>
+									<th>SET</th>
+									<th>WEIGHT</th>
+									<th>REPS</th>
+									<th />
+								</tr>
+							</thead>
+							<tbody>
+								{exercise.sets.map((set: TSet, setIndex: number) => (
+									<tr key={set.id}>
+										<td>{setIndex + 1}</td>
+										<td>
+											<Input
+												className="bg-white"
+												onChange={(e) => {
+													// console.log(exerciseIndex, set.id, e.target.value);
+													updateSet(
+														exerciseIndex,
+														set.id,
+														"weight",
+														e.target.value,
+													);
+												}}
+											/>
+										</td>
+										<td>
+											<Input
+												className="bg-white"
+												onChange={(e) =>
+													updateSet(
+														exerciseIndex,
+														set.id,
+														"reps",
+														e.target.value,
+													)
+												}
+											/>
+										</td>
+										<td>
+											<Button
+												variant="ghost"
+												className="cursor-pointer"
+												onClick={() =>
+													removeSetFromExercise(exerciseIndex, set.id)
+												}
+											>
+												<X color="red" />
+											</Button>
+										</td>
+									</tr>
+								))}
+							</tbody>
+						</table>
+						<Button
+							className="uppercase cursor-pointer"
+							type="button"
+							onClick={() => addSetToExercise(exerciseIndex)}
+						>
+							ADD SET
+						</Button>
+					</li>
+				))}
+			</ul>
+			<Button className="w-full" onClick={() => handleCompleteWorkout()}>
+				Complete Workout
+			</Button>
+		</section>
+	);
 }

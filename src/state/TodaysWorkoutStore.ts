@@ -1,102 +1,112 @@
-import type {Exercise, ExerciseWithSets, Workout} from "@/core/types.ts";
-import {create} from "zustand";
-import {differenceInWeeks} from "date-fns";
+import type { Exercise, ExerciseWithSets, Workout } from "@/core/types.ts";
+import { differenceInWeeks } from "date-fns";
+import { create } from "zustand";
 
 type TodaysWorkoutStore = {
-    exercises: ExerciseWithSets[];
-    setExercises: (exercises: Exercise[]) => void;
-    addSetToExercise: (exerciseIndex: number) => void;
-    removeSetFromExercise: (exerciseIndex: number, setId: string) => void;
-    updateSet: (
-        exerciseIndex: number,
-        setId: string,
-        key: "weight" | "reps",
-        value: string,
-    ) => void;
-    constructLog: (startDate: Date, todaysWorkout: Workout<Exercise>, mesoId: string) => {weekNumber: number, workout: Workout<ExerciseWithSets>};
+	exercises: ExerciseWithSets[];
+	setExercises: (exercises: Exercise[]) => void;
+	addSetToExercise: (exerciseIndex: number) => void;
+	removeSetFromExercise: (exerciseIndex: number, setId: string) => void;
+	updateSet: (
+		exerciseIndex: number,
+		setId: string,
+		key: "weight" | "reps",
+		value: string,
+	) => void;
+	constructLog: (
+		startDate: Date,
+		todaysWorkout: Workout<Exercise>,
+		mesoId: string,
+	) => { weekNumber: number; workout: Workout<ExerciseWithSets> };
 };
 
 export const useTodaysWorkoutStore = create<TodaysWorkoutStore>(
-    (set, getState) => ({
-        exercises: [],
-        setExercises: (exercises) =>
-            set((state) => {
-                const exercisesWithSets: ExerciseWithSets[] = exercises.map(
-                    (exercise) => {
-                        return {
-                            ...exercise,
-                            sets: [{weight: null, reps: null, id: crypto.randomUUID()}],
-                        };
-                    },
-                );
+	(set, getState) => ({
+		exercises: [],
+		setExercises: (exercises) =>
+			set((state) => {
+				const exercisesWithSets: ExerciseWithSets[] = exercises.map(
+					(exercise) => {
+						return {
+							...exercise,
+							sets: [{ weight: null, reps: null, id: crypto.randomUUID() }],
+						};
+					},
+				);
 
-                return {...state, exercises: exercisesWithSets};
-            }),
-        addSetToExercise: (exerciseIndex) =>
-            set((state) => {
-                const updatedExercises = state.exercises.map((exercise, i) => {
-                    if (i === exerciseIndex) {
-                        return {
-                            ...exercise,
-                            sets: [
-                                ...exercise.sets,
-                                {weight: null, reps: null, id: crypto.randomUUID()},
-                            ],
-                        };
-                    }
-                    return exercise;
-                });
+				return { ...state, exercises: exercisesWithSets };
+			}),
+		addSetToExercise: (exerciseIndex) =>
+			set((state) => {
+				const updatedExercises = state.exercises.map((exercise, i) => {
+					if (i === exerciseIndex) {
+						return {
+							...exercise,
+							sets: [
+								...exercise.sets,
+								{ weight: null, reps: null, id: crypto.randomUUID() },
+							],
+						};
+					}
+					return exercise;
+				});
 
-                return {...state, exercises: updatedExercises};
-            }),
-        removeSetFromExercise: (exerciseIndex, setId) =>
-            set((state) => {
-                const updatedExercises = state.exercises.map(
-                    (exercise, exerciseIdx) => {
-                        if (exerciseIdx === exerciseIndex) {
-                            const filteredSets = exercise.sets.filter(
-                                (set) => set.id !== setId,
-                            );
+				return { ...state, exercises: updatedExercises };
+			}),
+		removeSetFromExercise: (exerciseIndex, setId) =>
+			set((state) => {
+				const updatedExercises = state.exercises.map(
+					(exercise, exerciseIdx) => {
+						if (exerciseIdx === exerciseIndex) {
+							const filteredSets = exercise.sets.filter(
+								(set) => set.id !== setId,
+							);
 
-                            return {...exercise, sets: filteredSets};
-                        }
-                        return exercise;
-                    },
-                );
+							return { ...exercise, sets: filteredSets };
+						}
+						return exercise;
+					},
+				);
 
-                return {...state, exercises: updatedExercises};
-            }),
-        updateSet: (exerciseIndex, setId, key, value) =>
-            set((state) => {
-                const updatedExercises = state.exercises.map(
-                    (exercise, exerciseIdx) => {
-                        if (exerciseIndex === exerciseIdx) {
-                            exercise.sets.map((set) => {
-                                if (set.id === setId) {
-                                    return {...set, [key]: +value};
-                                }
-                                return set;
-                            });
-                        }
-                        return exercise;
-                    },
-                );
+				return { ...state, exercises: updatedExercises };
+			}),
+		updateSet: (exerciseIndex, setId, key, value) =>
+			set((state) => {
+				console.log(exerciseIndex, setId, key, value);
 
-                return {...state, exercises: updatedExercises};
-            }),
-        constructLog: ( startDate, todaysWorkout, mesoId) => {
-            const now = new Date()
+				const updatedExercises = state.exercises.map(
+					(exercise, exerciseIdx) => {
+						if (exerciseIndex === exerciseIdx) {
+							return {
+								...exercise,
+								sets: exercise.sets.map((set) => {
+									if (set.id === setId) {
+										return { ...set, [key]: +value };
+									}
+									return set;
+								}),
+							};
+						}
+						return exercise;
+					},
+				);
 
-            return {
-                weekNumber: differenceInWeeks(now, startDate) + 1,
-                mesoId,
-                workout: {
-                    id: todaysWorkout.id,
-                    day: todaysWorkout.day,
-                    exercises: getState().exercises,
-                    completedAt: now
-                }
-            }
-        }
-    }),
+				return { ...state, exercises: updatedExercises };
+			}),
+
+		constructLog: (startDate, todaysWorkout, mesoId) => {
+			const now = new Date();
+
+			return {
+				weekNumber: differenceInWeeks(now, startDate) + 1,
+				mesoId,
+				workout: {
+					id: todaysWorkout.id,
+					day: todaysWorkout.day,
+					exercises: getState().exercises,
+					completedAt: now,
+				},
+			};
+		},
+	}),
 );
