@@ -1,10 +1,12 @@
 import { Button } from "@/components/ui/button.tsx";
+import { Route } from "@/core/enums/Routes.enum.ts";
 import type { User } from "@/core/types.ts";
 import useCreateUser from "@/hooks/api/useCreateUser.ts";
 // import { Button } from "@/components/ui/button.tsx";
 // import useCreateUser from "@/hooks/api/useCreateUser.ts";
 import { UserButton } from "@clerk/clerk-react";
 import {
+	ChartNoAxesCombined,
 	Dumbbell,
 	FilePlus,
 	Files,
@@ -27,37 +29,42 @@ const iconSize = 20;
 
 const menuItems: TSidebarItem[] = [
 	{
-		path: "/dashboard",
+		path: Route.Dashboard,
 		title: "Dashboard",
 		icon: <LayoutDashboard size={iconSize} />,
 	},
 	{
-		path: "todays-workout",
+		path: Route.TodaysWorkout,
 		title: "Today's workout",
 		icon: <Dumbbell size={iconSize} />,
 	},
 	{
-		path: "new-mesocycle",
+		path: Route.NewMesocycle,
 		title: "New Mesocycle",
 		icon: <FilePlus size={iconSize} />,
 	},
 	{
-		path: "my-mesocycles",
+		path: Route.MyMesocycles,
 		title: "My Mesocycles",
 		icon: <Files size={iconSize} />,
 	},
 	{
-		path: "completed-workouts",
+		path: Route.CompletedWorkouts,
 		title: "Completed Workouts",
 		icon: <SquareCheckBig size={iconSize} />,
 	},
 	{
-		path: "nutrition",
+		path: Route.Nutrition,
 		title: "Nutrition",
 		icon: <Utensils size={iconSize} />,
 	},
 	{
-		path: "settings",
+		path: Route.Stats,
+		title: "Stats",
+		icon: <ChartNoAxesCombined size={iconSize} />,
+	},
+	{
+		path: Route.Settings,
 		title: "Settings",
 		icon: <Settings size={iconSize} />,
 	},

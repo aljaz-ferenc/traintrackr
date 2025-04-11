@@ -1,6 +1,8 @@
 import { ProtectedRoute } from "@/components/ProtectedRoute/ProtectedRoute.tsx";
 import RouteFallback from "@/components/RouteFallback/RouteFallback.tsx";
+import { Route } from "@/core/enums/Routes.enum.ts";
 import CompletedWorkouts from "@/routes/CompletedWorkouts.tsx";
+import Stats from "@/routes/Stats.tsx";
 import { Suspense, lazy } from "react";
 import { RouterProvider, createBrowserRouter } from "react-router";
 import AppLayout from "./components/layouts/AppLayout.tsx";
@@ -35,31 +37,35 @@ const router = createBrowserRouter([
 		),
 		children: [
 			{
-				path: "/dashboard",
+				path: Route.Dashboard,
 				element: <Dashboard />,
 			},
 			{
-				path: "/todays-workout",
+				path: Route.TodaysWorkout,
 				element: <TodaysWorkout />,
 			},
 			{
-				path: "/new-mesocycle",
+				path: Route.NewMesocycle,
 				element: <NewMesocycle />,
 			},
 			{
-				path: "/my-mesocycles",
+				path: Route.MyMesocycles,
 				element: <MyMesocycles />,
 			},
 			{
-				path: "/completed-workouts",
+				path: Route.CompletedWorkouts,
 				element: <CompletedWorkouts />,
 			},
 			{
-				path: "/nutrition",
+				path: Route.Nutrition,
 				element: <Nutrition />,
 			},
 			{
-				path: "settings",
+				path: Route.Stats,
+				element: <Stats />,
+			},
+			{
+				path: Route.Settings,
 				element: <Settings />,
 			},
 		],
