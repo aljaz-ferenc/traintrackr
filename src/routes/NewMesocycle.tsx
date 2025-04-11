@@ -11,13 +11,18 @@ import { useNewMesoStore } from "@/state/NewMesoStore.ts";
 import { useShallow } from "zustand/react/shallow";
 import RouteTitle from "@/components/shared/RouteTitle.tsx";
 import useUserStore from "@/state/UserStore.ts";
+import {useParams} from "react-router";
+import useGetMesocycleById from "@/hooks/api/useGetMesocyleById.ts";
+import {useEffect, useMemo} from "react";
+import RouteFallback from "@/components/RouteFallback/RouteFallback.tsx";
 
 const mesoDurationOptions = [4, 6, 8, 10, 12];
 const mesoSplitTypeOptions = ["synchronous", "asynchronous"];
 
 export default function NewMesocycle() {
 	const [userId] = useUserStore(useShallow(state => [state.user?._id]))
-
+	const { mesoId } = useParams<{ mesoId: string }>();
+	const {data: mesoToEdit, isLoading} = useGetMesocycleById(mesoId || '')
 	const [
 		mesoTitle,
 		mesoDuration,
@@ -30,6 +35,7 @@ export default function NewMesocycle() {
 		setMesoSplitType,
 		addWorkout,
 		constructMesocycle,
+		setMesoToEdit
 	] = useNewMesoStore(
 		useShallow((state) => [
 			state.mesoTitle,
@@ -43,6 +49,7 @@ export default function NewMesocycle() {
 			state.setMesoSplitType,
 			state.addWorkout,
 			state.constructMesocycle,
+			state.setMesoToEdit
 		]),
 	);
 
@@ -53,9 +60,30 @@ export default function NewMesocycle() {
 		await mutateAsync(newMeso);
 	};
 
+	const handleUpdateMeso = async () => {
+		const updatedMeso = constructMesocycle(userId as string)
+		console.log(updatedMeso)
+		//TODO: update meso on BE
+	}
+
+	const allowEdit = useMemo(() => {
+		if(isLoading) return
+		return !!mesoToEdit
+	}, [mesoToEdit, isLoading])
+
+	useEffect(() => {
+		if(isLoading || !mesoToEdit) return
+
+		setMesoToEdit(mesoToEdit.mesocycle)
+	}, [isLoading, mesoToEdit, setMesoToEdit]);
+
+	if(isLoading){
+		return <RouteFallback/>
+	}
+
 	return (
 		<section className="w-[1200px] flex flex-col gap-5">
-			<RouteTitle title='New Mesocycle'/>
+			<RouteTitle title={allowEdit ? 'Edit Mesocycle' : 'New Mesocycle'}/>
 			<div className="flex flex-col gap-5">
 				<div>
 					<Label>Mesocycle Name</Label>
@@ -145,8 +173,8 @@ export default function NewMesocycle() {
 					))}
 				</div>
 			</div>
-			<Button variant="default" onClick={handleCreateMeso}>
-				Create Mesocycle
+			<Button variant="default" onClick={allowEdit ? handleUpdateMeso : handleCreateMeso}>
+				{allowEdit ? 'Update Mesocycle' : 'Create Mesocycle'}
 			</Button>
 		</section>
 	);

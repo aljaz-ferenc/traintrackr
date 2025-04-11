@@ -53,6 +53,10 @@ const router = createBrowserRouter([
 				element: <MyMesocycles />,
 			},
 			{
+				path: 'my-mesocycles/:mesoId/edit',
+				element: <NewMesocycle/>,
+			},
+			{
 				path: Route.CompletedWorkouts,
 				element: <CompletedWorkouts />,
 			},

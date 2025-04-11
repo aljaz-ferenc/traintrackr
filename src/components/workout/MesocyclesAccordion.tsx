@@ -9,6 +9,7 @@ import type {Workout as TWorkout, Mesocycle} from '@/core/types.ts'
 import useActivateMesocycle, {type ActivateMesoPayload} from "@/hooks/api/useActivateMesocycle.ts";
 import {addWeeks, previousMonday} from "date-fns";
 import {useAuth} from "@clerk/clerk-react";
+import {useNavigate} from "react-router";
 
 type MesocyclesAccordionProps = {
     mesocycles: Mesocycle[]
@@ -18,6 +19,7 @@ export default function MesocyclesAccordion({mesocycles}: MesocyclesAccordionPro
     //TODO: create popover component?
     const [isPopoverOpen, setIsPopoverOpen] = useState(false)
     const {userId} = useAuth()
+    const navigate = useNavigate()
     const {mutateAsync: deleteMeso} = useDeleteMesocycle()
     const {mutateAsync: activateMeso} = useActivateMesocycle()
 
@@ -65,6 +67,10 @@ export default function MesocyclesAccordion({mesocycles}: MesocyclesAccordionPro
                                 <Button onClick={() => handleDeleteMesocycle(meso._id)} variant="destructive">
                                     Delete Mesocycle
                                 </Button>
+                                <Button onClick={() => navigate(`/my-mesocycles/${meso._id}/edit`)} variant="secondary">
+                                    Update Mesocycle
+                                </Button>
+
                             </PopoverContent>
                         </Popover>
                         </div>
