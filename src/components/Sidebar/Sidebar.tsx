@@ -1,3 +1,6 @@
+import { Button } from "@/components/ui/button.tsx";
+import type { User } from "@/core/types.ts";
+import useCreateUser from "@/hooks/api/useCreateUser.ts";
 // import { Button } from "@/components/ui/button.tsx";
 // import useCreateUser from "@/hooks/api/useCreateUser.ts";
 import { UserButton } from "@clerk/clerk-react";
@@ -7,13 +10,11 @@ import {
 	Files,
 	LayoutDashboard,
 	Settings,
+	SquareCheckBig,
 	Utensils,
 } from "lucide-react";
 import type React from "react";
 import SidebarItem from "./SidebarItem.tsx";
-import type {User} from "@/core/types.ts";
-import {Button} from "@/components/ui/button.tsx";
-import useCreateUser from "@/hooks/api/useCreateUser.ts";
 // import type {User} from "@/core/types.ts";
 
 export type TSidebarItem = {
@@ -44,6 +45,11 @@ const menuItems: TSidebarItem[] = [
 		path: "my-mesocycles",
 		title: "My Mesocycles",
 		icon: <Files size={iconSize} />,
+	},
+	{
+		path: "completed-workouts",
+		title: "Completed Workouts",
+		icon: <SquareCheckBig size={iconSize} />,
 	},
 	{
 		path: "nutrition",

@@ -23,12 +23,10 @@ export type WorkoutLog = {
 	includeDeload: boolean;
 	splitType: SplitType;
 	createdBy: User["_id"];
-	weeks: LogWeek[];
-};
-
-export type LogWeek = {
-	weekNumber: number;
-	workouts: Workout<ExerciseWithSets>[];
+	weeks: {
+		_id: string;
+		workouts: Workout<ExerciseWithSets>[];
+	}[];
 };
 
 export type SplitType = "synchronous" | "asynchronous";

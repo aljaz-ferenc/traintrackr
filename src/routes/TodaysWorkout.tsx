@@ -67,9 +67,9 @@ export default function TodaysWorkout() {
 		return <div>No workout?</div>;
 	}
 
-	if (user?.lastWorkout && isToday(new Date(user.lastWorkout))) {
-		return <>Today's workout completed.</>;
-	}
+	// if (user?.lastWorkout && isToday(new Date(user.lastWorkout))) {
+	// 	return <>Today's workout completed.</>;
+	// }
 	return (
 		<section className="w-[600px]">
 			<RouteTitle title="Today's Workout" />
