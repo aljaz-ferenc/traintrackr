@@ -15,6 +15,8 @@ import {useParams} from "react-router";
 import useGetMesocycleById from "@/hooks/api/useGetMesocyleById.ts";
 import {useEffect, useMemo} from "react";
 import RouteFallback from "@/components/RouteFallback/RouteFallback.tsx";
+import useUpdateMesocycle from "@/hooks/api/useUpdateMesocycle.ts";
+import {useQueryClient} from "@tanstack/react-query";
 
 const mesoDurationOptions = [4, 6, 8, 10, 12];
 const mesoSplitTypeOptions = ["synchronous", "asynchronous"];
@@ -23,6 +25,8 @@ export default function NewMesocycle() {
 	const [userId] = useUserStore(useShallow(state => [state.user?._id]))
 	const { mesoId } = useParams<{ mesoId: string }>();
 	const {data: mesoToEdit, isLoading} = useGetMesocycleById(mesoId || '')
+	const {mutateAsync: updateMesocycle} = useUpdateMesocycle()
+	const queryClient = useQueryClient()
 	const [
 		mesoTitle,
 		mesoDuration,
@@ -63,7 +67,8 @@ export default function NewMesocycle() {
 	const handleUpdateMeso = async () => {
 		const updatedMeso = constructMesocycle(userId as string)
 		console.log(updatedMeso)
-		//TODO: update meso on BE
+		await updateMesocycle(updatedMeso)
+		await queryClient.invalidateQueries({queryKey: ['mesocycle', {mesoId}]})
 	}
 
 	const allowEdit = useMemo(() => {

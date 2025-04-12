@@ -2,6 +2,7 @@ import type {Exercise, Mesocycle, SplitType, Workout} from "@/core/types.ts";
 import {create} from "zustand";
 
 type NewMesoStore = {
+    _id: Mesocycle['_id']
     mesoTitle: string;
     mesoDuration: Mesocycle["duration"];
     includeDeload: Mesocycle["includeDeload"];
@@ -16,7 +17,7 @@ type NewMesoStore = {
     updateWorkout: (workoutId: Workout["id"], workout: Workout) => void;
     constructMesocycle: (
         createdBy: Mesocycle["createdBy"],
-    ) => Omit<Mesocycle, "_id">;
+    ) => Mesocycle;
     setWorkoutDay: (workoutId: Workout["id"], day: Workout["day"]) => void;
     setExercises: (workoutId: Workout["id"], exercises: Exercise[]) => void;
     addExerciseToWorkout: (workoutId: Workout["id"], exercise: Exercise) => void;
@@ -29,6 +30,7 @@ type NewMesoStore = {
 };
 
 export const useNewMesoStore = create<NewMesoStore>((set, getState) => ({
+    _id: '',
     mesoTitle: "",
     mesoDuration: 4,
     includeDeload: false,
@@ -57,10 +59,12 @@ export const useNewMesoStore = create<NewMesoStore>((set, getState) => ({
             ),
         })),
     constructMesocycle: (createdBy: Mesocycle["createdBy"]) => {
-        const {mesoTitle, mesoDuration, includeDeload, splitType, workouts} =
+        const {mesoTitle, mesoDuration, includeDeload, splitType, workouts, _id} =
             getState();
         console.log(createdBy)
-        return {
+
+        const newMeso: Mesocycle = {
+            _id,
             title: mesoTitle,
             duration: mesoDuration,
             includeDeload,
@@ -68,6 +72,12 @@ export const useNewMesoStore = create<NewMesoStore>((set, getState) => ({
             workouts,
             createdBy,
         };
+
+        if(_id){
+            newMeso._id = _id
+        }
+
+        return newMeso
     },
     setWorkoutDay: (workoutId, day) => {
         const {workouts} = getState();
@@ -135,6 +145,7 @@ export const useNewMesoStore = create<NewMesoStore>((set, getState) => ({
             return {...state, workouts: [...state.workouts, clonedWorkout]};
         }),
     setMesoToEdit: (meso) => set({
+        _id: meso._id,
         mesoTitle: meso.title,
         mesoDuration: meso.duration,
         includeDeload: meso.includeDeload,
