@@ -162,7 +162,7 @@ export default function NewMesocycle() {
 				</div>
 				<Separator />
 			</div>
-			<div className="flex flex-col gap-5 overflow-auto relative">
+			<div className="flex flex-col overflow-auto relative">
 				<Button
 					variant="secondary"
 					className="cursor-pointer max-w-20 sticky top-0 left-0"
