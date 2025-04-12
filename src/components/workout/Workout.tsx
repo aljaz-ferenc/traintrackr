@@ -16,12 +16,15 @@ import SelectExerciseModal from "@/components/workout/SelectExerciseModal.tsx";
 import type { Workout as TWorkout } from "@/core/types.ts";
 import { useNewMesoStore } from "@/state/NewMesoStore.ts";
 import { Ellipsis } from "lucide-react";
-import { useState } from "react";
+import {RefObject, useRef, useState} from "react";
 import { useShallow } from "zustand/react/shallow";
+import {cn} from "@/utils/utils.ts";
+import {useOnClickOutside} from "usehooks-ts";
 
 type WorkoutProps = {
 	workout: TWorkout;
 	editable: boolean;
+	focusable: boolean
 };
 
 export const weekDays = [
@@ -34,15 +37,18 @@ export const weekDays = [
 	"saturday",
 ];
 
-export default function Workout({ workout, editable = false }: WorkoutProps) {
+export default function Workout({ workout, editable = false, focusable = false }: WorkoutProps) {
 	const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-	const [removeWorkout, setWorkoutDay, splitType, cloneWorkout] =
+	const workoutRef = useRef<HTMLElement>(null)
+	const [removeWorkout, setWorkoutDay, splitType, cloneWorkout, setFocusedWorkout, focusedWorkout] =
 		useNewMesoStore(
 			useShallow((state) => [
 				state.removeWorkout,
 				state.setWorkoutDay,
 				state.splitType,
 				state.cloneWorkout,
+				state.setFocusedWorkout,
+				state.focusedWorkout
 			]),
 		);
 
@@ -51,8 +57,20 @@ export default function Workout({ workout, editable = false }: WorkoutProps) {
 		setIsPopoverOpen(false);
 	};
 
+	useOnClickOutside(workoutRef as RefObject<HTMLElement>, () => () => focusWorkout(false))
+
+	const focusWorkout = (shouldFocus: boolean) => {
+		if(!focusable) return
+		setFocusedWorkout(shouldFocus ? workout.id : '')
+	}
+
 	return (
-		<article className="p-2 border-gray-400 rounded flex flex-col gap-2 min-w-xs border">
+		<article
+			ref={workoutRef}
+			onFocus={() => focusWorkout(true)}
+			onMouseDown={() => focusWorkout(true)}
+			onBlur={() => setFocusedWorkout('')}
+			className={cn(["p-2 border-gray-200 rounded flex flex-col gap-2 min-w-xs border-2", focusedWorkout === workout.id && 'border-2 border-sky-400'])}>
 			{editable ? (
 				<div className="flex gap-2 items-center">
 					<Select

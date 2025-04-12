@@ -8,6 +8,7 @@ type NewMesoStore = {
     includeDeload: Mesocycle["includeDeload"];
     splitType: SplitType;
     workouts: Workout[];
+    focusedWorkout: Workout['id']
     updateMesoTitle: (mesoTitle: Mesocycle["title"]) => void;
     updateMesoDuration: (mesoDuration: Mesocycle["duration"]) => void;
     toggleIncludeDeload: (value: Mesocycle["includeDeload"]) => void;
@@ -15,6 +16,7 @@ type NewMesoStore = {
     addWorkout: (workout: Workout) => void;
     removeWorkout: (workoutId: Workout["id"]) => void;
     updateWorkout: (workoutId: Workout["id"], workout: Workout) => void;
+    setFocusedWorkout: (workoutId: Workout['id']) => void
     constructMesocycle: (
         createdBy: Mesocycle["createdBy"],
     ) => Mesocycle;
@@ -36,6 +38,7 @@ export const useNewMesoStore = create<NewMesoStore>((set, getState) => ({
     includeDeload: false,
     splitType: "synchronous",
     workouts: [],
+    focusedWorkout: '',
     updateMesoTitle: (mesoTitle) => set((state) => ({...state, mesoTitle})),
     updateMesoDuration: (mesoDuration) =>
         set((state) => ({...state, mesoDuration})),
@@ -58,6 +61,7 @@ export const useNewMesoStore = create<NewMesoStore>((set, getState) => ({
                 w.id === workoutId ? updatedWorkout : w,
             ),
         })),
+    setFocusedWorkout: (workoutId) => set({focusedWorkout: workoutId}),
     constructMesocycle: (createdBy: Mesocycle["createdBy"]) => {
         const {mesoTitle, mesoDuration, includeDeload, splitType, workouts, _id} =
             getState();
@@ -91,7 +95,7 @@ export const useNewMesoStore = create<NewMesoStore>((set, getState) => ({
             }
             return w;
         });
-        set({workouts: updatedWorkouts});
+        set({workouts: updatedWorkouts.sort((a, b) => a.day > b.day ? 1 : -1)});
     },
 
     setExercises: (workoutId, exercises) => {
