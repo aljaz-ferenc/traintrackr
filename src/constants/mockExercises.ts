@@ -1,4 +1,4 @@
-import type { Exercise } from "@/state/NewMesoStore.ts";
+import type {Exercise} from "@/core/types.ts";
 
 export const mockExercises: Exercise[] = [
 	// Biceps
@@ -20,26 +20,26 @@ export const mockExercises: Exercise[] = [
 		id: "3",
 		name: "Tricep Pushdown",
 		primaryMuscle: "triceps",
-		secondaryMuscles: ["shoulders"],
+		secondaryMuscles: [],
 	},
 	{
 		id: "4",
 		name: "Overhead Tricep Extension",
 		primaryMuscle: "triceps",
-		secondaryMuscles: ["shoulders"],
+		secondaryMuscles: [],
 	},
 
 	// Shoulders
 	{
 		id: "5",
 		name: "Overhead Press",
-		primaryMuscle: "shoulders",
-		secondaryMuscles: ["triceps"],
+		primaryMuscle: "front-delts",
+		secondaryMuscles: ["triceps", 'side-delts'],
 	},
 	{
 		id: "6",
 		name: "Lateral Raise",
-		primaryMuscle: "shoulders",
+		primaryMuscle: "side-delts",
 		secondaryMuscles: [],
 	},
 
@@ -48,13 +48,13 @@ export const mockExercises: Exercise[] = [
 		id: "7",
 		name: "Barbell Shrug",
 		primaryMuscle: "traps",
-		secondaryMuscles: ["shoulders"],
+		secondaryMuscles: ["side-delts"],
 	},
 	{
 		id: "8",
 		name: "Dumbbell Shrug",
 		primaryMuscle: "traps",
-		secondaryMuscles: ["shoulders"],
+		secondaryMuscles: ["side-delts"],
 	},
 
 	// Lats
@@ -76,13 +76,13 @@ export const mockExercises: Exercise[] = [
 		id: "11",
 		name: "Bench Press",
 		primaryMuscle: "chest",
-		secondaryMuscles: ["triceps", "shoulders"],
+		secondaryMuscles: ["triceps", "front-delts"],
 	},
 	{
 		id: "12",
 		name: "Incline Dumbbell Press",
 		primaryMuscle: "chest",
-		secondaryMuscles: ["shoulders", "triceps"],
+		secondaryMuscles: ["front-delts", "triceps"],
 	},
 
 	// Core

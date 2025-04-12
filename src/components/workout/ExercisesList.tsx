@@ -1,13 +1,10 @@
 import { Badge } from "@/components/ui/badge.tsx";
-import {
-	type Exercise,
-	type Workout,
-	useNewMesoStore,
-} from "@/state/NewMesoStore.ts";
+import {useNewMesoStore,} from "@/state/NewMesoStore.ts";
 import { cn } from "@/utils/utils.ts";
 import { X } from "lucide-react";
 import { Reorder, useDragControls } from "motion/react";
 import { useShallow } from "zustand/react/shallow";
+import {Exercise, Workout} from "@/core/types.ts";
 
 type ExercisesListProps = {
 	exercises: Exercise[];
