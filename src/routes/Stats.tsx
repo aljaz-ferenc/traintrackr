@@ -9,6 +9,7 @@ import useStats from "@/hooks/api/useStats.ts";
 import useUpdateStats from "@/hooks/api/useUpdateStats.ts";
 import {useState} from "react";
 import WeightChart from "@/components/stats/WeightChart.tsx";
+import RouteTitle from "@/components/shared/RouteTitle.tsx";
 
 export enum Range {
     Week = "week",
@@ -23,8 +24,8 @@ export default function Stats() {
     const {data: stats} = useStats(range);
 
     return (
-        <section>
-            <div>Stats</div>
+        <section className='w-[1200px]'>
+            <RouteTitle title='Stats'/>
             <div className="flex flex-col gap-10">
                 <Tabs
                     defaultValue={"week"}
@@ -37,10 +38,10 @@ export default function Stats() {
                     </TabsList>
                     <WeightChart weightData={stats?.weight}/>
                 </Tabs>
-                <div className="flex flex-col gap-1">
+                <div className="flex flex-col gap-1 max-w-[150px]">
                     <Input type="text" onChange={(e) => setWeight(e.target.value)}/>
                     <Button type={"button"} onClick={async() => await updateStats({weight})}>
-                        Add
+                        Add measurement
                     </Button>
                 </div>
             </div>

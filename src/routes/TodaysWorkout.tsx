@@ -54,6 +54,12 @@ export default function TodaysWorkout() {
 		return <>No active mesocycle.</>;
 	}
 
+	if(data.mesocycle && !todaysWorkout){
+		return <>Rest day</>
+	}
+
+	//TODO: add 'completed' to user.activeMesocycle and display the message that the meso has been completed
+
 	const handleCompleteWorkout = async () => {
 		const log = constructLog(
 			user?.activeMesocycle?.startDate as Date,
@@ -76,8 +82,9 @@ export default function TodaysWorkout() {
 		return <>Today's workout completed.</>;
 	}
 	return (
-		<section className="w-[600px]">
+		<section className="w-[1200px]">
 			<RouteTitle title="Today's Workout" />
+			<div className='w-[600px] mx-auto'>
 			<div className="bg-blue-100 p-2 flex flex-col gap-1 mb-2">
 				<span className="uppercase">{data.mesocycle.title}</span>
 				<span className="text-xl font-bold uppercase">
@@ -162,6 +169,7 @@ export default function TodaysWorkout() {
 			<Button className="w-full" onClick={() => handleCompleteWorkout()}>
 				Complete Workout
 			</Button>
+			</div>
 		</section>
 	);
 }

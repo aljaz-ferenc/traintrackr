@@ -7,7 +7,7 @@ type WeightChartProps = {
     weightData: UserWeight[]
 }
 
-export default function WeightChart({weightData}: WeightChartProps){
+export default function WeightChart({weightData}: WeightChartProps) {
 
     const chartConfig = {
         value: {
@@ -17,27 +17,29 @@ export default function WeightChart({weightData}: WeightChartProps){
     } satisfies ChartConfig
 
     return (
-       <ChartContainer className='min-h-[400px]' config={chartConfig}>
-           <LineChart
-            accessibilityLayer
-            data={weightData}
-           >
-               <CartesianGrid vertical={false} />
-               <ChartTooltip cursor={false} content={<ChartTooltipContent/>} />
-               <Line
-               dataKey='value'
-               type='linear'
-               stroke='blue'
-               strokeWidth={2}
-               />
-               <XAxis
-                   dataKey="date"
-                   tickLine={false}
-                   axisLine={false}
-                   tickMargin={20}
-                   tickFormatter={(date: Date) => formatDate(date, 'dd.MM.yyyy')}
-               />
-           </LineChart>
-       </ChartContainer>
+        <div>
+            <ChartContainer className='min-h-[100px]' config={chartConfig}>
+                <LineChart
+                    accessibilityLayer
+                    data={weightData}
+                >
+                    <CartesianGrid vertical={false}/>
+                    <ChartTooltip cursor={false} content={<ChartTooltipContent/>}/>
+                    <Line
+                        dataKey='value'
+                        type='linear'
+                        stroke='blue'
+                        strokeWidth={2}
+                    />
+                    <XAxis
+                        dataKey="date"
+                        tickLine={false}
+                        axisLine={false}
+                        tickMargin={20}
+                        tickFormatter={(date: Date) => formatDate(date, 'dd.MM.yyyy')}
+                    />
+                </LineChart>
+            </ChartContainer>
+        </div>
     )
 }

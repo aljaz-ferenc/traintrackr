@@ -14,7 +14,7 @@ export default function MyMesocycles() {
 	}
 
 	return (
-		<section className="w-[900px]">
+		<section className="w-[1200px]">
 			<RouteTitle title='My Mesocycles'/>
 			<MesocyclesAccordion mesocycles={data.mesocycles}/>
 		</section>

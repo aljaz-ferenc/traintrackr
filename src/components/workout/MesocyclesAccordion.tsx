@@ -48,7 +48,7 @@ export default function MesocyclesAccordion({mesocycles}: MesocyclesAccordionPro
         <Accordion type="multiple" className="w-full">
             {mesocycles.map((meso) => (
                 <AccordionItem key={meso._id} value={meso._id}>
-                    <AccordionTrigger>
+                    <AccordionTrigger className='cursor-pointer'>
                         <div key={meso._id} className='flex justify-between items-center w-full'>
                             <span>{meso.title}</span>
                         </div>

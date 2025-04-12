@@ -21,7 +21,7 @@ export default function CompletedWorkouts() {
 			<Accordion type="single" className="w-full">
 				{logs?.map((log) => (
 					<AccordionItem value={log._id} key={log._id}>
-						<AccordionTrigger className="w-full">
+						<AccordionTrigger className="w-full cursor-pointer">
 							{log.mesoTitle}
 						</AccordionTrigger>
 						<AccordionContent className="flex flex-col gap-5 overflow-auto">
