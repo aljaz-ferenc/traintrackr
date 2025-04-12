@@ -40,6 +40,10 @@ export default function MesocyclesAccordion({mesocycles}: MesocyclesAccordionPro
         await activateMeso({clerkId: userId as string, activeMesocycle})
     }
 
+    const handleUpdateMesocycle = (mesoId: Mesocycle['_id']) => {
+        navigate(`/my-mesocycles/${mesoId}/edit`)
+    }
+
     return (
         <Accordion type="multiple" className="w-full">
             {mesocycles.map((meso) => (
@@ -67,7 +71,7 @@ export default function MesocyclesAccordion({mesocycles}: MesocyclesAccordionPro
                                 <Button onClick={() => handleDeleteMesocycle(meso._id)} variant="destructive">
                                     Delete Mesocycle
                                 </Button>
-                                <Button onClick={() => navigate(`/my-mesocycles/${meso._id}/edit`)} variant="secondary">
+                                <Button onClick={() => handleUpdateMesocycle(meso._id)} variant="secondary">
                                     Update Mesocycle
                                 </Button>
 

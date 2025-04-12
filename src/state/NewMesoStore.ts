@@ -29,6 +29,7 @@ type NewMesoStore = {
     ) => void;
     cloneWorkout: (workoutId: Workout["id"]) => void;
     setMesoToEdit: (meso: Mesocycle) => void
+    resetMesoStore: () => void
 };
 
 export const useNewMesoStore = create<NewMesoStore>((set, getState) => ({
@@ -77,7 +78,7 @@ export const useNewMesoStore = create<NewMesoStore>((set, getState) => ({
             createdBy,
         };
 
-        if(_id){
+        if (_id) {
             newMeso._id = _id
         }
 
@@ -155,5 +156,14 @@ export const useNewMesoStore = create<NewMesoStore>((set, getState) => ({
         includeDeload: meso.includeDeload,
         splitType: meso.splitType,
         workouts: meso.workouts,
+    }),
+    resetMesoStore: () => set({
+        _id: '',
+        mesoTitle: "",
+        mesoDuration: 4,
+        includeDeload: false,
+        splitType: "synchronous",
+        workouts: [],
+        focusedWorkout: '',
     })
 }));

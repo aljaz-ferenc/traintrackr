@@ -8,11 +8,11 @@ type WorkoutActionsProps = {
 export default function WorkoutActions({onClone, onDelete}: WorkoutActionsProps) {
     return (
         <div className='self-end flex gap-2 opacity-0 group-hover:opacity-100 -translate-y-2 transition-all'>
-            <button onClick={onClone}><Copy size={20}
-                                                                   className='text-gray-300 hover:text-gray-500 cursor-pointer'/>
+            <button onClick={onClone}>
+                <Copy size={20} className='text-gray-300 hover:text-gray-500 cursor-pointer'/>
             </button>
-            <button onClick={onDelete} className='ml-full'><X size={20}
-                                                                         className='text-gray-300 hover:text-red-500 cursor-pointer'/>
+            <button onClick={onDelete} className='ml-full'>
+                <X size={20} className='text-gray-300 hover:text-red-500 cursor-pointer'/>
             </button>
         </div>
     )

@@ -39,7 +39,8 @@ export default function NewMesocycle() {
 		setMesoSplitType,
 		addWorkout,
 		constructMesocycle,
-		setMesoToEdit
+		setMesoToEdit,
+		resetMesoStore
 	] = useNewMesoStore(
 		useShallow((state) => [
 			state.mesoTitle,
@@ -53,7 +54,8 @@ export default function NewMesocycle() {
 			state.setMesoSplitType,
 			state.addWorkout,
 			state.constructMesocycle,
-			state.setMesoToEdit
+			state.setMesoToEdit,
+			state.resetMesoStore
 		]),
 	);
 
@@ -68,6 +70,7 @@ export default function NewMesocycle() {
 		const updatedMeso = constructMesocycle(userId as string)
 		console.log(updatedMeso)
 		await updateMesocycle(updatedMeso)
+			.then(() => resetMesoStore())
 		await queryClient.invalidateQueries({queryKey: ['mesocycle', {mesoId}]})
 	}
 

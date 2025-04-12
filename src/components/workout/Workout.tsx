@@ -18,7 +18,7 @@ import WorkoutActions from "@/components/workout/WorkoutActions.tsx";
 type WorkoutProps = {
     workout: TWorkout;
     editable: boolean;
-    focusable: boolean
+    focusable?: boolean
 };
 
 export const weekDays = [
