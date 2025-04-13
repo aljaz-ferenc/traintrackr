@@ -25,13 +25,13 @@ export default function WorkoutLog({workout}: WorkoutLogProps) {
                             <TableRow>
                                 <TableCell>Reps</TableCell>
                                 {exercise.sets.map(set => (
-                                    <TableCell>{set.reps}</TableCell>
+                                    <TableCell className='text-center'>{set.reps}</TableCell>
                                 ))}
                             </TableRow>
                             <TableRow>
                                 <TableCell>Weight</TableCell>
                                 {exercise.sets.map(set => (
-                                    <TableCell>{set.weight}</TableCell>
+                                    <TableCell className='text-center'>{set.weight} kg</TableCell>
                                 ))}
                             </TableRow>
                         </TableBody>
