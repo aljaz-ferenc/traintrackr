@@ -1,16 +1,11 @@
 import RouteTitle from "@/components/shared/RouteTitle.tsx";
-import {Button} from '@/components/ui/button'
 import {useState} from 'react'
 import CreateItemModal from '@/components/nutrition/CreateItemModal'
-import useFoodItems from '@/hooks/api/useFoodItems'
+import AddItemModal from '@/components/nutrition/AddItemModal'
 
 export default function Nutrition() {
     const [createItemIsOpen, setCreateItemIsOpen] = useState(false)
-    const {data: foodItems, isLoading} = useFoodItems()
-console.log(foodItems)
-    if(isLoading){
-        return <div>Loading...</div>
-    }
+    const [addItemIsOpen, setAddItemIsOpen] = useState(false)
 
     return <section className='w-[1200px]'>
         <RouteTitle title='Nutrition'/>
@@ -21,13 +16,10 @@ console.log(foodItems)
             <p>Total fat: 0g</p>
             <p>Total carbs: 0g</p>
         </div>
-        <Button>Add item</Button>
         <CreateItemModal
             isOpen={createItemIsOpen}
             setIsOpen={setCreateItemIsOpen}
         />
-        {foodItems?.map(item => (
-            <div>{item.name}</div>
-        ))}
+        <AddItemModal isOpen={addItemIsOpen} setIsOpen={setAddItemIsOpen}/>
     </section>
 }

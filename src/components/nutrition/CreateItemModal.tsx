@@ -20,7 +20,7 @@ import {
     FormLabel,
     FormMessage,
 } from "@/components/ui/form"
-import {Input} from "@/components/ui/input"
+import {Input} from "@/components/ui/Input"
 import useUserStore from "@/state/UserStore.ts";
 import {useShallow} from "zustand/react/shallow";
 import useCreateFoodItem from '@/hooks/api/useCreateFoodItem'
