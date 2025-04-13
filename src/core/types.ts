@@ -82,5 +82,18 @@ export type FoodItem = {
 	protein: number,
 	fat: number,
 	carbs: number,
-	createdBy: string
+	createdBy: string,
+	portions?: {
+		name: string,
+		grams: number,
+		_id: string
+	}[]
+}
+
+export type Nutrition = {
+	_id: string,
+	amount: number,
+	createdBy: string,
+	date: Date,
+	item: FoodItem
 }

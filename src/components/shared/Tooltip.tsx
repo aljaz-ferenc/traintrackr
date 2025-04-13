@@ -18,7 +18,7 @@ export default function AppTooltip({ content }: AppTooltipProps) {
 				<TooltipTrigger>
 					<CircleHelp color="gray" size={15} />
 				</TooltipTrigger>
-				<TooltipContent className='max-w-sm text-sm'>{content}</TooltipContent>
+				<TooltipContent className='max-w-md text-sm text-justify'>{content}</TooltipContent>
 			</Tooltip>
 		</TooltipProvider>
 	);

@@ -21,7 +21,7 @@ export default function useCreateFoodItem() {
         mutationFn: (foodItem: Omit<FoodItem, '_id'>) =>
             fetchCreateFoodItem(foodItem),
         onSuccess: async () => {
-            await queryClient.invalidateQueries({queryKey: ["food-items"]});
+            await queryClient.invalidateQueries({queryKey: ["foodItems-get"]});
         },
     });
 }

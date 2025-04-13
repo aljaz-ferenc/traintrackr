@@ -8,10 +8,10 @@ import {
 } from "@/components/ui/dialog.tsx";
 import {VisuallyHidden} from "@radix-ui/react-visually-hidden";
 import {Button} from "@/components/ui/button.tsx";
-import React from 'react'
+import type React from 'react'
 import {z} from "zod"
 import {zodResolver} from "@hookform/resolvers/zod"
-import {useForm} from "react-hook-form"
+import {useForm, useFieldArray} from "react-hook-form"
 import {
     Form,
     FormControl,
@@ -24,6 +24,8 @@ import {Input} from "@/components/ui/Input"
 import useUserStore from "@/state/UserStore.ts";
 import {useShallow} from "zustand/react/shallow";
 import useCreateFoodItem from '@/hooks/api/useCreateFoodItem'
+import {Card, CardContent, CardTitle} from "@/components/ui/card.tsx";
+import AppTooltip from "@/components/shared/Tooltip.tsx";
 
 
 const formSchema = z.object({
@@ -40,6 +42,12 @@ const formSchema = z.object({
     fat: z.coerce.number().nonnegative({
         message: "Fat must be a valid positive number",
     }),
+    portions: z.array(
+        z.object({
+            name: z.string(),
+            grams: z.coerce.number().nonnegative()
+        })
+    ).optional()
 });
 
 type CreateItemModalProps = {
@@ -55,10 +63,15 @@ export default function CreateItemModal({isOpen, setIsOpen}: CreateItemModalProp
         resolver: zodResolver(formSchema),
     })
 
-    const onSubmit = async (values: z.infer<typeof formSchema>) => {
-        console.log(values)
+    const {fields, append, remove} = useFieldArray({
+        name: 'portions',
+        control: form.control
+    })
 
+    const onSubmit = async (values: z.infer<typeof formSchema>) => {
+        console.log({...values, createdBy: userId as string})
         await createFoodItem({...values, createdBy: userId as string})
+        setIsOpen(false)
     }
 
     return (
@@ -131,6 +144,46 @@ export default function CreateItemModal({isOpen, setIsOpen}: CreateItemModalProp
                                 </FormItem>
                             )}
                         />
+                        <hr/>
+                        <CardTitle className='flex gap-2 items-center'>
+                            Portions
+                        <AppTooltip content="Add different portion sizes to make tracking easier. For example, you can add a 'slice' or 'tablespoon' portion for your food item and specify how many grams the portion weighs!"/>
+                        </CardTitle>
+                        {fields.map((field, index) => (
+                            <Card key={field.id}>
+                                <CardContent className='space-y-4'>
+                                    <FormField
+                                        control={form.control}
+                                        name={`portions.${index}.name`}
+                                        render={({field}) => (
+                                            <FormItem>
+                                                <FormLabel>Name</FormLabel>
+                                                <FormControl>
+                                                    <Input {...field} placeholder='e.g. 1 slice'/>
+                                                </FormControl>
+                                                <FormMessage/>
+                                            </FormItem>
+                                        )}
+                                    />
+                                    <FormField
+                                        control={form.control}
+                                        name={`portions.${index}.grams`}
+                                        render={({field}) => (
+                                            <FormItem>
+                                                <FormLabel>Grams</FormLabel>
+                                                <FormControl>
+                                                    <Input {...field} placeholder='100'/>
+                                                </FormControl>
+                                                <FormMessage/>
+                                            </FormItem>
+                                        )}
+                                    />
+                                    <Button type='button' onClick={() => remove(index)}>Remove</Button>
+                                </CardContent>
+                            </Card>
+                        ))}
+                        <Button type='button' onClick={() => append({name: '', grams: 0})}>Add portion</Button>
+                        <hr/>
                         <Button type='submit'>Submit</Button>
                     </form>
                 </Form>
