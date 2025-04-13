@@ -5,7 +5,8 @@ import {
 	AccordionItem,
 	AccordionTrigger,
 } from "@/components/ui/accordion.tsx";
-import Workout from "@/components/workout/Workout.tsx";
+// import Workout from "@/components/workout/Workout.tsx";
+import WorkoutLog from '@/components/workout/WorkoutLog.tsx'
 import useWorkoutLogs from "@/hooks/api/useWorkoutLogs.ts";
 
 export default function CompletedWorkouts() {
@@ -29,15 +30,11 @@ export default function CompletedWorkouts() {
 								.filter((week) => week.workouts.length)
 								.map((week, i) => (
 									<div key={`${week}-${i + 1}`} className="flex gap-3 p-2">
-										<h2 className="font-bold text-xl w-max self-center">
+										<h2 className="font-bold text-xl w-max self-center min-w-max">
 											Week {i + 1}
 										</h2>
 										{week.workouts.map((workout) => (
-											<Workout
-												workout={workout}
-												key={workout.id}
-												editable={false}
-											/>
+											<WorkoutLog workout={workout}/>
 										))}
 									</div>
 								))}

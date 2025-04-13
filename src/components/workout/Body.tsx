@@ -62,7 +62,7 @@ export default function Body({muscleGroups}: BodyProps) {
 
             <svg style={{height: 300, width: 150}} ref={svgFrontRef} width="609" height="1216" viewBox="0 0 609 1216" fill="none"
                  xmlns="http://www.w3.org/2000/svg">
-                <g id="Frame 2" clip-path="url(#clip0_1_111)">
+                <g id="Frame 2" clipPath="url(#clip0_1_111)">
                     <rect width="609" height="1216" fill="white"/>
                     <g id="adductors">
                         <path id="adductors_2"
@@ -632,7 +632,7 @@ export default function Body({muscleGroups}: BodyProps) {
                 </defs>
             </svg>
             <svg ref={svgBackRef} style={{height: 300, width: 150}} width="609" height="1244" viewBox="0 0 609 1244" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g id="Frame 3" clip-path="url(#clip0_2_113)">
+                <g id="Frame 3" clipPath="url(#clip0_2_113)">
                     <rect width="609" height="1244" fill="white"/>
                     <g id="abductors">
                         <path id="abductors_2"
