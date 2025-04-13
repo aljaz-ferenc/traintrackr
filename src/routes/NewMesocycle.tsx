@@ -19,6 +19,7 @@ import useUpdateMesocycle from "@/hooks/api/useUpdateMesocycle.ts";
 import {useQueryClient} from "@tanstack/react-query";
 import Body from "@/components/workout/Body.tsx";
 import {getMuscleIntensities} from "@/utils/utils.ts";
+import VolumeTable from "@/components/workout/VolumeTable.tsx";
 
 const mesoDurationOptions = [4, 6, 8, 10, 12];
 const mesoSplitTypeOptions = ["synchronous", "asynchronous"];
@@ -170,7 +171,10 @@ export default function NewMesocycle() {
                 </div>
                 <Separator/>
             </div>
+            <div className='flex gap-10'>
             <Body muscleGroups={muscleGroups}/>
+            <VolumeTable muscleGroups={muscleGroups}/>
+            </div>
             <div className="flex flex-col overflow-auto relative">
                 <Button
                     variant="secondary"

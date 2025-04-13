@@ -4,6 +4,7 @@ type BodyProps = {
     muscleGroups: {
         muscle: string,
         intensity: number
+        volume: number
     }[]
 }
 
