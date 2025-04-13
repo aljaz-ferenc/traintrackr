@@ -74,3 +74,13 @@ export type User = {
 		weight: UserWeight[]
 	}
 };
+
+export type FoodItem = {
+	_id: string,
+	name: string,
+	calories: number,
+	protein: number,
+	fat: number,
+	carbs: number,
+	createdBy: string
+}
