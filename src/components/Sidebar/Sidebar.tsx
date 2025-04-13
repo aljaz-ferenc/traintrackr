@@ -1,7 +1,7 @@
-import { Button } from "@/components/ui/button.tsx";
+// import { Button } from "@/components/ui/button.tsx";
 import { Route } from "@/core/enums/Routes.enum.ts";
-import type { User } from "@/core/types.ts";
-import useCreateUser from "@/hooks/api/useCreateUser.ts";
+// import type { User } from "@/core/types.ts";
+// import useCreateUser from "@/hooks/api/useCreateUser.ts";
 // import { Button } from "@/components/ui/button.tsx";
 // import useCreateUser from "@/hooks/api/useCreateUser.ts";
 import { UserButton } from "@clerk/clerk-react";
@@ -71,20 +71,20 @@ const menuItems: TSidebarItem[] = [
 ];
 
 //TODO: delete
-const fakeUser: Partial<User> = {
-	clerkId: "user_2vS8GiBuO6Gm4HxMkw76MA58SS7",
-	email: "test@test.com",
-	username: "username",
-	firstName: "firstName",
-	lastName: "lastName",
-	image: "image",
-	stats: {
-		weight: []
-	}
-};
+// const fakeUser: Partial<User> = {
+// 	clerkId: "user_2vS8GiBuO6Gm4HxMkw76MA58SS7",
+// 	email: "test@test.com",
+// 	username: "username",
+// 	firstName: "firstName",
+// 	lastName: "lastName",
+// 	image: "image",
+// 	stats: {
+// 		weight: []
+// 	}
+// };
 
 export default function AppSidebar() {
-	const { mutateAsync } = useCreateUser();
+	// const { mutateAsync } = useCreateUser();
 
 	return (
 		<aside className="flex flex-col border-r min-h-screen p-2 gap-2">
@@ -93,9 +93,9 @@ export default function AppSidebar() {
 			))}
 
 			{/*//TODO: remove*/}
-			<Button onClick={() => mutateAsync(fakeUser)} type="button">
-				Create Fake User
-			</Button>
+			{/*<Button onClick={() => mutateAsync(fakeUser)} type="button">*/}
+			{/*	Create Fake User*/}
+			{/*</Button>*/}
 
 			<div className="mt-auto m-2">
 				<UserButton showName />

@@ -1,4 +1,5 @@
 import {useEffect, useRef} from "react";
+import {useTheme} from "@/provider/ThemeProvider"
 
 type BodyProps = {
     muscleGroups: {
@@ -8,39 +9,43 @@ type BodyProps = {
     }[]
 }
 
-const strokeColor = '#aaa'
-const strokeWidth = 2
-const strokeLinecap = 'round'
-const strokeLinejoin = 'round'
-const strokeMiterlimit = 10
-const highlightColors = [
-    "#ffebeb",
-    "#ffd1d1",
-    "#ffb8b8",
-    "#ff9e9e",
-    "#ff8585",
-    "#ff6b6b",
-    "#ff5252",
-    "#ff3939",
-    "#ff2020",
-    "#ff0707",
-    "#e60000",
-    "#cc0000",
-    "#b30000",
-    "#990000",
-    "#8a0000",
-    "#7f0000",
-    "#660000",
-    "#550000",
-    "#440000",
-    "#330000"
-]
+
 
 
 export default function Body({muscleGroups}: BodyProps) {
     const svgFrontRef = useRef<SVGSVGElement>(null);
     const svgBackRef = useRef<SVGSVGElement>(null);
     const containerRef = useRef<HTMLDivElement>(null)
+    const {theme} = useTheme()
+    console.log(theme)
+
+    const strokeColor = theme === 'light' ? '#aaa' : '#fff'
+    const strokeWidth = 2
+    const strokeLinecap = 'round'
+    const strokeLinejoin = 'round'
+    const strokeMiterlimit = 10
+    const highlightColors = [
+        "#ffebeb",
+        "#ffd1d1",
+        "#ffb8b8",
+        "#ff9e9e",
+        "#ff8585",
+        "#ff6b6b",
+        "#ff5252",
+        "#ff3939",
+        "#ff2020",
+        "#ff0707",
+        "#e60000",
+        "#cc0000",
+        "#b30000",
+        "#990000",
+        "#8a0000",
+        "#7f0000",
+        "#660000",
+        "#550000",
+        "#440000",
+        "#330000"
+    ]
 
     useEffect(() => {
         const muscleGroupsList = muscleGroups.map(mg => mg.muscle)
@@ -78,7 +83,7 @@ export default function Body({muscleGroups}: BodyProps) {
                  fill="none"
                  xmlns="http://www.w3.org/2000/svg">
                 <g id="Frame 2" clipPath="url(#clip0_1_111)">
-                    <rect width="609" height="1216" fill="white"/>
+                    <rect width="609" height="1216" fill='var(--background)'/>
                     <g id="adductors">
                         <path id="adductors_2"
                               d="M374.5 550L381 501L374.5 509.5L359.5 534L350 561L329.5 588L318 612.5L324 622V657V709L329.5 750.5L335.5 793L340 841L346.5 861V807V765.5L350 709L359.5 648.5L365 592.5L374.5 550Z"
@@ -649,7 +654,7 @@ export default function Body({muscleGroups}: BodyProps) {
             <svg ref={svgBackRef} style={{height: 300, width: 150}} width="609" height="1244" viewBox="0 0 609 1244"
                  fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g id="Frame 3" clipPath="url(#clip0_2_113)">
-                    <rect width="609" height="1244" fill="white"/>
+                    <rect width="609" height="1244" fill='var(--background)'/>
                     <g id="abductors">
                         <path id="abductors_2"
                               d="M166.5 730.5C161.3 700.5 174 655 177 624.5L183 590L204 630.5C204 632.333 187.5 647.6 187.5 680C180.5 756.5 180.5 823.5 177 842C177 827.2 170 761.5 166.5 730.5Z"

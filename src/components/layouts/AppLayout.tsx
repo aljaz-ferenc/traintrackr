@@ -4,6 +4,7 @@ import {useEffect} from "react";
 import {Outlet} from "react-router";
 import {useShallow} from "zustand/react/shallow";
 import Sidebar from "../Sidebar/Sidebar";
+import ModeToggle from "@/components/shared/ModeToggle"
 
 export default function AppLayout() {
     const {data, isLoading} = useGetUser();
@@ -20,7 +21,10 @@ export default function AppLayout() {
     }
 
     return (
-        <div className="flex min-h-screen">
+        <div className="flex min-h-screen relative">
+                <div className='absolute top-2 right-2'>
+                    <ModeToggle/>
+                </div>
             <Sidebar/>
             <main className="mx-auto py-10 min-h-screen">
                 <Outlet/>

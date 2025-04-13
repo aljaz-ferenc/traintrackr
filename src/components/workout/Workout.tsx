@@ -14,6 +14,8 @@ import {useShallow} from "zustand/react/shallow";
 import {cn} from "@/utils/utils.ts";
 import {useOnClickOutside} from "usehooks-ts";
 import WorkoutActions from "@/components/workout/WorkoutActions.tsx";
+import {Card, CardContent} from "@/components/ui/card.tsx";
+
 
 type WorkoutProps = {
     workout: TWorkout;
@@ -54,7 +56,11 @@ export default function Workout({workout, editable = false, focusable = false}: 
     }
 
     return (
-        <div className='flex flex-col group'>
+        <div className='relative'>
+
+        <Card>
+
+        <CardContent className='flex flex-col group'>
             {editable &&
                 <WorkoutActions
                     onClone={() => cloneWorkout(workout.id)}
@@ -65,7 +71,7 @@ export default function Workout({workout, editable = false, focusable = false}: 
                 onFocus={() => focusWorkout(true)}
                 onMouseDown={() => focusWorkout(true)}
                 onBlur={() => setFocusedWorkout('')}
-                className={cn(["p-2 border-gray-200 rounded flex flex-col gap-2 min-w-xs border-2", focusedWorkout === workout.id && 'border-2 border-sky-400'])}>
+                className={cn(["flex flex-col gap-3 min-w-xs", focusedWorkout === workout.id && 'border-2 border-sky-400'])}>
                 {editable ? (
                     <div className="flex gap-2 items-center">
                         <Select
@@ -105,6 +111,8 @@ export default function Workout({workout, editable = false, focusable = false}: 
                 />
                 {editable && <SelectExerciseModal workoutId={workout.id}/>}
             </article>
+        </CardContent>
+        </Card>
         </div>
     );
 }

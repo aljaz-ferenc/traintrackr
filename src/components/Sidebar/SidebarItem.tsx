@@ -9,7 +9,7 @@ type MenuItemProps = {
 export default function SidebarItem({item}: MenuItemProps) {
     return (
         <NavLink to={item.path}
-                 className={({isActive}) => cn(['flex gap-2 items-center py-2 px-4 hover:bg-gray-300 hover:cursor-pointer transition rounded', isActive ? 'bg-blue-300' : ''])}>
+                 className={({isActive}) => cn(['flex gap-2 items-center py-2 px-4 hover:bg-white hover:text-black cursor-pointer transition', isActive ? 'bg-primary text-primary-foreground' : ''])}>
             <span>{item.icon}</span>
             <span className='text-sm w-max'>{item.title}</span>
         </NavLink>
