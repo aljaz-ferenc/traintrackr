@@ -13,6 +13,7 @@ import MyMesocycles from "@/routes/MyMesocycles.tsx";
 import Nutrition from "@/routes/Nutrition.tsx";
 import Settings from "@/routes/Settings.tsx";
 import Dashboard from "@/routes/Dashboard.tsx";
+import Onboarding from "@/routes/Onboarding.tsx";
 
 const router = createBrowserRouter([
     {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
     {
         path: "/sign-up/*",
         Component: SignUp,
+    },
+    {
+        path: Route.Onboarding,
+        element: <Onboarding/>
     },
     {
         path: "/",

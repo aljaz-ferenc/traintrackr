@@ -1,4 +1,5 @@
 export enum Route {
+	Onboarding = 'onboarding',
 	Dashboard = "dashboard",
 	TodaysWorkout = "todays-workout",
 	NewMesocycle = "new-mesocycle",
