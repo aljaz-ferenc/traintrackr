@@ -10,9 +10,14 @@ import useWorkoutLogs from "@/hooks/api/useWorkoutLogs.ts";
 
 export default function CompletedWorkouts() {
 	const { data: logs, isLoading } = useWorkoutLogs();
+	console.log(logs)
 
 	if (isLoading) {
 		return <div>Loading...</div>;
+	}
+
+	if(!logs?.length){
+		return <div>No logs...</div>
 	}
 
 	return (

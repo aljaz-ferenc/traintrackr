@@ -1,22 +1,21 @@
-import useGetAllMesocycles from "@/hooks/api/useGetAllMesocycles.ts";
 import MesocyclesAccordion from "@/components/workout/MesocyclesAccordion.tsx";
 import RouteTitle from "@/components/shared/RouteTitle.tsx";
-//TODO: fetch by userId, now fetching all mesos
+import useMyMesocycles from "@/hooks/api/useMyMesocycles.ts";
 export default function MyMesocycles() {
-	const { data, isLoading } = useGetAllMesocycles();
+	const { data: myMesos, isLoading } = useMyMesocycles();
 
-	if (isLoading || !data) {
+	if (isLoading || !myMesos) {
 		return <div>Loading...</div>;
 	}
 
-	if (!data.mesocycles.length) {
+	if (!myMesos.length) {
 		return <div>No mesocycles</div>;
 	}
 
 	return (
 		<section className="w-[1200px]">
 			<RouteTitle title="My Mesocycles" />
-			<MesocyclesAccordion mesocycles={data.mesocycles} />
+			<MesocyclesAccordion mesocycles={myMesos} />
 		</section>
 	);
 }

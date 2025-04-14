@@ -7,18 +7,14 @@ import Sidebar from "../Sidebar/Sidebar";
 import ModeToggle from "@/components/shared/ModeToggle";
 
 export default function AppLayout() {
-	const { data, isLoading } = useGetUser();
-	const [setUser] = useUserStore(useShallow((state) => [state.setUser]));
+	const {data, isSuccess} = useGetUser()
+	const [user, setUser] = useUserStore(useShallow(state => [state.user, state.setUser]))
 
 	useEffect(() => {
-		if (!data || isLoading) return;
-		console.log("data: ", data);
-		setUser(data.user);
-	}, [data, isLoading, setUser]);
-
-	if (isLoading) {
-		return <>Loading app...</>;
-	}
+		if(isSuccess && data && !user){
+			setUser(data)
+		}
+	}, [isSuccess, data, user, setUser])
 
 	return (
 		<div className="flex min-h-screen relative">

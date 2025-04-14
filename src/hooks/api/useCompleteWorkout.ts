@@ -29,7 +29,7 @@ async function fetchCompleteWorkout(payload: CompleteWorkoutPayload) {
 export default function useCompleteWorkout() {
 	const queryClient = useQueryClient();
 	const { userId } = useAuth();
-
+	//TODO: use mongo id, invalidate my-mesocycles
 	return useMutation({
 		mutationKey: ["workout-complete"],
 		mutationFn: (payload: CompleteWorkoutPayload) =>
@@ -38,5 +38,6 @@ export default function useCompleteWorkout() {
 			await queryClient.invalidateQueries({
 				queryKey: ["user", { clerkId: userId }],
 			}),
+
 	});
 }

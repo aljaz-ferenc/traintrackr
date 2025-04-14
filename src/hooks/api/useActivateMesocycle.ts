@@ -1,7 +1,8 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Endpoints } from "@/core/endpoints.ts";
-import type { Mesocycle } from "@/core/types.ts";
-import { useAuth } from "@clerk/clerk-react";
+import type {Mesocycle, User} from "@/core/types.ts";
+import useUserStore from "@/state/UserStore.ts";
+import {useShallow} from "zustand/react/shallow";
 
 export type ActivateMesoPayload = {
 	mesocycle: Mesocycle["_id"];
@@ -10,11 +11,11 @@ export type ActivateMesoPayload = {
 };
 
 async function fetchActivateMeso({
-	clerkId,
+	userId,
 	activeMesocycle,
-}: { clerkId: string; activeMesocycle: ActivateMesoPayload }) {
+}: { userId: User['_id']; activeMesocycle: ActivateMesoPayload }) {
 	const res = await fetch(Endpoints.activateMeso, {
-		body: JSON.stringify({ clerkId, activeMesocycle }),
+		body: JSON.stringify({ userId, activeMesocycle }),
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
@@ -25,19 +26,22 @@ async function fetchActivateMeso({
 
 export default function useActivateMesocycle() {
 	const queryClient = useQueryClient();
-	const { userId } = useAuth();
+	const userId = useUserStore(useShallow(state => state.user?._id))
 
 	return useMutation({
 		mutationKey: ["meso-activate"],
 		mutationFn: ({
-			clerkId,
+			userId,
 			activeMesocycle,
-		}: { clerkId: string; activeMesocycle: ActivateMesoPayload }) =>
-			fetchActivateMeso({ clerkId, activeMesocycle }),
+		}: { userId: User['_id']; activeMesocycle: ActivateMesoPayload }) =>
+			fetchActivateMeso({ userId, activeMesocycle }),
 		onSuccess: async () => {
 			await queryClient.invalidateQueries({
-				queryKey: ["user", { clerkId: userId }],
+				queryKey: ["user", { userId }],
 			});
+			await queryClient.invalidateQueries({
+				queryKey: ["my-mesocycles", {userId}]
+			})
 		},
 	});
 }
