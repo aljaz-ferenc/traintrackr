@@ -13,6 +13,7 @@ import MyMesocycles from "@/routes/MyMesocycles.tsx";
 import Nutrition from "@/routes/Nutrition.tsx";
 import Settings from "@/routes/Settings.tsx";
 import Dashboard from "@/routes/Dashboard.tsx";
+import {Navigate} from "react-router-dom";
 
 const router = createBrowserRouter([
 	{
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
 			</ProtectedRoute>
 		),
 		children: [
+			{
+				index: true,
+				element: <Navigate to="/dashboard" replace />,
+			},
 			{
 				path: Route.Dashboard,
 				element: <Dashboard />,
