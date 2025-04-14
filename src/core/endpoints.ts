@@ -1,8 +1,9 @@
 import type { Mesocycle, User } from "@/core/types.ts";
-import { Range } from "@/routes/Stats.tsx";
+import type { Range } from "@/routes/Stats.tsx";
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
+// biome-ignore lint/complexity/noStaticOnlyClass: <explanation>
 export class Endpoints {
 	static mesocycles = `${BASE_URL}/mesocycles`;
 	static mesocycle = (mesoId: Mesocycle["_id"]) =>
@@ -14,6 +15,6 @@ export class Endpoints {
 	static getLogs = (userId: User["_id"]) => `${BASE_URL}/logs/${userId}`;
 	static stats = (userId: User["_id"], range?: Range) =>
 		`${BASE_URL}/users/${userId}/stats?range=${range}`;
-	static foodItems = `${BASE_URL}/foodItems`
-	static nutritions= `${BASE_URL}/nutritions`
+	static foodItems = `${BASE_URL}/foodItems`;
+	static nutritions = `${BASE_URL}/nutritions`;
 }

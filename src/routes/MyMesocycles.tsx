@@ -9,14 +9,14 @@ export default function MyMesocycles() {
 		return <div>Loading...</div>;
 	}
 
-	if(!data.mesocycles.length){
-		return <div>No mesocycles</div>
+	if (!data.mesocycles.length) {
+		return <div>No mesocycles</div>;
 	}
 
 	return (
 		<section className="w-[1200px]">
-			<RouteTitle title='My Mesocycles'/>
-			<MesocyclesAccordion mesocycles={data.mesocycles}/>
+			<RouteTitle title="My Mesocycles" />
+			<MesocyclesAccordion mesocycles={data.mesocycles} />
 		</section>
 	);
 }
