@@ -34,10 +34,13 @@ export default function useCompleteWorkout() {
 		mutationKey: ["workout-complete"],
 		mutationFn: (payload: CompleteWorkoutPayload) =>
 			fetchCompleteWorkout(payload),
-		onSuccess: async () =>
+		onSuccess: async () => {
 			await queryClient.invalidateQueries({
-				queryKey: ["user", { clerkId: userId }],
-			}),
-
+				queryKey: ["user", {clerkId: userId}],
+			})
+			await queryClient.invalidateQueries({
+				queryKey: ["logs", { userId }]
+			})
+		},
 	});
 }

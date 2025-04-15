@@ -76,7 +76,7 @@ export default function CreateItemModal({
 					</SelectContent>
 				</Select>
 				{selectedItem && (
-					<Macros macros={selectedItem}/>
+					<Macros macros={selectedItem} className='flex' editButton item={selectedItem}/>
 				)}
 				{selectedItemId && foodItems && (
 					<Card>

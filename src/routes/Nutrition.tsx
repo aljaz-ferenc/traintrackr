@@ -3,13 +3,18 @@ import CreateItemModal from "@/components/nutrition/CreateItemModal";
 import NutritionItem from "@/components/nutrition/NutritionItem.tsx";
 import RouteTitle from "@/components/shared/RouteTitle.tsx";
 import useNutrition from "@/hooks/api/useNutrition.ts";
-import React, {useState} from "react";
+import {useState} from "react";
 import Macros from '@/components/nutrition/Macros.tsx'
+import Spinner from "@/components/Spinner/Spinner.tsx";
 
 export default function Nutrition() {
     const [createItemIsOpen, setCreateItemIsOpen] = useState(false);
     const [addItemIsOpen, setAddItemIsOpen] = useState(false);
     const {data, isLoading} = useNutrition();
+
+    if (isLoading) {
+        return <Spinner/>
+    }
 
     return (
         <section className="w-[1200px]">

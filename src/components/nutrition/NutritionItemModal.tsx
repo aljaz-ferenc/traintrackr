@@ -32,13 +32,12 @@ export default function NutritionItemModal({
 	return (
 		<div>
 			<div className="flex items-center gap-3">
-				{item.name}
+				<h3 className='text-xl font-bold'>{item.name} <span className='text-muted-foreground'>{amount}g</span></h3>
 				<button type="button" onClick={() => setIsEditable(true)}>
 					<FilePen size={20} />
 				</button>
 			</div>
 			<div className="flex flex-col gap-3">
-				<span>{amount}g</span>
 				<div className="grid grid-cols-1 md:grid md:grid-cols-[1fr_1fr] md:grid-rows-[1fr_1fr] gap-3">
 					{Object.entries(macros).map((macro) => (
 						<MacroCard
