@@ -3,17 +3,19 @@ import type { User } from "@/core/types.ts";
 import { useAuth } from "@clerk/clerk-react";
 import { useQuery } from "@tanstack/react-query";
 
+//find user in DB with clerkId
 async function fetchUser(clerkId: string) {
-	const res = await fetch(Endpoints.user(clerkId));
-	return await res.json();
+    const res = await fetch(Endpoints.user(clerkId));
+    if (!res.ok) throw new Error("Failed to fetch user");
+    return await res.json();
 }
 
 export default function useGetUser() {
-	const { userId } = useAuth();
+    const { userId: clerkId } = useAuth();
 
-	return useQuery<{ user: User }>({
-		queryKey: ["user", { clerkId: userId }],
-		queryFn: () => fetchUser(userId as string),
-		enabled: !!userId
-	});
+    return useQuery< User >({
+        queryKey: ["user", { clerkId }],
+        queryFn: () => fetchUser(clerkId as string),
+        enabled: !!clerkId,
+    });
 }
