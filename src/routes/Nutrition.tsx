@@ -17,9 +17,9 @@ export default function Nutrition() {
     }
 
     return (
-        <section className="w-[1200px]">
+        <section>
             <RouteTitle title="Nutrition"/>
-            {data && <Macros macros={data.totalMacros}/>}
+            {data && <Macros macros={data.totalMacros} className='mb-5'/>}
             <div className="flex gap-2">
                 <CreateItemModal
                     isOpen={createItemIsOpen}

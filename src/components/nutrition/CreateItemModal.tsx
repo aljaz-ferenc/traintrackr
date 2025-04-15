@@ -119,7 +119,7 @@ export default function CreateItemModal({
                 <DialogDescription>{editMode ? 'Update item' : 'Create New Item'}</DialogDescription>
             </VisuallyHidden>
             <DialogTrigger asChild>
-                {editMode ? <FilePen size={25}/> : <Button>Create new item</Button>}
+                {editMode ? <FilePen size={20} className='cursor-pointer text-muted-foreground hover-text-primary transition'/> : <Button>Create new item</Button>}
             </DialogTrigger>
             <DialogContent className='overflow-y-auto max-h-[80vh]'>
                 <DialogHeader>{editMode ? 'Update item' : 'Create New Item'}</DialogHeader>

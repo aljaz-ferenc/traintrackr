@@ -13,24 +13,23 @@ type MacrosProps = {
 function Macros({macros, className = '', editButton = false, item}: MacrosProps){
     const [updateModalIsOpen, setUpdateModalIsOpen] = useState(false)
 
-
     return (
-        <div className={cn(["flex justify-evenly mb-5 items-baseline relative", className])}>
-            <div className="flex flex-col items-center">
+        <div className={cn(["flex justify-evenly items-baseline relative", className])}>
+            <div className="flex flex-col items-center font-bold">
                 <span className="text-muted-foreground text-sm">Calories</span>{" "}
-                <span className="font-bold">{macros.calories} kcal</span>
+                <span>{macros.calories} kcal</span>
             </div>
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center font-bold">
                 <span className="text-muted-foreground text-sm">Protein</span>{" "}
-                <span className="font-bold">{macros.protein} g</span>
+                <span >{macros.protein} g</span>
             </div>
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center font-bold">
                 <span className="text-muted-foreground text-sm">Fat</span>{" "}
-                <span className="font-bold">{macros.fat} g</span>
+                <span >{macros.fat} g</span>
             </div>
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center font-bold">
                 <span className="text-muted-foreground text-sm">Carbs</span>{" "}
-                <span className="font-bold">{macros.carbs} g</span>
+                <span >{macros.carbs} g</span>
             </div>
             {editButton && <CreateItemModal isOpen={updateModalIsOpen} defaultItem={item} setIsOpen={setUpdateModalIsOpen} editMode/>}
         </div>

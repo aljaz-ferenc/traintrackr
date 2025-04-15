@@ -6,10 +6,10 @@ type MacroCardProps = {
 };
 
 const macrosComponentsIcons = {
-	calories: <Flame />,
-	protein: <Beef />,
-	fat: <Droplets />,
-	carbs: <Wheat />,
+	calories: <Flame size={60}/>,
+	protein: <Beef size={60}/>,
+	fat: <Droplets size={60}/>,
+	carbs: <Wheat size={60}/>,
 };
 
 export default function MacroCard({ macro }: MacroCardProps) {
@@ -18,12 +18,14 @@ export default function MacroCard({ macro }: MacroCardProps) {
 
 	return (
 		<Card>
-			<CardContent className="flex flex-col">
-				<span className="block mb-3">{macrosComponentsIcons[macro[0]]}</span>
-				<span className="font-bold text-muted-foreground text-xl uppercase">
+			<CardContent className="flex flex-col relative">
+				<div className='flex gap-2'>
+				<span className="font-bold text-muted-foreground text-xl z-10 uppercase">
 					{title}
 				</span>
-				<span className="font-bold text-3xl">{`${amount} ${unit}`}</span>
+				<span className="absolute top-1/2 right-4 -translate-y-1/2 opacity-10">{macrosComponentsIcons[macro[0]]}</span>
+				</div>
+				<span className="font-bold text-3xl z-10">{`${amount} ${unit}`}</span>
 			</CardContent>
 		</Card>
 	);

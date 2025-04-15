@@ -21,7 +21,7 @@ export default function CompletedWorkouts() {
     }
 
     return (
-        <section className="w-[1200px]">
+        <section>
             <RouteTitle title="Completed Workouts"/>
             <Accordion type="multiple" className="w-full">
                 {logs?.map((log) => (

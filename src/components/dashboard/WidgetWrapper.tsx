@@ -25,7 +25,7 @@ export default function WidgetWrapper({
 				<CardTitle>{title}</CardTitle>
 				<CardDescription>{description}</CardDescription>
 			</CardHeader>
-			<CardContent>{children}</CardContent>
+			<CardContent className='h-full'>{children}</CardContent>
 		</Card>
 	);
 }

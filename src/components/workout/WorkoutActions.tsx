@@ -14,13 +14,13 @@ export default function WorkoutActions({
 			<button type='button' onClick={onClone}>
 				<Copy
 					size={20}
-					className="text-gray-300 hover:text-gray-500 cursor-pointer"
+					className="text-muted-foreground hover:text-primary cursor-pointer transition"
 				/>
 			</button>
 			<button type='button' onClick={onDelete} className="ml-full">
 				<X
 					size={20}
-					className="text-gray-300 hover:text-red-500 cursor-pointer"
+					className="text-muted-foreground hover:text-red-500 cursor-pointer transition"
 				/>
 			</button>
 		</div>

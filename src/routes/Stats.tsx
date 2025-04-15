@@ -15,7 +15,7 @@ export default function Stats() {
 	const { data: stats } = useStats(range);
 
 	return (
-		<section className="w-[1200px]">
+		<section>
 			<RouteTitle title="Stats" />
 			<div className="flex flex-col gap-10">
 				<Tabs

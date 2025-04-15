@@ -2,7 +2,7 @@ import RouteTitle from "@/components/shared/RouteTitle.tsx";
 
 export default function Settings() {
 	return (
-		<section className="w-[1200px]">
+		<section>
 			<RouteTitle title="Settings" />
 		</section>
 	);

@@ -105,9 +105,9 @@ export default function TodaysWorkout() {
         return <>Today's workout completed.</>;
     }
     return (
-        <section className="w-[1200px]">
+        <section className='max-w-[600px] mx-auto'>
             <RouteTitle title="Today's Workout"/>
-            <div className="w-[600px] mx-auto flex flex-col gap-5">
+            <div className="mx-auto flex flex-col gap-5">
                 <Card>
                     <CardContent>
                         <CardHeader>
