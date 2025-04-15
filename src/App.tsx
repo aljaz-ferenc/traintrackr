@@ -5,6 +5,7 @@ import Dashboard from "@/routes/Dashboard.tsx";
 import MyMesocycles from "@/routes/MyMesocycles.tsx";
 import NewMesocycle from "@/routes/NewMesocycle.tsx";
 import Nutrition from "@/routes/Nutrition.tsx";
+import Onboarding from "@/routes/Onboarding.tsx";
 import Settings from "@/routes/Settings.tsx";
 import Stats from "@/routes/Stats.tsx";
 import TodaysWorkout from "@/routes/TodaysWorkout.tsx";
