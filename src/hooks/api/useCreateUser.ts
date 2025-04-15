@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
-import type {User} from "@/core/types.ts";
-import {Endpoints} from "@/core/endpoints.ts";
+import type { User } from "@/core/types.ts";
+import { Endpoints } from "@/core/endpoints.ts";
 
 async function fetchCreateUser(user: Partial<User>) {
 	const res = await fetch(Endpoints.createUser, {

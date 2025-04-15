@@ -26,7 +26,7 @@ const composeProviders = (providers: React.FC<{ children: ReactNode }>[]) => {
 const Providers = composeProviders([
 	ReactQueryProvider,
 	ClerkProviderComponent,
-	ThemeProvider
+	ThemeProvider,
 ]);
 
 export default function Provider({ children }: ProviderProps) {

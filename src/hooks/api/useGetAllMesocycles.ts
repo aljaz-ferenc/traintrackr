@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import {Endpoints} from "@/core/endpoints.ts";
-import type {Mesocycle} from "@/core/types.ts";
+import { Endpoints } from "@/core/endpoints.ts";
+import type { Mesocycle } from "@/core/types.ts";
 
 async function fetchAllMesocycles() {
 	try {

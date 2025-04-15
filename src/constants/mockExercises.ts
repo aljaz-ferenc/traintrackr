@@ -1,4 +1,4 @@
-import type {Exercise} from "@/core/types.ts";
+import type { Exercise } from "@/core/types.ts";
 
 export const mockExercises: Exercise[] = [
 	// Biceps
@@ -34,7 +34,7 @@ export const mockExercises: Exercise[] = [
 		id: "5",
 		name: "Overhead Press",
 		primaryMuscle: "front-delts",
-		secondaryMuscles: ["triceps", 'side-delts'],
+		secondaryMuscles: ["triceps", "side-delts"],
 	},
 	{
 		id: "6",

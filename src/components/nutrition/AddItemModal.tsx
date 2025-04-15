@@ -60,7 +60,7 @@ export default function CreateItemModal({
 			portion: "1",
 		},
 	});
-
+	console.log(userId);
 	const onSubmit = async (values: z.infer<typeof formSchema>) => {
 		if (!userId) {
 			console.log("userId not found");
