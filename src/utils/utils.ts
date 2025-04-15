@@ -1,6 +1,6 @@
+import type { Nutrition, Workout } from "@/core/types.ts";
 import clsx, { type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
-import type { Workout } from "@/core/types.ts";
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
@@ -39,4 +39,16 @@ export function getMuscleIntensities(workouts: Workout[]) {
 		});
 	}
 	return muscles;
+}
+
+export function calcMacros(
+	foodItem: Nutrition["item"],
+	amount: Nutrition["amount"],
+) {
+	return {
+		calories: (foodItem.calories * amount) / 100,
+		protein: (foodItem.protein * amount) / 100,
+		fat: (foodItem.fat * amount) / 100,
+		carbs: (foodItem.carbs * amount) / 100,
+	};
 }
