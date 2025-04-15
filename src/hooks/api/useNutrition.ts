@@ -11,7 +11,7 @@ async function fetchNutrition(userId: User["_id"]) {
 
 export default function useNutrition() {
 	const userId = useUserStore(useShallow((state) => state.user?._id));
-	console.log("USER NUTRITION: ", userId);
+
 	return useQuery<{ nutritions: Nutrition[]; totalMacros: Macros }>({
 		queryKey: ["nutrition-get"],
 		queryFn: () => fetchNutrition(userId as string),

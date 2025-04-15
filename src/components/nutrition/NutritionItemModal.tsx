@@ -1,36 +1,72 @@
+import AddItemForm from "@/components/nutrition/AddItemForm.tsx";
 import MacroCard from "@/components/nutrition/MacroCard.tsx";
-import type { Nutrition } from "@/core/types.ts";
-import { calcMacros } from "@/utils/utils.ts";
+import type {Nutrition} from "@/core/types.ts";
+import {calcMacros} from "@/utils/utils.ts";
+import {FilePen} from "lucide-react";
+import {useState} from "react";
+import Macros from "@/components/nutrition/Macros.tsx";
+import {Card, CardContent} from "@/components/ui/card.tsx";
 
 type NutritionItemModalProps = {
-	nutrition: Nutrition;
+    nutrition: Nutrition;
+    setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export default function NutritionItemModal({
-	nutrition,
-}: NutritionItemModalProps) {
-	const { amount, item } = nutrition;
-	const macros = calcMacros(item, amount);
+                                               nutrition,
+                                               setIsOpen,
+                                           }: NutritionItemModalProps) {
+    const {amount, item, _id} = nutrition;
+    const macros = calcMacros(item, amount);
+    const [isEditable, setIsEditable] = useState(false);
 
-	return (
-		<div>
-			<div>{item.name}</div>
-			<div className="flex flex-col gap-3">
-				<span>{amount}g</span>
-				<div className="grid grid-cols-1 md:grid md:grid-cols-[1fr_1fr] md:grid-rows-[1fr_1fr] gap-3">
-					{Object.entries(macros).map((macro) => (
-						<MacroCard
-							key={macro[0]}
-							macro={
-								macro as [
-									string: "calories" | "protein" | "fat" | "carbs",
-									number,
-								]
-							}
-						/>
-					))}
-				</div>
-			</div>
-		</div>
-	);
+    if (isEditable) {
+        return (
+            <>
+                <h3>Edit item</h3>
+                <Card className='p-2 px-0 rounded-md'>
+                    <CardContent>{item.name}</CardContent>
+                </Card>
+                <Macros macros={calcMacros(item, amount)}/>
+                <Card>
+                    <CardContent>
+                        <AddItemForm
+                            edit
+                            selectedItemId={item._id}
+                            nutritionId={_id}
+                            onMutate={() => setIsOpen(false)}
+                        />
+                    </CardContent>
+                </Card>
+            </>
+        );
+    }
+
+    return (
+        <div>
+            <div className="flex items-center justify-between mr-4 mb-2">
+                <h3 className='text-xl font-bold'>{item.name} <span className='text-muted-foreground'>{amount}g</span>
+                </h3>
+                <button type="button" className='text-muted-foreground hover:text-primary transition cursor-pointer'
+                        onClick={() => setIsEditable(true)}>
+                    <FilePen size={20}/>
+                </button>
+            </div>
+            <div className="flex flex-col gap-3">
+                <div className="grid grid-cols-1 sm:grid sm:grid-cols-[1fr_1fr] sm:grid-rows-[1fr_1fr] gap-3">
+                    {Object.entries(macros).map((macro) => (
+                        <MacroCard
+                            key={macro[0]}
+                            macro={
+                                macro as [
+                                    string: "calories" | "protein" | "fat" | "carbs",
+                                    number,
+                                ]
+                            }
+                        />
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
 }

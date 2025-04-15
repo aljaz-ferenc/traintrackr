@@ -1,17 +1,12 @@
+import RouteTitle from "@/components/shared/RouteTitle.tsx";
+import WeightChart from "@/components/stats/WeightChart.tsx";
 import { Input } from "@/components/ui/Input.tsx";
 import { Button } from "@/components/ui/button.tsx";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs.tsx";
+import { Range } from "@/core/enums/Range.enum.ts";
 import useStats from "@/hooks/api/useStats.ts";
 import useUpdateStats from "@/hooks/api/useUpdateStats.ts";
 import { useState } from "react";
-import WeightChart from "@/components/stats/WeightChart.tsx";
-import RouteTitle from "@/components/shared/RouteTitle.tsx";
-
-export enum Range {
-	Week = "week",
-	Month = "month",
-	Year = "year",
-}
 
 export default function Stats() {
 	const { mutateAsync: updateStats } = useUpdateStats();
@@ -20,7 +15,7 @@ export default function Stats() {
 	const { data: stats } = useStats(range);
 
 	return (
-		<section className="w-[1200px]">
+		<section>
 			<RouteTitle title="Stats" />
 			<div className="flex flex-col gap-10">
 				<Tabs

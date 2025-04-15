@@ -1,17 +1,17 @@
-import RouteTitle from "@/components/shared/RouteTitle.tsx";
-import useStats from "@/hooks/api/useStats.ts";
-import { Range } from "@/routes/Stats.tsx";
-import WeightChart from "@/components/stats/WeightChart.tsx";
 import WidgetWrapper from "@/components/dashboard/WidgetWrapper.tsx";
+import RouteTitle from "@/components/shared/RouteTitle.tsx";
+import WeightChart from "@/components/stats/WeightChart.tsx";
+import { Range } from "@/core/enums/Range.enum.ts";
+import useStats from "@/hooks/api/useStats.ts";
 
 export default function Home() {
 	const { data: stats } = useStats(Range.Week);
 
 	return (
-		<section className="w-[1200px]">
+		<section>
 			<RouteTitle title="Dashboard" />
-			<div className="grid gap-3 grid-rows-6 grid-cols-[1fr_1fr_1fr_1fr]">
-				<WidgetWrapper title="Calories" className="" description="Today">
+			<div className="grid gap-3">
+				<WidgetWrapper title="Calories consumed" className="" description="Today">
 					<div>
 						<span className="text-3xl font-bold">2000</span>
 						<span className="text-xl">kcal</span>
@@ -20,6 +20,12 @@ export default function Home() {
 				<WidgetWrapper title="Calories left" description="Today">
 					<div>
 						<span className="text-3xl font-bold">344</span>
+						<span className="text-xl">kcal</span>
+					</div>
+				</WidgetWrapper>
+				<WidgetWrapper title="Calorie goal" description="Today">
+					<div>
+						<span className="text-3xl font-bold">2500</span>
 						<span className="text-xl">kcal</span>
 					</div>
 				</WidgetWrapper>
