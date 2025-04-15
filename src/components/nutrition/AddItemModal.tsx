@@ -19,6 +19,7 @@ import {
 import useFoodItems from "@/hooks/api/useFoodItems";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import type React from "react";
+import { useMemo } from "react";
 import { useState } from "react";
 
 type AddItemModalProps = {
@@ -33,12 +34,23 @@ export default function CreateItemModal({
 	const [selectedItemId, setSelectedItemId] = useState("");
 	const { data: foodItems, isLoading } = useFoodItems();
 
+	const selectedItem = useMemo(() => {
+		return foodItems?.find((item) => item._id === selectedItemId);
+	}, [foodItems, selectedItemId]);
+
 	if (isLoading) {
 		return <div>Loading...</div>;
 	}
 
+	const onOpenChange = (open: boolean) => {
+		setIsOpen(open);
+		if (!open) {
+			setSelectedItemId("");
+		}
+	};
+
 	return (
-		<Dialog open={isOpen} onOpenChange={setIsOpen}>
+		<Dialog open={isOpen} onOpenChange={onOpenChange}>
 			<VisuallyHidden>
 				<DialogTitle>Add Item</DialogTitle>
 				<DialogDescription>Add nutrition item</DialogDescription>
@@ -47,7 +59,9 @@ export default function CreateItemModal({
 				<Button>Add item</Button>
 			</DialogTrigger>
 			<DialogContent>
-				<DialogHeader>Add item</DialogHeader>
+				<DialogHeader>
+					<span>Add item</span>
+				</DialogHeader>
 				<Select onValueChange={(val) => setSelectedItemId(val)}>
 					<SelectTrigger className="w-full">
 						<SelectValue placeholder="Select item..." />
@@ -60,6 +74,26 @@ export default function CreateItemModal({
 						))}
 					</SelectContent>
 				</Select>
+				{selectedItem && (
+					<div className="flex justify-between">
+						<div className="flex flex-col items-center">
+							<span className="text-muted-foreground text-sm">Calories</span>{" "}
+							<span className="font-bold">{selectedItem.calories} kcal</span>
+						</div>
+						<div className="flex flex-col items-center">
+							<span className="text-muted-foreground text-sm">Protein</span>{" "}
+							<span className="font-bold">{selectedItem.protein} g</span>
+						</div>
+						<div className="flex flex-col items-center">
+							<span className="text-muted-foreground text-sm">Fat</span>{" "}
+							<span className="font-bold">{selectedItem.fat} g</span>
+						</div>
+						<div className="flex flex-col items-center">
+							<span className="text-muted-foreground text-sm">Carbs</span>{" "}
+							<span className="font-bold">{selectedItem.carbs} g</span>
+						</div>
+					</div>
+				)}
 				{selectedItemId && foodItems && (
 					<Card>
 						<CardContent>

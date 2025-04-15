@@ -13,22 +13,24 @@ export default function Nutrition() {
 	return (
 		<section className="w-[1200px]">
 			<RouteTitle title="Nutrition" />
-			<div className="flex justify-evenly">
+			<div className="flex justify-evenly mb-5">
 				<p>TDEE: 2342 kcal</p>
 				<p>Total calories: {data?.totalMacros.calories}kcal</p>
 				<p>Total protein: {data?.totalMacros.protein}g</p>
 				<p>Total fat: {data?.totalMacros.fat}g</p>
 				<p>Total carbs: {data?.totalMacros.carbs}g</p>
 			</div>
-			<CreateItemModal
-				isOpen={createItemIsOpen}
-				setIsOpen={setCreateItemIsOpen}
-			/>
-			<AddItemModal isOpen={addItemIsOpen} setIsOpen={setAddItemIsOpen} />
-			<div className="mt-5 flex flex-col gap-2">
-				{data?.nutritions?.map((nutrition) => (
-					<NutritionItem key={nutrition._id} nutrition={nutrition} />
-				))}
+			<div className="flex gap-2">
+				<CreateItemModal
+					isOpen={createItemIsOpen}
+					setIsOpen={setCreateItemIsOpen}
+				/>
+				<AddItemModal isOpen={addItemIsOpen} setIsOpen={setAddItemIsOpen} />
+				<div className="mt-5 flex flex-col gap-2">
+					{data?.nutritions?.map((nutrition) => (
+						<NutritionItem key={nutrition._id} nutrition={nutrition} />
+					))}
+				</div>
 			</div>
 		</section>
 	);
