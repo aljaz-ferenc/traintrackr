@@ -46,9 +46,9 @@ export function calcMacros(
 	amount: Nutrition["amount"],
 ) {
 	return {
-		calories: (foodItem.calories * amount) / 100,
-		protein: (foodItem.protein * amount) / 100,
-		fat: (foodItem.fat * amount) / 100,
-		carbs: (foodItem.carbs * amount) / 100,
+		calories: Math.round((foodItem.calories * amount) / 100),
+		protein: Math.round((foodItem.protein * amount) / 100),
+		fat: Math.round((foodItem.fat * amount) / 100),
+		carbs: Math.round((foodItem.carbs * amount) / 100),
 	};
 }
