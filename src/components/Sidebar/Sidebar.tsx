@@ -73,7 +73,7 @@ const menuItems: TSidebarItem[] = [
 export default function AppSidebar() {
 
     return (
-        <aside className="flex flex-col border-r min-h-screen">
+        <aside className="flex flex-col border-r min-h-screen bg-sidebar">
             {menuItems.map((item) => (
                 <SidebarItem key={item.path} item={item}/>
             ))}

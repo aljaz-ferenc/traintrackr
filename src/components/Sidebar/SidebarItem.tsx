@@ -24,7 +24,7 @@ export default function SidebarItem({item}: MenuItemProps) {
         >
            <span>{item.icon}</span>
            <span className="text-sm w-max">{item.title}</span>
-            {isActive && <motion.div layoutId='sidebarItem' layout className='h-[80%] -translate-y-1/2 w-0.5 bg-primary absolute left-0 top-1/2' />}
+            {isActive && <motion.div layoutId='sidebarItem' layout className='h-[80%] rounded-r-2xl -translate-y-1/2 w-1 bg-primary absolute left-0 top-1/2' />}
         </NavLink>
     );
 }
