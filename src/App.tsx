@@ -1,20 +1,21 @@
 import { ProtectedRoute } from "@/components/ProtectedRoute/ProtectedRoute.tsx";
 import { Route } from "@/core/enums/Routes.enum.ts";
 import CompletedWorkouts from "@/routes/CompletedWorkouts.tsx";
+import Dashboard from "@/routes/Dashboard.tsx";
+import MyMesocycles from "@/routes/MyMesocycles.tsx";
+import NewMesocycle from "@/routes/NewMesocycle.tsx";
+import Nutrition from "@/routes/Nutrition.tsx";
+import Onboarding from "@/routes/Onboarding.tsx";
+import Settings from "@/routes/Settings.tsx";
 import Stats from "@/routes/Stats.tsx";
+import TodaysWorkout from "@/routes/TodaysWorkout.tsx";
 import { RouterProvider, createBrowserRouter } from "react-router";
+import { Navigate } from "react-router-dom";
 import AppLayout from "./components/layouts/AppLayout.tsx";
 import Provider from "./provider";
 import SignIn from "./routes/SignIn.tsx";
 import SignUp from "./routes/SignUp.tsx";
-import TodaysWorkout from "@/routes/TodaysWorkout.tsx";
-import NewMesocycle from "@/routes/NewMesocycle.tsx";
-import MyMesocycles from "@/routes/MyMesocycles.tsx";
-import Nutrition from "@/routes/Nutrition.tsx";
-import Settings from "@/routes/Settings.tsx";
-import Dashboard from "@/routes/Dashboard.tsx";
-import Onboarding from "@/routes/Onboarding.tsx";
-import {Navigate} from "react-router-dom";
+
 
 const router = createBrowserRouter([
 	{
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
 			path: Route.Onboarding,
 			element: <Onboarding/>
 		},
+	{
+		path: Route.Onboarding,
+		element: <Onboarding />,
+	},
 	{
 		path: "/",
 		element: (

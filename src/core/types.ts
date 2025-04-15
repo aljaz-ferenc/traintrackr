@@ -97,3 +97,10 @@ export type Nutrition = {
 	date: Date;
 	item: FoodItem;
 };
+
+export type Macros = {
+	calories: number;
+	protein: number;
+	fat: number;
+	carbs: number;
+};

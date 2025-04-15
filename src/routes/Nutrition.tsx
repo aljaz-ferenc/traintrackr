@@ -8,19 +8,17 @@ import { useState } from "react";
 export default function Nutrition() {
 	const [createItemIsOpen, setCreateItemIsOpen] = useState(false);
 	const [addItemIsOpen, setAddItemIsOpen] = useState(false);
-	const { data: nutritions } = useNutrition();
-
-	console.log(nutritions);
+	const { data } = useNutrition();
 
 	return (
 		<section className="w-[1200px]">
 			<RouteTitle title="Nutrition" />
 			<div className="flex justify-evenly">
 				<p>TDEE: 2342 kcal</p>
-				<p>Total calories: 0kcal</p>
-				<p>Total protein: 0g</p>
-				<p>Total fat: 0g</p>
-				<p>Total carbs: 0g</p>
+				<p>Total calories: {data?.totalMacros.calories}kcal</p>
+				<p>Total protein: {data?.totalMacros.protein}g</p>
+				<p>Total fat: {data?.totalMacros.fat}g</p>
+				<p>Total carbs: {data?.totalMacros.carbs}g</p>
 			</div>
 			<CreateItemModal
 				isOpen={createItemIsOpen}
@@ -28,7 +26,7 @@ export default function Nutrition() {
 			/>
 			<AddItemModal isOpen={addItemIsOpen} setIsOpen={setAddItemIsOpen} />
 			<div className="mt-5 flex flex-col gap-2">
-				{nutritions?.map((nutrition) => (
+				{data?.nutritions?.map((nutrition) => (
 					<NutritionItem key={nutrition._id} nutrition={nutrition} />
 				))}
 			</div>
