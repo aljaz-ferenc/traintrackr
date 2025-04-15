@@ -1,3 +1,7 @@
+import AppTooltip from "@/components/shared/Tooltip.tsx";
+import { Input } from "@/components/ui/Input";
+import { Button } from "@/components/ui/button.tsx";
+import { Card, CardContent, CardTitle } from "@/components/ui/card.tsx";
 import {
 	Dialog,
 	DialogContent,
@@ -6,12 +10,6 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from "@/components/ui/dialog.tsx";
-import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
-import { Button } from "@/components/ui/button.tsx";
-import type React from "react";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm, useFieldArray } from "react-hook-form";
 import {
 	Form,
 	FormControl,
@@ -20,12 +18,14 @@ import {
 	FormLabel,
 	FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/Input";
-import useUserStore from "@/state/UserStore.ts";
-import { useShallow } from "zustand/react/shallow";
 import useCreateFoodItem from "@/hooks/api/useCreateFoodItem";
-import { Card, CardContent, CardTitle } from "@/components/ui/card.tsx";
-import AppTooltip from "@/components/shared/Tooltip.tsx";
+import useUserStore from "@/state/UserStore.ts";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
+import type React from "react";
+import { useFieldArray, useForm } from "react-hook-form";
+import { z } from "zod";
+import { useShallow } from "zustand/react/shallow";
 
 const formSchema = z.object({
 	name: z.string(),

@@ -11,6 +11,7 @@ import type { Nutrition } from "@/core/types.ts";
 import useDeleteNutrition from "@/hooks/api/useDeleteNutrition.ts";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { X } from "lucide-react";
+import { useState } from "react";
 
 type NutritionItemProps = {
 	nutrition: Nutrition;
@@ -18,12 +19,13 @@ type NutritionItemProps = {
 
 export default function NutritionItem({ nutrition }: NutritionItemProps) {
 	const { mutateAsync: deleteNutrition } = useDeleteNutrition();
+	const [isOpen, setIsOpen] = useState(false);
 	const handleDeleteNutrition = async () => {
 		await deleteNutrition(nutrition._id);
 	};
 
 	return (
-		<Dialog>
+		<Dialog open={isOpen} onOpenChange={setIsOpen}>
 			<DialogTrigger asChild>
 				<Card className="p-1">
 					<CardContent className="p-1 flex justify-between">
@@ -44,7 +46,7 @@ export default function NutritionItem({ nutrition }: NutritionItemProps) {
 						Macronutrients for selected food item
 					</DialogDescription>
 				</VisuallyHidden>
-				<NutritionItemModal nutrition={nutrition} />
+				<NutritionItemModal nutrition={nutrition} setIsOpen={setIsOpen} />
 			</DialogContent>
 		</Dialog>
 	);

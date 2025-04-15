@@ -1,8 +1,8 @@
-import RouteTitle from "@/components/shared/RouteTitle.tsx";
-import useStats from "@/hooks/api/useStats.ts";
-import { Range } from "@/routes/Stats.tsx";
-import WeightChart from "@/components/stats/WeightChart.tsx";
 import WidgetWrapper from "@/components/dashboard/WidgetWrapper.tsx";
+import RouteTitle from "@/components/shared/RouteTitle.tsx";
+import WeightChart from "@/components/stats/WeightChart.tsx";
+import { Range } from "@/core/enums/Range.enum.ts";
+import useStats from "@/hooks/api/useStats.ts";
 
 export default function Home() {
 	const { data: stats } = useStats(Range.Week);
