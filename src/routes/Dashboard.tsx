@@ -3,9 +3,14 @@ import RouteTitle from "@/components/shared/RouteTitle.tsx";
 import WeightChart from "@/components/stats/WeightChart.tsx";
 import { Range } from "@/core/enums/Range.enum.ts";
 import useStats from "@/hooks/api/useStats.ts";
+import Heatmap from "@/components/stats/Heatmap.tsx";
 
 export default function Home() {
-	const { data: stats } = useStats(Range.Week);
+	const { data: stats, isLoading } = useStats(Range.Week);
+
+	if(isLoading || !stats){
+		return <div>Loading...</div>
+	}
 
 	return (
 		<section>
@@ -51,7 +56,10 @@ export default function Home() {
 					</div>
 				</WidgetWrapper>
 				<WidgetWrapper title="Weight" className="col-span-3  row-span-4">
-					<WeightChart weightData={stats?.weight} />
+					<WeightChart weightData={stats.weight} />
+				</WidgetWrapper>
+				<WidgetWrapper title='Workout statuses'>
+					{stats && <Heatmap statuses={stats.workoutStatuses}/>}
 				</WidgetWrapper>
 			</div>
 		</section>

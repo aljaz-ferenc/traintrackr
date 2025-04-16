@@ -10,8 +10,11 @@ async function fetchStats(userId: User["_id"], range?: Range) {
 	return await res.json();
 }
 
-type StatsPayload = {
-	weight: UserWeight[], activeMesoProgress: number,completedWorkoutsRatio: {date: Date, status: 'completed' | 'missed' | 'rest'}
+export type StatsPayload = {
+	weight: UserWeight[],
+	activeMesoProgress: number,
+	// completedWorkoutsRatio: {},
+	workoutStatuses: {date: Date, status: 'completed' | 'missed' | 'rest'}[]
 }
 
 export default function useStats(range?: Range) {
