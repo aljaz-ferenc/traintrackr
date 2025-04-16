@@ -29,11 +29,12 @@ export default function Stats() {
 					</TabsList>
 					<WeightChart weightData={stats?.weight} />
 				</Tabs>
-				<div className="flex flex-col gap-1 max-w-[150px]">
+				<div className="flex flex-col gap-2 max-w-[150px]">
 					<Input type="text" onChange={(e) => setWeight(e.target.value)} />
 					<Button
 						type={"button"}
 						onClick={async () => await updateStats({ weight })}
+						className='cursor-pointer'
 					>
 						Add measurement
 					</Button>
