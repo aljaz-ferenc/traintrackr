@@ -1,24 +1,28 @@
 import { Endpoints } from "@/core/endpoints.ts";
-import type { User } from "@/core/types.ts";
-import type { Range } from "@/routes/Stats.tsx";
-import { useAuth } from "@clerk/clerk-react";
+import type {User, UserWeight} from "@/core/types.ts";
 import { useQuery } from "@tanstack/react-query";
+import useUserStore from "@/state/UserStore.ts";
+import {useShallow} from "zustand/react/shallow";
+import type {Range} from "@/core/enums/Range.enum.ts";
 
 async function fetchStats(userId: User["_id"], range?: Range) {
 	const res = await fetch(Endpoints.stats(userId, range));
 	return await res.json();
 }
 
-export default function useStats(range?: Range) {
-	const { userId } = useAuth();
+export type StatsPayload = {
+	weight: UserWeight[],
+	activeMesoProgress: number,
+	completedWorkoutsRatio: {total: number, completed: number},
+	workoutStatuses: {date: Date, status: 'completed' | 'missed' | 'rest'}[]
+}
 
-	return useQuery({
+export default function useStats(range?: Range) {
+	const userId = useUserStore(useShallow(state => state.user?._id))
+
+	return useQuery<StatsPayload>({
 		queryKey: ["stats", { range }],
 		queryFn: () => fetchStats(userId as string, range),
-		select: (response) => {
-			return {
-				weight: response.weight,
-			};
-		},
+		enabled: !!userId,
 	});
 }

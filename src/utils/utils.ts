@@ -52,3 +52,34 @@ export function calcMacros(
 		carbs: Math.round((foodItem.carbs * amount) / 100),
 	};
 }
+
+import { format } from 'date-fns';
+
+export function getApexHeatmapData(
+	statuses: { date: Date; status: 'rest' | 'missed' | 'completed' | 'upcoming' }[]
+) {
+	const statusToCount = {
+		rest: 0,
+		missed: 1,
+		completed: 2,
+		upcoming: 3,
+	};
+
+
+	const dataByWeek: Record<string, { x: string; y: number }[]> = {};
+
+	statuses.forEach((entry) => {
+		const week = format(entry.date, "yyyy-'W'II"); // ISO week format
+		const day = format(entry.date, 'EEE'); // Mon, Tue, etc.
+		const count = statusToCount[entry.status];
+
+		if (!dataByWeek[week]) dataByWeek[week] = [];
+
+		dataByWeek[week].push({ x: day, y: count });
+	});
+
+	return Object.entries(dataByWeek).map(([week, data]) => ({
+		name: week,
+		data,
+	}));
+}

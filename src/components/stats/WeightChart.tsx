@@ -28,7 +28,7 @@ export default function WeightChart({weightData}: WeightChartProps) {
 
     return (
         <div>
-            <ChartContainer className="min-h-[100px]" config={chartConfig}>
+            <ChartContainer className="min-h-[50px]" config={chartConfig}>
                 <LineChart accessibilityLayer data={weightData}>
                     <CartesianGrid vertical={false}/>
                     <ChartTooltip cursor={false} content={<ChartTooltipContent/>}/>
