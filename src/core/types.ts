@@ -107,3 +107,5 @@ export type Macros = {
 	fat: number;
 	carbs: number;
 };
+
+export type Gender = 'male' | 'female'
