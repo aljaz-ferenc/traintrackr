@@ -13,7 +13,7 @@ async function fetchStats(userId: User["_id"], range?: Range) {
 export type StatsPayload = {
 	weight: UserWeight[],
 	activeMesoProgress: number,
-	// completedWorkoutsRatio: {},
+	completedWorkoutsRatio: {total: number, completed: number},
 	workoutStatuses: {date: Date, status: 'completed' | 'missed' | 'rest'}[]
 }
 
