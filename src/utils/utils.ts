@@ -1,6 +1,8 @@
 import type { Nutrition, Workout } from "@/core/types.ts";
 import clsx, { type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { format } from 'date-fns';
+import {z} from "zod";
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
@@ -53,9 +55,6 @@ export function calcMacros(
 	};
 }
 
-import { format } from 'date-fns';
-import {z} from "zod";
-
 export function getApexHeatmapData(
 	statuses: { date: Date; status: 'rest' | 'missed' | 'completed' | 'upcoming' }[]
 ) {
@@ -69,15 +68,15 @@ export function getApexHeatmapData(
 
 	const dataByWeek: Record<string, { x: string; y: number }[]> = {};
 
-	statuses.forEach((entry) => {
-		const week = format(entry.date, "yyyy-'W'II"); // ISO week format
-		const day = format(entry.date, 'EEE'); // Mon, Tue, etc.
+	for(const entry of statuses){
+		const week = format(entry.date, "yyyy-'W'II");
+		const day = format(entry.date, 'EEE');
 		const count = statusToCount[entry.status];
 
 		if (!dataByWeek[week]) dataByWeek[week] = [];
 
 		dataByWeek[week].push({ x: day, y: count });
-	});
+	}
 
 	return Object.entries(dataByWeek).map(([week, data]) => ({
 		name: week,
