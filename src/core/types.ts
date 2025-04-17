@@ -73,7 +73,7 @@ export type User = {
 	stats?: {
 		weight: UserWeight[];
 		height: number,
-		tdee: number,
+		gender: Gender,
 		dob: Date
 	};
 };
