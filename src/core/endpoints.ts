@@ -19,6 +19,7 @@ export class Endpoints {
 		`${BASE_URL}/users/${userId}/stats?range=${range}`;
 	static foodItems = (userId: User["_id"]) =>
 		`${BASE_URL}/users/${userId}/foodItems`;
+	static allFoodItems = `${BASE_URL}/foodItems`
 	static nutritions = `${BASE_URL}/nutritions`;
 	static nutrition = (nutritionId: Nutrition["_id"]) =>
 		`${BASE_URL}/nutritions/${nutritionId}`;

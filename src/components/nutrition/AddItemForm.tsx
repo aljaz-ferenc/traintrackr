@@ -19,7 +19,7 @@ import {
 import type { FoodItem, Nutrition } from "@/core/types.ts";
 import useCreateNutrition from "@/hooks/api/useCreateNutrition.ts";
 import useFoodItems from "@/hooks/api/useFoodItems.ts";
-import useUpdateNutrition from "@/hooks/api/useUpdateNutrition.tsx";
+import useUpdateNutrition from "@/hooks/api/useUpdateNutrition.ts";
 import useUserStore from "@/state/UserStore.ts";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCallback } from "react";

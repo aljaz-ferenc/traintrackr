@@ -1,4 +1,4 @@
-import type { Nutrition, Workout } from "@/core/types.ts";
+import type {Nutrition, User, Workout} from "@/core/types.ts";
 import clsx, { type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { format } from 'date-fns';
@@ -101,3 +101,11 @@ export const isValidDate = (dob: string) => {
 		parsed.getMonth() + 1 === +month &&
 		parsed.getDate() === +day;
 };
+
+export function isUserOnboarded(user: User){
+	if(!user.stats) return false
+
+	const {weight, height, dob, gender} = user.stats
+
+	return weight.length > 0 && height && dob && gender
+}

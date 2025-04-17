@@ -27,10 +27,6 @@ const router = createBrowserRouter([
 	},
 	{
 		path: Route.Onboarding,
-		element: <Onboarding />,
-	},
-	{
-		path: Route.Onboarding,
 		element: (
 			<ProtectedRoute>
 				<Onboarding />

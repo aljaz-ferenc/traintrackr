@@ -9,11 +9,14 @@ import {useState, useMemo, useEffect} from "react";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils.ts";
 import type { Gender as TGender } from "@/core/types.ts";
-import { isValidDate } from "@/utils/utils.ts";
+import {isUserOnboarded, isValidDate} from "@/utils/utils.ts";
 import LetsGo from "@/components/onboarding/LetsGo.tsx";
 import OnboardingScreenWrapper from "@/components/onboarding/OnboardingScreenWrapper.tsx";
 import { useNavigate } from "react-router";
 import useUpdateUser from "@/hooks/api/useUpdateUser.ts";
+import useUserStore from "@/state/UserStore.ts";
+import {useShallow} from "zustand/react/shallow";
+import Spinner from "@/components/Spinner/Spinner.tsx";
 
 export default function Onboarding() {
 	const [current, setCurrent] = useState(0);
@@ -23,10 +26,20 @@ export default function Onboarding() {
 	const [weight, setWeight] = useState('');
 	const navigate = useNavigate();
 	const {mutateAsync: updateUser}  = useUpdateUser()
+	const user = useUserStore(useShallow(state => state.user))
+
+	if(!user){
+		return <Spinner/>
+	}
 
 	useEffect(() => {
-		console.log(dob)
-	}, [dob]);
+		if(!user) return
+
+		const isOnboarded = isUserOnboarded(user)
+		if(isOnboarded){
+			navigate('/')
+		}
+	}, [user])
 
 	const disableContinue = useMemo(() => {
 		return {

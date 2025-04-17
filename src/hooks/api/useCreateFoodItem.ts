@@ -3,7 +3,7 @@ import { Endpoints } from "@/core/endpoints.ts";
 import type { FoodItem } from "@/core/types.ts";
 
 async function fetchCreateFoodItem(foodItem: Omit<FoodItem, "_id">) {
-	await fetch(Endpoints.foodItems, {
+	await fetch(Endpoints.allFoodItems, {
 		body: JSON.stringify(foodItem),
 		mode: "cors",
 		method: "POST",
