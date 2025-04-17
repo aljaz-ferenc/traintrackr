@@ -19,7 +19,7 @@ export default function Onboarding() {
 	const [gender, setGender] = useState<TGender | null>(null);
 	const [dob, setDob] = useState<string>("");
 	const [height, setHeight] = useState<number>(130);
-	const [weight, setWeight] = useState<number | null>(null);
+	const [weight, setWeight] = useState('');
 	const navigate = useNavigate();
 
 	const disableContinue = useMemo(() => {
