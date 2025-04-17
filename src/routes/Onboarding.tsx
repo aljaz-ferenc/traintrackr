@@ -5,7 +5,7 @@ import Gender from "@/components/onboarding/Gender";
 import Dob from "@/components/onboarding/Dob";
 import Height from "@/components/onboarding/Height";
 import Weight from "@/components/onboarding/Weight";
-import { useState, useMemo } from "react";
+import {useState, useMemo, useEffect} from "react";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils.ts";
 import type { Gender as TGender } from "@/core/types.ts";
@@ -13,6 +13,7 @@ import { isValidDate } from "@/utils/utils.ts";
 import LetsGo from "@/components/onboarding/LetsGo.tsx";
 import OnboardingScreenWrapper from "@/components/onboarding/OnboardingScreenWrapper.tsx";
 import { useNavigate } from "react-router";
+import useUpdateUser from "@/hooks/api/useUpdateUser.ts";
 
 export default function Onboarding() {
 	const [current, setCurrent] = useState(0);
@@ -21,12 +22,17 @@ export default function Onboarding() {
 	const [height, setHeight] = useState<number>(130);
 	const [weight, setWeight] = useState('');
 	const navigate = useNavigate();
+	const {mutateAsync: updateUser}  = useUpdateUser()
+
+	useEffect(() => {
+		console.log(dob)
+	}, [dob]);
 
 	const disableContinue = useMemo(() => {
 		return {
 			0: false,
 			1: !gender,
-			2: isValidDate(dob),
+			2: !isValidDate(dob),
 			3: !height,
 		};
 	}, [gender, dob, height]);
@@ -48,6 +54,24 @@ export default function Onboarding() {
 	const handleScrollNext = () => {
 		setCurrent((prev) => Math.min(prev + 1, onboardingScreens.length - 1));
 	};
+
+	const handleUpdateUser = async () => {
+		const year = dob.substring(4)
+		const day = dob.substring(0, 2)
+		const month = dob.substring(2, 4)
+		const date = new Date([year, month, day].join('-'))
+
+		await updateUser({
+			gender: gender as TGender,
+			dob: date,
+			height,
+			weight: {
+				value: Number(weight),
+				date: new Date()
+			}
+		})
+		navigate("/")
+	}
 
 	return (
 		<section className="grid place-items-center min-h-screen overflow-hidden">
@@ -84,7 +108,7 @@ export default function Onboarding() {
 								className={cn(["mt-5 cursor-pointer"])}
 								onClick={
 									current === onboardingScreens.length - 1
-										? () => navigate("/")
+										? handleUpdateUser
 										: handleScrollNext
 								}
 							>
