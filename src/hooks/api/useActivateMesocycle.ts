@@ -26,7 +26,7 @@ async function fetchActivateMeso({
 
 export default function useActivateMesocycle() {
 	const queryClient = useQueryClient();
-	const userId = useUserStore(useShallow(state => state.user?._id))
+	const [user] = useUserStore(useShallow(state => [state.user]))
 
 	return useMutation({
 		mutationKey: ["meso-activate"],
@@ -37,10 +37,13 @@ export default function useActivateMesocycle() {
 			fetchActivateMeso({ userId, activeMesocycle }),
 		onSuccess: async () => {
 			await queryClient.invalidateQueries({
-				queryKey: ["user", { userId }],
+				queryKey: ["user", { userId: user?._id }],
 			});
 			await queryClient.invalidateQueries({
-				queryKey: ["my-mesocycles", {userId}]
+				queryKey: ["mesocycle", { mesoId: user?.activeMesocycle?.mesocycle._id }]
+			})
+			await queryClient.invalidateQueries({
+				queryKey: ["my-mesocycles", {userId: user?._id}]
 			})
 		},
 	});

@@ -19,7 +19,9 @@ import {
 import useFoodItems from "@/hooks/api/useFoodItems";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import type React from "react";
+import { useMemo } from "react";
 import { useState } from "react";
+import Macros from '@/components/nutrition/Macros.tsx'
 
 type AddItemModalProps = {
 	isOpen: boolean;
@@ -33,12 +35,23 @@ export default function CreateItemModal({
 	const [selectedItemId, setSelectedItemId] = useState("");
 	const { data: foodItems, isLoading } = useFoodItems();
 
+	const selectedItem = useMemo(() => {
+		return foodItems?.find((item) => item._id === selectedItemId);
+	}, [foodItems, selectedItemId]);
+
 	if (isLoading) {
 		return <div>Loading...</div>;
 	}
 
+	const onOpenChange = (open: boolean) => {
+		setIsOpen(open);
+		if (!open) {
+			setSelectedItemId("");
+		}
+	};
+
 	return (
-		<Dialog open={isOpen} onOpenChange={setIsOpen}>
+		<Dialog open={isOpen} onOpenChange={onOpenChange}>
 			<VisuallyHidden>
 				<DialogTitle>Add Item</DialogTitle>
 				<DialogDescription>Add nutrition item</DialogDescription>
@@ -47,7 +60,9 @@ export default function CreateItemModal({
 				<Button>Add item</Button>
 			</DialogTrigger>
 			<DialogContent>
-				<DialogHeader>Add item</DialogHeader>
+				<DialogHeader>
+					<span>Add item</span>
+				</DialogHeader>
 				<Select onValueChange={(val) => setSelectedItemId(val)}>
 					<SelectTrigger className="w-full">
 						<SelectValue placeholder="Select item..." />
@@ -60,6 +75,9 @@ export default function CreateItemModal({
 						))}
 					</SelectContent>
 				</Select>
+				{selectedItem && (
+					<Macros macros={selectedItem} className='flex' editButton item={selectedItem}/>
+				)}
 				{selectedItemId && foodItems && (
 					<Card>
 						<CardContent>

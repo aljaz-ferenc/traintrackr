@@ -16,6 +16,7 @@ import Provider from "./provider";
 import SignIn from "./routes/SignIn.tsx";
 import SignUp from "./routes/SignUp.tsx";
 
+
 const router = createBrowserRouter([
 	{
 		path: "/sign-in/*",
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
 		path: "/sign-up/*",
 		Component: SignUp,
 	},
+		{
+			path: Route.Onboarding,
+			element: <Onboarding/>
+		},
 	{
 		path: Route.Onboarding,
 		element: <Onboarding />,

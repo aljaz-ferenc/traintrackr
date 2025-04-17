@@ -68,7 +68,10 @@ export default function Workout({
 
 	return (
 		<div className="relative">
-			<Card>
+			<Card ref={workoutRef}
+				  onFocus={() => focusWorkout(true)}
+				  onMouseDown={() => focusWorkout(true)}
+				  onBlur={() => setFocusedWorkout("")} className={cn([focusedWorkout === workout.id && "outline-2 outline-accent-primary -outline-offset-2 transition-all"])}>
 				<CardContent className="flex flex-col group">
 					{editable && (
 						<WorkoutActions
@@ -77,13 +80,9 @@ export default function Workout({
 						/>
 					)}
 					<article
-						ref={workoutRef}
-						onFocus={() => focusWorkout(true)}
-						onMouseDown={() => focusWorkout(true)}
-						onBlur={() => setFocusedWorkout("")}
+
 						className={cn([
-							"flex flex-col gap-3 min-w-xs",
-							focusedWorkout === workout.id && "border-2 border-sky-400",
+							"flex flex-col gap-3 min-w-xs"
 						])}
 					>
 						{editable ? (

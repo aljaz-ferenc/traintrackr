@@ -1,5 +1,5 @@
 import type { Range } from "@/core/enums/Range.enum.ts";
-import type { Mesocycle, Nutrition, User } from "@/core/types.ts";
+import type {FoodItem, Mesocycle, Nutrition, User} from "@/core/types.ts";
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -22,4 +22,5 @@ export class Endpoints {
 	static nutritions = `${BASE_URL}/nutritions`;
 	static nutrition = (nutritionId: Nutrition["_id"]) =>
 		`${BASE_URL}/nutritions/${nutritionId}`;
+	static foodItem = (itemId: FoodItem['_id']) => `${BASE_URL}/foodItems/${itemId}`
 }

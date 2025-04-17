@@ -22,7 +22,7 @@ export default function AppLayout() {
 				<ModeToggle />
 			</div>
 			<Sidebar />
-			<main className="mx-auto py-10 min-h-screen">
+			<main className="min-h-screen mx-auto w-full p-10 max-w-[1440px]">
 				<Outlet />
 			</main>
 		</div>

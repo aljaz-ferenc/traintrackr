@@ -52,3 +52,53 @@ export function calcMacros(
 		carbs: Math.round((foodItem.carbs * amount) / 100),
 	};
 }
+
+import { format } from 'date-fns';
+import {z} from "zod";
+
+export function getApexHeatmapData(
+	statuses: { date: Date; status: 'rest' | 'missed' | 'completed' | 'upcoming' }[]
+) {
+	const statusToCount = {
+		rest: 0,
+		missed: 1,
+		completed: 2,
+		upcoming: 3,
+	};
+
+
+	const dataByWeek: Record<string, { x: string; y: number }[]> = {};
+
+	statuses.forEach((entry) => {
+		const week = format(entry.date, "yyyy-'W'II"); // ISO week format
+		const day = format(entry.date, 'EEE'); // Mon, Tue, etc.
+		const count = statusToCount[entry.status];
+
+		if (!dataByWeek[week]) dataByWeek[week] = [];
+
+		dataByWeek[week].push({ x: day, y: count });
+	});
+
+	return Object.entries(dataByWeek).map(([week, data]) => ({
+		name: week,
+		data,
+	}));
+}
+
+export const isValidDate = (dob: string) => {
+	if (dob.length !== 8) return false;
+
+	const day = dob.slice(0, 2);
+	const month = dob.slice(2, 4);
+	const year = dob.slice(4, 8);
+
+	const formatted = `${year}-${month}-${day}`;
+	const result = z.coerce.date().safeParse(formatted);
+
+	if (!result.success) return false;
+
+	const parsed = result.data;
+	return parsed.getFullYear() === +year &&
+		parsed.getMonth() + 1 === +month &&
+		parsed.getDate() === +day;
+};
