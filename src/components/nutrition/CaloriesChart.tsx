@@ -1,6 +1,6 @@
 import {Nutrition} from "@/core/types.ts";
 import {ChartContainer, ChartTooltip, ChartTooltipContent} from "@/components/ui/chart.tsx";
-import {Bar, BarChart, CartesianGrid, Line, XAxis} from "recharts";
+import {Bar, BarChart, CartesianGrid, XAxis} from "recharts";
 import {useMemo} from "react";
 import {getDay} from "date-fns";
 import {weekDays} from "@/components/workout/Workout.tsx";
