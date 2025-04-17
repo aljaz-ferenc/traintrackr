@@ -12,7 +12,7 @@ async function fetchNutrition(userId: User["_id"]) {
 export default function useNutrition() {
 	const userId = useUserStore(useShallow((state) => state.user?._id));
 
-	return useQuery<{ nutritions: Nutrition[]; totalMacros: Macros }>({
+	return useQuery<{ nutritionsToday: Nutrition[]; totalMacros: Macros, nutritionsThisWeek: Nutrition[] }>({
 		queryKey: ["nutrition-get"],
 		queryFn: () => fetchNutrition(userId as string),
 		enabled: !!userId,

@@ -28,7 +28,7 @@ export default function Nutrition() {
                 <AddItemModal isOpen={addItemIsOpen} setIsOpen={setAddItemIsOpen}/>
             </div>
             <div className="mt-5 flex flex-col gap-2">
-                {data?.nutritions?.map((nutrition) => (
+                {data?.nutritionsToday?.map((nutrition) => (
                     <NutritionItem key={nutrition._id} nutrition={nutrition}/>
                 ))}
             </div>

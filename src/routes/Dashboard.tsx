@@ -6,6 +6,7 @@ import useStats from "@/hooks/api/useStats.ts";
 import Heatmap from "@/components/stats/Heatmap.tsx";
 import useNutrition from "@/hooks/api/useNutrition.ts";
 import {cn} from "@/lib/utils.ts";
+import CaloriesChart from "@/components/nutrition/CaloriesChart.tsx";
 
 export default function Home() {
     const {data: stats, isLoading: isLoadingStats} = useStats(Range.Week);
@@ -20,7 +21,7 @@ export default function Home() {
     return (
         <section>
             <RouteTitle title="Dashboard"/>
-            <div className="grid gap-3 grid-cols-4 grid-rows-2">
+            <div className="grid gap-3 grid-cols-4 grid-rows-[1fr_1fr1_fr]">
                 <WidgetWrapper title="Calories consumed" className="" description="Today">
                     <div>
                         <span className="text-3xl font-bold">{nutrition.totalMacros.calories}</span>
@@ -39,10 +40,10 @@ export default function Home() {
                         <span className="text-xl">kcal</span>
                     </div>
                 </WidgetWrapper>
-                <WidgetWrapper title="Average calories" description="Average per week">
+                <WidgetWrapper title="Average calories" description="This week">
                     <div>
                         <span className="text-3xl font-bold">2350</span>
-                        <span className="text-xl">kcal</span>
+                        <span className="text-xl">kcal/day</span>
                     </div>
                 </WidgetWrapper>
                 <WidgetWrapper title='Mesocycle progress'>
@@ -53,27 +54,30 @@ export default function Home() {
                     {stats.completedWorkoutsRatio.completed}/{stats.completedWorkoutsRatio.total}
                     </span>
                 </WidgetWrapper>
-                {/*<WidgetWrapper*/}
-                {/*    title="Weight change"*/}
-                {/*    description="Since start of mesocycle"*/}
-                {/*>*/}
-                {/*    <div>*/}
-                {/*        <span className="text-3xl font-bold">-2</span>*/}
-                {/*        <span className="text-xl">kg</span>*/}
-                {/*    </div>*/}
-                {/*</WidgetWrapper>*/}
-                {/*<WidgetWrapper title="Weight change" description="Average per week">*/}
-                {/*    <div>*/}
-                {/*        <span className="text-3xl font-bold">-0.3</span>*/}
-                {/*        <span className="text-xl">kg</span>*/}
-                {/*    </div>*/}
-                {/*</WidgetWrapper>*/}
-                {/*<WidgetWrapper title="Weight" className="col-span-2">*/}
-                {/*    <WeightChart weightData={stats.weight}/>*/}
-                {/*</WidgetWrapper>*/}
-                {/*<WidgetWrapper title='Workout statuses' className="row-span-2 col-span-2">*/}
-                {/*    {stats && <Heatmap statuses={stats.workoutStatuses}/>}*/}
-                {/*</WidgetWrapper>*/}
+                <WidgetWrapper title='Calories this week' className='col-span-2 !row-3'>
+                    <CaloriesChart nutritions={nutrition.nutritionsThisWeek}/>
+                </WidgetWrapper>
+                <WidgetWrapper
+                    title="Weight change"
+                    description="Since start of mesocycle"
+                >
+                    <div>
+                        <span className="text-3xl font-bold">-2</span>
+                        <span className="text-xl">kg</span>
+                    </div>
+                </WidgetWrapper>
+                <WidgetWrapper title="Weight change" description="Average per week">
+                    <div>
+                        <span className="text-3xl font-bold">-0.3</span>
+                        <span className="text-xl">kg</span>
+                    </div>
+                </WidgetWrapper>
+                <WidgetWrapper title="Weight" className="col-span-2">
+                    <WeightChart weightData={stats.weight}/>
+                </WidgetWrapper>
+                <WidgetWrapper title='Workout statuses' className="row-span-2 col-span-2">
+                    {stats && <Heatmap statuses={stats.workoutStatuses}/>}
+                </WidgetWrapper>
             </div>
         </section>
     );
