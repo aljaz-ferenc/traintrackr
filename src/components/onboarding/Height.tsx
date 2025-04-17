@@ -1,19 +1,49 @@
-import {Carousel, CarouselContent, CarouselItem} from "@/components/ui/carousel.tsx";
+import "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
+// @ts-ignore
+import "swiper/css";
+// @ts-ignore
+import "swiper/css/free-mode";
+import {Triangle} from "lucide-react";
+import type React from "react";
+import {cn} from "@/lib/utils.ts";
 
-export default function Height(){
-    return (
-        <>
-            <h2 className='text-3xl font-bold text-center mb-4'>How tall are you?</h2>
-            <Carousel className='max-w-md mx-auto' key={1}>
-                <CarouselContent >
-                    <CarouselItem className='text-center '>1</CarouselItem>
-                    <CarouselItem className='text-center '>2</CarouselItem>
-                    <CarouselItem className='text-center '>3</CarouselItem>
-                    <CarouselItem className='text-center '>4</CarouselItem>
-                    <CarouselItem className='text-center '>5</CarouselItem>
-                </CarouselContent>
-            </Carousel>
-            <p className='text-center max-w-[80%] mx-auto max-w-sm leading-8'>A little detail that helps us customize things just for you. (No judgment, all heights are awesome.)</p>
-        </>
-    )
+const heights: number[] = [];
+
+for (let i = 130; i < 230; i++) {
+	heights.push(i);
+}
+
+type HeightProps = {
+	height: number;
+	setHeight: React.Dispatch<React.SetStateAction<number>>
+};
+
+export default function Height({ setHeight }: HeightProps) {
+	return (
+		<>
+			<h2 className="text-3xl font-bold text-center mb-4">What's your height?</h2>
+			<Triangle className='-scale-y-100 absolute left-1/2 -translate-x-1/2 translate-y-30 fill-white' />
+			<Swiper
+				direction={"horizontal"}
+				className="w-full !cursor-pointer border"
+				slidesPerView={24}
+				freeMode={true}
+				onSlideChange={(swiper) => setHeight(heights[swiper.activeIndex])}
+				centeredSlides={true}
+				slideToClickedSlide={true}
+			>
+				{heights.map((height) => (
+					<SwiperSlide className="select-none !py-10 text-sm text-center flex flex-col" key={height}>
+						<span>{height}</span>
+						<div className={cn(['w-1 bg-primary mx-auto h-full', height % 5 !==0 && 'h-1/2'])}/>
+					</SwiperSlide>
+				))}
+			</Swiper>
+			<p className="text-center max-w-[80%] mx-auto max-w-sm leading-8">
+				A little detail that helps us customize things just for you. (No
+				judgment, all heights are awesome.)
+			</p>
+		</>
+	);
 }

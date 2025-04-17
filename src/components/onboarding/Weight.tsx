@@ -1,6 +1,12 @@
 import {Carousel, CarouselContent, CarouselItem} from "@/components/ui/carousel.tsx";
+import React from "react";
 
-export default function Weight() {
+type WeightProps ={
+    weight: number | null
+    setWeight: React.Dispatch<React.SetStateAction<number | null>>
+}
+
+export default function Weight({weight, setWeight}: WeightProps) {
     return (
         <>
             <h2 className='text-3xl font-bold text-center mb-4'>What's your weight?</h2>

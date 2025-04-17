@@ -14,6 +14,10 @@ export default function Stats() {
 	const [range, setRange] = useState<Range>(Range.Week);
 	const { data: stats } = useStats(range);
 
+	if(!stats?.weight){
+		return <div>No data...</div>
+	}
+
 	return (
 		<section>
 			<RouteTitle title="Stats" />
