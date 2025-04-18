@@ -3,11 +3,12 @@ import useUserStore from "@/state/UserStore.ts";
 import { useShallow } from "zustand/react/shallow";
 import { Endpoints } from "@/core/endpoints.ts";
 import { useAuth } from "@clerk/clerk-react";
-import type {Gender, UserWeight} from "@/core/types.ts";
+import type {Gender, Units, UserWeight} from "@/core/types.ts";
 
 type UpdateUserPayload = {
 	gender: Gender,
 	dob: Date,
+	units: Units,
 	height: number,
 	weight: UserWeight
 }

@@ -35,14 +35,14 @@ export default function Onboarding() {
 		return <Spinner />;
 	}
 
-	// useEffect(() => {
-	// 	if (!user) return;
-	//
-	// 	const isOnboarded = isUserOnboarded(user);
-	// 	if (isOnboarded) {
-	// 		navigate("/");
-	// 	}
-	// }, [user, navigate]);
+	useEffect(() => {
+		if (!user) return;
+
+		const isOnboarded = isUserOnboarded(user);
+		if (isOnboarded) {
+			navigate("/");
+		}
+	}, [user, navigate]);
 
 	const disableContinue = useMemo(() => {
 		return {
@@ -82,6 +82,7 @@ export default function Onboarding() {
 		await updateUser({
 			gender: gender as TGender,
 			dob: date,
+			units,
 			height,
 			weight: {
 				value: Number(weight),
