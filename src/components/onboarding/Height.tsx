@@ -13,6 +13,14 @@ const heights: number[] = [];
 for (let i = 130; i < 230; i++) {
 	heights.push(i);
 }
+const imperialHeights: number[] = [];
+
+for(let i = 4; i <= 7; i++){
+	imperialHeights.push(i)
+	for(let j = 1; j <=11; j++){
+		imperialHeights.push(j)
+	}
+}
 
 type HeightProps = {
 	height: number;

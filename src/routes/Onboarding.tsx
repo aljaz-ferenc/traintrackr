@@ -5,61 +5,66 @@ import Gender from "@/components/onboarding/Gender";
 import Dob from "@/components/onboarding/Dob";
 import Height from "@/components/onboarding/Height";
 import Weight from "@/components/onboarding/Weight";
-import {useState, useMemo, useEffect} from "react";
+import { useState, useMemo, useEffect } from "react";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils.ts";
 import type { Gender as TGender } from "@/core/types.ts";
-import {isUserOnboarded, isValidDate} from "@/utils/utils.ts";
+import { isUserOnboarded, isValidDate } from "@/utils/utils.ts";
 import LetsGo from "@/components/onboarding/LetsGo.tsx";
 import OnboardingScreenWrapper from "@/components/onboarding/OnboardingScreenWrapper.tsx";
 import { useNavigate } from "react-router";
 import useUpdateUser from "@/hooks/api/useUpdateUser.ts";
 import useUserStore from "@/state/UserStore.ts";
-import {useShallow} from "zustand/react/shallow";
+import { useShallow } from "zustand/react/shallow";
 import Spinner from "@/components/Spinner/Spinner.tsx";
+import Units from "@/components/onboarding/Units.tsx";
+import type { Units as TUnits } from "@/core/types.ts";
 
 export default function Onboarding() {
 	const [current, setCurrent] = useState(0);
 	const [gender, setGender] = useState<TGender | null>(null);
 	const [dob, setDob] = useState<string>("");
+	const [units, setUnits] = useState<TUnits | null>(null);
 	const [height, setHeight] = useState<number>(130);
-	const [weight, setWeight] = useState('');
+	const [weight, setWeight] = useState("");
 	const navigate = useNavigate();
-	const {mutateAsync: updateUser}  = useUpdateUser()
-	const user = useUserStore(useShallow(state => state.user))
+	const { mutateAsync: updateUser } = useUpdateUser();
+	const user = useUserStore(useShallow((state) => state.user));
 
-	if(!user){
-		return <Spinner/>
+	if (!user) {
+		return <Spinner />;
 	}
 
-	useEffect(() => {
-		if(!user) return
-
-		const isOnboarded = isUserOnboarded(user)
-		if(isOnboarded){
-			navigate('/')
-		}
-	}, [user])
+	// useEffect(() => {
+	// 	if (!user) return;
+	//
+	// 	const isOnboarded = isUserOnboarded(user);
+	// 	if (isOnboarded) {
+	// 		navigate("/");
+	// 	}
+	// }, [user, navigate]);
 
 	const disableContinue = useMemo(() => {
 		return {
 			0: false,
 			1: !gender,
 			2: !isValidDate(dob),
-			3: !height,
+			3: !units,
+			4: !height,
 		};
-	}, [gender, dob, height]);
+	}, [gender, dob, height, units]);
 
 	const onboardingScreens = useMemo(() => {
 		return [
 			<Welcome key="welcome" />,
 			<Gender setGender={setGender} gender={gender} key="gender" />,
 			<Dob setDob={setDob} key="dob" />,
-			<Height key="height" height={height} setHeight={setHeight}/>,
-			<Weight key="weight" weight={weight} setWeight={setWeight}/>,
+			<Units key='units' setUnits={setUnits} units={units}/>,
+			<Height key="height" height={height} setHeight={setHeight} units={units}/>,
+			<Weight key="weight" weight={weight} setWeight={setWeight} units={units} />,
 			<LetsGo key="letsGo" />,
 		];
-	}, [gender, height, weight]);
+	}, [gender, height, weight, units]);
 
 	const handleScrollPrev = () => {
 		setCurrent((prev) => Math.max(prev - 1, 0));
@@ -69,10 +74,10 @@ export default function Onboarding() {
 	};
 
 	const handleUpdateUser = async () => {
-		const year = dob.substring(4)
-		const day = dob.substring(0, 2)
-		const month = dob.substring(2, 4)
-		const date = new Date([year, month, day].join('-'))
+		const year = dob.substring(4);
+		const day = dob.substring(0, 2);
+		const month = dob.substring(2, 4);
+		const date = new Date([year, month, day].join("-"));
 
 		await updateUser({
 			gender: gender as TGender,
@@ -80,11 +85,11 @@ export default function Onboarding() {
 			height,
 			weight: {
 				value: Number(weight),
-				date: new Date()
-			}
-		})
-		navigate("/")
-	}
+				date: new Date(),
+			},
+		});
+		navigate("/");
+	};
 
 	return (
 		<section className="grid place-items-center min-h-screen overflow-hidden">
@@ -106,7 +111,7 @@ export default function Onboarding() {
 								className={`flex w-[${onboardingScreens.length}%] absolute`}
 								initial={{ x: 0 }}
 								animate={{ x: `-${current * 100}vw` }}
-								transition={{ease: 'easeInOut'}}
+								transition={{ ease: "easeInOut" }}
 							>
 								{onboardingScreens.map((screen) => (
 									<div key={screen.key}>

@@ -9,17 +9,17 @@ type GenderProps = {
 }
 
 export default function Gender({setGender, gender}: GenderProps) {
-console.log(gender)
+
     return (
         <>
             <h2 className='text-3xl font-bold text-center mb-4'>What's your gender?</h2>
             <div className='flex gap-[30%] mx-auto justify-center my-5'>
                 <div>
-                    <button onClick={() => setGender('male')} className={cn(['border hover:bg-muted p-5 rounded-xl cursor-pointer', gender === 'male' && 'bg-muted'])}><Mars size={100}/></button>
+                    <button type='button' onClick={() => setGender('male')} className={cn(['border hover:bg-muted p-5 rounded-xl cursor-pointer', gender === 'male' && 'bg-muted'])}><Mars size={100}/></button>
                     <p className='font-bold text-xl text-center mt-2'>Male</p>
                 </div>
                 <div>
-                    <button onClick={() => setGender('female')} className={cn(['border hover:bg-muted p-5 rounded-xl cursor-pointer', gender === 'female' && 'bg-muted'])}><Venus size={100}/></button>
+                    <button type='button' onClick={() => setGender('female')} className={cn(['border hover:bg-muted p-5 rounded-xl cursor-pointer', gender === 'female' && 'bg-muted'])}><Venus size={100}/></button>
                     <p className='font-bold text-xl text-center mt-2'>Female</p>
                 </div>
             </div>

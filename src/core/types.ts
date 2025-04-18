@@ -109,3 +109,5 @@ export type Macros = {
 };
 
 export type Gender = 'male' | 'female'
+
+export type Units = 'metric' | 'imperial'

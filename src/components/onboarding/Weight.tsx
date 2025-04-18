@@ -1,13 +1,15 @@
 import type React from "react";
 import { Input } from "@/components/ui/Input.tsx";
 import { z } from "zod";
+import type { Units } from "@/core/types.ts";
 
 type WeightProps = {
 	weight: string;
 	setWeight: React.Dispatch<React.SetStateAction<string>>;
+	units: Units;
 };
 
-export default function Weight({ weight, setWeight }: WeightProps) {
+export default function Weight({ weight, setWeight, units }: WeightProps) {
 	const onWeightInput = (input: string) => {
 		const { success } = z
 			.string()
@@ -30,7 +32,7 @@ export default function Weight({ weight, setWeight }: WeightProps) {
 					onChange={(e) => onWeightInput(e.target.value)}
 					value={weight}
 				/>
-				<span>kg</span>
+				<span>{units === "metric" ? "kg" : "lbs"}</span>
 			</div>
 			<p className="text-center max-w-[80%] mx-auto max-w-sm leading-8">
 				This helps us fine-tune your experience. No worries — your info stays
