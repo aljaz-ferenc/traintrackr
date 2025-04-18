@@ -18,6 +18,11 @@ export default function Stats() {
 		return <div>No data...</div>
 	}
 
+	const handleUpdateStats = async ()=>{
+		await updateStats({ weight })
+		setWeight('')
+	}
+
 	return (
 		<section>
 			<RouteTitle title="Stats" />
@@ -34,10 +39,10 @@ export default function Stats() {
 					<WeightChart weightData={stats?.weight} />
 				</Tabs>
 				<div className="flex flex-col gap-2 max-w-[150px]">
-					<Input type="text" onChange={(e) => setWeight(e.target.value)} />
+					<Input type="text" onChange={(e) => setWeight(e.target.value)} value={weight}/>
 					<Button
 						type={"button"}
-						onClick={async () => await updateStats({ weight })}
+						onClick={handleUpdateStats}
 						className='cursor-pointer'
 					>
 						Add measurement

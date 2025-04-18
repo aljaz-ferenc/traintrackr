@@ -16,45 +16,43 @@ export default function Home() {
         return <div>Loading...</div>
     }
 
-    const caloriesLeft = 2000 - nutrition.totalMacros.calories
-
     return (
         <section>
             <RouteTitle title="Dashboard"/>
-            <div className="grid gap-3 grid-cols-4 grid-rows-[1fr_1fr1_fr]">
+            {<div className="grid gap-3 grid-cols-4 grid-rows-[1fr_1fr1_fr]">
                 <WidgetWrapper title="Calories consumed" className="" description="Today">
                     <div>
-                        <span className="text-3xl font-bold">{nutrition.totalMacros.calories}</span>
+                        <span className="text-3xl font-bold">{stats.nutrition.caloriesToday}</span>
                         <span className="text-xl">kcal</span>
                     </div>
                 </WidgetWrapper>
-                <WidgetWrapper title="Calories left" description="Today" >
-                    <div className={cn(caloriesLeft < 0 && 'text-red-500' )}>
-                        <span className="text-3xl font-bold">{caloriesLeft}</span>
+                <WidgetWrapper title="Calories left" description="Today">
+                    <div className={cn(stats.nutrition.caloriesLeftToday < 0 && 'text-red-500')}>
+                        <span className="text-3xl font-bold">{stats.nutrition.caloriesLeftToday}</span>
                         <span className="text-xl">kcal</span>
                     </div>
                 </WidgetWrapper>
                 <WidgetWrapper title="Calorie goal" description="Today">
                     <div>
-                        <span className="text-3xl font-bold">2500</span>
+                        <span className="text-3xl font-bold">{stats.nutrition.tdee}</span>
                         <span className="text-xl">kcal</span>
                     </div>
                 </WidgetWrapper>
                 <WidgetWrapper title="Average calories" description="This week">
                     <div>
-                        <span className="text-3xl font-bold">2350</span>
+                        <span className="text-3xl font-bold">{stats.nutrition.averageDailyCalories}</span>
                         <span className="text-xl">kcal/day</span>
                     </div>
                 </WidgetWrapper>
                 <WidgetWrapper title='Mesocycle progress'>
-                    <span className='text-3xl font-bold'>{stats.activeMesoProgress}%</span>
+                    <span className='text-3xl font-bold'>{stats.workouts.mesoProgress}%</span>
                 </WidgetWrapper>
                 <WidgetWrapper title='Workouts completed'>
                     <span className='text-3xl font-bold'>
-                    {stats.completedWorkoutsRatio.completed}/{stats.completedWorkoutsRatio.total}
+                    {stats.workouts.completed}/{stats.workouts.total}
                     </span>
                 </WidgetWrapper>
-                <WidgetWrapper title='Calories this week' className='col-span-2 !row-3'>
+                <WidgetWrapper title='Calorie consumption' description='This week' className='col-span-2 !row-3'>
                     <CaloriesChart nutritions={nutrition.nutritionsThisWeek}/>
                 </WidgetWrapper>
                 <WidgetWrapper
@@ -62,23 +60,23 @@ export default function Home() {
                     description="Since start of mesocycle"
                 >
                     <div>
-                        <span className="text-3xl font-bold">-2</span>
+                        <span className="text-3xl font-bold">{stats.weight.changeThisMeso}</span>
                         <span className="text-xl">kg</span>
                     </div>
                 </WidgetWrapper>
                 <WidgetWrapper title="Weight change" description="Average per week">
                     <div>
-                        <span className="text-3xl font-bold">-0.3</span>
+                        <span className="text-3xl font-bold">{stats.weight.changeInRange}</span>
                         <span className="text-xl">kg</span>
                     </div>
                 </WidgetWrapper>
                 <WidgetWrapper title="Weight" className="col-span-2">
-                    <WeightChart weightData={stats.weight}/>
+                    <WeightChart weightData={stats.weight.weightsInRange}/>
                 </WidgetWrapper>
                 <WidgetWrapper title='Workout statuses' className="row-span-2 col-span-2">
-                    {stats && <Heatmap statuses={stats.workoutStatuses}/>}
+                    {stats && <Heatmap statuses={stats.workouts.statuses}/>}
                 </WidgetWrapper>
-            </div>
+            </div>}
         </section>
     );
 }
