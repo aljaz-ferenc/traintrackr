@@ -21,7 +21,7 @@ import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import type React from "react";
 import { useMemo } from "react";
 import { useState } from "react";
-import Macros from '@/components/nutrition/Macros.tsx'
+import Macros from "@/components/nutrition/Macros.tsx";
 
 type AddItemModalProps = {
 	isOpen: boolean;
@@ -76,7 +76,12 @@ export default function CreateItemModal({
 					</SelectContent>
 				</Select>
 				{selectedItem && (
-					<Macros macros={selectedItem} className='flex' editButton item={selectedItem}/>
+					<Macros
+						macros={selectedItem}
+						className="flex"
+						editButton
+						item={selectedItem}
+					/>
 				)}
 				{selectedItemId && foodItems && (
 					<Card>

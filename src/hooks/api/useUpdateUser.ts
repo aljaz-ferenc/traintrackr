@@ -3,23 +3,26 @@ import useUserStore from "@/state/UserStore.ts";
 import { useShallow } from "zustand/react/shallow";
 import { Endpoints } from "@/core/endpoints.ts";
 import { useAuth } from "@clerk/clerk-react";
-import type {Gender, Units, UserWeight} from "@/core/types.ts";
+import type { Gender, Units, UserWeight } from "@/core/types.ts";
 
 type UpdateUserPayload = {
-	gender: Gender,
-	dob: Date,
-	units: Units,
-	height: number,
-	weight: UserWeight
-}
+	gender: Gender;
+	dob: Date;
+	units: Units;
+	height: number;
+	weight: UserWeight;
+};
 
-async function fetchUpdateUser(userId: string, payload: Partial<UpdateUserPayload>) {
+async function fetchUpdateUser(
+	userId: string,
+	payload: Partial<UpdateUserPayload>,
+) {
 	const res = await fetch(`${Endpoints.user(userId)}/stats`, {
 		body: JSON.stringify(payload),
 		headers: {
-			'Content-Type':'application/json'
+			"Content-Type": "application/json",
 		},
-		method: 'PATCH'
+		method: "PATCH",
 	});
 	return await res.json();
 }
@@ -31,7 +34,8 @@ export default function () {
 
 	return useMutation({
 		mutationKey: ["user-update", { userId }],
-		mutationFn: (payload: Partial<UpdateUserPayload>) => fetchUpdateUser(userId as string, payload),
+		mutationFn: (payload: Partial<UpdateUserPayload>) =>
+			fetchUpdateUser(userId as string, payload),
 		onSuccess: async () =>
 			queryClient.invalidateQueries({ queryKey: ["user", { clerkId }] }),
 	});

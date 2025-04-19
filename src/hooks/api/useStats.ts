@@ -27,13 +27,16 @@ export type StatsPayload = {
 		startingThisMeso: number;
 		changeThisMeso: number;
 		averageWeeklyChangeThisMeso: number;
-		weightsInRange: UserWeight[]
+		weightsInRange: UserWeight[];
 	};
 	workouts: {
 		completed: number;
 		total: number;
 		mesoProgress: number;
-		statuses: {date: Date, status: 'completed' | 'upcoming' | 'rest' | 'missed' }[]
+		statuses: {
+			date: Date;
+			status: "completed" | "upcoming" | "rest" | "missed";
+		}[];
 	};
 };
 

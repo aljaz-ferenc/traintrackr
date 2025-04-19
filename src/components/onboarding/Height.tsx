@@ -4,9 +4,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 // @ts-ignore
 import "swiper/css/free-mode";
-import {Triangle} from "lucide-react";
+import { Triangle } from "lucide-react";
 import type React from "react";
-import {cn} from "@/lib/utils.ts";
+import { cn } from "@/lib/utils.ts";
 
 const heights: number[] = [];
 
@@ -15,23 +15,25 @@ for (let i = 130; i < 230; i++) {
 }
 const imperialHeights: number[] = [];
 
-for(let i = 4; i <= 7; i++){
-	imperialHeights.push(i)
-	for(let j = 1; j <=11; j++){
-		imperialHeights.push(j)
+for (let i = 4; i <= 7; i++) {
+	imperialHeights.push(i);
+	for (let j = 1; j <= 11; j++) {
+		imperialHeights.push(j);
 	}
 }
 
 type HeightProps = {
 	height: number;
-	setHeight: React.Dispatch<React.SetStateAction<number>>
+	setHeight: React.Dispatch<React.SetStateAction<number>>;
 };
 
 export default function Height({ setHeight }: HeightProps) {
 	return (
 		<>
-			<h2 className="text-3xl font-bold text-center mb-4">What's your height?</h2>
-			<Triangle className='-scale-y-100 absolute left-1/2 -translate-x-1/2 translate-y-30 fill-white' />
+			<h2 className="text-3xl font-bold text-center mb-4">
+				What's your height?
+			</h2>
+			<Triangle className="-scale-y-100 absolute left-1/2 -translate-x-1/2 translate-y-30 fill-white" />
 			<Swiper
 				direction={"horizontal"}
 				className="w-full !cursor-pointer border"
@@ -42,9 +44,17 @@ export default function Height({ setHeight }: HeightProps) {
 				slideToClickedSlide={true}
 			>
 				{heights.map((height) => (
-					<SwiperSlide className="select-none !py-10 text-sm text-center flex flex-col" key={height}>
+					<SwiperSlide
+						className="select-none !py-10 text-sm text-center flex flex-col"
+						key={height}
+					>
 						<span>{height}</span>
-						<div className={cn(['w-1 bg-primary mx-auto h-full', height % 5 !==0 && 'h-1/2'])}/>
+						<div
+							className={cn([
+								"w-1 bg-primary mx-auto h-full",
+								height % 5 !== 0 && "h-1/2",
+							])}
+						/>
 					</SwiperSlide>
 				))}
 			</Swiper>

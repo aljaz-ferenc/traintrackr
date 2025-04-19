@@ -1,6 +1,6 @@
 import ApexCharts from "react-apexcharts";
 import { getApexHeatmapData } from "@/utils/utils.ts";
-import {ApexOptions} from "apexcharts";
+import type { ApexOptions } from "apexcharts";
 
 export default function Heatmap({
 	statuses,
@@ -16,8 +16,8 @@ export default function Heatmap({
 		chart: {
 			type: "heatmap",
 			toolbar: {
-				show: false
-			}
+				show: false,
+			},
 		},
 		plotOptions: {
 			heatmap: {
@@ -58,7 +58,7 @@ export default function Heatmap({
 		xaxis: {
 			type: "category",
 		},
-	} satisfies ApexOptions
+	} satisfies ApexOptions;
 
 	return (
 		<ApexCharts

@@ -6,7 +6,8 @@
 	"scripts": {
 		"dev": "vite",
 		"build": "tsc -b && vite build",
-		"preview": "vite preview"
+		"preview": "vite preview",
+		"biome": "biome lint ./src && biome format --write ./src"
 	},
 	"dependencies": {
 		"@clerk/clerk-react": "^5.26.0",

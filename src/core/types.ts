@@ -72,9 +72,9 @@ export type User = {
 	} | null;
 	stats?: {
 		weight: UserWeight[];
-		height: number,
-		gender: Gender,
-		dob: Date
+		height: number;
+		gender: Gender;
+		dob: Date;
 	};
 };
 
@@ -108,6 +108,6 @@ export type Macros = {
 	carbs: number;
 };
 
-export type Gender = 'male' | 'female'
+export type Gender = "male" | "female";
 
-export type Units = 'metric' | 'imperial'
+export type Units = "metric" | "imperial";

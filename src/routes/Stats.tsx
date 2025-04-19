@@ -14,14 +14,14 @@ export default function Stats() {
 	const [range, setRange] = useState<Range>(Range.Week);
 	const { data: stats } = useStats(range);
 
-	if(!stats?.weight){
-		return <div>No data...</div>
+	if (!stats?.weight) {
+		return <div>No data...</div>;
 	}
 
-	const handleUpdateStats = async ()=>{
-		await updateStats({ weight })
-		setWeight('')
-	}
+	const handleUpdateStats = async () => {
+		await updateStats({ weight });
+		setWeight("");
+	};
 
 	return (
 		<section>
@@ -39,11 +39,15 @@ export default function Stats() {
 					<WeightChart weightData={stats.weight.weightsInRange} />
 				</Tabs>
 				<div className="flex flex-col gap-2 max-w-[150px]">
-					<Input type="text" onChange={(e) => setWeight(e.target.value)} value={weight}/>
+					<Input
+						type="text"
+						onChange={(e) => setWeight(e.target.value)}
+						value={weight}
+					/>
 					<Button
 						type={"button"}
 						onClick={handleUpdateStats}
-						className='cursor-pointer'
+						className="cursor-pointer"
 					>
 						Add measurement
 					</Button>

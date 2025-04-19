@@ -59,9 +59,19 @@ export default function Onboarding() {
 			<Welcome key="welcome" />,
 			<Gender setGender={setGender} gender={gender} key="gender" />,
 			<Dob setDob={setDob} key="dob" />,
-			<Units key='units' setUnits={setUnits} units={units}/>,
-			<Height key="height" height={height} setHeight={setHeight} units={units}/>,
-			<Weight key="weight" weight={weight} setWeight={setWeight} units={units} />,
+			<Units key="units" setUnits={setUnits} units={units} />,
+			<Height
+				key="height"
+				height={height}
+				setHeight={setHeight}
+				units={units}
+			/>,
+			<Weight
+				key="weight"
+				weight={weight}
+				setWeight={setWeight}
+				units={units}
+			/>,
 			<LetsGo key="letsGo" />,
 		];
 	}, [gender, height, weight, units]);

@@ -2,7 +2,7 @@ import { Endpoints } from "@/core/endpoints.ts";
 import type { User, UserWeight } from "@/core/types.ts";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import useUserStore from "@/state/UserStore.ts";
-import {useShallow} from "zustand/react/shallow";
+import { useShallow } from "zustand/react/shallow";
 
 async function fetchUpdateStats(
 	userId: User["_id"],
@@ -19,7 +19,7 @@ async function fetchUpdateStats(
 }
 
 export default function useUpdateStats() {
-	const userId = useUserStore(useShallow(state => state.user?._id))
+	const userId = useUserStore(useShallow((state) => state.user?._id));
 	const queryClient = useQueryClient();
 
 	return useMutation({

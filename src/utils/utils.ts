@@ -1,8 +1,8 @@
-import type {Nutrition, User, Workout} from "@/core/types.ts";
+import type { Nutrition, User, Workout } from "@/core/types.ts";
 import clsx, { type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { format } from 'date-fns';
-import {z} from "zod";
+import { format } from "date-fns";
+import { z } from "zod";
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
@@ -56,7 +56,10 @@ export function calcMacros(
 }
 
 export function getApexHeatmapData(
-	statuses: { date: Date; status: 'rest' | 'missed' | 'completed' | 'upcoming' }[]
+	statuses: {
+		date: Date;
+		status: "rest" | "missed" | "completed" | "upcoming";
+	}[],
 ) {
 	const statusToCount = {
 		rest: 0,
@@ -65,12 +68,11 @@ export function getApexHeatmapData(
 		upcoming: 3,
 	};
 
-
 	const dataByWeek: Record<string, { x: string; y: number }[]> = {};
 
-	for(const entry of statuses){
+	for (const entry of statuses) {
 		const week = format(entry.date, "yyyy-'W'II");
-		const day = format(entry.date, 'EEE');
+		const day = format(entry.date, "EEE");
 		const count = statusToCount[entry.status];
 
 		if (!dataByWeek[week]) dataByWeek[week] = [];
@@ -97,15 +99,17 @@ export const isValidDate = (dob: string) => {
 	if (!result.success) return false;
 
 	const parsed = result.data;
-	return parsed.getFullYear() === +year &&
+	return (
+		parsed.getFullYear() === +year &&
 		parsed.getMonth() + 1 === +month &&
-		parsed.getDate() === +day;
+		parsed.getDate() === +day
+	);
 };
 
-export function isUserOnboarded(user: User){
-	if(!user.stats) return false
+export function isUserOnboarded(user: User) {
+	if (!user.stats) return false;
 
-	const {weight, height, dob, gender} = user.stats
+	const { weight, height, dob, gender } = user.stats;
 
-	return weight.length > 0 && height && dob && gender
+	return weight.length > 0 && height && dob && gender;
 }

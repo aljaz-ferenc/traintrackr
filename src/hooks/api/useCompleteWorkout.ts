@@ -36,11 +36,11 @@ export default function useCompleteWorkout() {
 			fetchCompleteWorkout(payload),
 		onSuccess: async () => {
 			await queryClient.invalidateQueries({
-				queryKey: ["user", {clerkId: userId}],
-			})
+				queryKey: ["user", { clerkId: userId }],
+			});
 			await queryClient.invalidateQueries({
-				queryKey: ["logs", { userId }]
-			})
+				queryKey: ["logs", { userId }],
+			});
 		},
 	});
 }
