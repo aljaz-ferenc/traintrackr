@@ -16,11 +16,11 @@ export type StatsPayload = {
 		macrosToday: number;
 		caloriesGoal: number;
 		caloriesLeftToday: number;
-		averageDailyCalories: number;
+		averageDailyCaloriesThisWeek: number;
 		tdee: number;
 	};
 	weight: {
-		current: number;
+		current: UserWeight;
 		starting: number;
 		changeInRange: number;
 		averageWeeklyChangeInRange: 1;

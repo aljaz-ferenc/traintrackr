@@ -10,8 +10,10 @@ async function fetchUser(clerkId: string) {
     return await res.json();
 }
 
+
 export default function useGetUser() {
     const { userId: clerkId } = useAuth();
+console.log(clerkId)
 
     return useQuery< User >({
         queryKey: ["user", { clerkId }],

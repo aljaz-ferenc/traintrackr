@@ -40,7 +40,7 @@ export default function Home() {
                 </WidgetWrapper>
                 <WidgetWrapper title="Average calories" description="This week">
                     <div>
-                        <span className="text-3xl font-bold">{stats.nutrition.averageDailyCalories}</span>
+                        <span className="text-3xl font-bold">{stats.nutrition.averageDailyCaloriesThisWeek}</span>
                         <span className="text-xl">kcal/day</span>
                     </div>
                 </WidgetWrapper>
@@ -56,6 +56,24 @@ export default function Home() {
                     <CaloriesChart nutritions={nutrition.nutritionsThisWeek}/>
                 </WidgetWrapper>
                 <WidgetWrapper
+                    title="Weight"
+                    description="Current"
+                >
+                    <div>
+                        <span className="text-3xl font-bold">{stats.weight.current.value}</span>
+                        <span className="text-xl">kg</span>
+                    </div>
+                </WidgetWrapper>
+                <WidgetWrapper
+                    title="Weight"
+                    description="At start of mesocycle"
+                >
+                    <div>
+                        <span className="text-3xl font-bold">{stats.weight.startingThisMeso}</span>
+                        <span className="text-xl">kg</span>
+                    </div>
+                </WidgetWrapper>
+                <WidgetWrapper
                     title="Weight change"
                     description="Since start of mesocycle"
                 >
@@ -64,12 +82,12 @@ export default function Home() {
                         <span className="text-xl">kg</span>
                     </div>
                 </WidgetWrapper>
-                <WidgetWrapper title="Weight change" description="Average per week">
-                    <div>
-                        <span className="text-3xl font-bold">{stats.weight.changeInRange}</span>
-                        <span className="text-xl">kg</span>
-                    </div>
-                </WidgetWrapper>
+                {/*<WidgetWrapper title="Weight change" description="Average per week">*/}
+                {/*    <div>*/}
+                {/*        <span className="text-3xl font-bold">{stats.weight.changeInRange}</span>*/}
+                {/*        <span className="text-xl">kg</span>*/}
+                {/*    </div>*/}
+                {/*</WidgetWrapper>*/}
                 <WidgetWrapper title="Weight" className="col-span-2">
                     <WeightChart weightData={stats.weight.weightsInRange}/>
                 </WidgetWrapper>
