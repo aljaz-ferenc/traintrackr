@@ -6,6 +6,7 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card.tsx";
+import { cn } from "@/lib/utils.ts";
 
 type WidgetWrapperProps = {
 	title: string;
@@ -20,12 +21,12 @@ export default function WidgetWrapper({
 	description = "",
 }: PropsWithChildren<WidgetWrapperProps>) {
 	return (
-		<Card className={className}>
+		<Card className={cn(["max-h-min", className])}>
 			<CardHeader>
 				<CardTitle>{title}</CardTitle>
 				<CardDescription>{description}</CardDescription>
 			</CardHeader>
-			<CardContent className='h-full'>{children}</CardContent>
+			<CardContent className="h-full">{children}</CardContent>
 		</Card>
 	);
 }
