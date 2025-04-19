@@ -29,7 +29,7 @@ export default function AppLayout() {
 				onLinkClick={() => setSidebarIsOpen(false)}
 				className="hidden lg:block"
 			/>
-			<main className="min-h-screen mx-auto w-full p-10 max-w-[1440px]">
+			<main className="min-h-screen mx-auto w-full p-3 pt-12 sm:p-5 sm:pt-10 lg:p-10 max-w-[1440px]">
 				<Outlet />
 			</main>
 		</div>
