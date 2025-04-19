@@ -89,7 +89,7 @@ export type FoodItem = {
 	portions?: {
 		name: string;
 		grams: number;
-		_id: string;
+		_id?: string;
 	}[];
 };
 

@@ -7,6 +7,7 @@ import "swiper/css/free-mode";
 import { Triangle } from "lucide-react";
 import type React from "react";
 import { cn } from "@/lib/utils.ts";
+import type { Units } from "@/core/types.ts";
 
 const heights: number[] = [];
 
@@ -25,6 +26,7 @@ for (let i = 4; i <= 7; i++) {
 type HeightProps = {
 	height: number;
 	setHeight: React.Dispatch<React.SetStateAction<number>>;
+	units: Units | null;
 };
 
 export default function Height({ setHeight }: HeightProps) {

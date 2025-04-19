@@ -1,12 +1,12 @@
 import { Endpoints } from "@/core/endpoints.ts";
-import type { User, UserWeight } from "@/core/types.ts";
+import type { User } from "@/core/types.ts";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import useUserStore from "@/state/UserStore.ts";
 import { useShallow } from "zustand/react/shallow";
 
 async function fetchUpdateStats(
 	userId: User["_id"],
-	stats: { weight: UserWeight[] },
+	stats: { weight: number },
 ) {
 	const res = await fetch(Endpoints.stats(userId), {
 		method: "POST",
@@ -24,7 +24,7 @@ export default function useUpdateStats() {
 
 	return useMutation({
 		mutationKey: ["stats-update", { userId }],
-		mutationFn: (stats: { weight: UserWeight[] }) =>
+		mutationFn: (stats: { weight: number }) =>
 			fetchUpdateStats(userId as string, stats),
 		onSuccess: async () =>
 			queryClient.invalidateQueries({ queryKey: ["stats"] }),

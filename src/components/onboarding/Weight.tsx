@@ -6,7 +6,7 @@ import type { Units } from "@/core/types.ts";
 type WeightProps = {
 	weight: string;
 	setWeight: React.Dispatch<React.SetStateAction<string>>;
-	units: Units;
+	units: Units | null;
 };
 
 export default function Weight({ weight, setWeight, units }: WeightProps) {

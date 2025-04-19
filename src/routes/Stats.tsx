@@ -19,7 +19,7 @@ export default function Stats() {
 	}
 
 	const handleUpdateStats = async () => {
-		await updateStats({ weight });
+		await updateStats({ weight: Number(weight) });
 		setWeight("");
 	};
 

@@ -92,7 +92,7 @@ export default function Onboarding() {
 		await updateUser({
 			gender: gender as TGender,
 			dob: date,
-			units,
+			units: units || "metric",
 			height,
 			weight: {
 				value: Number(weight),

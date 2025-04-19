@@ -37,7 +37,7 @@ export default function Workout({
 	editable = false,
 	focusable = false,
 }: WorkoutProps) {
-	const workoutRef = useRef<HTMLElement>(null);
+	const workoutRef = useRef<HTMLDivElement>(null);
 	const [
 		removeWorkout,
 		setWorkoutDay,
