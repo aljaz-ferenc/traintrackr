@@ -37,7 +37,7 @@ export default function MesocycleCards({
 				</WidgetWrapper>
 				<WidgetWrapper
 					title="Workout statuses"
-					className="@sm:col-span-2 @md:col-2 @md:row-span-2 @lg:col-span-2"
+					className="@sm:col-span-2 overflow-x-auto @md:col-2 @md:row-span-2 @lg:col-span-2"
 				>
 					{stats && <Heatmap statuses={stats.workouts.statuses} />}
 				</WidgetWrapper>

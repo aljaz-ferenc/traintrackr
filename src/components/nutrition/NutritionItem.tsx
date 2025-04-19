@@ -33,7 +33,14 @@ export default function NutritionItem({ nutrition }: NutritionItemProps) {
 						<p className="ml-auto mr-3">
 							{(nutrition.amount * nutrition.item.calories) / 100} kcal
 						</p>
-						<button type="button" onClick={handleDeleteNutrition}>
+						<button
+							className="cursor-pointer"
+							type="button"
+							onClick={async (e) => {
+								e.stopPropagation();
+								await handleDeleteNutrition();
+							}}
+						>
 							<X className="text-red-500" />
 						</button>
 					</CardContent>

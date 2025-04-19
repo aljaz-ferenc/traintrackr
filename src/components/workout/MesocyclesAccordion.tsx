@@ -39,6 +39,7 @@ export default function MesocyclesAccordion({
 
 	const handleDeleteMesocycle = async (mesoId: Mesocycle["_id"]) => {
 		await deleteMeso(mesoId);
+		setIsPopoverOpen(false);
 	};
 
 	const handleActivateMesocycle = async (meso: Mesocycle) => {
@@ -52,6 +53,7 @@ export default function MesocyclesAccordion({
 		};
 
 		await activateMeso({ userId: user?._id as string, activeMesocycle });
+		setIsPopoverOpen(false);
 	};
 
 	const handleUpdateMesocycle = (mesoId: Mesocycle["_id"]) => {

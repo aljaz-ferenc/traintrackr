@@ -130,7 +130,7 @@ export default function TodaysWorkout() {
 							<Card>
 								<CardContent>
 									<span className="uppercase font-bold">{exercise.name}</span>
-									<Table className="table-auto w-full border-separate border-spacing-2">
+									<Table className="table-auto w-full border-separate border-spacing-0">
 										<TableHeader>
 											<TableRow>
 												<TableHead>SET</TableHead>
@@ -143,11 +143,10 @@ export default function TodaysWorkout() {
 											{exercise.sets.map((set: TSet, setIndex: number) => (
 												<TableRow key={set.id}>
 													<TableCell>{setIndex + 1}</TableCell>
-													<TableCell>
+													<TableCell className="pr-2">
 														<Input
 															className="bg-white"
 															onChange={(e) => {
-																// console.log(exerciseIndex, set.id, e.target.value);
 																updateSet(
 																	exerciseIndex,
 																	set.id,
@@ -157,7 +156,7 @@ export default function TodaysWorkout() {
 															}}
 														/>
 													</TableCell>
-													<TableCell>
+													<TableCell className="p-0">
 														<Input
 															className="bg-white"
 															onChange={(e) =>
@@ -170,7 +169,7 @@ export default function TodaysWorkout() {
 															}
 														/>
 													</TableCell>
-													<TableCell>
+													<TableCell className="p-0">
 														<Button
 															variant="ghost"
 															className="cursor-pointer"

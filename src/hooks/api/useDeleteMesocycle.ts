@@ -19,6 +19,6 @@ export default function useDeleteMesocycle() {
 		mutationKey: ["meso-delete"],
 		mutationFn: (mesoId: Mesocycle["_id"]) => fetchDeleteMeso(mesoId),
 		onSuccess: () =>
-			queryClient.invalidateQueries({ queryKey: ["mesocycles"] }),
+			queryClient.invalidateQueries({ queryKey: ["my-mesocycles"] }),
 	});
 }

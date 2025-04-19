@@ -66,6 +66,7 @@ export default function NewMesocycle() {
 	const handleCreateMeso = async () => {
 		const newMeso = constructMesocycle(userId as string);
 		await mutateAsync(newMeso);
+		resetMesoStore();
 	};
 
 	const handleUpdateMeso = async () => {

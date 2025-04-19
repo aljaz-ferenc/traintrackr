@@ -58,6 +58,11 @@ export default function Heatmap({
 		xaxis: {
 			type: "category",
 		},
+		yaxis: {
+			labels: {
+				show: false,
+			},
+		},
 	} satisfies ApexOptions;
 
 	return (
@@ -66,6 +71,7 @@ export default function Heatmap({
 			series={chartData}
 			type="heatmap"
 			height={350}
+			// width={100}
 		/>
 	);
 }

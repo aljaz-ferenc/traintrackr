@@ -85,7 +85,7 @@ export default function Workout({
 							onDelete={() => removeWorkout(workout.id)}
 						/>
 					)}
-					<article className={cn(["flex flex-col gap-3 min-w-xs"])}>
+					<article className={cn(["flex flex-col gap-3 min-w-xs w-full"])}>
 						{editable ? (
 							<div className="flex gap-2 items-center">
 								<Select

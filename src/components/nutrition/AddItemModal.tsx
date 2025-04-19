@@ -88,7 +88,12 @@ export default function CreateItemModal({
 						<CardContent>
 							<AddItemForm
 								selectedItemId={selectedItemId}
-								onMutate={() => setIsOpen(false)}
+								onMutate={() => {
+									setIsOpen(false);
+									setTimeout(() => {
+										setSelectedItemId("");
+									}, 500);
+								}}
 							/>
 						</CardContent>
 					</Card>
