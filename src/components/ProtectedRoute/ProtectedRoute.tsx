@@ -20,7 +20,7 @@ export function ProtectedRoute({ children }: { children: React.ReactNode }) {
 		setUser(data);
 	}, [data, setUser, user]);
 
-	if (!isLoaded || isLoadingUser || !user) {
+	if (!isLoaded || isLoadingUser) {
 		return <Spinner />;
 	}
 

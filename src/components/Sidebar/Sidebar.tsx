@@ -1,9 +1,4 @@
-// import { Button } from "@/components/ui/button.tsx";
 import { Route } from "@/core/enums/Routes.enum.ts";
-// import type { User } from "@/core/types.ts";
-// import useCreateUser from "@/hooks/api/useCreateUser.ts";
-// import { Button } from "@/components/ui/button.tsx";
-// import useCreateUser from "@/hooks/api/useCreateUser.ts";
 import { UserButton } from "@clerk/clerk-react";
 import {
 	ChartNoAxesCombined,
