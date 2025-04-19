@@ -1,7 +1,7 @@
 import { ClerkProvider } from "@clerk/clerk-react";
 import type { PropsWithChildren } from "react";
 
-const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
+const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE;
 
 if (!PUBLISHABLE_KEY) {
 	throw new Error("Missing Publishable Key");
