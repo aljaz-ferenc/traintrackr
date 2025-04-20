@@ -11,7 +11,7 @@ import {
 	PopoverContent,
 	PopoverTrigger,
 } from "@/components/ui/popover.tsx";
-import { Button } from "@/components/ui/button.tsx";
+import Button from "@/components/shared/Button.tsx";
 import { useState } from "react";
 import useDeleteMesocycle from "@/hooks/api/useDeleteMesocycle.ts";
 import type { Workout as TWorkout, Mesocycle } from "@/core/types.ts";
@@ -33,8 +33,10 @@ export default function MesocyclesAccordion({
 	//TODO: create popover component?
 	const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 	const navigate = useNavigate();
-	const { mutateAsync: deleteMeso } = useDeleteMesocycle();
-	const { mutateAsync: activateMeso } = useActivateMesocycle();
+	const { mutateAsync: deleteMeso, isPending: isDeleting } =
+		useDeleteMesocycle();
+	const { mutateAsync: activateMeso, isPending: isActivating } =
+		useActivateMesocycle();
 	const user = useUserStore(useShallow((state) => state.user));
 
 	const handleDeleteMesocycle = async (mesoId: Mesocycle["_id"]) => {
@@ -90,16 +92,22 @@ export default function MesocyclesAccordion({
 								<PopoverTrigger className="z-20 self-start">
 									<Ellipsis />
 								</PopoverTrigger>
-								<PopoverContent side="top" className="w-min p-0">
+								<PopoverContent
+									side="top"
+									className="w-min p-2 flex flex-col gap-2"
+								>
 									<Button
 										onClick={() => handleDeleteMesocycle(meso._id)}
 										variant="destructive"
+										isLoading={isDeleting}
+										className="w-full min-w-max"
 									>
 										Delete Mesocycle
 									</Button>
 									<Button
 										onClick={() => handleUpdateMesocycle(meso._id)}
 										variant="secondary"
+										className="w-full min-w-max"
 									>
 										Update Mesocycle
 									</Button>
@@ -110,6 +118,7 @@ export default function MesocyclesAccordion({
 							<Button
 								className="mt-2 cursor-pointer"
 								onClick={() => handleActivateMesocycle(meso)}
+								isLoading={isActivating}
 							>
 								Activate
 							</Button>

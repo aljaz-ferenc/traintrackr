@@ -1,15 +1,27 @@
 import React from "react";
 import { cn } from "../../utils/utils.ts";
+import { cva, VariantProps } from "class-variance-authority";
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
 	center?: boolean;
 	fullscreenCenter?: boolean;
+	variant?: VariantProps<typeof spinnerStyles>["variant"];
 }
+
+const spinnerStyles = cva([""], {
+	variants: {
+		variant: {
+			secondary: ["border-secondary/40 border-t-secondary "],
+			primary: ["border-primary/40 border-t-primary "],
+		},
+	},
+});
 
 function Spinner({
 	center = false,
 	fullscreenCenter = false,
 	className,
+	variant = "primary",
 	...props
 }: Props) {
 	return (
@@ -23,7 +35,12 @@ function Spinner({
 			])}
 			{...props}
 		>
-			<div className="m-1 h-8 w-8 animate-spin rounded-full border-4 border-primary/40 border-t-primary duration-1000" />
+			<div
+				className={cn([
+					"m-1 h-8 w-8 animate-spin rounded-full border-4 duration-1000",
+					spinnerStyles({ variant }),
+				])}
+			/>
 		</div>
 	);
 }

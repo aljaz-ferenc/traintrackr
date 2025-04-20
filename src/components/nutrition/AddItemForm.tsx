@@ -1,6 +1,6 @@
 import Spinner from "@/components/Spinner/Spinner.tsx";
 import { Input } from "@/components/ui/Input.tsx";
-import { Button } from "@/components/ui/button.tsx";
+import Button from "@/components/shared/Button.tsx";
 import {
 	Form,
 	FormControl,
@@ -46,9 +46,11 @@ export default function AddItemForm({
 	onMutate,
 }: AddItemFormProps) {
 	const [userId] = useUserStore(useShallow((state) => [state.user?._id]));
-	const { mutateAsync: createNutrition } = useCreateNutrition();
+	const { mutateAsync: createNutrition, isPending: isCreating } =
+		useCreateNutrition();
 	const { data: foodItems, isLoading } = useFoodItems();
-	const { mutateAsync: updateNutrition } = useUpdateNutrition();
+	const { mutateAsync: updateNutrition, isPending: isUpdating } =
+		useUpdateNutrition();
 
 	if (isLoading) {
 		return <Spinner />;
@@ -143,7 +145,9 @@ export default function AddItemForm({
 						)}
 					/>
 				</div>
-				<Button type="submit">{edit ? "Update" : "Submit"}</Button>
+				<Button isLoading={isCreating || isUpdating} type="submit">
+					{edit ? "Update" : "Submit"}
+				</Button>
 			</form>
 		</Form>
 	);

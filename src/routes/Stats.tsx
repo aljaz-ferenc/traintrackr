@@ -1,7 +1,7 @@
 import RouteTitle from "@/components/shared/RouteTitle.tsx";
 import WeightChart from "@/components/stats/WeightChart.tsx";
 import { Input } from "@/components/ui/Input.tsx";
-import { Button } from "@/components/ui/button.tsx";
+import Button from "@/components/shared/Button.tsx";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs.tsx";
 import { Range } from "@/core/enums/Range.enum.ts";
 import useStats from "@/hooks/api/useStats.ts";
@@ -9,7 +9,7 @@ import useUpdateStats from "@/hooks/api/useUpdateStats.ts";
 import { useState } from "react";
 
 export default function Stats() {
-	const { mutateAsync: updateStats } = useUpdateStats();
+	const { mutateAsync: updateStats, isPending: isUpdating } = useUpdateStats();
 	const [weight, setWeight] = useState("");
 	const [range, setRange] = useState<Range>(Range.Week);
 	const { data: stats } = useStats(range);
@@ -38,16 +38,18 @@ export default function Stats() {
 					</TabsList>
 					<WeightChart weightData={stats.weight.weightsInRange} />
 				</Tabs>
-				<div className="flex flex-col gap-2 max-w-[150px]">
+				<div className="flex flex-col gap-2 max-w-min">
 					<Input
 						type="text"
 						onChange={(e) => setWeight(e.target.value)}
 						value={weight}
+						className="w-full"
 					/>
 					<Button
 						type={"button"}
 						onClick={handleUpdateStats}
-						className="cursor-pointer"
+						className="cursor-pointer px-4"
+						isLoading={isUpdating}
 					>
 						Add measurement
 					</Button>

@@ -37,7 +37,7 @@ export default function useActivateMesocycle() {
 			fetchActivateMeso({ userId, activeMesocycle }),
 		onSuccess: async () => {
 			await queryClient.invalidateQueries({
-				queryKey: ["user", { userId: user?._id }],
+				queryKey: ["user", { clerkId: user?.clerkId }],
 			});
 			await queryClient.invalidateQueries({
 				queryKey: [
@@ -46,7 +46,7 @@ export default function useActivateMesocycle() {
 				],
 			});
 			await queryClient.invalidateQueries({
-				queryKey: ["my-mesocycles", { userId: user?._id }],
+				queryKey: ["mesocycles"],
 			});
 		},
 	});

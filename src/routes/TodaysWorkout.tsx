@@ -1,6 +1,6 @@
 import RouteTitle from "@/components/shared/RouteTitle.tsx";
 import { Input } from "@/components/ui/Input.tsx";
-import { Button } from "@/components/ui/button.tsx";
+import Button from "@/components/shared/Button.tsx";
 import {
 	Card,
 	CardHeader,
@@ -34,7 +34,7 @@ export default function TodaysWorkout() {
 	const { data, isLoading } = useGetMesocycleById(
 		user?.activeMesocycle?.mesocycle._id as string,
 	);
-	const { mutateAsync: completeWorkout } = useCompleteWorkout();
+	const { mutateAsync: completeWorkout, isPending } = useCompleteWorkout();
 	const [
 		exercises,
 		setExercises,
@@ -198,8 +198,9 @@ export default function TodaysWorkout() {
 					))}
 				</ul>
 				<Button
-					className="w-full cursor-pointer"
-					onClick={() => handleCompleteWorkout()}
+					isLoading={isPending}
+					onClick={handleCompleteWorkout}
+					variant="secondary"
 				>
 					Complete Workout
 				</Button>

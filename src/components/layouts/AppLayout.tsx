@@ -16,7 +16,7 @@ export default function AppLayout() {
 			<div className="block lg:hidden">
 				<Sheet open={sidebarIsOpen} onOpenChange={setSidebarIsOpen}>
 					<SheetTrigger className="absolute top-2 left-2">
-						<button type="button">
+						<button type="button" className="cursor-pointer">
 							<Menu size={20} />
 						</button>
 					</SheetTrigger>

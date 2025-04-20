@@ -1,6 +1,6 @@
 import AppTooltip from "@/components/shared/Tooltip.tsx";
 import { Input } from "@/components/ui/Input";
-import { Button } from "@/components/ui/button.tsx";
+import Button from "@/components/shared/Button.tsx";
 import { Card, CardContent, CardTitle } from "@/components/ui/card.tsx";
 import {
 	Dialog,
@@ -68,8 +68,10 @@ export default function CreateItemModal({
 	editMode,
 	defaultItem,
 }: CreateItemModalProps) {
-	const { mutateAsync: createFoodItem } = useCreateFoodItem();
-	const { mutateAsync: updateFoodItem } = useUpdateFoodItem();
+	const { mutateAsync: createFoodItem, isPending: isCreating } =
+		useCreateFoodItem();
+	const { mutateAsync: updateFoodItem, isPending: isUpdating } =
+		useUpdateFoodItem();
 	const [userId] = useUserStore(useShallow((state) => [state.user?._id]));
 
 	const form = useForm<z.infer<typeof formSchema>>({
@@ -88,7 +90,7 @@ export default function CreateItemModal({
 			form.setValue("protein", defaultItem.protein);
 			form.setValue("fat", defaultItem.fat);
 			form.setValue("carbs", defaultItem.carbs);
-			console.log("haha");
+
 			if (defaultItem.portions?.length) {
 				console.log(defaultItem.portions);
 				for (const portion of defaultItem.portions) {
@@ -137,7 +139,7 @@ export default function CreateItemModal({
 				)}
 			</DialogTrigger>
 			<DialogContent className="overflow-y-auto max-h-[80vh]">
-				<DialogHeader>
+				<DialogHeader className="font-bold text-lg">
 					{editMode ? "Update item" : "Create New Item"}
 				</DialogHeader>
 				<DialogDescription>
@@ -262,7 +264,11 @@ export default function CreateItemModal({
 							Add portion
 						</Button>
 						<hr />
-						<Button className="cursor-pointer" type="submit">
+						<Button
+							isLoading={isCreating || isUpdating}
+							className="cursor-pointer"
+							type="submit"
+						>
 							{editMode ? "Update item" : "Submit"}
 						</Button>
 					</form>

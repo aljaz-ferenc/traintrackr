@@ -1,6 +1,6 @@
 import AppTooltip from "@/components/shared/Tooltip.tsx";
 import { Input } from "@/components/ui/Input.tsx";
-import { Button } from "@/components/ui/button.tsx";
+import Button from "@/components/shared/Button.tsx";
 import { Checkbox } from "@/components/ui/checkbox.tsx";
 import { Label } from "@/components/ui/label.tsx";
 import { Separator } from "@/components/ui/separator";
@@ -27,7 +27,10 @@ export default function NewMesocycle() {
 	const [userId] = useUserStore(useShallow((state) => [state.user?._id]));
 	const { mesoId } = useParams<{ mesoId: string }>();
 	const { data: mesoToEdit, isLoading } = useGetMesocycleById(mesoId || "");
-	const { mutateAsync: updateMesocycle } = useUpdateMesocycle();
+	const { mutateAsync: updateMesocycle, isPending: isUpdating } =
+		useUpdateMesocycle();
+	const { mutateAsync: createMesocycle, isPending: isCreating } =
+		useCreateMesocycle();
 	const queryClient = useQueryClient();
 	const [
 		mesoTitle,
@@ -61,11 +64,9 @@ export default function NewMesocycle() {
 		]),
 	);
 
-	const { mutateAsync } = useCreateMesocycle();
-
 	const handleCreateMeso = async () => {
 		const newMeso = constructMesocycle(userId as string);
-		await mutateAsync(newMeso);
+		await createMesocycle(newMeso);
 		resetMesoStore();
 	};
 
@@ -178,7 +179,7 @@ export default function NewMesocycle() {
 			<div className="flex flex-col overflow-auto relative">
 				<Button
 					variant="secondary"
-					className="cursor-pointer w-min sticky top-0 left-0"
+					className="cursor-pointer sticky top-0 left-0 w-fit px-4"
 					onClick={() =>
 						addWorkout({ id: crypto.randomUUID(), exercises: [], day: 0 })
 					}
@@ -192,9 +193,10 @@ export default function NewMesocycle() {
 				</div>
 			</div>
 			<Button
-				variant="default"
+				variant="primary"
 				onClick={allowEdit ? handleUpdateMeso : handleCreateMeso}
 				className="cursor-pointer"
+				isLoading={isCreating || isUpdating}
 			>
 				{allowEdit ? "Update Mesocycle" : "Create Mesocycle"}
 			</Button>

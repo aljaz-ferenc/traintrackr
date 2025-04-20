@@ -14,11 +14,11 @@ export function ProtectedRoute({ children }: { children: React.ReactNode }) {
 		useShallow((state) => [state.user, state.setUser]),
 	);
 
-	useEffect(() => {
-		if (!data || user) return;
-
-		setUser(data);
-	}, [data, setUser, user]);
+	// useEffect(() => {
+	// 	if (!data || user) return;
+	//
+	// 	setUser(data);
+	// }, [data, setUser, user]);
 
 	if (!isLoaded || isLoadingUser) {
 		return <Spinner />;
