@@ -52,7 +52,6 @@ export const useNewMesoStore = create<NewMesoStore>((set, getState) => ({
 			workouts: state.workouts.filter((workout) => workout.id !== workoutId),
 		})),
 
-	//TODO: unused for now
 	updateWorkout: (workoutId, updatedWorkout) =>
 		set((state) => ({
 			...state,

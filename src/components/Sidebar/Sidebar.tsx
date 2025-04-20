@@ -5,7 +5,7 @@ import {
 	FilePlus,
 	Files,
 	LayoutDashboard,
-	Settings,
+	// Settings,
 	SquareCheckBig,
 	Utensils,
 } from "lucide-react";
@@ -76,7 +76,10 @@ export default function AppSidebar({
 }: AppSidebarProps) {
 	return (
 		<aside
-			className={cn(["flex flex-col border-r h-[100vh] bg-sidebar", className])}
+			className={cn([
+				"flex flex-col border-r min-h-[100vh] bg-sidebar",
+				className,
+			])}
 		>
 			{menuItems.map((item) => (
 				<SidebarItem key={item.path} item={item} onClick={onLinkClick} />
