@@ -37,7 +37,7 @@ export default function Stats() {
 						<TabsTrigger value={Range.Month}>Month</TabsTrigger>
 						<TabsTrigger value={Range.Year}>Year</TabsTrigger>
 					</TabsList>
-					<WeightChart weightData={stats.weight.weightsInRange} />
+					{stats && <WeightChart weightData={stats.weight.weightsInRange} />}
 				</Tabs>
 				<div className="flex flex-col gap-2 max-w-min">
 					<Input
