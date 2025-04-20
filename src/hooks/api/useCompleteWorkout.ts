@@ -9,6 +9,7 @@ import { useAuth } from "@clerk/clerk-react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import useUserStore from "@/state/UserStore.ts";
 import { useShallow } from "zustand/react/shallow";
+import { toast } from "react-toastify";
 
 export type CompleteWorkoutPayload = {
 	weekNumber: number;
@@ -36,7 +37,11 @@ export default function useCompleteWorkout() {
 	return useMutation({
 		mutationKey: ["workout-complete"],
 		mutationFn: (payload: CompleteWorkoutPayload) =>
-			fetchCompleteWorkout(payload),
+			toast.promise(fetchCompleteWorkout(payload), {
+				pending: "Creating workout log...",
+				success: "Workout log created",
+				error: "Could not create a log.",
+			}),
 		onSuccess: async () => {
 			await queryClient.invalidateQueries({
 				queryKey: ["user", { clerkId: userId }],

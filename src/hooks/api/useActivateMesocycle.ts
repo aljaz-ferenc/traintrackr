@@ -3,6 +3,7 @@ import { Endpoints } from "@/core/endpoints.ts";
 import type { Mesocycle, User } from "@/core/types.ts";
 import useUserStore from "@/state/UserStore.ts";
 import { useShallow } from "zustand/react/shallow";
+import { toast } from "react-toastify";
 
 export type ActivateMesoPayload = {
 	mesocycle: Mesocycle["_id"];
@@ -34,7 +35,11 @@ export default function useActivateMesocycle() {
 			userId,
 			activeMesocycle,
 		}: { userId: User["_id"]; activeMesocycle: ActivateMesoPayload }) =>
-			fetchActivateMeso({ userId, activeMesocycle }),
+			toast.promise(fetchActivateMeso({ userId, activeMesocycle }), {
+				pending: "Activating",
+				success: "Mesocycle activated",
+				error: "Could not activate, try again.",
+			}),
 		onSuccess: async () => {
 			await queryClient.invalidateQueries({
 				queryKey: ["user", { clerkId: user?.clerkId }],

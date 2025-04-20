@@ -2,6 +2,7 @@ import type { PropsWithChildren, ReactNode } from "react";
 import ClerkProviderComponent from "./ClerkProvider.tsx";
 import ReactQueryProvider from "./ReactQueryProvider.tsx";
 import ThemeProvider from "./ThemeProvider.tsx";
+import { ToastContainer } from "react-toastify";
 
 type ProviderProps = {} & PropsWithChildren;
 
@@ -30,5 +31,10 @@ const Providers = composeProviders([
 ]);
 
 export default function Provider({ children }: ProviderProps) {
-	return <Providers>{children}</Providers>;
+	return (
+		<Providers>
+			<ToastContainer />
+			{children}
+		</Providers>
+	);
 }

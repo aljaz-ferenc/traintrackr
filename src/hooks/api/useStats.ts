@@ -47,5 +47,6 @@ export default function useStats(range?: Range) {
 		queryKey: ["stats", { range }],
 		queryFn: () => fetchStats(userId as string, range),
 		enabled: !!userId,
+		gcTime: 60 * 1000 * 10,
 	});
 }
