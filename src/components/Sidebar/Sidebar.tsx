@@ -1,5 +1,4 @@
 import { Route } from "@/core/enums/Routes.enum.ts";
-import { UserButton } from "@clerk/clerk-react";
 import {
 	ChartNoAxesCombined,
 	Dumbbell,
@@ -59,11 +58,11 @@ const menuItems: TSidebarItem[] = [
 		title: "Stats",
 		icon: <ChartNoAxesCombined size={iconSize} />,
 	},
-	{
-		path: Route.Settings,
-		title: "Settings",
-		icon: <Settings size={iconSize} />,
-	},
+	// {
+	// 	path: Route.Settings,
+	// 	title: "Settings",
+	// 	icon: <Settings size={iconSize} />,
+	// },
 ];
 
 type AppSidebarProps = {
@@ -77,17 +76,11 @@ export default function AppSidebar({
 }: AppSidebarProps) {
 	return (
 		<aside
-			className={cn([
-				"flex flex-col border-r min-h-screen bg-sidebar",
-				className,
-			])}
+			className={cn(["flex flex-col border-r h-[100vh] bg-sidebar", className])}
 		>
 			{menuItems.map((item) => (
 				<SidebarItem key={item.path} item={item} onClick={onLinkClick} />
 			))}
-			<div className="mt-auto m-2">
-				<UserButton showName />
-			</div>
 		</aside>
 	);
 }

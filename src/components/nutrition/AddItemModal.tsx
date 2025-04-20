@@ -1,5 +1,5 @@
 import AddItemForm from "@/components/nutrition/AddItemForm.tsx";
-import { Button } from "@/components/ui/button.tsx";
+import Button from "@/components/shared/Button.tsx";
 import { Card, CardContent } from "@/components/ui/card.tsx";
 import {
 	Dialog,
@@ -22,6 +22,7 @@ import type React from "react";
 import { useMemo } from "react";
 import { useState } from "react";
 import Macros from "@/components/nutrition/Macros.tsx";
+import Spinner from "@/components/Spinner/Spinner.tsx";
 
 type AddItemModalProps = {
 	isOpen: boolean;
@@ -40,7 +41,7 @@ export default function CreateItemModal({
 	}, [foodItems, selectedItemId]);
 
 	if (isLoading) {
-		return <div>Loading...</div>;
+		return <Spinner />;
 	}
 
 	const onOpenChange = (open: boolean) => {

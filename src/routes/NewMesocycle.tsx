@@ -14,11 +14,11 @@ import useUserStore from "@/state/UserStore.ts";
 import { useParams } from "react-router";
 import useGetMesocycleById from "@/hooks/api/useGetMesocyleById.ts";
 import { useEffect, useMemo } from "react";
-import RouteFallback from "@/components/RouteFallback/RouteFallback.tsx";
 import useUpdateMesocycle from "@/hooks/api/useUpdateMesocycle.ts";
 import { useQueryClient } from "@tanstack/react-query";
 import Body from "@/components/workout/Body.tsx";
 import { getMuscleIntensities } from "@/utils/utils.ts";
+import PageLoading from "@/components/shared/PageLoading.tsx";
 
 const mesoDurationOptions = [4, 6, 8, 10, 12];
 const mesoSplitTypeOptions = ["synchronous", "asynchronous"];
@@ -93,7 +93,7 @@ export default function NewMesocycle() {
 	}, [workouts]);
 
 	if (isLoading) {
-		return <RouteFallback />;
+		return <PageLoading />;
 	}
 
 	return (

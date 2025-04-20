@@ -4,32 +4,36 @@ import ModeToggle from "@/components/shared/ModeToggle";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet.tsx";
 import { Menu } from "lucide-react";
 import { useState } from "react";
+import { UserButton } from "@clerk/clerk-react";
 
 export default function AppLayout() {
 	const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
 
 	return (
 		<div className="flex min-h-screen relative">
-			<div className="absolute top-2 right-2">
-				<ModeToggle />
-			</div>
-			<div className="block lg:hidden">
-				<Sheet open={sidebarIsOpen} onOpenChange={setSidebarIsOpen}>
-					<SheetTrigger className="absolute top-2 left-2">
-						<button type="button" className="cursor-pointer">
-							<Menu size={20} />
-						</button>
-					</SheetTrigger>
-					<SheetContent side="left">
-						<Sidebar onLinkClick={() => setSidebarIsOpen(false)} />
-					</SheetContent>
-				</Sheet>
-			</div>
 			<Sidebar
 				onLinkClick={() => setSidebarIsOpen(false)}
 				className="hidden lg:block"
 			/>
-			<main className="min-h-screen mx-auto w-full p-3 pt-12 sm:p-5 sm:pt-10 lg:p-10 max-w-[1440px]">
+			<main className="min-h-screen mx-auto w-full p-3 sm:p-5  lg:p-10 max-w-[1440px]">
+				<div className="flex items-center gap-3">
+					<div className="block lg:hidden">
+						<Sheet open={sidebarIsOpen} onOpenChange={setSidebarIsOpen}>
+							<SheetTrigger>
+								<button type="button" className="cursor-pointer">
+									<Menu size={20} />
+								</button>
+							</SheetTrigger>
+							<SheetContent side="left">
+								<Sidebar onLinkClick={() => setSidebarIsOpen(false)} />
+							</SheetContent>
+						</Sheet>
+					</div>
+					<div className="ml-auto">
+						<UserButton />
+					</div>
+					<ModeToggle />
+				</div>
 				<Outlet />
 			</main>
 		</div>

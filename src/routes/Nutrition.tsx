@@ -5,7 +5,7 @@ import RouteTitle from "@/components/shared/RouteTitle.tsx";
 import useNutrition from "@/hooks/api/useNutrition.ts";
 import { useState } from "react";
 import Macros from "@/components/nutrition/Macros.tsx";
-import Spinner from "@/components/Spinner/Spinner.tsx";
+import PageLoading from "@/components/shared/PageLoading.tsx";
 
 export default function Nutrition() {
 	const [createItemIsOpen, setCreateItemIsOpen] = useState(false);
@@ -13,7 +13,7 @@ export default function Nutrition() {
 	const { data, isLoading } = useNutrition();
 
 	if (isLoading) {
-		return <Spinner />;
+		return <PageLoading />;
 	}
 
 	return (

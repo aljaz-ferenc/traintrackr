@@ -7,13 +7,14 @@ import {
 } from "@/components/ui/accordion.tsx";
 import WorkoutLog from "@/components/workout/WorkoutLog.tsx";
 import useWorkoutLogs from "@/hooks/api/useWorkoutLogs.ts";
+import PageLoading from "@/components/shared/PageLoading.tsx";
 
 export default function CompletedWorkouts() {
 	const { data: logs, isLoading } = useWorkoutLogs();
 	console.log(logs);
 
 	if (isLoading) {
-		return <div>Loading...</div>;
+		return <PageLoading />;
 	}
 
 	if (!logs?.length) {

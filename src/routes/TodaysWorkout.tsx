@@ -17,7 +17,6 @@ import { differenceInWeeks, getDay, isToday } from "date-fns";
 import { X } from "lucide-react";
 import { useEffect } from "react";
 import { useShallow } from "zustand/react/shallow";
-import RouteFallback from "@/components/RouteFallback/RouteFallback.tsx";
 import {
 	Table,
 	TableBody,
@@ -27,6 +26,7 @@ import {
 	TableHead,
 } from "@/components/ui/table.tsx";
 import { useNavigate } from "react-router";
+import PageLoading from "@/components/shared/PageLoading.tsx";
 
 export default function TodaysWorkout() {
 	const [user] = useUserStore(useShallow((state) => [state.user]));
@@ -63,7 +63,7 @@ export default function TodaysWorkout() {
 	}, [data, exercises.length, setExercises, todaysWorkout]);
 
 	if (isLoading) {
-		return <RouteFallback />;
+		return <PageLoading />;
 	}
 
 	if (!data) {
@@ -91,10 +91,6 @@ export default function TodaysWorkout() {
 			console.log("Error completing workout: ", err);
 		}
 	};
-
-	if (isLoading || !data) {
-		return <div>Loading...</div>;
-	}
 
 	if (!todaysWorkout) {
 		return <div>No workout?</div>;

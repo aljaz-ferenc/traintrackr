@@ -1,11 +1,12 @@
 import MesocyclesAccordion from "@/components/workout/MesocyclesAccordion.tsx";
 import RouteTitle from "@/components/shared/RouteTitle.tsx";
 import useMyMesocycles from "@/hooks/api/useMyMesocycles.ts";
+import PageLoading from "@/components/shared/PageLoading.tsx";
 export default function MyMesocycles() {
 	const { data: myMesos, isLoading } = useMyMesocycles();
 
 	if (isLoading || !myMesos) {
-		return <div>Loading...</div>;
+		return <PageLoading />;
 	}
 
 	if (!myMesos.length) {
