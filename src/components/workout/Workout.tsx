@@ -23,13 +23,34 @@ type WorkoutProps = {
 };
 
 export const weekDays = [
-	"sunday",
-	"monday",
-	"tuesday",
-	"wednesday",
-	"thursday",
-	"friday",
-	"saturday",
+	{
+		day: "Monday",
+		value: 1,
+	},
+	{
+		day: "Tuesday",
+		value: 2,
+	},
+	{
+		day: "Wednesday",
+		value: 3,
+	},
+	{
+		day: "Thursday",
+		value: 4,
+	},
+	{
+		day: "Friday",
+		value: 5,
+	},
+	{
+		day: "Saturday",
+		value: 6,
+	},
+	{
+		day: "Sunday",
+		value: 0,
+	},
 ];
 
 export default function Workout({
@@ -41,7 +62,6 @@ export default function Workout({
 	const [
 		removeWorkout,
 		setWorkoutDay,
-		splitType,
 		cloneWorkout,
 		setFocusedWorkout,
 		focusedWorkout,
@@ -49,7 +69,6 @@ export default function Workout({
 		useShallow((state) => [
 			state.removeWorkout,
 			state.setWorkoutDay,
-			state.splitType,
 			state.cloneWorkout,
 			state.setFocusedWorkout,
 			state.focusedWorkout,
@@ -89,14 +108,9 @@ export default function Workout({
 						{editable ? (
 							<div className="flex gap-2 items-center">
 								<Select
-									onValueChange={(val) =>
-										setWorkoutDay(
-											workout.id,
-											splitType === "synchronous"
-												? weekDays.indexOf(val)
-												: weekDays.indexOf(val) + 1,
-										)
-									}
+									onValueChange={(val) => {
+										setWorkoutDay(workout.id, Number(val));
+									}}
 								>
 									<SelectTrigger className="w-full cursor-pointer">
 										<SelectValue
@@ -104,15 +118,13 @@ export default function Workout({
 											className="bg-white capitalize"
 										/>
 										<SelectContent>
-											{weekDays.map((day, index) => (
+											{weekDays.map((day) => (
 												<SelectItem
-													value={day}
-													key={day}
+													value={day.value.toString()}
+													key={day.value}
 													className="capitalize cursor-pointer"
 												>
-													<span className="capitalize">
-														{splitType === "synchronous" ? day : index + 1}
-													</span>
+													<span className="capitalize">{day.day}</span>
 												</SelectItem>
 											))}
 										</SelectContent>
@@ -120,7 +132,9 @@ export default function Workout({
 								</Select>
 							</div>
 						) : (
-							<p className="uppercase font-bold">{weekDays[workout.day]}</p>
+							<p className="uppercase font-bold">
+								{weekDays.find((day) => day.value === workout.day)?.day}
+							</p>
 						)}
 						<ExercisesList
 							editable={editable}

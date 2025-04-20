@@ -24,7 +24,7 @@ export default function WorkoutLog({ workout }: WorkoutLogProps) {
 		<Card className="min-w-md">
 			<CardHeader>
 				<CardTitle className="uppercase font-bold">
-					{weekDays[workout.day]}
+					{weekDays.find((day) => day.value === workout.day)?.day}
 				</CardTitle>
 			</CardHeader>
 			<CardContent className="flex flex-col gap-5">

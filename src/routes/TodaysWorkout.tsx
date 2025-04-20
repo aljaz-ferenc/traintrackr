@@ -115,7 +115,8 @@ export default function TodaysWorkout() {
 								new Date(),
 								user?.activeMesocycle?.startDate as Date,
 							) + 1}
-							/{data.mesocycle.duration} - {weekDays[todaysWorkout?.day]}
+							/{data.mesocycle.duration} -{" "}
+							{weekDays.find((day) => day.value === todaysWorkout.day)?.day}
 						</span>
 					</CardContent>
 				</Card>

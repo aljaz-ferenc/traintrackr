@@ -93,7 +93,13 @@ export const useNewMesoStore = create<NewMesoStore>((set, getState) => ({
 			}
 			return w;
 		});
-		set({ workouts: updatedWorkouts.sort((a, b) => (a.day > b.day ? 1 : -1)) });
+		set({
+			workouts: updatedWorkouts.sort((a, b) => {
+				const dayA = a.day === 0 ? 7 : a.day;
+				const dayB = b.day === 0 ? 7 : b.day;
+				return dayA - dayB;
+			}),
+		});
 	},
 
 	setExercises: (workoutId, exercises) => {

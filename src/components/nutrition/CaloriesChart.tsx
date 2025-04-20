@@ -18,7 +18,7 @@ const chartConfig = {};
 export default function CaloriesChart({ nutritions }: CaloriesChart) {
 	const chartData = useMemo(() => {
 		const grouped: Record<string, number> = weekDays.reduce(
-			(acc, day) => {
+			(acc, { day }) => {
 				acc[day] = 0;
 				return acc;
 			},
@@ -26,12 +26,15 @@ export default function CaloriesChart({ nutritions }: CaloriesChart) {
 		);
 
 		for (const nutrition of nutritions) {
-			const day = weekDays[getDay(nutrition.date)];
+			const dayValue = getDay(nutrition.date);
+			const weekday = weekDays.find((d) => d.value === dayValue);
+			if (!weekday) continue;
+
 			const calories = (nutrition.amount * nutrition.item.calories) / 100;
-			grouped[day] += calories;
+			grouped[weekday.day] += calories;
 		}
 
-		return weekDays.map((day) => ({
+		return weekDays.map(({ day }) => ({
 			day,
 			calories: grouped[day],
 		}));
