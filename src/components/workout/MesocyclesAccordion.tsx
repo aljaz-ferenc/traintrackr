@@ -89,7 +89,7 @@ export default function MesocyclesAccordion({
 								))}
 							</ul>
 							<Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
-								<PopoverTrigger className="z-20 self-start">
+								<PopoverTrigger className="z-20 self-start cursor-pointer">
 									<Ellipsis />
 								</PopoverTrigger>
 								<PopoverContent

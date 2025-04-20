@@ -195,7 +195,7 @@ export default function NewMesocycle() {
 			<Button
 				variant="primary"
 				onClick={allowEdit ? handleUpdateMeso : handleCreateMeso}
-				className="cursor-pointer"
+				className="cursor-pointer px-4"
 				isLoading={isCreating || isUpdating}
 			>
 				{allowEdit ? "Update Mesocycle" : "Create Mesocycle"}

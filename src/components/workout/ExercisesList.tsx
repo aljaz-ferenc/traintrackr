@@ -49,7 +49,7 @@ export default function ExercisesList({
 								])}
 							>
 								<div className="flex flex-col gap-2 select-none">
-									<Badge variant="secondary" className="uppercase">
+									<Badge variant="default" className="uppercase font-bold">
 										{exercise.primaryMuscle}
 									</Badge>
 									{exercise.name}

@@ -5,7 +5,7 @@ import Spinner from "@/components/Spinner/Spinner.tsx";
 
 const buttonStyles = cva(
 	[
-		"w-max relative flex items-center justify-center transition-all p-2 rounded-lg font-semibold cursor-pointer",
+		"w-max relative flex items-center justify-center transition-all p-2 px-4 rounded-lg font-semibold cursor-pointer",
 	],
 	{
 		variants: {

@@ -98,7 +98,7 @@ export default function Workout({
 										)
 									}
 								>
-									<SelectTrigger className="w-full">
+									<SelectTrigger className="w-full cursor-pointer">
 										<SelectValue
 											placeholder="Select day"
 											className="bg-white capitalize"
@@ -108,7 +108,7 @@ export default function Workout({
 												<SelectItem
 													value={day}
 													key={day}
-													className="capitalize"
+													className="capitalize cursor-pointer"
 												>
 													<span className="capitalize">
 														{splitType === "synchronous" ? day : index + 1}

@@ -82,7 +82,7 @@ export default function SelectExerciseModal({
 					value={selectedMuscleGroup}
 					onValueChange={setSelectedMuscleGroup}
 				>
-					<SelectTrigger className="w-full">
+					<SelectTrigger className="w-full cursor-pointer">
 						<SelectValue
 							placeholder="Select muscle group..."
 							className="bg-white capitalize"
@@ -90,7 +90,7 @@ export default function SelectExerciseModal({
 					</SelectTrigger>
 					<SelectContent>
 						{mockMuscleGroups.map((mg) => (
-							<SelectItem key={mg} value={mg}>
+							<SelectItem key={mg} value={mg} className="cursor-pointer">
 								{mg}
 							</SelectItem>
 						))}
