@@ -13,7 +13,7 @@ import { isUserOnboarded, isValidDate } from "@/utils/utils.ts";
 import LetsGo from "@/components/onboarding/LetsGo.tsx";
 import OnboardingScreenWrapper from "@/components/onboarding/OnboardingScreenWrapper.tsx";
 import { useNavigate } from "react-router";
-import useUpdateUser from "@/hooks/api/useUpdateUser.ts";
+import useUpdateUserStats from "@/hooks/api/useUpdateUserStats.ts";
 import useUserStore from "@/state/UserStore.ts";
 import { useShallow } from "zustand/react/shallow";
 import Spinner from "@/components/Spinner/Spinner.tsx";
@@ -28,7 +28,7 @@ export default function Onboarding() {
 	const [height, setHeight] = useState<number>(130);
 	const [weight, setWeight] = useState("");
 	const navigate = useNavigate();
-	const { mutateAsync: updateUser } = useUpdateUser();
+	const { mutateAsync: updateUser } = useUpdateUserStats();
 	const user = useUserStore(useShallow((state) => state.user));
 
 	if (!user) {

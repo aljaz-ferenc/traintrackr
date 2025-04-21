@@ -1,42 +1,26 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
+import { Endpoints } from "@/core/endpoints.ts";
+import type { User } from "@/core/types.ts";
 import useUserStore from "@/state/UserStore.ts";
 import { useShallow } from "zustand/react/shallow";
-import { Endpoints } from "@/core/endpoints.ts";
-import { useAuth } from "@clerk/clerk-react";
-import type { Gender, Units, UserWeight } from "@/core/types.ts";
 
-type UpdateUserPayload = {
-	gender: Gender;
-	dob: Date;
-	units: Units;
-	height: number;
-	weight: UserWeight;
-};
-
-async function fetchUpdateUser(
-	userId: string,
-	payload: Partial<UpdateUserPayload>,
-) {
-	const res = await fetch(`${Endpoints.user(userId)}/stats`, {
+async function fetchUpdateUser(userId: User["_id"], payload: Partial<User>) {
+	const res = await fetch(Endpoints.user(userId), {
+		method: "PATCH",
 		body: JSON.stringify(payload),
 		headers: {
 			"Content-Type": "application/json",
 		},
-		method: "PATCH",
 	});
 	return await res.json();
 }
 
-export default function () {
+export default function useUpdateUser() {
 	const userId = useUserStore(useShallow((state) => state.user?._id));
-	const queryClient = useQueryClient();
-	const { userId: clerkId } = useAuth();
 
 	return useMutation({
-		mutationKey: ["user-update", { userId }],
-		mutationFn: (payload: Partial<UpdateUserPayload>) =>
+		mutationKey: ["user-update"],
+		mutationFn: (payload: Partial<User>) =>
 			fetchUpdateUser(userId as string, payload),
-		onSuccess: async () =>
-			queryClient.invalidateQueries({ queryKey: ["user", { clerkId }] }),
 	});
 }

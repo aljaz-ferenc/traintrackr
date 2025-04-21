@@ -22,6 +22,7 @@ import { addWeeks, previousMonday, subDays } from "date-fns";
 import { useNavigate } from "react-router";
 import useUserStore from "@/state/UserStore.ts";
 import { useShallow } from "zustand/react/shallow";
+import useUpdateUser from "@/hooks/api/useUpdateUser.ts";
 
 type MesocyclesAccordionProps = {
 	mesocycles: Mesocycle[];
@@ -38,9 +39,13 @@ export default function MesocyclesAccordion({
 	const { mutateAsync: activateMeso, isPending: isActivating } =
 		useActivateMesocycle();
 	const user = useUserStore(useShallow((state) => state.user));
+	const { mutateAsync: updateUser } = useUpdateUser();
 
 	const handleDeleteMesocycle = async (mesoId: Mesocycle["_id"]) => {
 		await deleteMeso(mesoId);
+		if (user?.activeMesocycle?.mesocycle._id === mesoId) {
+			await updateUser({ activeMesocycle: null });
+		}
 		setIsPopoverOpen(false);
 	};
 
