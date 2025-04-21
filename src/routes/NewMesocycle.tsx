@@ -85,7 +85,7 @@ export default function NewMesocycle() {
 
 	useEffect(() => {
 		if (isLoading || !mesoToEdit) return;
-		setMesoToEdit(mesoToEdit.mesocycle);
+		setMesoToEdit(mesoToEdit);
 	}, [isLoading, mesoToEdit, setMesoToEdit]);
 
 	const muscleGroups = useMemo(() => {
