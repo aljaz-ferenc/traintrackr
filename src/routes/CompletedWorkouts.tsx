@@ -8,6 +8,12 @@ import {
 import WorkoutLog from "@/components/workout/WorkoutLog.tsx";
 import useWorkoutLogs from "@/hooks/api/useWorkoutLogs.ts";
 import PageLoading from "@/components/shared/PageLoading.tsx";
+import ErrorPage, {
+	ErrorDescription,
+	ErrorTitle,
+} from "@/components/shared/ErrorPage.tsx";
+import Button from "@/components/shared/Button.tsx";
+import { Route } from "@/core/enums/Routes.enum.ts";
 
 export default function CompletedWorkouts() {
 	const { data: logs, isLoading } = useWorkoutLogs();
@@ -18,7 +24,23 @@ export default function CompletedWorkouts() {
 	}
 
 	if (!logs?.length) {
-		return <div>No logs...</div>;
+		return (
+			<ErrorPage>
+				<ErrorTitle>No completed workouts</ErrorTitle>
+				<ErrorDescription>
+					You have not yet completed any workouts. To do so, you need to have an
+					active mesocycle, which you can activate on the{" "}
+					<Button variant="link" to={`/${Route.MyMesocycles}`}>
+						My Mesocycles
+					</Button>{" "}
+					page and complete a workout on the{" "}
+					<Button variant="link" to={`/${Route.TodaysWorkout}`}>
+						Today's Workout
+					</Button>{" "}
+					page when scheduled.
+				</ErrorDescription>
+			</ErrorPage>
+		);
 	}
 
 	return (

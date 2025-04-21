@@ -10,12 +10,25 @@ import { useShallow } from "zustand/react/shallow";
 import PageLoading from "@/components/shared/PageLoading.tsx";
 
 export default function Dashboard() {
-	const { data: stats, isLoading: isLoadingStats } = useStats(Range.Week);
-	const { data: nutrition, isLoading: isLoadingNutrition } = useNutrition();
+	const {
+		data: stats,
+		isLoading: isLoadingStats,
+		error: statsError,
+	} = useStats(Range.Week);
+	const {
+		data: nutrition,
+		isLoading: isLoadingNutrition,
+		error: nutritionError,
+	} = useNutrition();
 	const user = useUserStore(useShallow((state) => state.user));
 
 	if (isLoadingStats || isLoadingNutrition || !nutrition || !stats) {
 		return <PageLoading />;
+	}
+
+	if (statsError || nutritionError) {
+		console.log(statsError);
+		console.log(nutritionError);
 	}
 
 	return (

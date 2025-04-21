@@ -16,6 +16,7 @@ type CaloriesChart = {
 const chartConfig = {};
 
 export default function CaloriesChart({ nutritions }: CaloriesChart) {
+	console.log(nutritions);
 	const chartData = useMemo(() => {
 		const grouped: Record<string, number> = weekDays.reduce(
 			(acc, { day }) => {

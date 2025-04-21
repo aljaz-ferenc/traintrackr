@@ -21,7 +21,7 @@ export type StatsPayload = {
 	};
 	weight: {
 		current: UserWeight;
-		starting: number;
+		starting: UserWeight;
 		changeInRange: number;
 		averageWeeklyChangeInRange: 1;
 		startingThisMeso: number;
@@ -48,5 +48,6 @@ export default function useStats(range?: Range) {
 		queryFn: () => fetchStats(userId as string, range),
 		enabled: !!userId,
 		gcTime: 60 * 1000 * 10,
+		placeholderData: (prev) => prev,
 	});
 }

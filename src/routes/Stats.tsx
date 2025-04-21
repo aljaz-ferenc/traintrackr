@@ -7,17 +7,12 @@ import { Range } from "@/core/enums/Range.enum.ts";
 import useStats from "@/hooks/api/useStats.ts";
 import useUpdateStats from "@/hooks/api/useUpdateStats.ts";
 import { useState } from "react";
-import PageLoading from "@/components/shared/PageLoading.tsx";
 
 export default function Stats() {
 	const { mutateAsync: updateStats, isPending: isUpdating } = useUpdateStats();
 	const [weight, setWeight] = useState("");
 	const [range, setRange] = useState<Range>(Range.Week);
-	const { data: stats, isLoading } = useStats(range);
-
-	if (isLoading) {
-		return <PageLoading />;
-	}
+	const { data: stats } = useStats(range);
 
 	const handleUpdateStats = async () => {
 		await updateStats({ weight: Number(weight) });

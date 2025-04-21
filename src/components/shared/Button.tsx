@@ -2,6 +2,7 @@ import type { ComponentProps, PropsWithChildren } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils.ts";
 import Spinner from "@/components/Spinner/Spinner.tsx";
+import { Link } from "react-router";
 
 const buttonStyles = cva(
 	[
@@ -14,6 +15,7 @@ const buttonStyles = cva(
 				secondary: ["bg-secondary text-primary hover:bg-secondary/85"],
 				destructive: ["bg-destructive text-white hover:brightness-105"],
 				ghost: ["bg-none"],
+				link: ["text-blue-500 underline inline p-0"],
 			},
 		},
 	},
@@ -25,18 +27,33 @@ type ButtonProps = {
 	variant?: VariantProps<typeof buttonStyles>["variant"];
 	onClick?: () => void;
 	isLoading?: boolean;
+	to?: string;
 } & PropsWithChildren &
 	ComponentProps<"button">;
 
-export default function ButtonComponent({
+export default function Button({
 	children,
 	type = "button",
 	variant = "primary",
 	className = "",
 	onClick,
 	isLoading,
+	to,
 	...props
 }: ButtonProps) {
+	if (variant === "link") {
+		if (!to) {
+			console.error('A button of type "link" needs a "to" prop.');
+			return null;
+		}
+
+		return (
+			<Link className={cn([buttonStyles({ variant })])} to={to}>
+				{children}
+			</Link>
+		);
+	}
+
 	return (
 		<button
 			type={type}

@@ -2,6 +2,12 @@ import MesocyclesAccordion from "@/components/workout/MesocyclesAccordion.tsx";
 import RouteTitle from "@/components/shared/RouteTitle.tsx";
 import useMyMesocycles from "@/hooks/api/useMyMesocycles.ts";
 import PageLoading from "@/components/shared/PageLoading.tsx";
+import ErrorPage, {
+	ErrorDescription,
+	ErrorTitle,
+} from "@/components/shared/ErrorPage.tsx";
+import Button from "@/components/shared/Button.tsx";
+import { Route } from "@/core/enums/Routes.enum.ts";
 export default function MyMesocycles() {
 	const { data: myMesos, isLoading } = useMyMesocycles();
 
@@ -10,7 +16,18 @@ export default function MyMesocycles() {
 	}
 
 	if (!myMesos.length) {
-		return <div>No mesocycles</div>;
+		return (
+			<ErrorPage>
+				<ErrorTitle>No mesocycles</ErrorTitle>
+				<ErrorDescription>
+					You have not yet created any mesocycles. Create one on the{" "}
+					<Button variant="link" to={`/${Route.NewMesocycle}`}>
+						New Mesocycle
+					</Button>{" "}
+					page.
+				</ErrorDescription>
+			</ErrorPage>
+		);
 	}
 
 	return (

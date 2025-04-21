@@ -18,7 +18,7 @@ import type { Workout as TWorkout, Mesocycle } from "@/core/types.ts";
 import useActivateMesocycle, {
 	type ActivateMesoPayload,
 } from "@/hooks/api/useActivateMesocycle.ts";
-import { addWeeks, previousMonday } from "date-fns";
+import { addWeeks, previousMonday, subDays } from "date-fns";
 import { useNavigate } from "react-router";
 import useUserStore from "@/state/UserStore.ts";
 import { useShallow } from "zustand/react/shallow";
@@ -46,7 +46,7 @@ export default function MesocyclesAccordion({
 
 	const handleActivateMesocycle = async (meso: Mesocycle) => {
 		const startDate = previousMonday(new Date());
-		const endDate = addWeeks(new Date(), meso.duration + 1);
+		const endDate = subDays(addWeeks(new Date(), meso.duration + 1), 1);
 
 		const activeMesocycle: ActivateMesoPayload = {
 			mesocycle: meso._id,

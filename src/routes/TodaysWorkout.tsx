@@ -13,7 +13,13 @@ import useCompleteWorkout from "@/hooks/api/useCompleteWorkout.ts";
 import useGetMesocycleById from "@/hooks/api/useGetMesocyleById.ts";
 import { useTodaysWorkoutStore } from "@/state/TodaysWorkoutStore.ts";
 import useUserStore from "@/state/UserStore.ts";
-import { differenceInWeeks, getDay, isToday } from "date-fns";
+import {
+	differenceInWeeks,
+	getDay,
+	isAfter,
+	isToday,
+	startOfDay,
+} from "date-fns";
 import { X } from "lucide-react";
 import { useEffect } from "react";
 import { useShallow } from "zustand/react/shallow";
@@ -27,13 +33,20 @@ import {
 } from "@/components/ui/table.tsx";
 import { useNavigate } from "react-router";
 import PageLoading from "@/components/shared/PageLoading.tsx";
+import ErrorPage, {
+	ErrorDescription,
+	ErrorTitle,
+} from "@/components/shared/ErrorPage.tsx";
+import { Route } from "@/core/enums/Routes.enum.ts";
 
 export default function TodaysWorkout() {
 	const [user] = useUserStore(useShallow((state) => [state.user]));
 	const navigate = useNavigate();
-	const { data, isLoading } = useGetMesocycleById(
-		user?.activeMesocycle?.mesocycle._id as string,
-	);
+	const {
+		data: mesocycle,
+		isLoading,
+		error,
+	} = useGetMesocycleById(user?.activeMesocycle?.mesocycle._id as string);
 	const { mutateAsync: completeWorkout, isPending } = useCompleteWorkout();
 	const [
 		exercises,
@@ -53,28 +66,83 @@ export default function TodaysWorkout() {
 		]),
 	);
 
-	const todaysWorkout = data?.mesocycle.workouts.find(
+	const todaysWorkout = mesocycle?.workouts.find(
 		(workout) => workout.day === getDay(new Date()),
 	);
 
 	useEffect(() => {
-		if (!data || exercises.length || !todaysWorkout) return;
+		if (!mesocycle || exercises.length || !todaysWorkout) return;
 		setExercises(todaysWorkout.exercises);
-	}, [data, exercises.length, setExercises, todaysWorkout]);
+	}, [mesocycle, exercises.length, setExercises, todaysWorkout]);
+
+	const currentWeek =
+		differenceInWeeks(new Date(), user?.activeMesocycle?.startDate as Date) + 1;
 
 	if (isLoading) {
 		return <PageLoading />;
 	}
 
-	if (!data) {
-		return <>No active mesocycle.</>;
+	if (error) {
+		console.error(error.message);
+		return (
+			<ErrorPage>
+				<ErrorTitle>Error</ErrorTitle>
+				<ErrorDescription>
+					Something went wrong getting your workout. Try refreshing the page.
+				</ErrorDescription>
+			</ErrorPage>
+		);
 	}
 
-	if (data.mesocycle && !todaysWorkout) {
-		return <>Rest day</>;
+	if (!mesocycle) {
+		return (
+			<ErrorPage>
+				<ErrorTitle>You don't have an active mesocycle</ErrorTitle>
+				<ErrorDescription>
+					Activate one on the{" "}
+					<Button variant="link" to={`/${Route.MyMesocycles}`}>
+						My Mesocycles
+					</Button>{" "}
+					page or create a new one on the{" "}
+					<Button variant="link" to={`/${Route.NewMesocycle}`}>
+						New Mesocycle
+					</Button>{" "}
+					page.
+				</ErrorDescription>
+			</ErrorPage>
+		);
 	}
 
-	//TODO: add 'completed' to user.activeMesocycle and display the message that the meso has been completed
+	if (mesocycle && !todaysWorkout) {
+		return (
+			<ErrorPage>
+				<ErrorTitle>Rest day</ErrorTitle>
+				<ErrorDescription>Today is your rest day.</ErrorDescription>
+			</ErrorPage>
+		);
+	}
+
+	if (
+		user?.activeMesocycle?.endDate &&
+		isAfter(startOfDay(new Date()), startOfDay(user?.activeMesocycle?.endDate))
+	) {
+		return (
+			<ErrorPage>
+				<ErrorTitle>Mesocycle completed</ErrorTitle>
+				<ErrorDescription>
+					You have completed this mesocycle! You can create a new one on the{" "}
+					<Button variant="link" to={`${Route.NewMesocycle}`}>
+						New Mesocycle
+					</Button>{" "}
+					page or activate an existing one on the{" "}
+					<Button variant="link" to={`${Route.MyMesocycles}`}>
+						My Mesocycles
+					</Button>{" "}
+					page.
+				</ErrorDescription>
+			</ErrorPage>
+		);
+	}
 
 	const handleCompleteWorkout = async () => {
 		const log = constructLog(
@@ -108,14 +176,9 @@ export default function TodaysWorkout() {
 						<CardHeader>
 							<CardTitle />
 						</CardHeader>
-						<h2>{data.mesocycle.title}</h2>
+						<h2>{mesocycle.title}</h2>
 						<span className="text-xl font-bold uppercase">
-							Week{" "}
-							{differenceInWeeks(
-								new Date(),
-								user?.activeMesocycle?.startDate as Date,
-							) + 1}
-							/{data.mesocycle.duration} -{" "}
+							Week {currentWeek}/{mesocycle.duration} -{" "}
 							{weekDays.find((day) => day.value === todaysWorkout.day)?.day}
 						</span>
 					</CardContent>

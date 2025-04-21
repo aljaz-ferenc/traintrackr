@@ -40,10 +40,6 @@ export default function CreateItemModal({
 		return foodItems?.find((item) => item._id === selectedItemId);
 	}, [foodItems, selectedItemId]);
 
-	if (isLoading) {
-		return <Spinner />;
-	}
-
 	const onOpenChange = (open: boolean) => {
 		setIsOpen(open);
 		if (!open) {
@@ -69,11 +65,15 @@ export default function CreateItemModal({
 						<SelectValue placeholder="Select item..." />
 					</SelectTrigger>
 					<SelectContent>
-						{foodItems?.map((item) => (
-							<SelectItem key={item._id} value={item._id}>
-								{item.name}
-							</SelectItem>
-						))}
+						{isLoading ? (
+							<Spinner />
+						) : (
+							foodItems?.map((item) => (
+								<SelectItem key={item._id} value={item._id}>
+									{item.name}
+								</SelectItem>
+							))
+						)}
 					</SelectContent>
 				</Select>
 				{selectedItem && (
