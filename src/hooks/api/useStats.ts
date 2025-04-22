@@ -1,5 +1,5 @@
 import { Endpoints } from "@/core/endpoints.ts";
-import type { User, UserWeight } from "@/core/types.ts";
+import type { Macros, User, UserWeight } from "@/core/types.ts";
 import { useQuery } from "@tanstack/react-query";
 import useUserStore from "@/state/UserStore.ts";
 import { useShallow } from "zustand/react/shallow";
@@ -13,11 +13,11 @@ async function fetchStats(userId: User["_id"], range?: Range) {
 export type StatsPayload = {
 	nutrition: {
 		caloriesToday: number;
-		macrosToday: number;
 		caloriesGoal: number;
 		caloriesLeftToday: number;
 		averageDailyCaloriesThisWeek: number;
 		tdee: number;
+		macrosToday: Macros;
 	};
 	weight: {
 		current: UserWeight;
