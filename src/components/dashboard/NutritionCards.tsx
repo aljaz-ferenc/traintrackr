@@ -37,7 +37,7 @@ export default function NutritionCards({
 						<span className="text-3xl font-bold">
 							{stats.nutrition.caloriesToday}
 						</span>
-						<span className="text-xl">kcal</span>
+						<span className="text-xl"> kcal</span>
 					</div>
 				</WidgetWrapper>
 				<WidgetWrapper title="Calories left" description="Today">
@@ -49,7 +49,7 @@ export default function NutritionCards({
 						<span className="text-3xl font-bold">
 							{stats.nutrition.caloriesLeftToday}
 						</span>
-						<span className="text-xl">kcal</span>
+						<span className="text-xl"> kcal</span>
 					</div>
 				</WidgetWrapper>
 				<WidgetWrapper
@@ -59,7 +59,7 @@ export default function NutritionCards({
 				>
 					<div>
 						<span className="text-3xl font-bold">{stats.nutrition.tdee}</span>
-						<span className="text-xl">kcal</span>
+						<span className="text-xl"> kcal</span>
 					</div>
 				</WidgetWrapper>
 				<WidgetWrapper
@@ -71,7 +71,7 @@ export default function NutritionCards({
 						<span className="text-3xl font-bold">
 							{stats.nutrition.averageDailyCaloriesThisWeek}
 						</span>
-						<span className="text-xl">kcal/day</span>
+						<span className="text-xl"> kcal/day</span>
 					</div>
 				</WidgetWrapper>
 				<WidgetWrapper

@@ -31,9 +31,9 @@ export default function WeightCards({ className = "" }: WeightCardsProps) {
 				>
 					<div>
 						<span className="text-3xl font-bold">
-							{stats.weight.current.value}
+							{stats.weight.current.value.toFixed(1)}
 						</span>
-						<span className="text-xl">kg</span>
+						<span className="text-xl"> kg</span>
 					</div>
 				</WidgetWrapper>
 				<WidgetWrapper
@@ -43,9 +43,9 @@ export default function WeightCards({ className = "" }: WeightCardsProps) {
 				>
 					<div>
 						<span className="text-3xl font-bold">
-							{stats.weight.starting.value}
+							{stats.weight.starting.value.toFixed(1)}
 						</span>
-						<span className="text-xl">kg</span>
+						<span className="text-xl"> kg</span>
 					</div>
 				</WidgetWrapper>
 				<WidgetWrapper
@@ -55,9 +55,11 @@ export default function WeightCards({ className = "" }: WeightCardsProps) {
 				>
 					<div>
 						<span className="text-3xl font-bold">
-							{stats.weight.current.value - stats.weight.starting.value}
+							{(
+								stats.weight.current.value - stats.weight.starting.value
+							).toFixed(1)}
 						</span>
-						<span className="text-xl">kg</span>
+						<span className="text-xl"> kg</span>
 					</div>
 				</WidgetWrapper>
 				{/*<WidgetWrapper*/}

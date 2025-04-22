@@ -135,7 +135,9 @@ export default function CreateItemModal({
 						className="cursor-pointer text-muted-foreground hover-text-primary transition"
 					/>
 				) : (
-					<Button>Create new item</Button>
+					<Button variant="ghost" className="underline underline-offset-2">
+						Create new item
+					</Button>
 				)}
 			</DialogTrigger>
 			<DialogContent className="overflow-y-auto max-h-[80vh]">

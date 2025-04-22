@@ -2,7 +2,9 @@ import { Endpoints } from "@/core/endpoints.ts";
 import type { Nutrition } from "@/core/types.ts";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-async function fetchCreateNutrition(nutrition: Omit<Nutrition, "_id">) {
+async function fetchCreateNutrition(
+	nutrition: Omit<Nutrition, "_id" | "createdAt" | "updatedAt">,
+) {
 	await fetch(Endpoints.nutritions, {
 		body: JSON.stringify(nutrition),
 		mode: "cors",
@@ -18,8 +20,9 @@ export default function useCreateNutrition() {
 
 	return useMutation({
 		mutationKey: ["nutrition-create"],
-		mutationFn: (nutrition: Omit<Nutrition, "_id">) =>
-			fetchCreateNutrition(nutrition),
+		mutationFn: (
+			nutrition: Omit<Nutrition, "_id" | "createdAt" | "updatedAt">,
+		) => fetchCreateNutrition(nutrition),
 		onSuccess: async () =>
 			await queryClient.invalidateQueries({ queryKey: ["nutrition-get"] }),
 	});

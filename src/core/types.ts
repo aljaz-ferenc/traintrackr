@@ -97,8 +97,9 @@ export type Nutrition = {
 	_id: string;
 	amount: number;
 	createdBy: string;
-	date: Date;
 	item: FoodItem;
+	createdAt: Date;
+	updatedAt: Date;
 };
 
 export type Macros = {

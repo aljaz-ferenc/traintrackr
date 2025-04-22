@@ -84,7 +84,6 @@ export default function AddItemForm({
 			await createNutrition({
 				amount: values.amount * Number(values.portion.split("/")[0]),
 				createdBy: userId,
-				date: new Date(),
 				item: getSelectedFoodItem() as FoodItem,
 			});
 		}

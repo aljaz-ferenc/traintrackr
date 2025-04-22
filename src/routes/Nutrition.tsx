@@ -21,11 +21,11 @@ export default function Nutrition() {
 			<RouteTitle title="Nutrition" />
 			{data && <Macros macros={data.totalMacros} className="mb-5" />}
 			<div className="flex gap-2">
+				<AddItemModal isOpen={addItemIsOpen} setIsOpen={setAddItemIsOpen} />
 				<CreateItemModal
 					isOpen={createItemIsOpen}
 					setIsOpen={setCreateItemIsOpen}
 				/>
-				<AddItemModal isOpen={addItemIsOpen} setIsOpen={setAddItemIsOpen} />
 			</div>
 			<div className="mt-5 flex flex-col gap-2">
 				{data?.nutritionsToday?.map((nutrition) => (
