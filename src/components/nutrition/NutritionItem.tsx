@@ -12,14 +12,16 @@ import useDeleteNutrition from "@/hooks/api/useDeleteNutrition.ts";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { X } from "lucide-react";
 import { useState } from "react";
+import Spinner from "@/components/Spinner/Spinner.tsx";
 
 type NutritionItemProps = {
 	nutrition: Nutrition;
 };
 
 export default function NutritionItem({ nutrition }: NutritionItemProps) {
-	const { mutateAsync: deleteNutrition } = useDeleteNutrition();
+	const { mutateAsync: deleteNutrition, isPending: isDeleting } = useDeleteNutrition();
 	const [isOpen, setIsOpen] = useState(false);
+
 	const handleDeleteNutrition = async () => {
 		await deleteNutrition(nutrition._id);
 	};
@@ -41,7 +43,7 @@ export default function NutritionItem({ nutrition }: NutritionItemProps) {
 								await handleDeleteNutrition();
 							}}
 						>
-							<X className="text-red-500" />
+							{isDeleting ? <Spinner size={5}/> : <X className="text-red-500"/>}
 						</button>
 					</CardContent>
 				</Card>

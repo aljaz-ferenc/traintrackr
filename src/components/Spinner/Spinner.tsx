@@ -6,6 +6,7 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
 	center?: boolean;
 	fullscreenCenter?: boolean;
 	variant?: VariantProps<typeof spinnerStyles>["variant"];
+	size?: number
 }
 
 const spinnerStyles = cva([""], {
@@ -22,12 +23,13 @@ function Spinner({
 	fullscreenCenter = false,
 	className,
 	variant = "primary",
+	size = 8,
 	...props
 }: Props) {
 	return (
 		<div
 			className={cn([
-				"flex items-center justify-center",
+				"flex items-center justify-center aspect-square",
 				(center || fullscreenCenter) &&
 					"-translate-x-1/2 -translate-y-1/2 absolute top-1/2 left-1/2 z-50 transform",
 				fullscreenCenter && "fixed",
@@ -37,7 +39,7 @@ function Spinner({
 		>
 			<div
 				className={cn([
-					"m-1 h-8 w-8 animate-spin rounded-full border-4 duration-1000",
+					`min-h-${size} min-w-${size} animate-spin rounded-full border-4 duration-1000`,
 					spinnerStyles({ variant }),
 				])}
 			/>
