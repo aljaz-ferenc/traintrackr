@@ -2,6 +2,7 @@ import { Mars, Venus } from "lucide-react";
 import type React from "react";
 import { cn } from "@/lib/utils.ts";
 import type { Gender as TGender } from "@/core/types.ts";
+import {useTranslation} from "react-i18next";
 
 type GenderProps = {
 	setGender: React.Dispatch<React.SetStateAction<TGender | null>>;
@@ -9,10 +10,12 @@ type GenderProps = {
 };
 
 export default function Gender({ setGender, gender }: GenderProps) {
+	const {t} = useTranslation()
+
 	return (
 		<>
 			<h2 className="text-3xl font-bold text-center mb-4">
-				What's your gender?
+				{t('ONBOARDING.gender.title')}
 			</h2>
 			<div className="flex gap-[30%] mx-auto justify-center my-5">
 				<div>
@@ -26,7 +29,7 @@ export default function Gender({ setGender, gender }: GenderProps) {
 					>
 						<Mars size={100} />
 					</button>
-					<p className="font-bold text-xl text-center mt-2">Male</p>
+					<p className="font-bold text-xl text-center mt-2">{t('ONBOARDING.gender.male')}</p>
 				</div>
 				<div>
 					<button
@@ -39,12 +42,11 @@ export default function Gender({ setGender, gender }: GenderProps) {
 					>
 						<Venus size={100} />
 					</button>
-					<p className="font-bold text-xl text-center mt-2">Female</p>
+					<p className="font-bold text-xl text-center mt-2">{t('ONBOARDING.gender.female')}</p>
 				</div>
 			</div>
 			<p className="text-center max-w-[80%] mx-auto max-w-sm leading-8">
-				This helps us fine-tune your experience. No worries — your info stays
-				private and safe with us.
+				{t('ONBOARDING.gender.text')}
 			</p>
 		</>
 	);

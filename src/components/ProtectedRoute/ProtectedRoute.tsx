@@ -3,6 +3,7 @@ import { useAuth } from "@clerk/clerk-react";
 import useGetUser from "@/hooks/api/useGetUser.ts";
 import { isUserOnboarded } from "@/utils/utils.ts";
 import PageLoading from "@/components/shared/PageLoading.tsx";
+import Onboarding from "@/routes/Onboarding.tsx";
 
 export function ProtectedRoute({ children }: { children: React.ReactNode }) {
 	const { isSignedIn, isLoaded } = useAuth();
@@ -19,7 +20,7 @@ export function ProtectedRoute({ children }: { children: React.ReactNode }) {
 	const isOnboarded = isUserOnboarded(data);
 
 	if (isSignedIn && !isOnboarded) {
-		return <Navigate to="/onboarding" />;
+		return <Onboarding/>;
 	}
 
 	return <>{children}</>;

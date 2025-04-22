@@ -1,15 +1,16 @@
 import type React from "react";
 import { Input } from "@/components/ui/Input.tsx";
 import { z } from "zod";
-import type { Units } from "@/core/types.ts";
+import {useTranslation} from "react-i18next";
 
 type WeightProps = {
 	weight: string;
 	setWeight: React.Dispatch<React.SetStateAction<string>>;
-	units: Units | null;
 };
 
-export default function Weight({ weight, setWeight, units }: WeightProps) {
+export default function Weight({ weight, setWeight }: WeightProps) {
+	const {t} = useTranslation()
+
 	const onWeightInput = (input: string) => {
 		const { success } = z
 			.string()
@@ -24,7 +25,7 @@ export default function Weight({ weight, setWeight, units }: WeightProps) {
 	return (
 		<>
 			<h2 className="text-3xl font-bold text-center mb-4">
-				What's your weight?
+				{t('ONBOARDING.weight.title')}
 			</h2>
 			<div className="flex items-center gap-2">
 				<Input
@@ -32,11 +33,10 @@ export default function Weight({ weight, setWeight, units }: WeightProps) {
 					onChange={(e) => onWeightInput(e.target.value)}
 					value={weight}
 				/>
-				<span>{units === "metric" ? "kg" : "lbs"}</span>
+				<span>kg</span>
 			</div>
 			<p className="text-center max-w-[80%] mx-auto max-w-sm leading-8">
-				This helps us fine-tune your experience. No worries — your info stays
-				private and safe with us.
+				{t('ONBOARDING.weight.text')}
 			</p>
 		</>
 	);

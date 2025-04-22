@@ -7,7 +7,7 @@ import "swiper/css/free-mode";
 import { Triangle } from "lucide-react";
 import type React from "react";
 import { cn } from "@/lib/utils.ts";
-import type { Units } from "@/core/types.ts";
+import {useTranslation} from "react-i18next";
 
 const heights: number[] = [];
 
@@ -26,14 +26,15 @@ for (let i = 4; i <= 7; i++) {
 type HeightProps = {
 	height: number;
 	setHeight: React.Dispatch<React.SetStateAction<number>>;
-	units: Units | null;
 };
 
 export default function Height({ setHeight }: HeightProps) {
+	const {t} = useTranslation()
+
 	return (
 		<>
 			<h2 className="text-3xl font-bold text-center mb-4">
-				What's your height?
+				{t('ONBOARDING.height.title')}
 			</h2>
 			<Triangle className="-scale-y-100 absolute left-1/2 -translate-x-1/2 translate-y-30 fill-white" />
 			<Swiper
@@ -61,8 +62,7 @@ export default function Height({ setHeight }: HeightProps) {
 				))}
 			</Swiper>
 			<p className="text-center max-w-[80%] mx-auto max-w-sm leading-8">
-				A little detail that helps us customize things just for you. (No
-				judgment, all heights are awesome.)
+				{t('ONBOARDING.height.text')}
 			</p>
 		</>
 	);

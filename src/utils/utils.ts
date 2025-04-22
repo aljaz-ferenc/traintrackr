@@ -111,5 +111,5 @@ export function isUserOnboarded(user: User) {
 
 	const { weight, height, dob, gender } = user.stats;
 
-	return weight.length > 0 && height && dob && gender;
+	return weight.length > 0 && !!height && !!dob && !!gender;
 }

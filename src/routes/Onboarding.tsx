@@ -17,19 +17,19 @@ import useUpdateUserStats from "@/hooks/api/useUpdateUserStats.ts";
 import useUserStore from "@/state/UserStore.ts";
 import { useShallow } from "zustand/react/shallow";
 import Spinner from "@/components/Spinner/Spinner.tsx";
-import Units from "@/components/onboarding/Units.tsx";
-import type { Units as TUnits } from "@/core/types.ts";
+import SelectLanguage from "@/components/shared/SelectLanguage.tsx";
+import {useTranslation} from "react-i18next";
 
 export default function Onboarding() {
 	const [current, setCurrent] = useState(0);
 	const [gender, setGender] = useState<TGender | null>(null);
 	const [dob, setDob] = useState<string>("");
-	const [units, setUnits] = useState<TUnits | null>(null);
 	const [height, setHeight] = useState<number>(130);
 	const [weight, setWeight] = useState("");
 	const navigate = useNavigate();
 	const { mutateAsync: updateUser } = useUpdateUserStats();
 	const user = useUserStore(useShallow((state) => state.user));
+	const {t} = useTranslation()
 
 	if (!user) {
 		return <Spinner />;
@@ -39,6 +39,7 @@ export default function Onboarding() {
 		if (!user) return;
 
 		const isOnboarded = isUserOnboarded(user);
+
 		if (isOnboarded) {
 			navigate("/");
 		}
@@ -49,32 +50,29 @@ export default function Onboarding() {
 			0: false,
 			1: !gender,
 			2: !isValidDate(dob),
-			3: !units,
-			4: !height,
+			3: !height,
+			4: !weight
 		};
-	}, [gender, dob, height, units]);
+	}, [gender, dob, height, weight]);
 
 	const onboardingScreens = useMemo(() => {
 		return [
 			<Welcome key="welcome" />,
 			<Gender setGender={setGender} gender={gender} key="gender" />,
 			<Dob setDob={setDob} key="dob" />,
-			<Units key="units" setUnits={setUnits} units={units} />,
 			<Height
 				key="height"
 				height={height}
 				setHeight={setHeight}
-				units={units}
 			/>,
 			<Weight
 				key="weight"
 				weight={weight}
 				setWeight={setWeight}
-				units={units}
 			/>,
 			<LetsGo key="letsGo" />,
 		];
-	}, [gender, height, weight, units]);
+	}, [gender, height, weight]);
 
 	const handleScrollPrev = () => {
 		setCurrent((prev) => Math.max(prev - 1, 0));
@@ -92,7 +90,6 @@ export default function Onboarding() {
 		await updateUser({
 			gender: gender as TGender,
 			dob: date,
-			units: units || "metric",
 			height,
 			weight: {
 				value: Number(weight),
@@ -104,7 +101,8 @@ export default function Onboarding() {
 
 	return (
 		<section className="grid place-items-center min-h-screen overflow-hidden">
-			<Card className="w-full max-w-[80%] h-full max-h-[80%]">
+			<Card className="w-full max-w-[80%] h-full max-h-[80%] relative">
+				<SelectLanguage className='absolute top-3 right-3 z-20'/>
 				<CardContent className="flex justify-center items-center h-full w-full overflow-hidden">
 					<div className="w-full h-full relative flex-col flex justify-center items-center">
 						<div>
@@ -142,8 +140,8 @@ export default function Onboarding() {
 								}
 							>
 								{current === onboardingScreens.length - 1
-									? "Lets go!"
-									: "Continue"}
+									? t('ONBOARDING.buttons.letsGo')
+									: t('ONBOARDING.buttons.continue')}
 							</Button>
 							{
 								<button
@@ -154,7 +152,7 @@ export default function Onboarding() {
 									])}
 									onClick={handleScrollPrev}
 								>
-									Back
+									{t('ONBOARDING.buttons.back')}
 								</button>
 							}
 						</div>
