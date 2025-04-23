@@ -51,7 +51,7 @@ export default function AppSidebar({
 		},
 		{
 			path: Route.MyMesocycles,
-			title: "My Mesocycles",
+			title: t("ROUTES.myMesocycles"),
 			icon: <Files size={iconSize} />,
 		},
 		{

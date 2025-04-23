@@ -14,6 +14,7 @@
 		"continue": "nadaljuj",
 		"back": "nazaj",
 		"day": "dan",
+		"week": "teden",
 		"days": {
 			"monday": {
 				"long": "ponedeljek",
@@ -119,5 +120,28 @@
 				"upcoming": "Prihajajoč"
 			}
 		}
+	},
+	"TODAYS_WORKOUT": {
+		"error": {
+			"title": "Napaka",
+			"text": "Prišlo je do napake. Poskusi osvežiti stran."
+		},
+		"noActiveMeso": {
+			"title": "Nimaš aktiviranega mezocikla",
+			"text": "Aktiviraš ga lahko na strani <myMesoclcesLink>Moji mezocikli</myMesoclcesLink> ali ustvariš novega na strani <newMesocycleLink>Novi mezocikel<newMesocycleLink/>."
+		},
+		"restDay": {
+			"title": "Počitek",
+			"text": "Danes je dan za počitek."
+		},
+		"mesoCompleted": {
+			"title": "Mezocikel zaključen",
+			"text": "Zaključil si ta mezocikel! Lahko ustavariš novega na strani <newMesocycleLink>Novi mezocikel</newMesocycleLink> ali pa aktiviraš že obstoječega na strani <myMesocyclesLink>Moji mezocikli</myMesocyclesLink>."
+		},
+		"set": "serija",
+		"weight": "teža",
+		"reps": "repeticije",
+		"addSet": "dodaj serijo",
+		"completeWorkout": "Zaključi trening"
 	}
 }

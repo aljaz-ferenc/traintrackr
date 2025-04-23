@@ -13,6 +13,7 @@
 		"continue": "continue",
 		"back": "back",
 		"day": "day",
+		"week": "week",
 		"days": {
 			"monday": {
 				"long": "monday",
@@ -118,5 +119,28 @@
 				"upcoming": "Upcoming"
 			}
 		}
+	},
+	"TODAYS_WORKOUT": {
+		"error": {
+			"title": "Error",
+			"text": "Something went wrong getting your workout. Try refreshing the page."
+		},
+		"noActiveMeso": {
+			"title": "You don't have an active mesocycle",
+			"text": "Activate one on the <myMesocyclesLink>My Mesocycles</myMesocyclesLink> page or create a new one on the <newMesocycleLink>New Mesocycle</newMesocycleLink> page."
+		},
+		"restDay": {
+			"title": "Rest day.",
+			"text": "Today is your rest day."
+		},
+		"mesoCompleted": {
+			"title": "Mesocycle completed",
+			"text": "You have completed this mesocycle! You can create a new one on the <newMesocycleLink>New Mesocycle</newMesocycleLink> page or activate an existing one on the <myMesocyclesLink>My Mesocycles</myMesocyclesLink> page."
+		},
+		"set": "set",
+		"weight": "weight",
+		"reps": "reps",
+		"addSet": "add set",
+		"completeWorkout": "Complete Workout"
 	}
 }

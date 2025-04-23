@@ -38,7 +38,7 @@ import ErrorPage, {
 	ErrorTitle,
 } from "@/components/shared/ErrorPage.tsx";
 import { Route } from "@/core/enums/Routes.enum.ts";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 
 export default function TodaysWorkout() {
 	const [user] = useUserStore(useShallow((state) => [state.user]));
@@ -88,10 +88,8 @@ export default function TodaysWorkout() {
 		console.error(error.message);
 		return (
 			<ErrorPage>
-				<ErrorTitle>Error</ErrorTitle>
-				<ErrorDescription>
-					Something went wrong getting your workout. Try refreshing the page.
-				</ErrorDescription>
+				<ErrorTitle>{t("TODAYS_WORKOUT.error.title")}</ErrorTitle>
+				<ErrorDescription>{t("TODAYS_WORKOUT.error.text")}</ErrorDescription>
 			</ErrorPage>
 		);
 	}
@@ -99,27 +97,20 @@ export default function TodaysWorkout() {
 	if (!mesocycle) {
 		return (
 			<ErrorPage>
-				<ErrorTitle>You don't have an active mesocycle</ErrorTitle>
+				<ErrorTitle>{t("TODAYS_WORKOUT.noActiveMeso.title")}</ErrorTitle>
 				<ErrorDescription>
-					Activate one on the{" "}
-					<Button variant="link" to={`/${Route.MyMesocycles}`}>
-						My Mesocycles
-					</Button>{" "}
-					page or create a new one on the{" "}
-					<Button variant="link" to={`/${Route.NewMesocycle}`}>
-						New Mesocycle
-					</Button>{" "}
-					page.
+					<Trans
+						i18nKey="TODAYS_WORKOUT.noActiveMeso.text"
+						components={{
+							myMesocyclesLink: (
+								<Button variant="link" to={`/${Route.MyMesocycles}`} />
+							),
+							newMesocycleLink: (
+								<Button variant="link" to={`/${Route.NewMesocycle}`} />
+							),
+						}}
+					/>
 				</ErrorDescription>
-			</ErrorPage>
-		);
-	}
-
-	if (mesocycle && !todaysWorkout) {
-		return (
-			<ErrorPage>
-				<ErrorTitle>Rest day</ErrorTitle>
-				<ErrorDescription>Today is your rest day.</ErrorDescription>
 			</ErrorPage>
 		);
 	}
@@ -132,16 +123,27 @@ export default function TodaysWorkout() {
 			<ErrorPage>
 				<ErrorTitle>Mesocycle completed</ErrorTitle>
 				<ErrorDescription>
-					You have completed this mesocycle! You can create a new one on the{" "}
-					<Button variant="link" to={`${Route.NewMesocycle}`}>
-						New Mesocycle
-					</Button>{" "}
-					page or activate an existing one on the{" "}
-					<Button variant="link" to={`${Route.MyMesocycles}`}>
-						My Mesocycles
-					</Button>{" "}
-					page.
+					<Trans
+						i18nKey="TODAYS_WORKOUT.mesoCompleted.text"
+						components={{
+							newMesocycleLink: (
+								<Button variant="link" to={`/${Route.NewMesocycle}`} />
+							),
+							myMesocyclesLink: (
+								<Button variant="link" to={`/${Route.MyMesocycles}`} />
+							),
+						}}
+					/>
 				</ErrorDescription>
+			</ErrorPage>
+		);
+	}
+
+	if (mesocycle && !todaysWorkout) {
+		return (
+			<ErrorPage>
+				<ErrorTitle>{t("TODAYS_WORKOUT.restDay.title")}</ErrorTitle>
+				<ErrorDescription>{t("TODAYS_WORKOUT.restDay.text")}</ErrorDescription>
 			</ErrorPage>
 		);
 	}
@@ -180,8 +182,12 @@ export default function TodaysWorkout() {
 						</CardHeader>
 						<h2>{mesocycle.title}</h2>
 						<span className="text-xl font-bold uppercase">
-							Week {currentWeek}/{mesocycle.duration} -{" "}
-							{weekDays.find((day) => day.value === todaysWorkout.day)?.day}
+							{t("GENERAL.week")}
+							<span className="text-3xl font-bold"> {currentWeek}</span>/
+							{mesocycle.duration} -{" "}
+							{t(
+								`GENERAL.days.${weekDays.find((day) => day.value === todaysWorkout.day)?.day.toLowerCase()}.long`,
+							)}
 						</span>
 					</CardContent>
 				</Card>
@@ -194,10 +200,10 @@ export default function TodaysWorkout() {
 									<span className="uppercase font-bold">{exercise.name}</span>
 									<Table className="table-auto w-full border-separate border-spacing-0">
 										<TableHeader>
-											<TableRow>
-												<TableHead>SET</TableHead>
-												<TableHead>WEIGHT</TableHead>
-												<TableHead>REPS</TableHead>
+											<TableRow className="uppercase">
+												<TableHead>{t("TODAYS_WORKOUT.set")}</TableHead>
+												<TableHead>{t("TODAYS_WORKOUT.weight")}</TableHead>
+												<TableHead>{t("TODAYS_WORKOUT.reps")}</TableHead>
 												<TableHead />
 											</TableRow>
 										</TableHeader>
@@ -252,7 +258,7 @@ export default function TodaysWorkout() {
 										onClick={() => addSetToExercise(exerciseIndex)}
 										variant="secondary"
 									>
-										ADD SET
+										{t("TODAYS_WORKOUT.addSet")}
 									</Button>
 								</CardContent>
 							</Card>
@@ -262,9 +268,9 @@ export default function TodaysWorkout() {
 				<Button
 					isLoading={isPending}
 					onClick={handleCompleteWorkout}
-					variant="secondary"
+					variant="primary"
 				>
-					Complete Workout
+					{t("TODAYS_WORKOUT.completeWorkout")}
 				</Button>
 			</div>
 		</section>
