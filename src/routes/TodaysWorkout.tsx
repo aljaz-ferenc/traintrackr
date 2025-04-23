@@ -38,10 +38,12 @@ import ErrorPage, {
 	ErrorTitle,
 } from "@/components/shared/ErrorPage.tsx";
 import { Route } from "@/core/enums/Routes.enum.ts";
+import { useTranslation } from "react-i18next";
 
 export default function TodaysWorkout() {
 	const [user] = useUserStore(useShallow((state) => [state.user]));
 	const navigate = useNavigate();
+	const { t } = useTranslation();
 	const {
 		data: mesocycle,
 		isLoading,
@@ -169,7 +171,7 @@ export default function TodaysWorkout() {
 	}
 	return (
 		<section className="max-w-[600px] mx-auto">
-			<RouteTitle title="Today's Workout" />
+			<RouteTitle title={t("ROUTES.todaysWorkout")} />
 			<div className="mx-auto flex flex-col gap-5">
 				<Card>
 					<CardContent>

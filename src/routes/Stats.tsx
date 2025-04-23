@@ -7,12 +7,14 @@ import { Range } from "@/core/enums/Range.enum.ts";
 import useStats from "@/hooks/api/useStats.ts";
 import useUpdateStats from "@/hooks/api/useUpdateStats.ts";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function Stats() {
 	const { mutateAsync: updateStats, isPending: isUpdating } = useUpdateStats();
 	const [weight, setWeight] = useState("");
 	const [range, setRange] = useState<Range>(Range.Week);
 	const { data: stats } = useStats(range);
+	const { t } = useTranslation();
 
 	const handleUpdateStats = async () => {
 		await updateStats({ weight: Number(weight) });
@@ -21,7 +23,7 @@ export default function Stats() {
 
 	return (
 		<section>
-			<RouteTitle title="Stats" />
+			<RouteTitle title={t("ROUTES.stats")} />
 			<div className="flex flex-col gap-10">
 				<Tabs
 					defaultValue={"week"}

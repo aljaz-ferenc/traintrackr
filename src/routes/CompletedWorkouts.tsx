@@ -14,10 +14,11 @@ import ErrorPage, {
 } from "@/components/shared/ErrorPage.tsx";
 import Button from "@/components/shared/Button.tsx";
 import { Route } from "@/core/enums/Routes.enum.ts";
+import { useTranslation } from "react-i18next";
 
 export default function CompletedWorkouts() {
 	const { data: logs, isLoading } = useWorkoutLogs();
-	console.log(logs);
+	const { t } = useTranslation();
 
 	if (isLoading) {
 		return <PageLoading />;
@@ -45,7 +46,7 @@ export default function CompletedWorkouts() {
 
 	return (
 		<section>
-			<RouteTitle title="Completed Workouts" />
+			<RouteTitle title={t("ROUTES.completedWorkouts")} />
 			<Accordion type="multiple" className="w-full">
 				{logs?.map((log) => (
 					<AccordionItem value={log._id} key={log._id}>

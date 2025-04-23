@@ -8,8 +8,10 @@ import ErrorPage, {
 } from "@/components/shared/ErrorPage.tsx";
 import Button from "@/components/shared/Button.tsx";
 import { Route } from "@/core/enums/Routes.enum.ts";
+import { useTranslation } from "react-i18next";
 export default function MyMesocycles() {
 	const { data: myMesos, isLoading } = useMyMesocycles();
+	const { t } = useTranslation();
 
 	if (isLoading || !myMesos) {
 		return <PageLoading />;
@@ -32,7 +34,7 @@ export default function MyMesocycles() {
 
 	return (
 		<section>
-			<RouteTitle title="My Mesocycles" />
+			<RouteTitle title={t("ROUTES.myMesocycles")} />
 			<MesocyclesAccordion mesocycles={myMesos} />
 		</section>
 	);

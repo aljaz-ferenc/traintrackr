@@ -1,4 +1,14 @@
 {
+	"ROUTES": {
+		"dashboard": "Nadzorna plošča",
+		"todaysWorkout": "Današnja vaja",
+		"newMesocycle": "Novi mezocikel",
+		"editMesocycle": "Uredi mezocikel",
+		"myMesocycles": "Moji mezocikli",
+		"completedWorkouts": "Opravljeni treningi",
+		"nutrition": "Prehrana",
+		"stats": "Statistika"
+	},
 	"GENERAL": {
 		"continue": "nadaljuj",
 		"back": "nazaj"

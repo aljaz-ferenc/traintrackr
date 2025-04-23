@@ -1,4 +1,14 @@
 {
+	"ROUTES": {
+		"dashboard": "Dashboard",
+		"todaysWorkout": "Today's Workout",
+		"newMesocycle": "New Mesocycle",
+		"editMesocycle": "Edit Mesocycle",
+		"myMesocycles": "My Mesocycles",
+		"completedWorkouts": "Completed Workouts",
+		"nutrition": "Nutrition",
+		"stats": "Stats"
+	},
 	"ONBOARDING": {
 		"welcome": {
 			"title": "Welcome to TrainTrackr!",

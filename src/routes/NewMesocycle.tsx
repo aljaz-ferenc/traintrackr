@@ -19,6 +19,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import Body from "@/components/workout/Body.tsx";
 import { getMuscleIntensities } from "@/utils/utils.ts";
 import PageLoading from "@/components/shared/PageLoading.tsx";
+import { useTranslation } from "react-i18next";
 
 const mesoDurationOptions = [4, 6, 8, 10, 12];
 const mesoSplitTypeOptions = ["synchronous", "asynchronous"];
@@ -32,6 +33,7 @@ export default function NewMesocycle() {
 	const { mutateAsync: createMesocycle, isPending: isCreating } =
 		useCreateMesocycle();
 	const queryClient = useQueryClient();
+	const { t } = useTranslation();
 	const [
 		mesoTitle,
 		mesoDuration,
@@ -106,7 +108,9 @@ export default function NewMesocycle() {
 
 	return (
 		<section className="flex flex-col gap-5">
-			<RouteTitle title={allowEdit ? "Edit Mesocycle" : "New Mesocycle"} />
+			<RouteTitle
+				title={allowEdit ? t("ROUTES.editMesocycle") : t("ROUTES.newMesocycle")}
+			/>
 			<div className="flex flex-col gap-10">
 				<div>
 					<Label className="mb-2">Mesocycle Name</Label>

@@ -12,7 +12,7 @@ import {
 import type React from "react";
 import SidebarItem from "./SidebarItem.tsx";
 import { cn } from "@/lib/utils.ts";
-// import type {User} from "@/core/types.ts";
+import { useTranslation } from "react-i18next";
 
 export type TSidebarItem = {
 	path: string;
@@ -21,49 +21,6 @@ export type TSidebarItem = {
 };
 
 const iconSize = 20;
-
-const menuItems: TSidebarItem[] = [
-	{
-		path: Route.Dashboard,
-		title: "Dashboard",
-		icon: <LayoutDashboard size={iconSize} />,
-	},
-	{
-		path: Route.TodaysWorkout,
-		title: "Today's workout",
-		icon: <Dumbbell size={iconSize} />,
-	},
-	{
-		path: Route.NewMesocycle,
-		title: "New Mesocycle",
-		icon: <FilePlus size={iconSize} />,
-	},
-	{
-		path: Route.MyMesocycles,
-		title: "My Mesocycles",
-		icon: <Files size={iconSize} />,
-	},
-	{
-		path: Route.CompletedWorkouts,
-		title: "Completed Workouts",
-		icon: <SquareCheckBig size={iconSize} />,
-	},
-	{
-		path: Route.Nutrition,
-		title: "Nutrition",
-		icon: <Utensils size={iconSize} />,
-	},
-	{
-		path: Route.Stats,
-		title: "Stats",
-		icon: <ChartNoAxesCombined size={iconSize} />,
-	},
-	// {
-	// 	path: Route.Settings,
-	// 	title: "Settings",
-	// 	icon: <Settings size={iconSize} />,
-	// },
-];
 
 type AppSidebarProps = {
 	className?: string;
@@ -74,6 +31,51 @@ export default function AppSidebar({
 	className = "",
 	onLinkClick,
 }: AppSidebarProps) {
+	const { t } = useTranslation();
+
+	const menuItems: TSidebarItem[] = [
+		{
+			path: Route.Dashboard,
+			title: t("ROUTES.dashboard"),
+			icon: <LayoutDashboard size={iconSize} />,
+		},
+		{
+			path: Route.TodaysWorkout,
+			title: t("ROUTES.todaysWorkout"),
+			icon: <Dumbbell size={iconSize} />,
+		},
+		{
+			path: Route.NewMesocycle,
+			title: t("ROUTES.newMesocycle"),
+			icon: <FilePlus size={iconSize} />,
+		},
+		{
+			path: Route.MyMesocycles,
+			title: "My Mesocycles",
+			icon: <Files size={iconSize} />,
+		},
+		{
+			path: Route.CompletedWorkouts,
+			title: t("ROUTES.completedWorkouts"),
+			icon: <SquareCheckBig size={iconSize} />,
+		},
+		{
+			path: Route.Nutrition,
+			title: t("ROUTES.nutrition"),
+			icon: <Utensils size={iconSize} />,
+		},
+		{
+			path: Route.Stats,
+			title: t("ROUTES.stats"),
+			icon: <ChartNoAxesCombined size={iconSize} />,
+		},
+		// {
+		// 	path: Route.Settings,
+		// 	title: "Settings",
+		// 	icon: <Settings size={iconSize} />,
+		// },
+	];
+
 	return (
 		<aside
 			className={cn([

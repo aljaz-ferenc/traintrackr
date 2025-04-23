@@ -8,6 +8,7 @@ import MesocycleCards from "@/components/dashboard/MesocycleCards.tsx";
 import useUserStore from "@/state/UserStore.ts";
 import { useShallow } from "zustand/react/shallow";
 import PageLoading from "@/components/shared/PageLoading.tsx";
+import { useTranslation } from "react-i18next";
 
 export default function Dashboard() {
 	const {
@@ -21,6 +22,7 @@ export default function Dashboard() {
 		error: nutritionError,
 	} = useNutrition();
 	const user = useUserStore(useShallow((state) => state.user));
+	const { t } = useTranslation();
 
 	if (isLoadingStats || isLoadingNutrition || !nutrition || !stats) {
 		return <PageLoading />;
@@ -33,7 +35,7 @@ export default function Dashboard() {
 
 	return (
 		<section className="mx-auto">
-			<RouteTitle title="Dashboard" />
+			<RouteTitle title={t("ROUTES.dashboard")} />
 			{
 				<div className="flex flex-col gap-10">
 					<NutritionCards />

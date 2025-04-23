@@ -5,6 +5,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet.tsx";
 import { Menu } from "lucide-react";
 import { useState } from "react";
 import { UserButton } from "@clerk/clerk-react";
+import SelectLanguage from "@/components/shared/SelectLanguage.tsx";
 
 export default function AppLayout() {
 	const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
@@ -29,10 +30,11 @@ export default function AppLayout() {
 							</SheetContent>
 						</Sheet>
 					</div>
-					<div className="ml-auto">
+					<div className="flex gap-3 items-center ml-auto">
 						<UserButton />
+						<ModeToggle />
+						<SelectLanguage />
 					</div>
-					<ModeToggle />
 				</div>
 				<Outlet />
 			</main>

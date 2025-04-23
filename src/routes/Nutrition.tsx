@@ -6,11 +6,13 @@ import useNutrition from "@/hooks/api/useNutrition.ts";
 import { useState } from "react";
 import Macros from "@/components/nutrition/Macros.tsx";
 import PageLoading from "@/components/shared/PageLoading.tsx";
+import { useTranslation } from "react-i18next";
 
 export default function Nutrition() {
 	const [createItemIsOpen, setCreateItemIsOpen] = useState(false);
 	const [addItemIsOpen, setAddItemIsOpen] = useState(false);
 	const { data, isLoading } = useNutrition();
+	const { t } = useTranslation();
 
 	if (isLoading) {
 		return <PageLoading />;
@@ -18,7 +20,7 @@ export default function Nutrition() {
 
 	return (
 		<section>
-			<RouteTitle title="Nutrition" />
+			<RouteTitle title={t("ROUTES.nutrition")} />
 			{data && <Macros macros={data.totalMacros} className="mb-5" />}
 			<div className="flex gap-2">
 				<AddItemModal isOpen={addItemIsOpen} setIsOpen={setAddItemIsOpen} />
