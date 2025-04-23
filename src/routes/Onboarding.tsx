@@ -19,7 +19,7 @@ import { useShallow } from "zustand/react/shallow";
 import Spinner from "@/components/Spinner/Spinner.tsx";
 import SelectLanguage from "@/components/shared/SelectLanguage.tsx";
 import { useTranslation } from "react-i18next";
-import {UserButton} from "@clerk/clerk-react";
+import { UserButton } from "@clerk/clerk-react";
 
 export default function Onboarding() {
 	const [current, setCurrent] = useState(0);
@@ -96,8 +96,8 @@ export default function Onboarding() {
 		<section className="grid place-items-center min-h-screen overflow-hidden">
 			<Card className="w-full max-w-[80%] h-full max-h-[80%] relative">
 				<div className="absolute top-3 right-3 z-20 flex gap-3">
-				<SelectLanguage />
-				<UserButton/>
+					<SelectLanguage />
+					<UserButton />
 				</div>
 				<CardContent className="flex justify-center items-center h-full w-full overflow-hidden">
 					<div className="w-full h-full relative flex-col flex justify-center items-center">

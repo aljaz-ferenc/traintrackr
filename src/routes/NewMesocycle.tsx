@@ -92,6 +92,14 @@ export default function NewMesocycle() {
 		return getMuscleIntensities(workouts);
 	}, [workouts]);
 
+	const createBtnDisabled = useMemo(() => {
+		return (
+			!mesoTitle ||
+			!workouts.length ||
+			workouts.some((w) => !w.exercises.length || !w.day)
+		);
+	}, [mesoTitle, workouts]);
+
 	if (isLoading) {
 		return <PageLoading />;
 	}
@@ -195,8 +203,8 @@ export default function NewMesocycle() {
 			<Button
 				variant="primary"
 				onClick={allowEdit ? handleUpdateMeso : handleCreateMeso}
-				className="cursor-pointer px-4"
 				isLoading={isCreating || isUpdating}
+				disabled={createBtnDisabled}
 			>
 				{allowEdit ? "Update Mesocycle" : "Create Mesocycle"}
 			</Button>

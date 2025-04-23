@@ -19,7 +19,7 @@ export default function AppLayout() {
 				<div className="flex items-center gap-3">
 					<div className="block lg:hidden">
 						<Sheet open={sidebarIsOpen} onOpenChange={setSidebarIsOpen}>
-							<SheetTrigger>
+							<SheetTrigger asChild>
 								<button type="button" className="cursor-pointer">
 									<Menu size={20} />
 								</button>

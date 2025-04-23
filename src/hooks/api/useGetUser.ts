@@ -4,7 +4,7 @@ import { useAuth } from "@clerk/clerk-react";
 import { useQuery } from "@tanstack/react-query";
 import useUserStore from "@/state/UserStore.ts";
 
-//find user in DB with clerkId
+//find user in DB by clerkId
 async function fetchUser(clerkId: string) {
 	const res = await fetch(Endpoints.user(clerkId));
 	if (!res.ok) throw new Error("Failed to fetch user");
@@ -15,7 +15,6 @@ async function fetchUser(clerkId: string) {
 
 export default function useGetUser() {
 	const { userId: clerkId } = useAuth();
-	console.log(clerkId);
 
 	return useQuery<User>({
 		queryKey: ["user", { clerkId }],

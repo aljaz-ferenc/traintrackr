@@ -111,10 +111,11 @@ export default function Workout({
 									onValueChange={(val) => {
 										setWorkoutDay(workout.id, Number(val));
 									}}
+									defaultValue={workout.day.toString()}
 								>
 									<SelectTrigger className="w-full cursor-pointer">
 										<SelectValue
-											placeholder="Select day"
+											placeholder="Select day..."
 											className="bg-white capitalize"
 										/>
 										<SelectContent>

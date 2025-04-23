@@ -6,7 +6,7 @@ import { Link } from "react-router";
 
 const buttonStyles = cva(
 	[
-		"w-max relative flex items-center justify-center transition-all p-2 px-4 rounded-lg font-semibold cursor-pointer",
+		"w-max relative flex items-center justify-center transition-all p-2 px-4 cursor-pointer rounded-lg font-semibold cursor-pointer",
 	],
 	{
 		variants: {
@@ -58,9 +58,13 @@ export default function Button({
 		<button
 			type={type}
 			{...props}
-			className={cn([buttonStyles({ variant }), className])}
+			className={cn([
+				buttonStyles({ variant }),
+				props.disabled && "cursor-not-allowed text-muted-foreground",
+				className,
+			])}
 			onClick={onClick}
-			disabled={isLoading}
+			disabled={isLoading || props.disabled}
 		>
 			<span className={cn([isLoading && "opacity-0"])}>{children}</span>
 			<Spinner

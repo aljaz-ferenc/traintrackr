@@ -14,7 +14,6 @@ export default function Body({ muscleGroups }: BodyProps) {
 	const svgBackRef = useRef<SVGSVGElement>(null);
 	const containerRef = useRef<HTMLDivElement>(null);
 	const { theme } = useTheme();
-	console.log(theme);
 
 	const strokeColor = theme === "light" ? "#aaa" : "#fff";
 	const strokeWidth = 2;
