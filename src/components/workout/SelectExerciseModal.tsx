@@ -21,6 +21,7 @@ import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { useMemo, useState } from "react";
 import { useShallow } from "zustand/react/shallow";
 import type { Exercise, Workout } from "@/core/types.ts";
+import {useTranslation} from "react-i18next";
 
 type SelectExerciseModalProps = {
 	workoutId: Workout["id"];
@@ -29,6 +30,7 @@ type SelectExerciseModalProps = {
 export default function SelectExerciseModal({
 	workoutId,
 }: SelectExerciseModalProps) {
+	const {t} = useTranslation()
 	const [addExerciseToWorkout] = useNewMesoStore(
 		useShallow((state) => [state.addExerciseToWorkout]),
 	);
@@ -73,18 +75,18 @@ export default function SelectExerciseModal({
 					variant="secondary"
 					// disabled={!!workouts.find((workout) => workout.id === workoutId)?.day}
 				>
-					+ Add exercise
+					+ {t('NEW_MESOCYCLE.addExercise')}
 				</Button>
 			</DialogTrigger>
 			<DialogContent>
-				<DialogHeader>Add Exercise</DialogHeader>
+				<DialogHeader>{t('NEW_MESOCYCLE.addExercise')}</DialogHeader>
 				<Select
 					value={selectedMuscleGroup}
 					onValueChange={setSelectedMuscleGroup}
 				>
 					<SelectTrigger className="w-full cursor-pointer">
 						<SelectValue
-							placeholder="Select muscle group..."
+							placeholder={t("NEW_MESOCYCLE.selectMuscleGroup")}
 							className="bg-white capitalize"
 						/>
 					</SelectTrigger>

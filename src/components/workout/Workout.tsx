@@ -15,6 +15,7 @@ import { cn } from "@/utils/utils.ts";
 import { useOnClickOutside } from "usehooks-ts";
 import WorkoutActions from "@/components/workout/WorkoutActions.tsx";
 import { Card, CardContent } from "@/components/ui/card.tsx";
+import {useTranslation} from "react-i18next";
 
 type WorkoutProps = {
 	workout: TWorkout;
@@ -59,6 +60,7 @@ export default function Workout({
 	focusable = false,
 }: WorkoutProps) {
 	const workoutRef = useRef<HTMLDivElement>(null);
+	const {t} = useTranslation()
 	const [
 		removeWorkout,
 		setWorkoutDay,
@@ -125,7 +127,7 @@ export default function Workout({
 													key={day.value}
 													className="capitalize cursor-pointer"
 												>
-													<span className="capitalize">{day.day}</span>
+													<span className='capitalize'>{t(`GENERAL.days.${day.day.toLowerCase()}.long`)}</span>
 												</SelectItem>
 											))}
 										</SelectContent>

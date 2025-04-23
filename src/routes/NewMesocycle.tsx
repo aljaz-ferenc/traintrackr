@@ -1,7 +1,7 @@
-import AppTooltip from "@/components/shared/Tooltip.tsx";
+// import AppTooltip from "@/components/shared/Tooltip.tsx";
 import { Input } from "@/components/ui/Input.tsx";
 import Button from "@/components/shared/Button.tsx";
-import { Checkbox } from "@/components/ui/checkbox.tsx";
+// import { Checkbox } from "@/components/ui/checkbox.tsx";
 import { Label } from "@/components/ui/label.tsx";
 import { Separator } from "@/components/ui/separator";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group.tsx";
@@ -22,7 +22,7 @@ import PageLoading from "@/components/shared/PageLoading.tsx";
 import { useTranslation } from "react-i18next";
 
 const mesoDurationOptions = [4, 6, 8, 10, 12];
-const mesoSplitTypeOptions = ["synchronous", "asynchronous"];
+// const mesoSplitTypeOptions = ["synchronous", "asynchronous"];
 
 export default function NewMesocycle() {
 	const [userId] = useUserStore(useShallow((state) => [state.user?._id]));
@@ -37,13 +37,13 @@ export default function NewMesocycle() {
 	const [
 		mesoTitle,
 		mesoDuration,
-		includeDeload,
-		splitType,
+		// includeDeload,
+		// splitType,
 		workouts,
 		updateMesoTitle,
 		updateMesoDuration,
-		toggleIncludeDeload,
-		setMesoSplitType,
+		// toggleIncludeDeload,
+		// setMesoSplitType,
 		addWorkout,
 		constructMesocycle,
 		setMesoToEdit,
@@ -52,13 +52,13 @@ export default function NewMesocycle() {
 		useShallow((state) => [
 			state.mesoTitle,
 			state.mesoDuration,
-			state.includeDeload,
-			state.splitType,
+			// state.includeDeload,
+			// state.splitType,
 			state.workouts,
 			state.updateMesoTitle,
 			state.updateMesoDuration,
-			state.toggleIncludeDeload,
-			state.setMesoSplitType,
+			// state.toggleIncludeDeload,
+			// state.setMesoSplitType,
 			state.addWorkout,
 			state.constructMesocycle,
 			state.setMesoToEdit,
@@ -113,7 +113,7 @@ export default function NewMesocycle() {
 			/>
 			<div className="flex flex-col gap-10">
 				<div>
-					<Label className="mb-2">Mesocycle Name</Label>
+					<Label className="mb-2">{t('NEW_MESOCYCLE.name')}</Label>
 					<Input
 						value={mesoTitle}
 						className="w-full"
@@ -121,7 +121,7 @@ export default function NewMesocycle() {
 					/>
 				</div>
 				<div>
-					<Label className="mb-2">Mesocycle duration in weeks</Label>
+					<Label className="mb-2">{t('NEW_MESOCYCLE.duration')}</Label>
 					<ToggleGroup
 						value={String(mesoDuration)}
 						type="single"
@@ -138,50 +138,50 @@ export default function NewMesocycle() {
 							</ToggleGroupItem>
 						))}
 					</ToggleGroup>
-					<div className="flex items-center gap-1">
-						<Checkbox
-							checked={includeDeload}
-							id="mesoDuration"
-							className="cursor-pointer"
-							onCheckedChange={(val) => toggleIncludeDeload(val as boolean)}
-						/>
-						<Label htmlFor="mesoDuration">Include deload week</Label>
-						<AppTooltip content="Weight will be lowered by 50% on the last week of the mesoccle." />
-					</div>
+					{/*<div className="flex items-center gap-1">*/}
+					{/*	<Checkbox*/}
+					{/*		checked={includeDeload}*/}
+					{/*		id="mesoDuration"*/}
+					{/*		className="cursor-pointer"*/}
+					{/*		onCheckedChange={(val) => toggleIncludeDeload(val as boolean)}*/}
+					{/*	/>*/}
+					{/*	<Label htmlFor="mesoDuration">Include deload week</Label>*/}
+					{/*	<AppTooltip content="Weight will be lowered by 50% on the last week of the mesoccle." />*/}
+					{/*</div>*/}
 				</div>
-				<div>
-					<Label className="mb-2">Split Type</Label>
-					<ToggleGroup
-						value={splitType}
-						type={"single"}
-						className="flex gap-2"
-						onValueChange={setMesoSplitType}
-					>
-						{mesoSplitTypeOptions.map((option) => (
-							<ToggleGroupItem
-								value={option}
-								key={option}
-								className="capitalize cursor-pointer"
-							>
-								{option}
-							</ToggleGroupItem>
-						))}
-						<AppTooltip
-							content={
-								<div className="flex flex-col gap-1">
-									<span>
-										<strong>Synchronous: </strong>
-										Workouts follow a fixed weekly schedule (7-day split).
-									</span>
-									<span>
-										<strong>Asynchronous: </strong>
-										Workouts repeat in order without fixed days.
-									</span>
-								</div>
-							}
-						/>
-					</ToggleGroup>
-				</div>
+				{/*<div>*/}
+				{/*	<Label className="mb-2">Split Type</Label>*/}
+				{/*	<ToggleGroup*/}
+				{/*		value={splitType}*/}
+				{/*		type={"single"}*/}
+				{/*		className="flex gap-2"*/}
+				{/*		onValueChange={setMesoSplitType}*/}
+				{/*	>*/}
+				{/*		{mesoSplitTypeOptions.map((option) => (*/}
+				{/*			<ToggleGroupItem*/}
+				{/*				value={option}*/}
+				{/*				key={option}*/}
+				{/*				className="capitalize cursor-pointer"*/}
+				{/*			>*/}
+				{/*				{option}*/}
+				{/*			</ToggleGroupItem>*/}
+				{/*		))}*/}
+				{/*		<AppTooltip*/}
+				{/*			content={*/}
+				{/*				<div className="flex flex-col gap-1">*/}
+				{/*					<span>*/}
+				{/*						<strong>Synchronous: </strong>*/}
+				{/*						Workouts follow a fixed weekly schedule (7-day split).*/}
+				{/*					</span>*/}
+				{/*					<span>*/}
+				{/*						<strong>Asynchronous: </strong>*/}
+				{/*						Workouts repeat in order without fixed days.*/}
+				{/*					</span>*/}
+				{/*				</div>*/}
+				{/*			}*/}
+				{/*		/>*/}
+				{/*	</ToggleGroup>*/}
+				{/*</div>*/}
 				<Separator />
 			</div>
 			<div className="flex gap-10 max-w-screen">
@@ -196,7 +196,7 @@ export default function NewMesocycle() {
 						addWorkout({ id: crypto.randomUUID(), exercises: [], day: 0 })
 					}
 				>
-					Add workout
+					{t('NEW_MESOCYCLE.addWorkout')}
 				</Button>
 				<div className="flex gap-5 mt-2">
 					{workouts.map((workout) => (
@@ -210,7 +210,7 @@ export default function NewMesocycle() {
 				isLoading={isCreating || isUpdating}
 				disabled={createBtnDisabled}
 			>
-				{allowEdit ? "Update Mesocycle" : "Create Mesocycle"}
+				{allowEdit ? t('NEW_MESOCYCLE.updateMeso') : t('NEW_MESOCYCLE.createMeso')}
 			</Button>
 		</section>
 	);

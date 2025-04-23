@@ -143,5 +143,14 @@
 		"reps": "repeticije",
 		"addSet": "dodaj serijo",
 		"completeWorkout": "Zaključi trening"
+	},
+	"NEW_MESOCYCLE": {
+		"name": "Ime mezocikla",
+		"duration": "Trajanje v tednih",
+		"addWorkout": "Dodaj trening",
+		"createMeso": "Ustvari mezocikel",
+		"updateMeso": "Uredi mezocikel",
+		"addExercise": "Dodaj vajo",
+		"selectMuscleGroup": "Izberi mišično skupino..."
 	}
 }

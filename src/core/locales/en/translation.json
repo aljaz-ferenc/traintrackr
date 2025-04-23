@@ -142,5 +142,14 @@
 		"reps": "reps",
 		"addSet": "add set",
 		"completeWorkout": "Complete Workout"
+	},
+	"NEW_MESOCYCLE": {
+		"name": "Mesocycle Name",
+		"duration": "Mesocycle duration in weeks",
+		"addWorkout": "Add Workout",
+		"createMeso": "Create Mesocycle",
+		"updateMeso": "Update Mesocycle",
+		"addExercise": "Add exercise",
+		"selectMuscleGroup": "Select muscle group..."
 	}
 }
