@@ -34,7 +34,8 @@ export default function NutritionItem({ nutrition }: NutritionItemProps) {
 					<CardContent className="p-1 flex justify-between">
 						<p>{nutrition.item.name}</p>
 						<p className="ml-auto mr-3">
-							{Math.round((nutrition.amount * nutrition.item.calories) / 100)} kcal
+							{Math.round((nutrition.amount * nutrition.item.calories) / 100)}{" "}
+							kcal
 						</p>
 						<button
 							className="cursor-pointer"

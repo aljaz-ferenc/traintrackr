@@ -23,6 +23,7 @@ import { useNavigate } from "react-router";
 import useUserStore from "@/state/UserStore.ts";
 import { useShallow } from "zustand/react/shallow";
 import useUpdateUser from "@/hooks/api/useUpdateUser.ts";
+import { useTranslation } from "react-i18next";
 
 type MesocyclesAccordionProps = {
 	mesocycles: Mesocycle[];
@@ -31,7 +32,6 @@ type MesocyclesAccordionProps = {
 export default function MesocyclesAccordion({
 	mesocycles,
 }: MesocyclesAccordionProps) {
-	//TODO: create popover component?
 	const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 	const navigate = useNavigate();
 	const { mutateAsync: deleteMeso, isPending: isDeleting } =
@@ -40,6 +40,7 @@ export default function MesocyclesAccordion({
 		useActivateMesocycle();
 	const user = useUserStore(useShallow((state) => state.user));
 	const { mutateAsync: updateUser } = useUpdateUser();
+	const { t } = useTranslation();
 
 	const handleDeleteMesocycle = async (mesoId: Mesocycle["_id"]) => {
 		await deleteMeso(mesoId);
@@ -79,7 +80,7 @@ export default function MesocyclesAccordion({
 							<span>{meso.title}</span>
 							{user?.activeMesocycle?.mesocycle._id === meso._id && (
 								<span className="mr-auto text-green-500 font-bold ml-2">
-									ACTIVE
+									{t("MY_MESOCYCLES.active")}
 								</span>
 							)}
 						</div>
@@ -107,14 +108,14 @@ export default function MesocyclesAccordion({
 										isLoading={isDeleting}
 										className="w-full min-w-max"
 									>
-										Delete Mesocycle
+										{t("MY_MESOCYCLES.delete")}
 									</Button>
 									<Button
 										onClick={() => handleUpdateMesocycle(meso._id)}
 										variant="secondary"
 										className="w-full min-w-max"
 									>
-										Update Mesocycle
+										{t("MY_MESOCYCLES.update")}
 									</Button>
 								</PopoverContent>
 							</Popover>
@@ -125,7 +126,7 @@ export default function MesocyclesAccordion({
 								onClick={() => handleActivateMesocycle(meso)}
 								isLoading={isActivating}
 							>
-								Activate
+								{t("MY_MESOCYCLES.activate")}
 							</Button>
 						)}
 					</AccordionContent>

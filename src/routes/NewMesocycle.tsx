@@ -98,7 +98,7 @@ export default function NewMesocycle() {
 		return (
 			!mesoTitle ||
 			!workouts.length ||
-			workouts.some((w) => !w.exercises.length || !w.day)
+			workouts.some((w) => !w.exercises.length || typeof w.day !== "number")
 		);
 	}, [mesoTitle, workouts]);
 
@@ -113,7 +113,7 @@ export default function NewMesocycle() {
 			/>
 			<div className="flex flex-col gap-10">
 				<div>
-					<Label className="mb-2">{t('NEW_MESOCYCLE.name')}</Label>
+					<Label className="mb-2">{t("NEW_MESOCYCLE.name")}</Label>
 					<Input
 						value={mesoTitle}
 						className="w-full"
@@ -121,7 +121,7 @@ export default function NewMesocycle() {
 					/>
 				</div>
 				<div>
-					<Label className="mb-2">{t('NEW_MESOCYCLE.duration')}</Label>
+					<Label className="mb-2">{t("NEW_MESOCYCLE.duration")}</Label>
 					<ToggleGroup
 						value={String(mesoDuration)}
 						type="single"
@@ -196,7 +196,7 @@ export default function NewMesocycle() {
 						addWorkout({ id: crypto.randomUUID(), exercises: [], day: 0 })
 					}
 				>
-					{t('NEW_MESOCYCLE.addWorkout')}
+					{t("NEW_MESOCYCLE.addWorkout")}
 				</Button>
 				<div className="flex gap-5 mt-2">
 					{workouts.map((workout) => (
@@ -210,7 +210,9 @@ export default function NewMesocycle() {
 				isLoading={isCreating || isUpdating}
 				disabled={createBtnDisabled}
 			>
-				{allowEdit ? t('NEW_MESOCYCLE.updateMeso') : t('NEW_MESOCYCLE.createMeso')}
+				{allowEdit
+					? t("NEW_MESOCYCLE.updateMeso")
+					: t("NEW_MESOCYCLE.createMeso")}
 			</Button>
 		</section>
 	);

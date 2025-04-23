@@ -151,5 +151,19 @@
 		"updateMeso": "Update Mesocycle",
 		"addExercise": "Add exercise",
 		"selectMuscleGroup": "Select muscle group..."
+	},
+	"MY_MESOCYCLES": {
+		"error": {
+			"title": "No mesocycles",
+			"text": "You have not yet created any mesocycles. Create one on the <newMesoLink>New Mesocycle</newMesoLink> page."
+		},
+		"active": "ACTIVE",
+		"activate": "Activate",
+		"delete": "Delete mesocycle",
+		"update": "Update mesocycle"
+	},
+	"COMPLETED_WORKOUTS": {
+		"reps": "reps",
+		"weight": "weight"
 	}
 }

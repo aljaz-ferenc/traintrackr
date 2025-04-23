@@ -58,8 +58,8 @@ export default function CompletedWorkouts() {
 								.filter((week) => week.workouts.length)
 								.map((week, i) => (
 									<div key={`${week}-${i + 1}`} className="flex gap-3 p-2">
-										<h2 className="font-bold text-xl w-max self-center min-w-max">
-											Week {i + 1}
+										<h2 className="font-bold uppercase text-xl w-max self-center min-w-max">
+											{t("GENERAL.week")} {i + 1}
 										</h2>
 										<div className="flex gap-10">
 											{week.workouts.map((workout) => (

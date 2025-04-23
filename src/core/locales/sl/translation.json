@@ -128,7 +128,7 @@
 		},
 		"noActiveMeso": {
 			"title": "Nimaš aktiviranega mezocikla",
-			"text": "Aktiviraš ga lahko na strani <myMesoclcesLink>Moji mezocikli</myMesoclcesLink> ali ustvariš novega na strani <newMesocycleLink>Novi mezocikel<newMesocycleLink/>."
+			"text": "Aktiviraš ga lahko na strani <myMesocyclesLink>Moji mezocikli</myMesocyclesLink> ali ustvariš novega na strani <newMesocycleLink>Novi mezocikel<newMesocycleLink/>."
 		},
 		"restDay": {
 			"title": "Počitek",
@@ -152,5 +152,19 @@
 		"updateMeso": "Uredi mezocikel",
 		"addExercise": "Dodaj vajo",
 		"selectMuscleGroup": "Izberi mišično skupino..."
+	},
+	"MY_MESOCYCLES": {
+		"error": {
+			"title": "Ni mezociklov",
+			"text": "Nimaš še nobenega mezocikla. Ustvariš ga lahko na strani <newMesoLink>Novi mezocikel</newMesoLink>."
+		},
+		"active": "AKTIVEN",
+		"activate": "Aktiviraj",
+		"delete": "Izbriši mezcikel",
+		"update": "Uredi mezocikel"
+	},
+	"COMPLETED_WORKOUTS": {
+		"reps": "repeticije",
+		"weight": "teža"
 	}
 }

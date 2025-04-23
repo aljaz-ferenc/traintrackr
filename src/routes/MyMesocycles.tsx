@@ -8,7 +8,7 @@ import ErrorPage, {
 } from "@/components/shared/ErrorPage.tsx";
 import Button from "@/components/shared/Button.tsx";
 import { Route } from "@/core/enums/Routes.enum.ts";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 export default function MyMesocycles() {
 	const { data: myMesos, isLoading } = useMyMesocycles();
 	const { t } = useTranslation();
@@ -20,13 +20,16 @@ export default function MyMesocycles() {
 	if (!myMesos.length) {
 		return (
 			<ErrorPage>
-				<ErrorTitle>No mesocycles</ErrorTitle>
+				<ErrorTitle>{t("MY_MESOCYCLES.error.title")}</ErrorTitle>
 				<ErrorDescription>
-					You have not yet created any mesocycles. Create one on the{" "}
-					<Button variant="link" to={`/${Route.NewMesocycle}`}>
-						New Mesocycle
-					</Button>{" "}
-					page.
+					<Trans
+						i18nKey="MY_MESOCYCLES.error.text"
+						components={{
+							newMesoLink: (
+								<Button variant="link" to={`/${Route.NewMesocycle}`} />
+							),
+						}}
+					/>
 				</ErrorDescription>
 			</ErrorPage>
 		);
