@@ -30,9 +30,24 @@ export default function Stats() {
 					onValueChange={(val) => setRange(val as Range)}
 				>
 					<TabsList>
-						<TabsTrigger value={Range.Week}>Week</TabsTrigger>
-						<TabsTrigger value={Range.Month}>Month</TabsTrigger>
-						<TabsTrigger value={Range.Year}>Year</TabsTrigger>
+						<TabsTrigger
+							value={Range.Week}
+							className="capitalize cursor-pointer"
+						>
+							{t("GENERAL.week")}
+						</TabsTrigger>
+						<TabsTrigger
+							value={Range.Month}
+							className="capitalize cursor-pointer"
+						>
+							{t("GENERAL.month")}
+						</TabsTrigger>
+						<TabsTrigger
+							value={Range.Year}
+							className="capitalize cursor-pointer"
+						>
+							{t("GENERAL.year")}
+						</TabsTrigger>
 					</TabsList>
 					{stats && <WeightChart weightData={stats.weight.weightsInRange} />}
 				</Tabs>
@@ -49,7 +64,7 @@ export default function Stats() {
 						className="cursor-pointer px-4"
 						isLoading={isUpdating}
 					>
-						Add measurement
+						{t("STATS.addMeasurement")}
 					</Button>
 				</div>
 			</div>

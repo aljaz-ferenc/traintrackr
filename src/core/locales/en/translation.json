@@ -14,6 +14,8 @@
 		"back": "back",
 		"day": "day",
 		"week": "week",
+		"month": "month",
+		"year": "year",
 		"calories": "calories",
 		"protein": "protein",
 		"fat": "fat",
@@ -189,5 +191,8 @@
 		"portionsTooltip": "Add different portion sizes to make tracking easier. For example, you can add a 'slice' or 'tablespoon' portion for your food item and specify how many grams the portion weighs.",
 		"remove": "Remove",
 		"editItem": "Edit item"
+	},
+	"STATS": {
+		"addMeasurement": "Add measurement"
 	}
 }
