@@ -15,6 +15,11 @@
 		"back": "nazaj",
 		"day": "dan",
 		"week": "teden",
+		"calories": "kalorije",
+		"protein": "proteini",
+		"fat": "maščobe",
+		"carbs": "ogljikovi hidrati",
+		"grams": "grami",
 		"days": {
 			"monday": {
 				"long": "ponedeljek",
@@ -166,5 +171,24 @@
 	"COMPLETED_WORKOUTS": {
 		"reps": "repeticije",
 		"weight": "teža"
+	},
+	"NUTRITION": {
+		"addItem": "Dodaj",
+		"selectItem": "Izberi...",
+		"amount": "Količina",
+		"portion": "Porcija",
+		"portions": "Porcije",
+		"submit": "Dodaj",
+		"createNewItem": "Ustvari",
+		"createDesc": "Dodaj vrednosti na 100 gramov",
+		"name": "Ime",
+		"addPortion": "Dodaj porcijo",
+		"create": "Ustvari",
+		"updateItem": "Uredi",
+		"createItem": "Ustvari novo",
+		"example": "npr. 1 žlica...",
+		"portionsTooltip": "Dodaš lahko različne porcije za hitrejše vnašanje - npr. 'rezina' ali 'žlica', ter določiš težo porcije v gramih.",
+		"remove": "Odstrani",
+		"editItem": "Uredi"
 	}
 }

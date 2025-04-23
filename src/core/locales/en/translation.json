@@ -14,6 +14,11 @@
 		"back": "back",
 		"day": "day",
 		"week": "week",
+		"calories": "calories",
+		"protein": "protein",
+		"fat": "fat",
+		"carbs": "carbs",
+		"grams": "grams",
 		"days": {
 			"monday": {
 				"long": "monday",
@@ -165,5 +170,24 @@
 	"COMPLETED_WORKOUTS": {
 		"reps": "reps",
 		"weight": "weight"
+	},
+	"NUTRITION": {
+		"addItem": "Add item",
+		"selectItem": "Select item...",
+		"amount": "Amount",
+		"portion": "Portion",
+		"portions": "Portions",
+		"submit": "Add",
+		"createNewItem": "Create new item",
+		"createDesc": "Add nutrition values per 100 grams",
+		"name": "Name",
+		"addPortion": "Add portion",
+		"create": "Create",
+		"updateItem": "Update item",
+		"createItem": "Create New Item",
+		"example": "e.g. 1 slice",
+		"portionsTooltip": "Add different portion sizes to make tracking easier. For example, you can add a 'slice' or 'tablespoon' portion for your food item and specify how many grams the portion weighs.",
+		"remove": "Remove",
+		"editItem": "Edit item"
 	}
 }

@@ -26,6 +26,7 @@ import { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { useShallow } from "zustand/react/shallow";
+import { useTranslation } from "react-i18next";
 
 type AddItemFormProps = {
 	selectedItemId: string;
@@ -45,6 +46,7 @@ export default function AddItemForm({
 	nutritionId,
 	onMutate,
 }: AddItemFormProps) {
+	const { t } = useTranslation();
 	const [userId] = useUserStore(useShallow((state) => [state.user?._id]));
 	const { mutateAsync: createNutrition, isPending: isCreating } =
 		useCreateNutrition();
@@ -102,7 +104,9 @@ export default function AddItemForm({
 						name="amount"
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>Amount</FormLabel>
+								<FormLabel className="capitalize">
+									{t("NUTRITION.amount")}
+								</FormLabel>
 								<FormControl>
 									<Input {...field} />
 								</FormControl>
@@ -115,7 +119,9 @@ export default function AddItemForm({
 						name="portion"
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>Portion</FormLabel>
+								<FormLabel className="capitalize">
+									{t("NUTRITION.portion")}
+								</FormLabel>
 								<Select
 									onValueChange={field.onChange}
 									value={field.value.toString()}
@@ -127,7 +133,7 @@ export default function AddItemForm({
 										</SelectTrigger>
 									</FormControl>
 									<SelectContent>
-										<SelectItem value={"1"}>grams</SelectItem>
+										<SelectItem value={"1"}>{t("GENERAL.grams")}</SelectItem>
 										{foodItems &&
 											getSelectedFoodItem()?.portions?.map((portion) => (
 												<SelectItem
@@ -145,7 +151,7 @@ export default function AddItemForm({
 					/>
 				</div>
 				<Button isLoading={isCreating || isUpdating} type="submit">
-					{edit ? "Update" : "Submit"}
+					{edit ? t("NUTRITION.updateItem") : t("NUTRITION.submit")}
 				</Button>
 			</form>
 		</Form>

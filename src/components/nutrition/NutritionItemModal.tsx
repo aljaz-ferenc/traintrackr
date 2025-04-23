@@ -6,6 +6,7 @@ import { FilePen } from "lucide-react";
 import { useState } from "react";
 import Macros from "@/components/nutrition/Macros.tsx";
 import { Card, CardContent } from "@/components/ui/card.tsx";
+import { useTranslation } from "react-i18next";
 
 type NutritionItemModalProps = {
 	nutrition: Nutrition;
@@ -19,11 +20,12 @@ export default function NutritionItemModal({
 	const { amount, item, _id } = nutrition;
 	const macros = calcMacros(item, amount);
 	const [isEditable, setIsEditable] = useState(false);
+	const { t } = useTranslation();
 
 	if (isEditable) {
 		return (
 			<>
-				<h3>Edit item</h3>
+				<h3 className="font-bold">{t("NUTRITION.editItem")}</h3>
 				<Card className="p-2 px-0 rounded-md">
 					<CardContent>{item.name}</CardContent>
 				</Card>

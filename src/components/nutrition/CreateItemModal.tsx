@@ -30,6 +30,7 @@ import { useShallow } from "zustand/react/shallow";
 import { FilePen } from "lucide-react";
 import type { FoodItem } from "@/core/types.ts";
 import useUpdateFoodItem from "@/hooks/api/useUpdateFoodItem.ts";
+import { useTranslation } from "react-i18next";
 
 const formSchema = z.object({
 	name: z.string(),
@@ -68,6 +69,7 @@ export default function CreateItemModal({
 	editMode,
 	defaultItem,
 }: CreateItemModalProps) {
+	const { t } = useTranslation();
 	const { mutateAsync: createFoodItem, isPending: isCreating } =
 		useCreateFoodItem();
 	const { mutateAsync: updateFoodItem, isPending: isUpdating } =
@@ -92,7 +94,6 @@ export default function CreateItemModal({
 			form.setValue("carbs", defaultItem.carbs);
 
 			if (defaultItem.portions?.length) {
-				console.log(defaultItem.portions);
 				for (const portion of defaultItem.portions) {
 					append({ name: portion.name, grams: portion.grams });
 				}
@@ -122,10 +123,10 @@ export default function CreateItemModal({
 		<Dialog open={isOpen} onOpenChange={setIsOpen}>
 			<VisuallyHidden>
 				<DialogTitle>
-					{editMode ? "Update item" : "Create New Item"}
+					{editMode ? t("NUTRITION.updateItem") : t("NUTRITION.createItem")}
 				</DialogTitle>
 				<DialogDescription>
-					{editMode ? "Update item" : "Create New Item"}
+					{editMode ? t("NUTRITION.updateItem") : t("NUTRITION.createItem")}
 				</DialogDescription>
 			</VisuallyHidden>
 			<DialogTrigger asChild>
@@ -136,17 +137,15 @@ export default function CreateItemModal({
 					/>
 				) : (
 					<Button variant="ghost" className="underline underline-offset-2">
-						Create new item
+						{t("NUTRITION.createItem")}
 					</Button>
 				)}
 			</DialogTrigger>
 			<DialogContent className="overflow-y-auto max-h-[80vh]">
 				<DialogHeader className="font-bold text-lg">
-					{editMode ? "Update item" : "Create New Item"}
+					{editMode ? t("NUTRITION.updateItem") : t("NUTRITION.createItem")}
 				</DialogHeader>
-				<DialogDescription>
-					Add nutrition values per 100 grams
-				</DialogDescription>
+				<DialogDescription>{t("NUTRITION.createDesc")}</DialogDescription>
 				<Form {...form}>
 					<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
 						<FormField
@@ -154,7 +153,7 @@ export default function CreateItemModal({
 							name="name"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>Name</FormLabel>
+									<FormLabel>{t("NUTRITION.name")}</FormLabel>
 									<FormControl>
 										<Input {...field} />
 									</FormControl>
@@ -167,7 +166,9 @@ export default function CreateItemModal({
 							name="calories"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>Calories</FormLabel>
+									<FormLabel className="capitalize">
+										{t("GENERAL.calories")}
+									</FormLabel>
 									<FormControl>
 										<Input {...field} />
 									</FormControl>
@@ -180,7 +181,9 @@ export default function CreateItemModal({
 							name="protein"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>Protein</FormLabel>
+									<FormLabel className="capitalize">
+										{t("GENERAL.protein")}
+									</FormLabel>
 									<FormControl>
 										<Input {...field} />
 									</FormControl>
@@ -193,7 +196,9 @@ export default function CreateItemModal({
 							name="fat"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>Fat</FormLabel>
+									<FormLabel className="capitalize">
+										{t("GENERAL.fat")}
+									</FormLabel>
 									<FormControl>
 										<Input {...field} />
 									</FormControl>
@@ -206,7 +211,9 @@ export default function CreateItemModal({
 							name="carbs"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>Carbs</FormLabel>
+									<FormLabel className="capitalize">
+										{t("GENERAL.carbs")}
+									</FormLabel>
 									<FormControl>
 										<Input {...field} />
 									</FormControl>
@@ -216,8 +223,8 @@ export default function CreateItemModal({
 						/>
 						<hr />
 						<CardTitle className="flex gap-2 items-center">
-							Portions
-							<AppTooltip content="Add different portion sizes to make tracking easier. For example, you can add a 'slice' or 'tablespoon' portion for your food item and specify how many grams the portion weighs!" />
+							{t("NUTRITION.portions")}
+							<AppTooltip content={t("NUTRITION.portionsTooltip")} />
 						</CardTitle>
 						{fields.map((field, index) => (
 							<Card key={field.id}>
@@ -227,9 +234,12 @@ export default function CreateItemModal({
 										name={`portions.${index}.name`}
 										render={({ field }) => (
 											<FormItem>
-												<FormLabel>Name</FormLabel>
+												<FormLabel>{t("NUTRITION.name")}</FormLabel>
 												<FormControl>
-													<Input {...field} placeholder="e.g. 1 slice" />
+													<Input
+														{...field}
+														placeholder={t("NUTRITION.example")}
+													/>
 												</FormControl>
 												<FormMessage />
 											</FormItem>
@@ -240,7 +250,9 @@ export default function CreateItemModal({
 										name={`portions.${index}.grams`}
 										render={({ field }) => (
 											<FormItem>
-												<FormLabel>Grams</FormLabel>
+												<FormLabel className="capitalize">
+													{t("GENERAL.grams")}
+												</FormLabel>
 												<FormControl>
 													<Input {...field} placeholder="100" />
 												</FormControl>
@@ -253,7 +265,7 @@ export default function CreateItemModal({
 										className="cursor-pointer"
 										onClick={() => remove(index)}
 									>
-										Remove
+										{t("NUTRITION.remove")}
 									</Button>
 								</CardContent>
 							</Card>
@@ -263,7 +275,7 @@ export default function CreateItemModal({
 							className="cursor-pointer"
 							onClick={() => append({ name: "", grams: 0 })}
 						>
-							Add portion
+							{t("NUTRITION.addPortion")}
 						</Button>
 						<hr />
 						<Button
@@ -271,7 +283,7 @@ export default function CreateItemModal({
 							className="cursor-pointer"
 							type="submit"
 						>
-							{editMode ? "Update item" : "Submit"}
+							{editMode ? t("NUTRITION.updateItem") : t("NUTRITION.submit")}
 						</Button>
 					</form>
 				</Form>

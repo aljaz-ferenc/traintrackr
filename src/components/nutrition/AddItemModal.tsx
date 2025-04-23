@@ -23,6 +23,7 @@ import { useMemo } from "react";
 import { useState } from "react";
 import Macros from "@/components/nutrition/Macros.tsx";
 import Spinner from "@/components/Spinner/Spinner.tsx";
+import { useTranslation } from "react-i18next";
 
 type AddItemModalProps = {
 	isOpen: boolean;
@@ -35,6 +36,7 @@ export default function CreateItemModal({
 }: AddItemModalProps) {
 	const [selectedItemId, setSelectedItemId] = useState("");
 	const { data: foodItems, isLoading } = useFoodItems();
+	const { t } = useTranslation();
 
 	const selectedItem = useMemo(() => {
 		return foodItems?.find((item) => item._id === selectedItemId);
@@ -50,19 +52,19 @@ export default function CreateItemModal({
 	return (
 		<Dialog open={isOpen} onOpenChange={onOpenChange}>
 			<VisuallyHidden>
-				<DialogTitle>Add Item</DialogTitle>
+				<DialogTitle>{t("NUTRITION.addItem")}</DialogTitle>
 				<DialogDescription>Add nutrition item</DialogDescription>
 			</VisuallyHidden>
 			<DialogTrigger asChild>
-				<Button>Add item</Button>
+				<Button>{t("NUTRITION.addItem")}</Button>
 			</DialogTrigger>
 			<DialogContent>
 				<DialogHeader>
-					<span>Add item</span>
+					<span>{t("NUTRITION.addItem")}</span>
 				</DialogHeader>
 				<Select onValueChange={(val) => setSelectedItemId(val)}>
 					<SelectTrigger className="w-full">
-						<SelectValue placeholder="Select item..." />
+						<SelectValue placeholder={t("NUTRITION.selectItem")} />
 					</SelectTrigger>
 					<SelectContent>
 						{isLoading ? (
