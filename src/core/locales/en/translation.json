@@ -9,6 +9,41 @@
 		"nutrition": "Nutrition",
 		"stats": "Stats"
 	},
+	"GENERAL": {
+		"continue": "continue",
+		"back": "back",
+		"day": "day",
+		"days": {
+			"monday": {
+				"long": "monday",
+				"short": "mon"
+			},
+			"tuesday": {
+				"long": "tuesday",
+				"short": "tue"
+			},
+			"wednesday": {
+				"long": "wednesday",
+				"short": "wed"
+			},
+			"thursday": {
+				"long": "thursday",
+				"short": "thu"
+			},
+			"friday": {
+				"long": "friday",
+				"short": "fri"
+			},
+			"saturday": {
+				"long": "saturday",
+				"short": "sat"
+			},
+			"sunday": {
+				"long": "sunday",
+				"short": "sun"
+			}
+		}
+	},
 	"ONBOARDING": {
 		"welcome": {
 			"title": "Welcome to TrainTrackr!",
@@ -46,6 +81,42 @@
 			"continue": "Continue",
 			"back": "Back",
 			"letsGo": "Let's go!"
+		}
+	},
+	"DASHBOARD": {
+		"thisWeek": "This week",
+		"today": "Today",
+		"lastEntry": "Last entry",
+		"nutrition": {
+			"title": "Nutrition",
+			"calsConsumed": "Calories consumed",
+			"calsLeft": "Calories left",
+			"calsGoal": "Calorie goal",
+			"avgCals": "Average calories",
+			"calsConsumption": "Calorie consumption",
+			"macrosRatio": "Macros ratio",
+			"protein": "protein",
+			"fat": "fat",
+			"carbs": "carbs"
+		},
+		"weight": {
+			"title": "Weight",
+			"current": "Current",
+			"starting": "Starting",
+			"change": "Change",
+			"weight": "Weight"
+		},
+		"meso": {
+			"title": "Mesocycle",
+			"progress": "Mesocycle progress",
+			"completed": "Workouts completed",
+			"statuses": {
+				"title": "Workout statuses",
+				"rest": "Rest",
+				"missed": "Missed",
+				"completed": "Completed",
+				"upcoming": "Upcoming"
+			}
 		}
 	}
 }

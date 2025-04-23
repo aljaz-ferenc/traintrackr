@@ -9,27 +9,30 @@ import {
 	ChartTooltipContent,
 } from "@/components/ui/chart.tsx";
 import { Pie, PieChart } from "recharts";
+import { useTranslation } from "react-i18next";
 
 type MacrosPieChartProps = {
 	macros: Macros;
 };
 
-const chartConfig = {
-	protein: {
-		label: "Protein",
-		color: "hsl(var(--chart-1))",
-	},
-	fat: {
-		label: "Fat",
-		color: "hsl(var(--chart-2))",
-	},
-	carbs: {
-		label: "Carbs",
-		color: "hsl(var(--chart-3))",
-	},
-} satisfies ChartConfig;
-
 export default function MacrosPieChart({ macros }: MacrosPieChartProps) {
+	const { t } = useTranslation();
+
+	const chartConfig = {
+		protein: {
+			label: t("DASHBOARD.nutrition.protein"),
+			color: "hsl(var(--chart-1))",
+		},
+		fat: {
+			label: t("DASHBOARD.nutrition.fat"),
+			color: "hsl(var(--chart-2))",
+		},
+		carbs: {
+			label: t("DASHBOARD.nutrition.carbs"),
+			color: "hsl(var(--chart-3))",
+		},
+	} satisfies ChartConfig;
+
 	const chartData = useMemo(() => {
 		const proteinCalories = macros.protein * 4;
 		const fatCalories = macros.fat * 9;
@@ -66,7 +69,7 @@ export default function MacrosPieChart({ macros }: MacrosPieChartProps) {
 				<Pie data={chartData} dataKey="percentage" label nameKey="macro" />
 				<ChartLegend
 					content={<ChartLegendContent nameKey="macro" />}
-					className="text-lg -translate-y-2 flex-wrap gap-2 [&>*]:basis-1/4 [&>*]:justify-center"
+					className="text-lg -translate-y-2 flex-wrap [&>*]:min-w-max gap-2  [&>*]:text-sm [&>*]:basis-1/4 [&>*]:justify-center"
 				/>
 			</PieChart>
 		</ChartContainer>

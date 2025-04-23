@@ -7,11 +7,43 @@
 		"myMesocycles": "Moji mezocikli",
 		"completedWorkouts": "Opravljeni treningi",
 		"nutrition": "Prehrana",
-		"stats": "Statistika"
+		"stats": "Statistika",
+		"day": "dan"
 	},
 	"GENERAL": {
 		"continue": "nadaljuj",
-		"back": "nazaj"
+		"back": "nazaj",
+		"day": "dan",
+		"days": {
+			"monday": {
+				"long": "ponedeljek",
+				"short": "pon"
+			},
+			"tuesday": {
+				"long": "torek",
+				"short": "tor"
+			},
+			"wednesday": {
+				"long": "sreda",
+				"short": "sre"
+			},
+			"thursday": {
+				"long": "četrtek",
+				"short": "čet"
+			},
+			"friday": {
+				"long": "petek",
+				"short": "pet"
+			},
+			"saturday": {
+				"long": "sobota",
+				"short": "sob"
+			},
+			"sunday": {
+				"long": "nedelja",
+				"short": "ned"
+			}
+		}
 	},
 	"ONBOARDING": {
 		"welcome": {
@@ -50,6 +82,42 @@
 			"continue": "Začnimo!",
 			"back": "Nazaj",
 			"letsGo": "Zaključi"
+		}
+	},
+	"DASHBOARD": {
+		"thisWeek": "Ta teden",
+		"today": "Danes",
+		"lastEntry": "Zadnji vnos",
+		"nutrition": {
+			"title": "Prehrana",
+			"calsConsumed": "Zaužite kalorije",
+			"calsLeft": "Preostanek",
+			"calsGoal": "Cilj",
+			"avgCals": "Povprečje",
+			"calsConsumption": "Kalorije",
+			"macrosRatio": "Makrohranila",
+			"protein": "beljakovine",
+			"fat": "maščobe",
+			"carbs": "ogljikovi hidrati"
+		},
+		"weight": {
+			"title": "Teža",
+			"current": "Trenutna",
+			"starting": "Začetna",
+			"change": "Sprememba",
+			"weight": "Teža"
+		},
+		"meso": {
+			"title": "Mezocikel",
+			"progress": "Napredek",
+			"completed": "Zaključeni treningi",
+			"statuses": {
+				"title": "Status treningov",
+				"rest": "Počitek",
+				"missed": "Neopravljen",
+				"completed": "Opravljen",
+				"upcoming": "Prihajajoč"
+			}
 		}
 	}
 }

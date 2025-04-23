@@ -79,7 +79,7 @@ export default function AppSidebar({
 	return (
 		<aside
 			className={cn([
-				"flex flex-col border-r min-h-[100vh] bg-sidebar",
+				"flex flex-col border-r min-h-[100vh] w-70 bg-sidebar",
 				className,
 			])}
 		>

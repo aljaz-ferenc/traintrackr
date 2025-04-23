@@ -4,6 +4,7 @@ import useStats from "@/hooks/api/useStats.ts";
 import { Range } from "@/core/enums/Range.enum.ts";
 import Spinner from "@/components/Spinner/Spinner.tsx";
 import { cn } from "@/lib/utils.ts";
+import { useTranslation } from "react-i18next";
 
 type WeightCardsProps = {
 	className?: string;
@@ -11,6 +12,7 @@ type WeightCardsProps = {
 
 export default function WeightCards({ className = "" }: WeightCardsProps) {
 	const { data: stats, isLoading: isLoadingStats } = useStats(Range.Week);
+	const { t } = useTranslation();
 
 	if (isLoadingStats) {
 		return <Spinner />;
@@ -25,8 +27,8 @@ export default function WeightCards({ className = "" }: WeightCardsProps) {
 			<h2 className="text-xl font-bold mb-3">Weight</h2>
 			<div className="grid gap-3 @sm:grid-cols-2 @md:grid-cols-3 @lg:grid-cols-3">
 				<WidgetWrapper
-					title="Current"
-					description="Last entry"
+					title={t("DASHBOARD.weight.current")}
+					description={t("DASHBOARD.lastEntry")}
 					className="@lg:row-1"
 				>
 					<div>
@@ -37,8 +39,8 @@ export default function WeightCards({ className = "" }: WeightCardsProps) {
 					</div>
 				</WidgetWrapper>
 				<WidgetWrapper
-					title="Starting"
-					description="This week"
+					title={t("DASHBOARD.weight.starting")}
+					description={t("DASHBOARD.thisWeek")}
 					className="@lg:row-2"
 				>
 					<div>
@@ -49,8 +51,8 @@ export default function WeightCards({ className = "" }: WeightCardsProps) {
 					</div>
 				</WidgetWrapper>
 				<WidgetWrapper
-					title="Change"
-					description="This week"
+					title={t("DASHBOARD.weight.change")}
+					description={t("DASHBOARD.thisWeek")}
 					className="@lg:row-3"
 				>
 					<div>
@@ -87,7 +89,7 @@ export default function WeightCards({ className = "" }: WeightCardsProps) {
 				{/*	</div>*/}
 				{/*</WidgetWrapper>*/}
 				<WidgetWrapper
-					title="Weight"
+					title={t("DASHBOARD.weight.title")}
 					className="@md:col-span-3 @lg:col-2 @lg:col-span-2 @lg:row-span-3"
 				>
 					<WeightChart weightData={stats.weight.weightsInRange} />
