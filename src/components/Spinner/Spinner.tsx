@@ -6,7 +6,7 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
 	center?: boolean;
 	fullscreenCenter?: boolean;
 	variant?: VariantProps<typeof spinnerStyles>["variant"];
-	size?: number
+	size?: number;
 }
 
 const spinnerStyles = cva([""], {

@@ -19,7 +19,8 @@ type NutritionItemProps = {
 };
 
 export default function NutritionItem({ nutrition }: NutritionItemProps) {
-	const { mutateAsync: deleteNutrition, isPending: isDeleting } = useDeleteNutrition();
+	const { mutateAsync: deleteNutrition, isPending: isDeleting } =
+		useDeleteNutrition();
 	const [isOpen, setIsOpen] = useState(false);
 
 	const handleDeleteNutrition = async () => {
@@ -43,7 +44,11 @@ export default function NutritionItem({ nutrition }: NutritionItemProps) {
 								await handleDeleteNutrition();
 							}}
 						>
-							{isDeleting ? <Spinner size={5}/> : <X className="text-red-500"/>}
+							{isDeleting ? (
+								<Spinner size={5} />
+							) : (
+								<X className="text-red-500" />
+							)}
 						</button>
 					</CardContent>
 				</Card>

@@ -20,7 +20,7 @@ export function ProtectedRoute({ children }: { children: React.ReactNode }) {
 	const isOnboarded = isUserOnboarded(data);
 
 	if (isSignedIn && !isOnboarded) {
-		return <Onboarding/>;
+		return <Onboarding />;
 	}
 
 	return <>{children}</>;

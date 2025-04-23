@@ -1,41 +1,41 @@
 {
-  "ONBOARDING": {
-    "welcome": {
-      "title": "Welcome to TrainTrackr!",
-      "text": "We're excited to have you here. Let’s set up a few things to personalize your experience and help you get the most out of TrainTrackr."
-    },
-    "gender": {
-      "title": "What's your gender?",
-      "text": "This helps us fine-tune your experience. No worries — your info stays private and safe with us.",
-      "male": "Male",
-      "female": "Female"
-    },
-    "dob": {
-      "title": "When's your birthday?",
-      "text": "This helps us fine-tune your experience. No worries — your info stays private and safe with us."
-    },
-    "units": {
-      "title": "Choose your preferred units",
-      "text": "This helps us fine-tune your experience. No worries — your info stays private and safe with us.",
-      "metric": "Metric",
-      "imperial": "Imperial"
-    },
-    "height": {
-      "title": "What's your height?",
-      "text": "This helps us fine-tune your experience. No worries — your info stays private and safe with us."
-    },
-    "weight": {
-      "title": "What's your weight?",
-      "text": "This helps us fine-tune your experience. No worries — your info stays private and safe with us."
-    },
-    "letsGo": {
-      "title": "You're all set!",
-      "text": "This helps us fine-tune your experience. No worries — your info stays private and safe with us."
-    },
-    "buttons": {
-      "continue": "Continue",
-      "back": "Back",
-      "letsGo": "Let's go!"
-    }
-  }
+	"ONBOARDING": {
+		"welcome": {
+			"title": "Welcome to TrainTrackr!",
+			"text": "We're excited to have you here. Let’s set up a few things to personalize your experience and help you get the most out of TrainTrackr."
+		},
+		"gender": {
+			"title": "What's your gender?",
+			"text": "This helps us fine-tune your experience. No worries — your info stays private and safe with us.",
+			"male": "Male",
+			"female": "Female"
+		},
+		"dob": {
+			"title": "When's your birthday?",
+			"text": "This helps us fine-tune your experience. No worries — your info stays private and safe with us."
+		},
+		"units": {
+			"title": "Choose your preferred units",
+			"text": "This helps us fine-tune your experience. No worries — your info stays private and safe with us.",
+			"metric": "Metric",
+			"imperial": "Imperial"
+		},
+		"height": {
+			"title": "What's your height?",
+			"text": "This helps us fine-tune your experience. No worries — your info stays private and safe with us."
+		},
+		"weight": {
+			"title": "What's your weight?",
+			"text": "This helps us fine-tune your experience. No worries — your info stays private and safe with us."
+		},
+		"letsGo": {
+			"title": "You're all set!",
+			"text": "This helps us fine-tune your experience. No worries — your info stays private and safe with us."
+		},
+		"buttons": {
+			"continue": "Continue",
+			"back": "Back",
+			"letsGo": "Let's go!"
+		}
+	}
 }

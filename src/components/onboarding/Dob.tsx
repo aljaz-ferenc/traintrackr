@@ -6,19 +6,19 @@ import {
 	InputOTPSlot,
 } from "@/components/ui/input-otp";
 import { REGEXP_ONLY_DIGITS } from "input-otp";
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 type AgeProps = {
 	setDob: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export default function Dob({ setDob }: AgeProps) {
-	const {t} = useTranslation()
+	const { t } = useTranslation();
 
 	return (
 		<>
 			<h2 className="text-3xl font-bold text-center mb-4">
-				{t('ONBOARDING.dob.title')}
+				{t("ONBOARDING.dob.title")}
 			</h2>
 
 			<InputOTP
@@ -44,7 +44,7 @@ export default function Dob({ setDob }: AgeProps) {
 				</InputOTPGroup>
 			</InputOTP>
 			<p className="text-center max-w-[80%] mx-auto max-w-sm leading-8">
-				{t('ONBOARDING.dob.text')}
+				{t("ONBOARDING.dob.text")}
 			</p>
 		</>
 	);

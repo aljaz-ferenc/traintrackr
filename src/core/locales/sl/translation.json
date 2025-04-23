@@ -1,45 +1,45 @@
 {
-  "GENERAL": {
-    "continue": "nadaljuj",
-    "back": "nazaj"
-  },
-  "ONBOARDING": {
-    "welcome": {
-      "title": "Dobrodošel v aplikaciji TrainTrackr!",
-      "text": "Veseli smo, da si se na pridružil. Nastavimo nekaj osnovnih stvari, da prilagodimo tvojo izkušnjo in ti pomagamo kar najbolje izkoristiti TrainTrackr."
-    },
-    "gender": {
-      "title": "Kateri je tvoj spol?",
-      "text": "To nam pomaga prilagoditi tvojo izkušnjo. Brez skrbi — tvoji podatki ostanejo zasebni in varni pri nas.",
-      "male": "Moški",
-      "female": "Ženska"
-    },
-    "dob": {
-      "title": "Kdaj imaš rojstni dan?",
-      "text": "To nam pomaga prilagoditi tvojo izkušnjo. Brez skrbi — tvoji podatki ostanejo zasebni in varni pri nas."
-    },
-    "units": {
-      "title": "Izberi želene enote",
-      "text": "To nam pomaga prilagoditi tvojo izkušnjo. Brez skrbi — tvoji podatki ostanejo zasebni in varni pri nas.",
-      "metric": "Metrične",
-      "imperial": "Imperialne"
-    },
-    "height": {
-      "title": "Kakšna je tvoja višina?",
-      "text": "To nam pomaga prilagoditi tvojo izkušnjo. Brez skrbi — tvoji podatki ostanejo zasebni in varni pri nas."
-    },
-    "weight": {
-      "title": "Kakšna je tvoja teža?",
-      "text": "To nam pomaga prilagoditi tvojo izkušnjo. Brez skrbi — tvoji podatki ostanejo zasebni in varni pri nas."
-    },
-    "letsGo": {
-      "title": "Vse je pripravljeno!",
-      "text": "Uspešno si nastavil svoj profil in pripravljeni smo za trening! Zdaj si korak bližje doseganju svojih fitnes ciljev. Začnimo s spremljanjem vadb in napredka. Odlično ti bo šlo!"
-    },
-    "buttons": {
-      "continue": "Začnimo!",
-      "back": "Nazaj",
-      "letsGo": "Zaključi"
-    }
-  }
+	"GENERAL": {
+		"continue": "nadaljuj",
+		"back": "nazaj"
+	},
+	"ONBOARDING": {
+		"welcome": {
+			"title": "Dobrodošel v aplikaciji TrainTrackr!",
+			"text": "Veseli smo, da si se na pridružil. Nastavimo nekaj osnovnih stvari, da prilagodimo tvojo izkušnjo in ti pomagamo kar najbolje izkoristiti TrainTrackr."
+		},
+		"gender": {
+			"title": "Kateri je tvoj spol?",
+			"text": "To nam pomaga prilagoditi tvojo izkušnjo. Brez skrbi — tvoji podatki ostanejo zasebni in varni pri nas.",
+			"male": "Moški",
+			"female": "Ženska"
+		},
+		"dob": {
+			"title": "Kdaj imaš rojstni dan?",
+			"text": "To nam pomaga prilagoditi tvojo izkušnjo. Brez skrbi — tvoji podatki ostanejo zasebni in varni pri nas."
+		},
+		"units": {
+			"title": "Izberi želene enote",
+			"text": "To nam pomaga prilagoditi tvojo izkušnjo. Brez skrbi — tvoji podatki ostanejo zasebni in varni pri nas.",
+			"metric": "Metrične",
+			"imperial": "Imperialne"
+		},
+		"height": {
+			"title": "Kakšna je tvoja višina?",
+			"text": "To nam pomaga prilagoditi tvojo izkušnjo. Brez skrbi — tvoji podatki ostanejo zasebni in varni pri nas."
+		},
+		"weight": {
+			"title": "Kakšna je tvoja teža?",
+			"text": "To nam pomaga prilagoditi tvojo izkušnjo. Brez skrbi — tvoji podatki ostanejo zasebni in varni pri nas."
+		},
+		"letsGo": {
+			"title": "Vse je pripravljeno!",
+			"text": "Uspešno si nastavil svoj profil in pripravljeni smo za trening! Zdaj si korak bližje doseganju svojih fitnes ciljev. Začnimo s spremljanjem vadb in napredka. Odlično ti bo šlo!"
+		},
+		"buttons": {
+			"continue": "Začnimo!",
+			"back": "Nazaj",
+			"letsGo": "Zaključi"
+		}
+	}
 }

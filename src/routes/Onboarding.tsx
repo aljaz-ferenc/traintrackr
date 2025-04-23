@@ -18,7 +18,8 @@ import useUserStore from "@/state/UserStore.ts";
 import { useShallow } from "zustand/react/shallow";
 import Spinner from "@/components/Spinner/Spinner.tsx";
 import SelectLanguage from "@/components/shared/SelectLanguage.tsx";
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
+import {UserButton} from "@clerk/clerk-react";
 
 export default function Onboarding() {
 	const [current, setCurrent] = useState(0);
@@ -29,7 +30,7 @@ export default function Onboarding() {
 	const navigate = useNavigate();
 	const { mutateAsync: updateUser } = useUpdateUserStats();
 	const user = useUserStore(useShallow((state) => state.user));
-	const {t} = useTranslation()
+	const { t } = useTranslation();
 
 	if (!user) {
 		return <Spinner />;
@@ -51,7 +52,7 @@ export default function Onboarding() {
 			1: !gender,
 			2: !isValidDate(dob),
 			3: !height,
-			4: !weight
+			4: !weight,
 		};
 	}, [gender, dob, height, weight]);
 
@@ -60,16 +61,8 @@ export default function Onboarding() {
 			<Welcome key="welcome" />,
 			<Gender setGender={setGender} gender={gender} key="gender" />,
 			<Dob setDob={setDob} key="dob" />,
-			<Height
-				key="height"
-				height={height}
-				setHeight={setHeight}
-			/>,
-			<Weight
-				key="weight"
-				weight={weight}
-				setWeight={setWeight}
-			/>,
+			<Height key="height" height={height} setHeight={setHeight} />,
+			<Weight key="weight" weight={weight} setWeight={setWeight} />,
 			<LetsGo key="letsGo" />,
 		];
 	}, [gender, height, weight]);
@@ -102,7 +95,10 @@ export default function Onboarding() {
 	return (
 		<section className="grid place-items-center min-h-screen overflow-hidden">
 			<Card className="w-full max-w-[80%] h-full max-h-[80%] relative">
-				<SelectLanguage className='absolute top-3 right-3 z-20'/>
+				<div className="absolute top-3 right-3 z-20 flex gap-3">
+				<SelectLanguage />
+				<UserButton/>
+				</div>
 				<CardContent className="flex justify-center items-center h-full w-full overflow-hidden">
 					<div className="w-full h-full relative flex-col flex justify-center items-center">
 						<div>
@@ -140,8 +136,8 @@ export default function Onboarding() {
 								}
 							>
 								{current === onboardingScreens.length - 1
-									? t('ONBOARDING.buttons.letsGo')
-									: t('ONBOARDING.buttons.continue')}
+									? t("ONBOARDING.buttons.letsGo")
+									: t("ONBOARDING.buttons.continue")}
 							</Button>
 							{
 								<button
@@ -152,7 +148,7 @@ export default function Onboarding() {
 									])}
 									onClick={handleScrollPrev}
 								>
-									{t('ONBOARDING.buttons.back')}
+									{t("ONBOARDING.buttons.back")}
 								</button>
 							}
 						</div>

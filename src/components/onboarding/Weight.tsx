@@ -1,7 +1,7 @@
 import type React from "react";
 import { Input } from "@/components/ui/Input.tsx";
 import { z } from "zod";
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 type WeightProps = {
 	weight: string;
@@ -9,7 +9,7 @@ type WeightProps = {
 };
 
 export default function Weight({ weight, setWeight }: WeightProps) {
-	const {t} = useTranslation()
+	const { t } = useTranslation();
 
 	const onWeightInput = (input: string) => {
 		const { success } = z
@@ -25,7 +25,7 @@ export default function Weight({ weight, setWeight }: WeightProps) {
 	return (
 		<>
 			<h2 className="text-3xl font-bold text-center mb-4">
-				{t('ONBOARDING.weight.title')}
+				{t("ONBOARDING.weight.title")}
 			</h2>
 			<div className="flex items-center gap-2">
 				<Input
@@ -36,7 +36,7 @@ export default function Weight({ weight, setWeight }: WeightProps) {
 				<span>kg</span>
 			</div>
 			<p className="text-center max-w-[80%] mx-auto max-w-sm leading-8">
-				{t('ONBOARDING.weight.text')}
+				{t("ONBOARDING.weight.text")}
 			</p>
 		</>
 	);
