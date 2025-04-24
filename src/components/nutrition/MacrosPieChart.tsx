@@ -47,7 +47,7 @@ export default function MacrosPieChart({ macros }: MacrosPieChartProps) {
 			{
 				macro: "fat",
 				percentage: Math.round((fatCalories / total) * 100),
-				fill: "rgb(190, 220, 254)",
+				fill: "rgb(96, 168, 251)",
 			},
 			{
 				macro: "carbs",
@@ -60,7 +60,7 @@ export default function MacrosPieChart({ macros }: MacrosPieChartProps) {
 	return (
 		<ChartContainer
 			config={chartConfig}
-			className="mx-auto aspect-square max-h-[250px] pb-0 [&_.recharts-pie-label-text]:fill-foreground [&_.recharts-pie-label-text]:text-lg"
+			className="w-full mx-auto aspect-square max-h-[250px] pb-0 [&_.recharts-pie-label-text]:fill-foreground [&_.recharts-pie-label-text]:text-lg"
 		>
 			<PieChart>
 				<ChartTooltip content={<ChartTooltipContent />} />
