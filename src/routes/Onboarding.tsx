@@ -9,7 +9,7 @@ import { useState, useMemo, useEffect } from "react";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils.ts";
 import type { Gender as TGender } from "@/core/types.ts";
-import { isUserOnboarded, isValidDate } from "@/utils/utils.ts";
+import { calcAgeFromDob, isUserOnboarded, isValidDate } from "@/utils/utils.ts";
 import LetsGo from "@/components/onboarding/LetsGo.tsx";
 import OnboardingScreenWrapper from "@/components/onboarding/OnboardingScreenWrapper.tsx";
 import { useNavigate } from "react-router";
@@ -20,6 +20,9 @@ import Spinner from "@/components/Spinner/Spinner.tsx";
 import SelectLanguage from "@/components/shared/SelectLanguage.tsx";
 import { useTranslation } from "react-i18next";
 import { UserButton } from "@clerk/clerk-react";
+import Tdee from "@/components/dashboard/Tdee.tsx";
+import ActivityLevel from "@/components/dashboard/ActivityLevel.tsx";
+import type { ActivityLevels } from "@/core/enums/ActivityLevel.enum.ts";
 
 export default function Onboarding() {
 	const [current, setCurrent] = useState(0);
@@ -27,6 +30,10 @@ export default function Onboarding() {
 	const [dob, setDob] = useState<string>("");
 	const [height, setHeight] = useState<number>(130);
 	const [weight, setWeight] = useState("");
+	const [activityLevel, setActivityLevel] = useState<ActivityLevels | null>(
+		null,
+	);
+	const [tdee, setTdee] = useState(0);
 	const navigate = useNavigate();
 	const { mutateAsync: updateUser } = useUpdateUserStats();
 	const user = useUserStore(useShallow((state) => state.user));
@@ -46,6 +53,14 @@ export default function Onboarding() {
 		}
 	}, [user, navigate]);
 
+	const age = useMemo(() => {
+		const year = dob.substring(4);
+		const day = dob.substring(0, 2);
+		const month = dob.substring(2, 4);
+		const date = new Date([year, month, day].join("-"));
+		return calcAgeFromDob(new Date(date));
+	}, [dob]);
+
 	const disableContinue = useMemo(() => {
 		return {
 			0: false,
@@ -53,8 +68,10 @@ export default function Onboarding() {
 			2: !isValidDate(dob),
 			3: !height,
 			4: !weight,
+			5: !activityLevel,
+			6: !tdee,
 		};
-	}, [gender, dob, height, weight]);
+	}, [gender, dob, height, weight, tdee, activityLevel]);
 
 	const onboardingScreens = useMemo(() => {
 		return [
@@ -63,9 +80,24 @@ export default function Onboarding() {
 			<Dob setDob={setDob} key="dob" />,
 			<Height key="height" height={height} setHeight={setHeight} />,
 			<Weight key="weight" weight={weight} setWeight={setWeight} />,
+			<ActivityLevel
+				key="activityLevel"
+				activityLevel={activityLevel}
+				setActivityLevel={setActivityLevel}
+			/>,
+			<Tdee
+				key="tdee"
+				tdee={tdee}
+				setTdee={setTdee}
+				gender={gender}
+				weight={Number(weight)}
+				activityLevel={activityLevel}
+				age={age}
+				height={height}
+			/>,
 			<LetsGo key="letsGo" />,
 		];
-	}, [gender, height, weight]);
+	}, [gender, height, weight, tdee, activityLevel, age]);
 
 	const handleScrollPrev = () => {
 		setCurrent((prev) => Math.max(prev - 1, 0));
@@ -84,6 +116,7 @@ export default function Onboarding() {
 			gender: gender as TGender,
 			dob: date,
 			height,
+			tdee,
 			weight: {
 				value: Number(weight),
 				date: new Date(),
@@ -94,7 +127,7 @@ export default function Onboarding() {
 
 	return (
 		<section className="grid place-items-center min-h-screen overflow-hidden">
-			<Card className="w-full max-w-[80%] h-full max-h-[80%] relative">
+			<Card className="w-full max-w-5xl h-full max-h-[800px] relative p-15">
 				<div className="absolute top-3 right-3 z-20 flex gap-3">
 					<SelectLanguage />
 					<UserButton />
@@ -113,15 +146,16 @@ export default function Onboarding() {
 						</div>
 						<div className="relative h-full w-screen">
 							<motion.div
-								className={`flex w-[${onboardingScreens.length}%] absolute`}
+								className={`flex h-full w-[${onboardingScreens.length * 100}%] absolute`}
 								initial={{ x: 0 }}
 								animate={{ x: `-${current * 100}vw` }}
 								transition={{ ease: "easeInOut" }}
 							>
-								{onboardingScreens.map((screen) => (
-									<div key={screen.key}>
-										<OnboardingScreenWrapper>{screen}</OnboardingScreenWrapper>
-									</div>
+								{onboardingScreens.map((screen, i) => (
+									// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+									<OnboardingScreenWrapper key={i}>
+										{screen}
+									</OnboardingScreenWrapper>
 								))}
 							</motion.div>
 						</div>
@@ -143,7 +177,7 @@ export default function Onboarding() {
 								<button
 									type="button"
 									className={cn([
-										"mt-5 cursor-pointer",
+										"mt-5 cursor-pointer underline underline-offset-2",
 										current === 0 ? "invisible" : "visible",
 									])}
 									onClick={handleScrollPrev}

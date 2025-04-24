@@ -8,11 +8,11 @@ import {
 import { REGEXP_ONLY_DIGITS } from "input-otp";
 import { useTranslation } from "react-i18next";
 
-type AgeProps = {
+type DobProps = {
 	setDob: React.Dispatch<React.SetStateAction<string>>;
 };
 
-export default function Dob({ setDob }: AgeProps) {
+export default function Dob({ setDob }: DobProps) {
 	const { t } = useTranslation();
 
 	return (

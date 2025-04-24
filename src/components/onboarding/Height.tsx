@@ -40,7 +40,7 @@ export default function Height({ setHeight }: HeightProps) {
 			<Swiper
 				direction={"horizontal"}
 				className="w-full !cursor-pointer border"
-				slidesPerView={24}
+				slidesPerView={50}
 				freeMode={true}
 				onSlideChange={(swiper) => setHeight(heights[swiper.activeIndex])}
 				centeredSlides={true}

@@ -81,6 +81,21 @@
 			"title": "What's your weight?",
 			"text": "This helps us fine-tune your experience. No worries — your info stays private and safe with us."
 		},
+		"activityLevel": {
+			"title": "What's your activity level?",
+			"sedentary": "sedentary",
+			"light": "light",
+			"moderate": "moderate",
+			"veryActive": "very active",
+			"extraActive": "extra active"
+		},
+		"tdee": {
+			"title": "What's your TDEE?",
+			"text": "This helps us fine-tune your experience. No worries — your info stays private and safe with us.",
+			"tooltip": "TDEE (Total Daily Energy Expenditure) is the estimated number of calories you burn each day through basic bodily functions, daily activities, and exercise. It represents the amount you'd need to eat to maintain your current weight aka maintenance calories.",
+			"calcBtn": "I'm not sure, calculate it for me",
+			"calcTdeeBtnTooltip": "TDEE will be calculated based on the data you provided in previous steps."
+		},
 		"letsGo": {
 			"title": "You're all set!",
 			"text": "This helps us fine-tune your experience. No worries — your info stays private and safe with us."

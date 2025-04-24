@@ -10,6 +10,7 @@ type UpdateUserPayload = {
 	dob: Date;
 	height: number;
 	weight: UserWeight;
+	tdee: number;
 };
 
 async function fetchUpdateUserStats(

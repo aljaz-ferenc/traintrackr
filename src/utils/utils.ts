@@ -1,8 +1,9 @@
-import type { Nutrition, User, Workout } from "@/core/types.ts";
+import type { Gender, Nutrition, User, Workout } from "@/core/types.ts";
 import clsx, { type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { format } from "date-fns";
+import { differenceInYears, format, isBefore } from "date-fns";
 import { z } from "zod";
+import { ActivityLevels } from "@/core/enums/ActivityLevel.enum.ts";
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
@@ -112,4 +113,50 @@ export function isUserOnboarded(user: User) {
 	const { weight, height, dob, gender } = user.stats;
 
 	return weight.length > 0 && !!height && !!dob && !!gender;
+}
+
+export function calcTdee({
+	gender,
+	age,
+	weight,
+	height,
+	activityLevel,
+}: {
+	gender: Gender;
+	age: number;
+	weight: number;
+	height: number;
+	activityLevel: ActivityLevels;
+}) {
+	//uses Mifflin-St Jeor formula
+
+	const activityFactors = {
+		[ActivityLevels.SEDENTARY]: 1.2,
+		[ActivityLevels.LIGHT]: 1.375,
+		[ActivityLevels.MODERATE]: 1.55,
+		[ActivityLevels.VERY_ACTIVE]: 1.725,
+		[ActivityLevels.EXTRA_ACTIVE]: 1.9,
+	};
+
+	const bmr =
+		10 * weight + 6.25 * height - 5 * age + (gender === "male" ? 5 : -161);
+
+	return Math.round(bmr * activityFactors[activityLevel]);
+}
+
+export function calcAgeFromDob(dob: Date) {
+	const today = new Date();
+
+	let age = differenceInYears(today, dob);
+
+	const thisYearBirthday = new Date(
+		today.getFullYear(),
+		dob.getMonth(),
+		dob.getDate(),
+	);
+	if (isBefore(today, thisYearBirthday)) {
+		age--;
+	}
+	console.log("CALCULATED_AGE: ", age);
+	return age;
 }

@@ -82,12 +82,27 @@
 			"title": "Kakšna je tvoja teža?",
 			"text": "To nam pomaga prilagoditi tvojo izkušnjo. Brez skrbi — tvoji podatki ostanejo zasebni in varni pri nas."
 		},
+		"activityLevel": {
+			"title": "Kakšen je tvoj nivo aktivnosti?",
+			"sedentary": "sedeč",
+			"light": "rahlo aktiven",
+			"moderate": "zmeren",
+			"veryActive": "zelo aktiven",
+			"extraActive": "izredno aktiven"
+		},
+		"tdee": {
+			"title": "Kakšen je tvoj TDEE?",
+			"text": "To nam pomaga prilagoditi tvojo izkušnjo. Brez skrbi — tvoji podatki ostanejo zasebni in varni pri nas.",
+			"tooltip": "TDEE (Skupna dnevna poraba energije) je ocenjena količina kalorij, ki jih vsak dan porabiš z osnovnimi telesnimi funkcijami, vsakodnevnimi dejavnostmi in vadbo. Predstavlja količino, ki jo moraš zaužiti, da ohraniš trenutno telesno težo (t. i. vzdrževalne kalorije).",
+			"calcBtn": "Nisem prepričan, izračunaj zame",
+			"calcTdeeBtnTooltip": "TDEE bo izračunan na podlagi podatkov, ki si jih vnesel v prejšnjih korakih."
+		},
 		"letsGo": {
 			"title": "Vse je pripravljeno!",
 			"text": "Uspešno si nastavil svoj profil in pripravljeni smo za trening! Zdaj si korak bližje doseganju svojih fitnes ciljev. Začnimo s spremljanjem vadb in napredka. Odlično ti bo šlo!"
 		},
 		"buttons": {
-			"continue": "Začnimo!",
+			"continue": "Nadaljuj",
 			"back": "Nazaj",
 			"letsGo": "Zaključi"
 		}
