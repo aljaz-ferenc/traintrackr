@@ -76,12 +76,18 @@ export default function NutritionCards({
 					description={t("DASHBOARD.thisWeek")}
 					className="row-4 col-span-2 @sm:row-2 @sm:col-2  @md:row-1 @md:col-4"
 				>
-					<div>
-						<span className="text-3xl font-bold">
-							{stats.nutrition.averageDailyCaloriesThisWeek}
-						</span>
-						<span className="text-xl"> {`kcal / ${t("GENERAL.day")}`}</span>
-					</div>
+					{stats.nutrition.averageDailyCaloriesThisWeek ? (
+						<div>
+							<span className="text-3xl font-bold">
+								{stats.nutrition.averageDailyCaloriesThisWeek}
+							</span>
+							<span className="text-xl"> {`kcal / ${t("GENERAL.day")}`}</span>
+						</div>
+					) : (
+						<div className="text-center font-bold text-muted-foreground text-xl">
+							{t("GENERAL.noData")}
+						</div>
+					)}
 				</WidgetWrapper>
 				<WidgetWrapper
 					title={t("DASHBOARD.nutrition.calsConsumption")}
@@ -99,7 +105,7 @@ export default function NutritionCards({
 						<MacrosPieChart macros={stats.nutrition.macrosToday} />
 					) : (
 						<div className=" text-2xl font-bold text-muted-foreground text-center h-full grid place-items-center pb-8">
-							No data
+							{t("GENERAL.noData")}
 						</div>
 					)}
 				</WidgetWrapper>

@@ -1,3 +1,5 @@
+import type { ActivityLevels } from "@/core/enums/ActivityLevel.enum.ts";
+
 export type Workout<TExercise = Exercise> = {
 	id: string;
 	day: number;
@@ -75,6 +77,8 @@ export type User = {
 		height: number;
 		gender: Gender;
 		dob: Date;
+		tdee: number;
+		activityLevel: ActivityLevels;
 	};
 };
 

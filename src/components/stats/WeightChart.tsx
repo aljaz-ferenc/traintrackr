@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/chart.tsx";
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
 import { formatDate } from "date-fns";
+import { useTranslation } from "react-i18next";
 
 type WeightChartProps = {
 	weightData: UserWeight[];
@@ -19,11 +20,14 @@ export default function WeightChart({ weightData }: WeightChartProps) {
 			color: "hsl(var(--chart-1))",
 		},
 	} satisfies ChartConfig;
+	const { t } = useTranslation();
 
 	if (!weightData || !weightData.length) {
 		return (
 			<div className="flex justify-center items-center h-full">
-				<p className="text-muted-foreground font-bold text-4xl">No data</p>
+				<p className="text-muted-foreground font-bold text-4xl">
+					{t("GENERAL.noData")}
+				</p>
 			</div>
 		);
 	}

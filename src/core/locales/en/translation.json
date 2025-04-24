@@ -21,6 +21,7 @@
 		"fat": "fat",
 		"carbs": "carbs",
 		"grams": "grams",
+		"noData": "No data",
 		"days": {
 			"monday": {
 				"long": "monday",

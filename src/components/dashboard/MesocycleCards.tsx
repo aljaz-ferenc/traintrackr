@@ -5,6 +5,8 @@ import { Range } from "@/core/enums/Range.enum.ts";
 import Spinner from "@/components/Spinner/Spinner.tsx";
 import { cn } from "@/lib/utils.ts";
 import { useTranslation } from "react-i18next";
+import useUserStore from "@/state/UserStore.ts";
+import { useShallow } from "zustand/react/shallow";
 
 type MesocycleCardsProps = {
 	className?: string;
@@ -15,9 +17,16 @@ export default function MesocycleCards({
 }: MesocycleCardsProps) {
 	const { data: stats, isLoading: isLoadingStats } = useStats(Range.Week);
 	const { t } = useTranslation();
+	const activeMeso = useUserStore(
+		useShallow((state) => state.user?.activeMesocycle),
+	);
 
 	if (isLoadingStats) {
 		return <Spinner />;
+	}
+
+	if (!activeMeso?.mesocycle) {
+		return null;
 	}
 
 	if (!stats) {

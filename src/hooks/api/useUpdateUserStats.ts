@@ -4,6 +4,7 @@ import { useShallow } from "zustand/react/shallow";
 import { Endpoints } from "@/core/endpoints.ts";
 import { useAuth } from "@clerk/clerk-react";
 import type { Gender, UserWeight } from "@/core/types.ts";
+import type { ActivityLevels } from "@/core/enums/ActivityLevel.enum.ts";
 
 type UpdateUserPayload = {
 	gender: Gender;
@@ -11,6 +12,7 @@ type UpdateUserPayload = {
 	height: number;
 	weight: UserWeight;
 	tdee: number;
+	activityLevel: ActivityLevels;
 };
 
 async function fetchUpdateUserStats(

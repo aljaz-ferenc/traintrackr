@@ -117,6 +117,7 @@ export default function Onboarding() {
 			dob: date,
 			height,
 			tdee,
+			activityLevel: activityLevel as ActivityLevels,
 			weight: {
 				value: Number(weight),
 				date: new Date(),

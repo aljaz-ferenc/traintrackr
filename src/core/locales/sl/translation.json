@@ -22,6 +22,7 @@
 		"fat": "maščobe",
 		"carbs": "ogljikovi hidrati",
 		"grams": "grami",
+		"noData": "Ni podatka",
 		"days": {
 			"monday": {
 				"long": "ponedeljek",

@@ -110,9 +110,16 @@ export const isValidDate = (dob: string) => {
 export function isUserOnboarded(user: User) {
 	if (!user.stats) return false;
 
-	const { weight, height, dob, gender } = user.stats;
+	const { weight, height, dob, gender, tdee, activityLevel } = user.stats;
 
-	return weight.length > 0 && !!height && !!dob && !!gender;
+	return (
+		weight.length > 0 &&
+		!!height &&
+		!!dob &&
+		!!gender &&
+		!!tdee &&
+		!!activityLevel
+	);
 }
 
 export function calcTdee({
