@@ -35,7 +35,8 @@ export default function Onboarding() {
 	);
 	const [tdee, setTdee] = useState(0);
 	const navigate = useNavigate();
-	const { mutateAsync: updateUser } = useUpdateUserStats();
+	const { mutateAsync: updateUser, isPending: isUpdating } =
+		useUpdateUserStats();
 	const user = useUserStore(useShallow((state) => state.user));
 	const { t } = useTranslation();
 
@@ -134,60 +135,64 @@ export default function Onboarding() {
 					<UserButton />
 				</div>
 				<CardContent className="flex justify-center items-center h-full w-full overflow-hidden">
-					<div className="w-full h-full relative flex-col flex justify-center items-center">
-						<div>
-							<motion.div
-								initial={{ scaleX: 0 }}
-								animate={{
-									scaleX: current / (onboardingScreens.length - 1),
-									transition: { duration: 1 },
-								}}
-								className="mx-auto h-[3px] bg-primary origin-left"
-							/>
-						</div>
-						<div className="relative h-full w-screen">
-							<motion.div
-								className={`flex h-full w-[${onboardingScreens.length * 100}%] absolute`}
-								initial={{ x: 0 }}
-								animate={{ x: `-${current * 100}vw` }}
-								transition={{ ease: "easeInOut" }}
-							>
-								{onboardingScreens.map((screen, i) => (
-									// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-									<OnboardingScreenWrapper key={i}>
-										{screen}
-									</OnboardingScreenWrapper>
-								))}
-							</motion.div>
-						</div>
-						<div className="text-center mt-10 flex flex-col min-w-md">
-							<Button
-								disabled={disableContinue[current as 0 | 1 | 2 | 3]}
-								className={cn(["mt-5 cursor-pointer"])}
-								onClick={
-									current === onboardingScreens.length - 1
-										? handleUpdateUser
-										: handleScrollNext
-								}
-							>
-								{current === onboardingScreens.length - 1
-									? t("ONBOARDING.buttons.letsGo")
-									: t("ONBOARDING.buttons.continue")}
-							</Button>
-							{
-								<button
-									type="button"
-									className={cn([
-										"mt-5 cursor-pointer underline underline-offset-2",
-										current === 0 ? "invisible" : "visible",
-									])}
-									onClick={handleScrollPrev}
+					{isUpdating ? (
+						<Spinner />
+					) : (
+						<div className="w-full h-full relative flex-col flex justify-center items-center">
+							<div>
+								<motion.div
+									initial={{ scaleX: 0 }}
+									animate={{
+										scaleX: current / (onboardingScreens.length - 1),
+										transition: { duration: 1 },
+									}}
+									className="mx-auto h-[3px] bg-primary origin-left"
+								/>
+							</div>
+							<div className="relative h-full w-screen">
+								<motion.div
+									className={`flex h-full w-[${onboardingScreens.length * 100}%] absolute`}
+									initial={{ x: 0 }}
+									animate={{ x: `-${current * 100}vw` }}
+									transition={{ ease: "easeInOut" }}
 								>
-									{t("ONBOARDING.buttons.back")}
-								</button>
-							}
+									{onboardingScreens.map((screen, i) => (
+										// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+										<OnboardingScreenWrapper key={i}>
+											{screen}
+										</OnboardingScreenWrapper>
+									))}
+								</motion.div>
+							</div>
+							<div className="text-center mt-10 flex flex-col min-w-md">
+								<Button
+									disabled={disableContinue[current as 0 | 1 | 2 | 3]}
+									className={cn(["mt-5 cursor-pointer"])}
+									onClick={
+										current === onboardingScreens.length - 1
+											? handleUpdateUser
+											: handleScrollNext
+									}
+								>
+									{current === onboardingScreens.length - 1
+										? t("ONBOARDING.buttons.letsGo")
+										: t("ONBOARDING.buttons.continue")}
+								</Button>
+								{
+									<button
+										type="button"
+										className={cn([
+											"mt-5 cursor-pointer underline underline-offset-2",
+											current === 0 ? "invisible" : "visible",
+										])}
+										onClick={handleScrollPrev}
+									>
+										{t("ONBOARDING.buttons.back")}
+									</button>
+								}
+							</div>
 						</div>
-					</div>
+					)}
 				</CardContent>
 			</Card>
 		</section>
