@@ -5,7 +5,7 @@ import {
 	ChartTooltip,
 	ChartTooltipContent,
 } from "@/components/ui/chart.tsx";
-import { CartesianGrid, Line, LineChart, XAxis } from "recharts";
+import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
 import { formatDate } from "date-fns";
 
 type WeightChartProps = {
@@ -41,6 +41,11 @@ export default function WeightChart({ weightData }: WeightChartProps) {
 						axisLine={false}
 						tickMargin={20}
 						tickFormatter={(date: Date) => formatDate(date, "dd.MM.yyyy")}
+					/>
+					<YAxis
+						domain={["dataMin - 1", "dataMax + 1"]}
+						tickLine={false}
+						axisLine={false}
 					/>
 				</LineChart>
 			</ChartContainer>

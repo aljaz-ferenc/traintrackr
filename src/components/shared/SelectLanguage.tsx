@@ -23,7 +23,6 @@ export default function SelectLanguage({
 	className = "",
 }: SelectLanguageProps) {
 	const { i18n } = useTranslation();
-	console.log(i18n.languages);
 
 	return (
 		<div className={cn([className])}>

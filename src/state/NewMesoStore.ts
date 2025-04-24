@@ -63,7 +63,6 @@ export const useNewMesoStore = create<NewMesoStore>((set, getState) => ({
 	constructMesocycle: (createdBy: Mesocycle["createdBy"]) => {
 		const { mesoTitle, mesoDuration, includeDeload, splitType, workouts, _id } =
 			getState();
-		console.log(createdBy);
 
 		const newMeso: Mesocycle = {
 			_id,

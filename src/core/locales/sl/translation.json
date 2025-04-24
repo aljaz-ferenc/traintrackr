@@ -113,7 +113,8 @@
 			"current": "Trenutna",
 			"starting": "Začetna",
 			"change": "Sprememba",
-			"weight": "Teža"
+			"weight": "Teža",
+			"thisWeek": "Ta teden"
 		},
 		"meso": {
 			"title": "Mezocikel",

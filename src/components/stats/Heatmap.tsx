@@ -13,7 +13,6 @@ export default function Heatmap({
 }) {
 	const { t } = useTranslation();
 	const chartData = getApexHeatmapData(statuses);
-	console.log(Object.values(t("GENERAL.days", { returnObjects: true })));
 	const options = {
 		chart: {
 			type: "heatmap",

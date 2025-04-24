@@ -95,7 +95,13 @@ export default function NutritionCards({
 					description={t("DASHBOARD.today")}
 					className="row-6 col-span-2 @sm:row-4 @sm:col-1 @sm:col-span-2 @md:row-2 @md:col-3 @md:col-span-2"
 				>
-					<MacrosPieChart macros={stats.nutrition.macrosToday} />
+					{stats.nutrition.caloriesToday > 0 ? (
+						<MacrosPieChart macros={stats.nutrition.macrosToday} />
+					) : (
+						<div className=" text-2xl font-bold text-muted-foreground text-center h-full grid place-items-center pb-8">
+							No data
+						</div>
+					)}
 				</WidgetWrapper>
 			</div>
 		</div>

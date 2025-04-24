@@ -24,7 +24,7 @@ export default function WeightCards({ className = "" }: WeightCardsProps) {
 
 	return (
 		<div className={cn("@container", className)}>
-			<h2 className="text-xl font-bold mb-3">Weight</h2>
+			<h2 className="text-xl font-bold mb-3">{t("DASHBOARD.weight.weight")}</h2>
 			<div className="grid gap-3 @sm:grid-cols-2 @md:grid-cols-3 @lg:grid-cols-3">
 				<WidgetWrapper
 					title={t("DASHBOARD.weight.current")}
@@ -90,6 +90,7 @@ export default function WeightCards({ className = "" }: WeightCardsProps) {
 				{/*</WidgetWrapper>*/}
 				<WidgetWrapper
 					title={t("DASHBOARD.weight.title")}
+					description={t("DASHBOARD.weight.thisWeek")}
 					className="@md:col-span-3 @lg:col-2 @lg:col-span-2 @lg:row-span-3"
 				>
 					<WeightChart weightData={stats.weight.weightsInRange} />

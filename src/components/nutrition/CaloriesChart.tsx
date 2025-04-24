@@ -18,6 +18,7 @@ const chartConfig = {};
 
 export default function CaloriesChart({ nutritions }: CaloriesChart) {
 	const { t } = useTranslation();
+
 	const chartData = useMemo(() => {
 		const grouped: Record<string, number> = weekDays.reduce(
 			(acc, { day }) => {
@@ -41,8 +42,6 @@ export default function CaloriesChart({ nutritions }: CaloriesChart) {
 			calories: grouped[day],
 		}));
 	}, [nutritions, t]);
-
-	console.log(chartData);
 
 	return (
 		<ChartContainer config={chartConfig}>

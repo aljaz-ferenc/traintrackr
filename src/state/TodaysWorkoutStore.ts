@@ -80,8 +80,6 @@ export const useTodaysWorkoutStore = create<TodaysWorkoutStore>(
 			}),
 		updateSet: (exerciseIndex, setId, key, value) =>
 			set((state) => {
-				console.log(exerciseIndex, setId, key, value);
-
 				const updatedExercises = state.exercises.map(
 					(exercise, exerciseIdx) => {
 						if (exerciseIndex === exerciseIdx) {

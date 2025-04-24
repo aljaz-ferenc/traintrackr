@@ -112,7 +112,8 @@
 			"current": "Current",
 			"starting": "Starting",
 			"change": "Change",
-			"weight": "Weight"
+			"weight": "Weight",
+			"thisWeek": "This week"
 		},
 		"meso": {
 			"title": "Mesocycle",

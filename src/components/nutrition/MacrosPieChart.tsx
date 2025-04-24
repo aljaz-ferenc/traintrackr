@@ -3,12 +3,10 @@ import { useMemo } from "react";
 import {
 	type ChartConfig,
 	ChartContainer,
-	ChartLegend,
-	ChartLegendContent,
 	ChartTooltip,
 	ChartTooltipContent,
 } from "@/components/ui/chart.tsx";
-import { Pie, PieChart } from "recharts";
+import { LabelList, Pie, PieChart } from "recharts";
 import { useTranslation } from "react-i18next";
 
 type MacrosPieChartProps = {
@@ -65,12 +63,23 @@ export default function MacrosPieChart({ macros }: MacrosPieChartProps) {
 			className="mx-auto aspect-square max-h-[250px] pb-0 [&_.recharts-pie-label-text]:fill-foreground [&_.recharts-pie-label-text]:text-lg"
 		>
 			<PieChart>
-				<ChartTooltip content={<ChartTooltipContent hideLabel />} />
-				<Pie data={chartData} dataKey="percentage" label nameKey="macro" />
-				<ChartLegend
-					content={<ChartLegendContent nameKey="macro" />}
-					className="text-lg -translate-y-2 flex-wrap [&>*]:min-w-max gap-2  [&>*]:text-sm [&>*]:basis-1/4 [&>*]:justify-center"
-				/>
+				<ChartTooltip content={<ChartTooltipContent />} />
+				<Pie
+					data={chartData}
+					dataKey="percentage"
+					nameKey="macro"
+					label={({ percentage }) => `${percentage}%`}
+				>
+					<LabelList
+						dataKey="macro"
+						className="fill-primary capitalize"
+						stroke="none"
+						fontSize={12}
+						formatter={(value: keyof typeof chartConfig) =>
+							chartConfig[value]?.label
+						}
+					/>
+				</Pie>
 			</PieChart>
 		</ChartContainer>
 	);
