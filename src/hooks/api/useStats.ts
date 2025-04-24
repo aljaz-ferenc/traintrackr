@@ -1,5 +1,5 @@
 import { Endpoints } from "@/core/endpoints.ts";
-import type { Macros, User, UserWeight } from "@/core/types.ts";
+import type { Macros, Nutrition, User, UserWeight } from "@/core/types.ts";
 import { useQuery } from "@tanstack/react-query";
 import useUserStore from "@/state/UserStore.ts";
 import { useShallow } from "zustand/react/shallow";
@@ -18,6 +18,7 @@ export type StatsPayload = {
 		averageDailyCaloriesThisWeek: number;
 		tdee: number;
 		macrosToday: Macros;
+		nutritionsThisWeek: Nutrition[];
 	};
 	weight: {
 		current: UserWeight;

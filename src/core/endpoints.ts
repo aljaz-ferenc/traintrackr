@@ -21,6 +21,8 @@ export class Endpoints {
 		`${BASE_URL}/users/${userId}/foodItems`;
 	static allFoodItems = `${BASE_URL}/foodItems`;
 	static nutritions = `${BASE_URL}/nutritions`;
+	static nutritionsByDate = (userId: string, date?: string) =>
+		`${BASE_URL}/users/${userId}/nutritions${date ? `?date=${date}` : ""}`;
 	static nutrition = (nutritionId: Nutrition["_id"]) =>
 		`${BASE_URL}/nutritions/${nutritionId}`;
 	static foodItem = (itemId: FoodItem["_id"]) =>

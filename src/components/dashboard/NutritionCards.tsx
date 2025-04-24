@@ -3,7 +3,6 @@ import { cn } from "@/lib/utils.ts";
 import CaloriesChart from "@/components/nutrition/CaloriesChart.tsx";
 import useStats from "@/hooks/api/useStats.ts";
 import { Range } from "@/core/enums/Range.enum.ts";
-import useNutrition from "@/hooks/api/useNutrition.ts";
 import Spinner from "@/components/Spinner/Spinner.tsx";
 import MacrosPieChart from "@/components/nutrition/MacrosPieChart.tsx";
 import { useTranslation } from "react-i18next";
@@ -16,14 +15,13 @@ export default function NutritionCards({
 	className = "",
 }: NutritionCardsProps) {
 	const { data: stats, isLoading: isLoadingStats } = useStats(Range.Week);
-	const { data: nutrition, isLoading: isLoadingNutrition } = useNutrition();
 	const { t } = useTranslation();
 
-	if (isLoadingStats || isLoadingNutrition) {
+	if (isLoadingStats) {
 		return <Spinner />;
 	}
 
-	if (!stats || !nutrition) {
+	if (!stats) {
 		return <div>No data...</div>;
 	}
 
@@ -94,7 +92,9 @@ export default function NutritionCards({
 					description={t("DASHBOARD.thisWeek")}
 					className="row-5 col-span-2 @sm:row-3 @sm:col-1 @sm:col-span-2 @md:row-2 @md:col-1 @md:col-span-2"
 				>
-					<CaloriesChart nutritions={nutrition.nutritionsThisWeek} />
+					{stats?.nutrition.nutritionsThisWeek && (
+						<CaloriesChart nutritions={stats.nutrition.nutritionsThisWeek} />
+					)}
 				</WidgetWrapper>
 				<WidgetWrapper
 					title={t("DASHBOARD.nutrition.macrosRatio")}
