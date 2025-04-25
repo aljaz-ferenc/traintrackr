@@ -28,11 +28,13 @@ import { useTranslation } from "react-i18next";
 type AddItemModalProps = {
 	isOpen: boolean;
 	setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+	date: Date;
 };
 
 export default function CreateItemModal({
 	isOpen,
 	setIsOpen,
+	date,
 }: AddItemModalProps) {
 	const [selectedItemId, setSelectedItemId] = useState("");
 	const { data: foodItems, isLoading } = useFoodItems();
@@ -90,6 +92,7 @@ export default function CreateItemModal({
 					<Card>
 						<CardContent>
 							<AddItemForm
+								date={date}
 								selectedItemId={selectedItemId}
 								onMutate={() => {
 									setIsOpen(false);

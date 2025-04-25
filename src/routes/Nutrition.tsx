@@ -29,7 +29,11 @@ export default function Nutrition() {
 			{data && (
 				<>
 					<div className="flex gap-2">
-						<AddItemModal isOpen={addItemIsOpen} setIsOpen={setAddItemIsOpen} />
+						<AddItemModal
+							date={date}
+							isOpen={addItemIsOpen}
+							setIsOpen={setAddItemIsOpen}
+						/>
 						<CreateItemModal
 							isOpen={createItemIsOpen}
 							setIsOpen={setCreateItemIsOpen}

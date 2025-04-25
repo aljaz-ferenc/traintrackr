@@ -103,7 +103,6 @@ export type Nutrition = {
 	createdBy: string;
 	item: FoodItem;
 	createdAt: Date;
-	updatedAt: Date;
 };
 
 export type Macros = {

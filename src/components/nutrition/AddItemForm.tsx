@@ -31,6 +31,7 @@ import { useTranslation } from "react-i18next";
 type AddItemFormProps = {
 	selectedItemId: string;
 	edit?: boolean;
+	date?: Date;
 	nutritionId?: Nutrition["_id"];
 	onMutate?: () => void;
 };
@@ -45,11 +46,12 @@ export default function AddItemForm({
 	edit = false,
 	nutritionId,
 	onMutate,
+	date,
 }: AddItemFormProps) {
 	const { t } = useTranslation();
 	const [userId] = useUserStore(useShallow((state) => [state.user?._id]));
 	const { mutateAsync: createNutrition, isPending: isCreating } =
-		useCreateNutrition();
+		useCreateNutrition(date);
 	const { data: foodItems, isLoading } = useFoodItems();
 	const { mutateAsync: updateNutrition, isPending: isUpdating } =
 		useUpdateNutrition();
