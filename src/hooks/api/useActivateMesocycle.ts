@@ -45,6 +45,9 @@ export default function useActivateMesocycle() {
 				queryKey: ["user", { clerkId: user?.clerkId }],
 			});
 			await queryClient.invalidateQueries({
+				queryKey: ["stats", { range: "week" }],
+			});
+			await queryClient.invalidateQueries({
 				queryKey: [
 					"mesocycle",
 					{ mesoId: user?.activeMesocycle?.mesocycle._id },

@@ -38,7 +38,7 @@ export default function Dashboard() {
 			<RouteTitle title={t("ROUTES.dashboard")} />
 			{
 				<div className="flex flex-col gap-10">
-					<NutritionCards />
+					<NutritionCards nutrition={stats.nutrition} />
 					<WeightCards />
 					{user?.activeMesocycle && <MesocycleCards />}
 				</div>

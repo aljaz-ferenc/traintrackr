@@ -40,6 +40,7 @@ export type Mesocycle = {
 	includeDeload: boolean;
 	splitType: SplitType;
 	workouts: Workout[];
+	calorieGoal: number;
 	createdBy: string;
 };
 
@@ -67,12 +68,13 @@ export type User = {
 	lastName?: string;
 	image?: string;
 	lastWorkout?: Date;
+	calorieGoal?: number;
 	activeMesocycle: {
 		mesocycle: Mesocycle;
 		startDate: Date;
 		endDate: Date;
 	} | null;
-	stats?: {
+	stats: {
 		weight: UserWeight[];
 		height: number;
 		gender: Gender;

@@ -1,29 +1,20 @@
 import WidgetWrapper from "@/components/dashboard/WidgetWrapper.tsx";
 import { cn } from "@/lib/utils.ts";
 import CaloriesChart from "@/components/nutrition/CaloriesChart.tsx";
-import useStats from "@/hooks/api/useStats.ts";
-import { Range } from "@/core/enums/Range.enum.ts";
-import Spinner from "@/components/Spinner/Spinner.tsx";
 import MacrosPieChart from "@/components/nutrition/MacrosPieChart.tsx";
 import { useTranslation } from "react-i18next";
+import type { StatsResponse } from "@/hooks/api/useStats.ts";
 
 type NutritionCardsProps = {
 	className?: string;
+	nutrition: StatsResponse["nutrition"];
 };
 
 export default function NutritionCards({
 	className = "",
+	nutrition,
 }: NutritionCardsProps) {
-	const { data: stats, isLoading: isLoadingStats } = useStats(Range.Week);
 	const { t } = useTranslation();
-
-	if (isLoadingStats) {
-		return <Spinner />;
-	}
-
-	if (!stats) {
-		return <div>No data...</div>;
-	}
 
 	return (
 		<div className={cn(["@container", className])}>
@@ -38,7 +29,7 @@ export default function NutritionCards({
 				>
 					<div>
 						<span className="text-3xl font-bold">
-							{stats.nutrition.caloriesToday}
+							{nutrition.caloriesToday}
 						</span>
 						<span className="text-xl"> kcal</span>
 					</div>
@@ -49,12 +40,10 @@ export default function NutritionCards({
 					className="row-2 col-span-2 @sm:col-2 @sm:row-1  @md:row-1 @md:col-2"
 				>
 					<div
-						className={cn(
-							stats.nutrition.caloriesLeftToday < 0 && "text-red-500",
-						)}
+						className={cn(nutrition.caloriesLeftToday < 0 && "text-red-500")}
 					>
 						<span className="text-3xl font-bold">
-							{stats.nutrition.caloriesLeftToday}
+							{nutrition.caloriesLeftToday}
 						</span>
 						<span className="text-xl"> kcal</span>
 					</div>
@@ -65,7 +54,7 @@ export default function NutritionCards({
 					className="row-3 col-span-2 @sm:row-2 @sm:col-1  @md:row-1 @md:col-3"
 				>
 					<div>
-						<span className="text-3xl font-bold">{stats.nutrition.tdee}</span>
+						<span className="text-3xl font-bold">{nutrition.caloriesGoal}</span>
 						<span className="text-xl"> kcal</span>
 					</div>
 				</WidgetWrapper>
@@ -74,10 +63,10 @@ export default function NutritionCards({
 					description={t("DASHBOARD.thisWeek")}
 					className="row-4 col-span-2 @sm:row-2 @sm:col-2  @md:row-1 @md:col-4"
 				>
-					{stats.nutrition.averageDailyCaloriesThisWeek ? (
+					{nutrition.averageDailyCaloriesThisWeek ? (
 						<div>
 							<span className="text-3xl font-bold">
-								{stats.nutrition.averageDailyCaloriesThisWeek}
+								{nutrition.averageDailyCaloriesThisWeek}
 							</span>
 							<span className="text-xl"> {`kcal / ${t("GENERAL.day")}`}</span>
 						</div>
@@ -92,8 +81,8 @@ export default function NutritionCards({
 					description={t("DASHBOARD.thisWeek")}
 					className="row-5 col-span-2 @sm:row-3 @sm:col-1 @sm:col-span-2 @md:row-2 @md:col-1 @md:col-span-2"
 				>
-					{stats?.nutrition.nutritionsThisWeek && (
-						<CaloriesChart nutritions={stats.nutrition.nutritionsThisWeek} />
+					{nutrition.nutritionsThisWeek && (
+						<CaloriesChart nutritions={nutrition.nutritionsThisWeek} />
 					)}
 				</WidgetWrapper>
 				<WidgetWrapper
@@ -101,8 +90,8 @@ export default function NutritionCards({
 					description={t("DASHBOARD.today")}
 					className="row-6 col-span-2 @sm:row-4 @sm:col-1 @sm:col-span-2 @md:row-2 @md:col-3 @md:col-span-2"
 				>
-					{stats.nutrition.caloriesToday > 0 ? (
-						<MacrosPieChart macros={stats.nutrition.macrosToday} />
+					{nutrition.caloriesToday > 0 ? (
+						<MacrosPieChart macros={nutrition.macrosToday} />
 					) : (
 						<div className=" text-2xl font-bold text-muted-foreground text-center h-full grid place-items-center pb-8">
 							{t("GENERAL.noData")}

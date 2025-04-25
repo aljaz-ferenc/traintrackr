@@ -12,6 +12,9 @@ export default function Heatmap({
 	}[];
 }) {
 	const { t } = useTranslation();
+
+	if (!statuses) return;
+
 	const chartData = getApexHeatmapData(statuses);
 	const options = {
 		chart: {

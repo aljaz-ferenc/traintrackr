@@ -25,7 +25,7 @@ const mesoDurationOptions = [4, 6, 8, 10, 12];
 // const mesoSplitTypeOptions = ["synchronous", "asynchronous"];
 
 export default function NewMesocycle() {
-	const [userId] = useUserStore(useShallow((state) => [state.user?._id]));
+	const [user] = useUserStore(useShallow((state) => [state.user]));
 	const { mesoId } = useParams<{ mesoId: string }>();
 	const { data: mesoToEdit, isLoading } = useGetMesocycleById(mesoId || "");
 	const { mutateAsync: updateMesocycle, isPending: isUpdating } =
@@ -48,6 +48,8 @@ export default function NewMesocycle() {
 		constructMesocycle,
 		setMesoToEdit,
 		resetMesoStore,
+		calorieGoal,
+		setCalorieGoal,
 	] = useNewMesoStore(
 		useShallow((state) => [
 			state.mesoTitle,
@@ -63,17 +65,21 @@ export default function NewMesocycle() {
 			state.constructMesocycle,
 			state.setMesoToEdit,
 			state.resetMesoStore,
+			state.calorieGoal,
+			state.setCalorieGoal,
 		]),
 	);
 
+	if (!user) return;
+
 	const handleCreateMeso = async () => {
-		const newMeso = constructMesocycle(userId as string);
+		const newMeso = constructMesocycle(user._id as string);
 		await createMesocycle(newMeso);
 		resetMesoStore();
 	};
 
 	const handleUpdateMeso = async () => {
-		const updatedMeso = constructMesocycle(userId as string);
+		const updatedMeso = constructMesocycle(user._id as string);
 		await updateMesocycle(updatedMeso).then(() => resetMesoStore());
 		await queryClient.invalidateQueries({
 			queryKey: ["mesocycle", { mesoId }],
@@ -98,9 +104,10 @@ export default function NewMesocycle() {
 		return (
 			!mesoTitle ||
 			!workouts.length ||
-			workouts.some((w) => !w.exercises.length || typeof w.day !== "number")
+			workouts.some((w) => !w.exercises.length || typeof w.day !== "number") ||
+			!calorieGoal
 		);
-	}, [mesoTitle, workouts]);
+	}, [mesoTitle, workouts, calorieGoal]);
 
 	if (isLoading) {
 		return <PageLoading />;
@@ -182,6 +189,73 @@ export default function NewMesocycle() {
 				{/*		/>*/}
 				{/*	</ToggleGroup>*/}
 				{/*</div>*/}
+				<div className="flex flex-col gap-2">
+					<Label>{t("NEW_MESOCYCLE.calorieGoal")}</Label>
+					<Input
+						value={calorieGoal.toString()}
+						onChange={(e) => setCalorieGoal(e.target.value)}
+					/>
+					<div className="flex gap-2 flex-wrap">
+						<div className="flex gap-2">
+							<Button
+								onClick={() => setCalorieGoal(String(user.stats.tdee - 1000))}
+								variant="secondary"
+							>
+								-1000
+							</Button>
+							<Button
+								onClick={() => setCalorieGoal(String(user.stats.tdee - 750))}
+								variant="secondary"
+							>
+								-750
+							</Button>
+							<Button
+								onClick={() => setCalorieGoal(String(user.stats.tdee - 500))}
+								variant="secondary"
+							>
+								-500
+							</Button>
+							<Button
+								onClick={() => setCalorieGoal(String(user.stats.tdee - 250))}
+								variant="secondary"
+							>
+								-250
+							</Button>
+						</div>
+						<Button
+							onClick={() => setCalorieGoal(String(user.stats.tdee))}
+							variant="secondary"
+						>
+							{t("NEW_MESOCYCLE.maintenance")}
+						</Button>
+						<div className="flex gap-2">
+							<Button
+								onClick={() => setCalorieGoal(String(user.stats.tdee + 250))}
+								variant="secondary"
+							>
+								+250
+							</Button>
+							<Button
+								onClick={() => setCalorieGoal(String(user.stats.tdee + 500))}
+								variant="secondary"
+							>
+								+500
+							</Button>
+							<Button
+								onClick={() => setCalorieGoal(String(user.stats.tdee + 750))}
+								variant="secondary"
+							>
+								+750
+							</Button>
+							<Button
+								onClick={() => setCalorieGoal(String(user.stats.tdee + 1000))}
+								variant="secondary"
+							>
+								+1000
+							</Button>
+						</div>
+					</div>
+				</div>
 				<Separator />
 			</div>
 			<div className="flex gap-10 max-w-screen">

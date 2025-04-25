@@ -10,7 +10,7 @@ async function fetchStats(userId: User["_id"], range?: Range) {
 	return await res.json();
 }
 
-export type StatsPayload = {
+export type StatsResponse = {
 	nutrition: {
 		caloriesToday: number;
 		caloriesGoal: number;
@@ -44,7 +44,7 @@ export type StatsPayload = {
 export default function useStats(range?: Range) {
 	const userId = useUserStore(useShallow((state) => state.user?._id));
 
-	return useQuery<StatsPayload>({
+	return useQuery<StatsResponse>({
 		queryKey: ["stats", { range }],
 		queryFn: () => fetchStats(userId as string, range),
 		enabled: !!userId,

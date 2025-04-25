@@ -1,5 +1,6 @@
 import type { Exercise, Mesocycle, SplitType, Workout } from "@/core/types.ts";
 import { create } from "zustand";
+import { z } from "zod";
 
 type NewMesoStore = {
 	_id: Mesocycle["_id"];
@@ -8,6 +9,8 @@ type NewMesoStore = {
 	includeDeload: Mesocycle["includeDeload"];
 	splitType: SplitType;
 	workouts: Workout[];
+	calorieGoal: number;
+	setCalorieGoal: (goal: string) => void;
 	focusedWorkout: Workout["id"];
 	updateMesoTitle: (mesoTitle: Mesocycle["title"]) => void;
 	updateMesoDuration: (mesoDuration: Mesocycle["duration"]) => void;
@@ -37,7 +40,18 @@ export const useNewMesoStore = create<NewMesoStore>((set, getState) => ({
 	includeDeload: false,
 	splitType: "synchronous",
 	workouts: [],
+	calorieGoal: 0,
 	focusedWorkout: "",
+	setCalorieGoal: (goal) =>
+		set((state) => {
+			const isNumber = z.coerce.number().nonnegative();
+			return {
+				...state,
+				calorieGoal: isNumber.safeParse(goal).success
+					? Number(goal)
+					: state.calorieGoal,
+			};
+		}),
 	updateMesoTitle: (mesoTitle) => set((state) => ({ ...state, mesoTitle })),
 	updateMesoDuration: (mesoDuration) =>
 		set((state) => ({ ...state, mesoDuration })),
@@ -61,8 +75,15 @@ export const useNewMesoStore = create<NewMesoStore>((set, getState) => ({
 		})),
 	setFocusedWorkout: (workoutId) => set({ focusedWorkout: workoutId }),
 	constructMesocycle: (createdBy: Mesocycle["createdBy"]) => {
-		const { mesoTitle, mesoDuration, includeDeload, splitType, workouts, _id } =
-			getState();
+		const {
+			mesoTitle,
+			mesoDuration,
+			includeDeload,
+			splitType,
+			workouts,
+			_id,
+			calorieGoal,
+		} = getState();
 
 		const newMeso: Mesocycle = {
 			_id,
@@ -72,6 +93,7 @@ export const useNewMesoStore = create<NewMesoStore>((set, getState) => ({
 			splitType,
 			workouts,
 			createdBy,
+			calorieGoal,
 		};
 
 		if (_id) {

@@ -127,7 +127,8 @@
 			"macrosRatio": "Makrohranila",
 			"protein": "beljakovine",
 			"fat": "maščobe",
-			"carbs": "ogljikovi hidrati"
+			"carbs": "ogljikovi hidrati",
+			"mainCals": "Vzdrževalne kalorije"
 		},
 		"weight": {
 			"title": "Teža",
@@ -180,7 +181,9 @@
 		"createMeso": "Ustvari mezocikel",
 		"updateMeso": "Uredi mezocikel",
 		"addExercise": "Dodaj vajo",
-		"selectMuscleGroup": "Izberi mišično skupino..."
+		"selectMuscleGroup": "Izberi mišično skupino...",
+		"calorieGoal": "Kalorični cilj",
+		"maintenance": "Vzdrževalne kalorije"
 	},
 	"MY_MESOCYCLES": {
 		"error": {

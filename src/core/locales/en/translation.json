@@ -126,7 +126,8 @@
 			"macrosRatio": "Macros ratio",
 			"protein": "protein",
 			"fat": "fat",
-			"carbs": "carbs"
+			"carbs": "carbs",
+			"mainCals": "Maintenance calories"
 		},
 		"weight": {
 			"title": "Weight",
@@ -179,7 +180,9 @@
 		"createMeso": "Create Mesocycle",
 		"updateMeso": "Update Mesocycle",
 		"addExercise": "Add exercise",
-		"selectMuscleGroup": "Select muscle group..."
+		"selectMuscleGroup": "Select muscle group...",
+		"calorieGoal": "Calorie goal",
+		"maintenance": "Maintenance"
 	},
 	"MY_MESOCYCLES": {
 		"error": {
