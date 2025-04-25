@@ -6,11 +6,9 @@ import useNutrition from "@/hooks/api/useNutrition.ts";
 import { useState } from "react";
 import Macros from "@/components/nutrition/Macros.tsx";
 import { useTranslation } from "react-i18next";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import Button from "@/components/shared/Button.tsx";
-import { addDays, intlFormat, isToday, startOfDay, subDays } from "date-fns";
-import { cn } from "@/lib/utils.ts";
+import { startOfDay } from "date-fns";
 import PageLoading from "@/components/shared/PageLoading.tsx";
+import SelectDate from "@/components/nutrition/SelectDate.tsx";
 
 export default function Nutrition() {
 	const [createItemIsOpen, setCreateItemIsOpen] = useState(false);
@@ -18,7 +16,6 @@ export default function Nutrition() {
 	const [date, setDate] = useState(new Date());
 	const { data, isLoading } = useNutrition(startOfDay(date));
 	const { t } = useTranslation();
-	const { i18n } = useTranslation();
 
 	if (isLoading) {
 		return <PageLoading />;
@@ -26,29 +23,8 @@ export default function Nutrition() {
 
 	return (
 		<section>
-			<div className="flex justify-between items-baseline relative">
-				<RouteTitle title={t("ROUTES.nutrition")} />
-				<div className="flex items-center gap-3 absolute top-1/2 left-1/2 -translate-1/2">
-					<Button
-						variant="ghost"
-						onClick={() => setDate((prev) => subDays(prev, 1))}
-					>
-						<ChevronLeft />
-					</Button>
-					<span className="capitalize">
-						{isToday(date)
-							? t("GENERAL.today")
-							: intlFormat(date, { locale: i18n.language })}
-					</span>
-					<Button
-						variant="ghost"
-						className={cn([isToday(date) && "invisible"])}
-						onClick={() => setDate((prev) => addDays(prev, 1))}
-					>
-						<ChevronRight />
-					</Button>
-				</div>
-			</div>
+			<RouteTitle title={t("ROUTES.nutrition")} />
+			<SelectDate onDateChange={(newDate) => setDate(newDate)} />
 			{data && <Macros macros={data.totalMacros} className="my-10" />}
 			{data && (
 				<>

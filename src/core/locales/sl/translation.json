@@ -209,7 +209,8 @@
 		"example": "npr. 1 žlica...",
 		"portionsTooltip": "Dodaš lahko različne porcije za hitrejše vnašanje - npr. 'rezina' ali 'žlica', ter določiš težo porcije v gramih.",
 		"remove": "Odstrani",
-		"editItem": "Uredi"
+		"editItem": "Uredi",
+		"gotoToday": "Pojdi na danes"
 	},
 	"STATS": {
 		"addMeasurement": "Dodaj meritev"

@@ -208,7 +208,8 @@
 		"example": "e.g. 1 slice",
 		"portionsTooltip": "Add different portion sizes to make tracking easier. For example, you can add a 'slice' or 'tablespoon' portion for your food item and specify how many grams the portion weighs.",
 		"remove": "Remove",
-		"editItem": "Edit item"
+		"editItem": "Edit item",
+		"gotoToday": "Go to today"
 	},
 	"STATS": {
 		"addMeasurement": "Add measurement"

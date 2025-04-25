@@ -25,7 +25,7 @@ export default function AppLayout() {
 									<Menu size={20} />
 								</button>
 							</SheetTrigger>
-							<SheetContent side="left">
+							<SheetContent side="left" className="w-fit">
 								<Sidebar onLinkClick={() => setSidebarIsOpen(false)} />
 							</SheetContent>
 						</Sheet>
