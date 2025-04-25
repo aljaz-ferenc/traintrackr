@@ -9,6 +9,10 @@
 		"nutrition": "Nutrition",
 		"stats": "Stats"
 	},
+	"SIDEBAR": {
+		"title": "App sidebar",
+		"description": "Select a page"
+	},
 	"GENERAL": {
 		"continue": "continue",
 		"back": "back",

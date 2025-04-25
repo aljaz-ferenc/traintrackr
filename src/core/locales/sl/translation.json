@@ -10,6 +10,10 @@
 		"stats": "Statistika",
 		"day": "dan"
 	},
+	"SIDEBAR": {
+		"title": "App sidebar",
+		"description": "Select a page"
+	},
 	"GENERAL": {
 		"continue": "nadaljuj",
 		"back": "nazaj",
