@@ -17,6 +17,8 @@ export class Endpoints {
 	static myLogs = (userId: User["_id"]) => `${BASE_URL}/users/${userId}/logs`;
 	static stats = (userId: User["_id"], range?: Range) =>
 		`${BASE_URL}/users/${userId}/stats?range=${range}`;
+	static editStats = (userId: User["_id"]) =>
+		`${BASE_URL}/users/${userId}/stats/edit`;
 	static foodItems = (userId: User["_id"]) =>
 		`${BASE_URL}/users/${userId}/foodItems`;
 	static allFoodItems = `${BASE_URL}/foodItems`;

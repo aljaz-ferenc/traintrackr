@@ -216,10 +216,13 @@
 		"portionsTooltip": "Add different portion sizes to make tracking easier. For example, you can add a 'slice' or 'tablespoon' portion for your food item and specify how many grams the portion weighs.",
 		"remove": "Remove",
 		"editItem": "Edit item",
-		"gotoToday": "Go to today"
+		"gotoToday": "Go to today",
+		"addWeightTooltip": "For best accuracy, weigh yourself once a day at the same time, ideally in the morning after waking up."
 	},
 	"STATS": {
-		"addMeasurement": "Add measurement"
+		"addMeasurement": "Add measurement",
+		"editMeasurement": "Edit",
+		"finishEditing": "Finish editing"
 	},
 	"TOASTS": {
 		"completeWorkout": {

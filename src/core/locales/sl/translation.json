@@ -217,10 +217,13 @@
 		"portionsTooltip": "Dodaš lahko različne porcije za hitrejše vnašanje - npr. 'rezina' ali 'žlica', ter določiš težo porcije v gramih.",
 		"remove": "Odstrani",
 		"editItem": "Uredi",
-		"gotoToday": "Pojdi na danes"
+		"gotoToday": "Pojdi na danes",
+		"addWeightTooltip": "Za najboljše rezultate se tehtaj enkrat na dan ob istem času (npr. takoj zjutraj)."
 	},
 	"STATS": {
-		"addMeasurement": "Dodaj meritev"
+		"addMeasurement": "Dodaj meritev",
+		"editMeasurement": "Uredi",
+		"finishEditing": "Zaključi urejanje"
 	},
 	"TOASTS": {
 		"completeWorkout": {
