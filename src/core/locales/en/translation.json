@@ -196,7 +196,8 @@
 	},
 	"COMPLETED_WORKOUTS": {
 		"reps": "reps",
-		"weight": "weight"
+		"weight": "weight",
+		"deleteBtn": "Delete log"
 	},
 	"NUTRITION": {
 		"addItem": "Add item",
@@ -268,6 +269,9 @@
 			"pending": "Editing entry...",
 			"success": "Entry edited successfully!",
 			"error": "Something went wrong. Couldn’t edit your entry."
+		},
+		"deleteLog": {
+			"error": "Something went wrong. Couldn’t edit your log."
 		}
 	}
 }

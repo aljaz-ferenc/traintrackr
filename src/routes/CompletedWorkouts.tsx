@@ -15,14 +15,31 @@ import ErrorPage, {
 import Button from "@/components/shared/Button.tsx";
 import { Route } from "@/core/enums/Routes.enum.ts";
 import { useTranslation } from "react-i18next";
+import {
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+} from "@/components/ui/popover.tsx";
+import { Ellipsis } from "lucide-react";
+import { useState } from "react";
+import type { WorkoutLog as TLog } from "@/core/types.ts";
+import useDeleteLog from "@/hooks/api/useDeleteLog.ts";
 
 export default function CompletedWorkouts() {
 	const { data: logs, isLoading } = useWorkoutLogs();
 	const { t } = useTranslation();
+	const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+	const { mutateAsync: deleteLog, isPending: isDeleting } = useDeleteLog();
 
 	if (isLoading) {
 		return <PageLoading />;
 	}
+
+	const handleDeleteLog = async (logId: TLog["_id"]) => {
+		await deleteLog(logId).then(() => {
+			setIsPopoverOpen(false);
+		});
+	};
 
 	if (!logs?.length) {
 		return (
@@ -54,6 +71,26 @@ export default function CompletedWorkouts() {
 							{log.mesoTitle}
 						</AccordionTrigger>
 						<AccordionContent className="flex flex-col gap-5 overflow-auto">
+							<div className="ml-auto">
+								<Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
+									<PopoverTrigger className="z-20 self-start cursor-pointer">
+										<Ellipsis />
+									</PopoverTrigger>
+									<PopoverContent
+										side="top"
+										className="w-min p-2 flex flex-col gap-2"
+									>
+										<Button
+											onClick={() => handleDeleteLog(log._id)}
+											variant="destructive"
+											isLoading={isDeleting}
+											className="w-full min-w-max"
+										>
+											{t("COMPLETED_WORKOUTS.deleteBtn")}
+										</Button>
+									</PopoverContent>
+								</Popover>
+							</div>
 							{log.weeks
 								.filter((week) => week.workouts.length)
 								.map((week, i) => (

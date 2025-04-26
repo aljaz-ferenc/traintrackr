@@ -27,7 +27,6 @@ export default function WorkoutLog({ workout }: WorkoutLogProps) {
 		<Card className="min-w-md">
 			<CardHeader>
 				<CardTitle className="uppercase font-bold">
-					{/*{weekDays.find((day) => day.value === workout.day)?.day}*/}
 					{t(
 						`GENERAL.days.${weekDays.find((day) => day.value === workout.day)?.day.toLowerCase()}.long`,
 					)}
