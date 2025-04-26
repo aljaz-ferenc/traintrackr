@@ -220,5 +220,51 @@
 	},
 	"STATS": {
 		"addMeasurement": "Add measurement"
+	},
+	"TOASTS": {
+		"completeWorkout": {
+			"pending": "Saving your workout...",
+			"success": "Workout saved successfully!",
+			"error": "Something went wrong. Couldn’t save your workout."
+		},
+		"createMeso": {
+			"pending": "Saving your mesocycle...",
+			"success": "Mesocycle saved successfully!",
+			"error": "Something went wrong. Couldn’t save your mesocycle."
+		},
+		"deleteMeso": {
+			"pending": "Deleting mesocycle...",
+			"success": "Mesocycle deleted successfully!",
+			"error": "Something went wrong. Couldn’t delete your mesocycle."
+		},
+		"activateMeso": {
+			"error": "Something went wrong. Couldn’t activate your mesocycle."
+		},
+		"editMeso": {
+			"pending": "Editing mesocycle...",
+			"success": "Mesocycle edited successfully!",
+			"error": "Something went wrong. Couldn’t edit your mesocycle."
+		},
+		"createNutrition": {
+			"error": "Something went wrong. Couldn’t save your nutrition."
+		},
+		"updateNutrition": {
+			"pending": "Editing entry...",
+			"success": "Entry edited successfully!",
+			"error": "Something went wrong. Couldn’t edit your entry."
+		},
+		"deleteNutrition": {
+			"error": "Something went wrong. Couldn’t delete your nutrition."
+		},
+		"createFoodItem": {
+			"pending": "Creating entry...",
+			"success": "Entry created successfully!",
+			"error": "Something went wrong. Couldn’t create your entry."
+		},
+		"updateFoodItem": {
+			"pending": "Editing entry...",
+			"success": "Entry edited successfully!",
+			"error": "Something went wrong. Couldn’t edit your entry."
+		}
 	}
 }

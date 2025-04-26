@@ -1,6 +1,8 @@
 import { Endpoints } from "@/core/endpoints.ts";
 import type { Nutrition } from "@/core/types.ts";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 async function fetchCreateNutrition(
 	nutrition: Omit<Nutrition, "_id" | "createdAt" | "updatedAt">,
@@ -18,12 +20,16 @@ async function fetchCreateNutrition(
 
 export default function useCreateNutrition(date?: Date) {
 	const queryClient = useQueryClient();
+	const { t } = useTranslation();
 
 	return useMutation({
 		mutationKey: ["nutrition-create"],
 		mutationFn: (
 			nutrition: Omit<Nutrition, "_id" | "createdAt" | "updatedAt">,
-		) => fetchCreateNutrition(nutrition, date || new Date()),
+		) =>
+			toast.promise(fetchCreateNutrition(nutrition, date || new Date()), {
+				error: t("TOASTS.createNutrition.error"),
+			}),
 		onSuccess: async () =>
 			await queryClient.invalidateQueries({ queryKey: ["nutrition-get"] }),
 	});

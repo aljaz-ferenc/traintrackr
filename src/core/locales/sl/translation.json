@@ -221,5 +221,51 @@
 	},
 	"STATS": {
 		"addMeasurement": "Dodaj meritev"
+	},
+	"TOASTS": {
+		"completeWorkout": {
+			"pending": "Shranjujem trening...",
+			"success": "Trening uspešno shranjen!",
+			"error": "Prišlo je do napake. Treninga ni bilo mogoče shraniti."
+		},
+		"createMeso": {
+			"pending": "Shranjujem mezocikel...",
+			"success": "Mezocikel uspešno shranjen!",
+			"error": "Prišlo je do napake. Mezocikla ni bilo mogoče shraniti."
+		},
+		"deleteMeso": {
+			"pending": "Brišem mezocikel...",
+			"success": "Mezocikel uspešno izbrisan!",
+			"error": "Prišlo je do napake. Mezocikla ni bilo mogoče izbrisati."
+		},
+		"activateMeso": {
+			"error": "Prišlo je do napake. Mezocikla ni bilo mogoče aktivirati."
+		},
+		"editMeso": {
+			"pending": "Urejam mezocikel...",
+			"success": "Mezocikel uspešno urejen!",
+			"error": "Prišlo je do napake. Mezocikla ni bilo mogoče urediti."
+		},
+		"createNutrition": {
+			"error": "Prišlo je do napake. Vnosa ni bilo mogoče shraniti."
+		},
+		"updateNutrition": {
+			"pending": "Urejam vnos...",
+			"success": "Vnos uspešno urejen!",
+			"error": "Prišlo je do napake. Vnosa ni bilo mogoče urediti."
+		},
+		"deleteNutrition": {
+			"error": "Prišlo je do napake. Vnosa ni bilo mogoče izbrisati."
+		},
+		"createFoodItem": {
+			"pending": "Shranjujem vnos...",
+			"success": "Vnos uspešno shranjen!",
+			"error": "Prišlo je do napake. Vnosa ni bilo mogoče shraniti."
+		},
+		"updateFoodItem": {
+			"pending": "Urejam vnos...",
+			"success": "Vnos uspešno urejen!",
+			"error": "Prišlo je do napake. Vnosa ni bilo mogoče urediti."
+		}
 	}
 }

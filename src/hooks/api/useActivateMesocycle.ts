@@ -4,6 +4,7 @@ import type { Mesocycle, User } from "@/core/types.ts";
 import useUserStore from "@/state/UserStore.ts";
 import { useShallow } from "zustand/react/shallow";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 export type ActivateMesoPayload = {
 	mesocycle: Mesocycle["_id"];
@@ -28,6 +29,7 @@ async function fetchActivateMeso({
 export default function useActivateMesocycle() {
 	const queryClient = useQueryClient();
 	const [user] = useUserStore(useShallow((state) => [state.user]));
+	const { t } = useTranslation();
 
 	return useMutation({
 		mutationKey: ["meso-activate"],
@@ -36,9 +38,7 @@ export default function useActivateMesocycle() {
 			activeMesocycle,
 		}: { userId: User["_id"]; activeMesocycle: ActivateMesoPayload }) =>
 			toast.promise(fetchActivateMeso({ userId, activeMesocycle }), {
-				pending: "Activating",
-				success: "Mesocycle activated",
-				error: "Could not activate, try again.",
+				error: t("TOASTS.activateMeso.error"),
 			}),
 		onSuccess: async () => {
 			await queryClient.invalidateQueries({

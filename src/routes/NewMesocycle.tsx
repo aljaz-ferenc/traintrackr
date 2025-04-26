@@ -76,11 +76,15 @@ export default function NewMesocycle() {
 		const newMeso = constructMesocycle(user._id as string);
 		await createMesocycle(newMeso);
 		resetMesoStore();
+		await queryClient.invalidateQueries({
+			queryKey: ["mesocycle", { mesoId }],
+		});
 	};
 
 	const handleUpdateMeso = async () => {
 		const updatedMeso = constructMesocycle(user._id as string);
-		await updateMesocycle(updatedMeso).then(() => resetMesoStore());
+		await updateMesocycle(updatedMeso);
+		resetMesoStore();
 		await queryClient.invalidateQueries({
 			queryKey: ["mesocycle", { mesoId }],
 		});

@@ -181,6 +181,7 @@ export const useNewMesoStore = create<NewMesoStore>((set, getState) => ({
 			includeDeload: meso.includeDeload,
 			splitType: meso.splitType,
 			workouts: meso.workouts,
+			calorieGoal: meso.calorieGoal,
 		}),
 	resetMesoStore: () =>
 		set({
@@ -191,5 +192,6 @@ export const useNewMesoStore = create<NewMesoStore>((set, getState) => ({
 			splitType: "synchronous",
 			workouts: [],
 			focusedWorkout: "",
+			calorieGoal: 0,
 		}),
 }));

@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Endpoints } from "@/core/endpoints.ts";
 import type { FoodItem } from "@/core/types.ts";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 async function fetchCreateFoodItem(foodItem: Omit<FoodItem, "_id">) {
 	await fetch(Endpoints.allFoodItems, {
@@ -16,14 +17,15 @@ async function fetchCreateFoodItem(foodItem: Omit<FoodItem, "_id">) {
 
 export default function useCreateFoodItem() {
 	const queryClient = useQueryClient();
+	const { t } = useTranslation();
 
 	return useMutation({
 		mutationKey: ["foodItem-create"],
 		mutationFn: (foodItem: Omit<FoodItem, "_id">) =>
 			toast.promise(fetchCreateFoodItem(foodItem), {
-				pending: "Creating item...",
-				success: "Item created",
-				error: "Could not create item",
+				pending: t("TOASTS.createFoodItem.pending"),
+				success: t("TOASTS.createFoodItem.success"),
+				error: t("TOASTS.createFoodItem.error"),
 			}),
 		onSuccess: async () => {
 			await queryClient.invalidateQueries({ queryKey: ["foodItems-get"] });

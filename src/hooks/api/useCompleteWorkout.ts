@@ -10,6 +10,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import useUserStore from "@/state/UserStore.ts";
 import { useShallow } from "zustand/react/shallow";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 export type CompleteWorkoutPayload = {
 	weekNumber: number;
@@ -33,21 +34,22 @@ export default function useCompleteWorkout() {
 	const queryClient = useQueryClient();
 	const { userId } = useAuth();
 	const user = useUserStore(useShallow((state) => state.user));
-	//TODO: use mongo id, invalidate my-mesocycles
+	const { t } = useTranslation();
+
 	return useMutation({
 		mutationKey: ["workout-complete"],
 		mutationFn: (payload: CompleteWorkoutPayload) =>
 			toast.promise(fetchCompleteWorkout(payload), {
-				pending: "Creating workout log...",
-				success: "Workout log created",
-				error: "Could not create a log.",
+				pending: t("TOASTS.completeWorkout.pending"),
+				success: t("TOASTS.completeWorkout.success"),
+				error: t("TOASTS.completeWorkout.error"),
 			}),
 		onSuccess: async () => {
 			await queryClient.invalidateQueries({
 				queryKey: ["user", { clerkId: userId }],
 			});
 			await queryClient.invalidateQueries({
-				queryKey: ["logs", { userId }],
+				queryKey: ["logs", { userId: user?._id }],
 			});
 			if (user?.activeMesocycle) {
 				await queryClient.invalidateQueries({
