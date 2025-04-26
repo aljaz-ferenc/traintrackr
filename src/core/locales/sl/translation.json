@@ -213,6 +213,7 @@
 		"addPortion": "Dodaj porcijo",
 		"create": "Ustvari",
 		"updateItem": "Uredi",
+		"deleteItem": "Izbriši vnos",
 		"createItem": "Ustvari novo",
 		"example": "npr. 1 žlica...",
 		"portionsTooltip": "Dodaš lahko različne porcije za hitrejše vnašanje - npr. 'rezina' ali 'žlica', ter določiš težo porcije v gramih.",

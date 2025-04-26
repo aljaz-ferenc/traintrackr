@@ -31,6 +31,7 @@ import { FilePen } from "lucide-react";
 import type { FoodItem } from "@/core/types.ts";
 import useUpdateFoodItem from "@/hooks/api/useUpdateFoodItem.ts";
 import { useTranslation } from "react-i18next";
+import useDeleteFoodItem from "@/hooks/api/useDeleteFoodItem.ts";
 
 const formSchema = z.object({
 	name: z.string(),
@@ -75,6 +76,8 @@ export default function CreateItemModal({
 	const { mutateAsync: updateFoodItem, isPending: isUpdating } =
 		useUpdateFoodItem();
 	const [userId] = useUserStore(useShallow((state) => [state.user?._id]));
+	const { mutateAsync: deleteItem, isPending: isDeleting } =
+		useDeleteFoodItem();
 
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
@@ -117,6 +120,10 @@ export default function CreateItemModal({
 		} catch (err) {
 			console.log("Error creating item: ", err);
 		}
+	};
+
+	const handleDeleteItem = async (itemId: FoodItem["_id"]) => {
+		await deleteItem(itemId).then(() => setIsOpen(false));
 	};
 
 	return (
@@ -261,6 +268,7 @@ export default function CreateItemModal({
 										)}
 									/>
 									<Button
+										variant="primary"
 										type="button"
 										className="cursor-pointer"
 										onClick={() => remove(index)}
@@ -272,19 +280,32 @@ export default function CreateItemModal({
 						))}
 						<Button
 							type="button"
+							variant="secondary"
 							className="cursor-pointer"
 							onClick={() => append({ name: "", grams: 0 })}
 						>
 							{t("NUTRITION.addPortion")}
 						</Button>
 						<hr />
-						<Button
-							isLoading={isCreating || isUpdating}
-							className="cursor-pointer"
-							type="submit"
-						>
-							{editMode ? t("NUTRITION.updateItem") : t("NUTRITION.submit")}
-						</Button>
+						<div className="flex justify-between">
+							<Button
+								isLoading={isCreating || isUpdating}
+								className="cursor-pointer"
+								type="submit"
+							>
+								{editMode ? t("NUTRITION.updateItem") : t("NUTRITION.submit")}
+							</Button>
+							{editMode && defaultItem && (
+								<Button
+									isLoading={isDeleting}
+									type="button"
+									variant="destructive"
+									onClick={() => handleDeleteItem(defaultItem?._id)}
+								>
+									{t("NUTRITION.deleteItem")}
+								</Button>
+							)}
+						</div>
 					</form>
 				</Form>
 			</DialogContent>
