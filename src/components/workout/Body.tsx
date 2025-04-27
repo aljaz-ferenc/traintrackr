@@ -281,9 +281,9 @@ export default function Body({ muscleGroups }: BodyProps) {
 							strokeMiterlimit={strokeMiterlimit}
 						/>
 					</g>
-					<g id="side-delts">
+					<g id="sideDelts">
 						<path
-							id="side-delts_2"
+							id="sideDelts_2"
 							d="M521 226V202C520 195.5 519.54 188.485 520 182C525.5 104.5 470.558 79.5723 443.5 80.5C442.333 81.8334 439 85.1 435 87.5C504.6 93.1 510.333 153.5 504.5 183V191.5L506.5 203.5L521 226Z"
 							stroke={strokeColor}
 							strokeWidth={strokeWidth}
@@ -292,7 +292,7 @@ export default function Body({ muscleGroups }: BodyProps) {
 							strokeMiterlimit={strokeMiterlimit}
 						/>
 						<path
-							id="side-delts_3"
+							id="sideDelts_3"
 							d="M88 226V202C89 195.5 89.4602 188.485 89 182C83.5 104.5 138.442 79.5723 165.5 80.5C166.667 81.8334 170 85.1 174 87.5C104.4 93.1 98.6667 153.5 104.5 183V191.5L102.5 203.5L88 226Z"
 							stroke={strokeColor}
 							strokeWidth={strokeWidth}
@@ -301,9 +301,9 @@ export default function Body({ muscleGroups }: BodyProps) {
 							strokeMiterlimit={strokeMiterlimit}
 						/>
 					</g>
-					<g id="front-delts">
+					<g id="frontDelts">
 						<path
-							id="front-delts_2"
+							id="frontDelts_2"
 							d="M422 91.5L433 92C498.5 99.5 505.333 153.833 499.5 183.5L501.5 198L493.5 189L483 178.5L470.5 169L459.5 157.5L452.25 139.5L440 128.5L420.5 114.5L399 104.5L390 102L382 98.5L386.5 97L403.5 95L412 92.5L422 91.5Z"
 							stroke={strokeColor}
 							strokeWidth={strokeWidth}
@@ -312,7 +312,7 @@ export default function Body({ muscleGroups }: BodyProps) {
 							strokeMiterlimit={strokeMiterlimit}
 						/>
 						<path
-							id="front-delts_3"
+							id="frontDelts_3"
 							d="M187 91.5L176 92C110.5 99.5 103.667 153.833 109.5 183.5L107.5 198L115.5 189L126 178.5L138.5 169L149.5 157.5L156.75 139.5L169 128.5L188.5 114.5L210 104.5L219 102L227 98.5L222.5 97L205.5 95L197 92.5L187 91.5Z"
 							stroke={strokeColor}
 							strokeWidth={strokeWidth}
@@ -501,8 +501,8 @@ export default function Body({ muscleGroups }: BodyProps) {
 							/>
 						</g>
 					</g>
-					<g id="obligues">
-						<g id="obligues_2">
+					<g id="obliques">
+						<g id="obliques_2">
 							<path
 								d="M381 263.5L388.5 259.5L406 269L417.5 273.5H431.5L413.5 290H391.5L383.5 284L381 263.5Z"
 								stroke={strokeColor}
@@ -544,7 +544,7 @@ export default function Body({ muscleGroups }: BodyProps) {
 								strokeMiterlimit={strokeMiterlimit}
 							/>
 						</g>
-						<g id="obligues_3">
+						<g id="obliques_3">
 							<path
 								d="M228 263.5L220.5 259.5L203 269L191.5 273.5H177.5L195.5 290H217.5L225.5 284L228 263.5Z"
 								stroke={strokeColor}
@@ -789,9 +789,9 @@ export default function Body({ muscleGroups }: BodyProps) {
 							strokeMiterlimit={strokeMiterlimit}
 						/>
 					</g>
-					<g id="rear-delts">
+					<g id="rearDelts">
 						<path
-							id="rear-delts_2"
+							id="rearDelts_2"
 							d="M97 210C90.2 125.6 121.5 111.5 160.5 96C184.5 122.8 211.5 136.167 222 139.5L213 143C198 145.5 183.9 142 175.5 143C152.3 140.6 134.833 160.667 129.5 169.5L124 175C120 179 108.2 192.4 97 210Z"
 							stroke={strokeColor}
 							strokeWidth={strokeWidth}
@@ -800,7 +800,7 @@ export default function Body({ muscleGroups }: BodyProps) {
 							strokeMiterlimit={strokeMiterlimit}
 						/>
 						<path
-							id="rear-delts_3"
+							id="rearDelts_3"
 							d="M517.635 210C524.435 125.6 493.135 111.5 454.135 96C430.135 122.8 403.135 136.167 392.635 139.5L401.635 143C416.635 145.5 430.735 142 439.135 143C462.335 140.6 479.802 160.667 485.135 169.5L490.635 175C494.635 179 506.435 192.4 517.635 210Z"
 							stroke={strokeColor}
 							strokeWidth={strokeWidth}

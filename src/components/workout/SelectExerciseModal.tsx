@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button.tsx";
+import Button from "@/components/shared/Button.tsx";
 import {
 	Dialog,
 	DialogContent,
@@ -14,8 +14,8 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select.tsx";
-import { mockExercises } from "@/constants/mockExercises.ts";
-import { mockMuscleGroups } from "@/constants/mockMuscleGroups.ts";
+import { exercises } from "@/constants/exercises.ts";
+import { muscleGroups } from "@/constants/muscleGroups.ts";
 import { useNewMesoStore } from "@/state/NewMesoStore.ts";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { useMemo, useState } from "react";
@@ -38,9 +38,7 @@ export default function SelectExerciseModal({
 	const [isOpen, setIsOpen] = useState(false);
 
 	const exercisesByMuscleGroup = useMemo(() => {
-		return mockExercises.filter(
-			(ex) => ex.primaryMuscle === selectedMuscleGroup,
-		);
+		return exercises.filter((ex) => ex.primaryMuscle === selectedMuscleGroup);
 	}, [selectedMuscleGroup]);
 
 	const handleSelectExercise = (
@@ -84,28 +82,33 @@ export default function SelectExerciseModal({
 					value={selectedMuscleGroup}
 					onValueChange={setSelectedMuscleGroup}
 				>
-					<SelectTrigger className="w-full cursor-pointer">
+					<SelectTrigger className="w-full cursor-pointer capitalize">
 						<SelectValue
 							placeholder={t("NEW_MESOCYCLE.selectMuscleGroup")}
-							className="bg-white capitalize"
+							className="bg-white"
 						/>
 					</SelectTrigger>
 					<SelectContent>
-						{mockMuscleGroups.map((mg) => (
-							<SelectItem key={mg} value={mg} className="cursor-pointer">
+						{muscleGroups.map((mg) => (
+							<SelectItem
+								key={mg}
+								value={mg}
+								className="cursor-pointer capitalize"
+							>
 								{mg}
 							</SelectItem>
 						))}
 					</SelectContent>
 				</Select>
-				<ul>
+				<ul className="flex flex-col">
 					{exercisesByMuscleGroup.map((exercise) => (
-						<li key={exercise.id}>
+						<li key={exercise.id} className="w-full">
 							<Button
 								onClick={() => handleSelectExercise(workoutId, exercise)}
 								variant="ghost"
+								className="cursor-pointer w-full text-left block hover:bg-muted"
 							>
-								<span>{exercise.name}</span>
+								{exercise.name}
 							</Button>
 						</li>
 					))}
