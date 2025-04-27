@@ -1170,4 +1170,4 @@ export const exercises: Exercise[] = [
 		primaryMuscle: "glutes",
 		secondaryMuscles: ["abductors"],
 	},
-];
+] as const;

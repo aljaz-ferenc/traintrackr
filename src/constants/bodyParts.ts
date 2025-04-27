@@ -1,0 +1,15 @@
+export const bodyParts = [
+	"neck",
+	"shoulders",
+	"chest",
+	"belly",
+	"glutes",
+	"left calf",
+	"right calf",
+	"left leg",
+	"right lef",
+	"left arm",
+	"right arm",
+	"left forearm",
+	"right forearm",
+] as const;

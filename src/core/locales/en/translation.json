@@ -224,7 +224,11 @@
 	"STATS": {
 		"addMeasurement": "Add measurement",
 		"editMeasurement": "Edit",
-		"finishEditing": "Finish editing"
+		"finishEditing": "Finish editing",
+		"sections": {
+			"weight": "Weight",
+			"bodyParts": "Body parts"
+		}
 	},
 	"TOASTS": {
 		"completeWorkout": {

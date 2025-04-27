@@ -17,4 +17,4 @@ export const muscleGroups = [
 	"quads",
 	"hamstrings",
 	"calves",
-];
+] as const;

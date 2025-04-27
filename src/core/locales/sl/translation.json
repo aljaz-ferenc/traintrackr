@@ -225,7 +225,11 @@
 	"STATS": {
 		"addMeasurement": "Dodaj meritev",
 		"editMeasurement": "Uredi",
-		"finishEditing": "Zaključi urejanje"
+		"finishEditing": "Zaključi urejanje",
+		"sections": {
+			"weight": "Teža",
+			"bodyParts": "Deli telesa"
+		}
 	},
 	"TOASTS": {
 		"completeWorkout": {

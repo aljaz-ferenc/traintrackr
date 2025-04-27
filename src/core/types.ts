@@ -59,6 +59,27 @@ export type UserStats = {
 	weight: UserWeight;
 };
 
+export type Measurement = {
+	date: Date;
+	value: number;
+};
+
+export type BodyParts = {
+	neck: Measurement[];
+	shoulders: Measurement[];
+	chest: Measurement[];
+	belly: Measurement[];
+	glutes: Measurement[];
+	leftCalf: Measurement[];
+	rightCalf: Measurement[];
+	leftLeg: Measurement[];
+	rightLeg: Measurement[];
+	leftArm: Measurement[];
+	rightArm: Measurement[];
+	leftForearm: Measurement[];
+	rightForearm: Measurement[];
+};
+
 export type User = {
 	_id: string;
 	clerkId: string;
@@ -81,6 +102,7 @@ export type User = {
 		dob: Date;
 		tdee: number;
 		activityLevel: ActivityLevels;
+		bodyParts: BodyParts;
 	};
 };
 

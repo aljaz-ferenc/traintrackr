@@ -1,5 +1,11 @@
 import { Endpoints } from "@/core/endpoints.ts";
-import type { Macros, Nutrition, User, UserWeight } from "@/core/types.ts";
+import type {
+	BodyParts,
+	Macros,
+	Nutrition,
+	User,
+	UserWeight,
+} from "@/core/types.ts";
 import { useQuery } from "@tanstack/react-query";
 import useUserStore from "@/state/UserStore.ts";
 import { useShallow } from "zustand/react/shallow";
@@ -39,6 +45,7 @@ export type StatsResponse = {
 			status: "completed" | "upcoming" | "rest" | "missed";
 		}[];
 	};
+	bodyParts: BodyParts;
 };
 
 export default function useStats(range?: Range) {
