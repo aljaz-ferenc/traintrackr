@@ -57,16 +57,6 @@ export default function CompletedWorkouts() {
 							),
 						}}
 					/>
-					{/*You have not yet completed any workouts. To do so, you need to have an*/}
-					{/*active mesocycle, which you can activate on the{" "}*/}
-					{/*<Button variant="link" to={`/${Route.MyMesocycles}`}>*/}
-					{/*	My Mesocycles*/}
-					{/*</Button>{" "}*/}
-					{/*page and complete a workout on the{" "}*/}
-					{/*<Button variant="link" to={`/${Route.TodaysWorkout}`}>*/}
-					{/*	Today's Workout*/}
-					{/*</Button>{" "}*/}
-					{/*page when scheduled.*/}
 				</ErrorDescription>
 			</ErrorPage>
 		);
