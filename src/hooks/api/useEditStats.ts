@@ -3,6 +3,7 @@ import { Endpoints } from "@/core/endpoints.ts";
 import useUserStore from "@/state/UserStore.ts";
 import { useShallow } from "zustand/react/shallow";
 import type { User } from "@/core/types.ts";
+import { toast } from "react-toastify";
 
 async function fetchEditStats(userId: User["_id"], stats: object) {
 	const res = await fetch(Endpoints.editStats(userId), {
@@ -21,7 +22,10 @@ export default function useEditStats() {
 
 	return useMutation({
 		mutationKey: ["stats-edit"],
-		mutationFn: (stats: object) => fetchEditStats(userId as string, stats),
+		mutationFn: (stats: object) =>
+			toast.promise(fetchEditStats(userId as string, stats), {
+				error: "Could not edit stats",
+			}),
 		onSuccess: async () => {
 			await queryClient.invalidateQueries({
 				queryKey: ["stats", { range: "week" }],

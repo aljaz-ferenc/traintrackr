@@ -50,15 +50,6 @@ export type Set = {
 	id: string;
 };
 
-export type UserWeight = {
-	value: number;
-	date: Date;
-};
-
-export type UserStats = {
-	weight: UserWeight;
-};
-
 export type Measurement = {
 	date: Date;
 	value: number;
@@ -96,7 +87,7 @@ export type User = {
 		endDate: Date;
 	} | null;
 	stats: {
-		weight: UserWeight[];
+		weight: Measurement[];
 		height: number;
 		gender: Gender;
 		dob: Date;

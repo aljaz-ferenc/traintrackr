@@ -1,4 +1,4 @@
-import type { UserWeight } from "@/core/types.ts";
+import type { Measurement } from "@/core/types.ts";
 import {
 	type ChartConfig,
 	ChartContainer,
@@ -10,19 +10,23 @@ import { formatDate } from "date-fns";
 import { useTranslation } from "react-i18next";
 
 type WeightChartProps = {
-	weightData: UserWeight[];
+	measurements: Measurement[];
+	label: string;
 };
 
-export default function WeightChart({ weightData }: WeightChartProps) {
+export default function MeasurementsChart({
+	measurements,
+	label,
+}: WeightChartProps) {
 	const chartConfig = {
 		value: {
-			label: "Weight",
+			label,
 			color: "hsl(var(--chart-1))",
 		},
 	} satisfies ChartConfig;
 	const { t } = useTranslation();
 
-	if (!weightData || !weightData.length) {
+	if (!measurements || !measurements.length) {
 		return (
 			<div className="flex justify-center items-center h-full">
 				<p className="text-muted-foreground font-bold text-4xl">
@@ -35,7 +39,7 @@ export default function WeightChart({ weightData }: WeightChartProps) {
 	return (
 		<div>
 			<ChartContainer className="min-h-[50px]" config={chartConfig}>
-				<LineChart accessibilityLayer data={weightData}>
+				<LineChart accessibilityLayer data={measurements}>
 					<CartesianGrid vertical={false} />
 					<ChartTooltip cursor={false} content={<ChartTooltipContent />} />
 					<Line dataKey="value" type="linear" stroke="blue" strokeWidth={2} />

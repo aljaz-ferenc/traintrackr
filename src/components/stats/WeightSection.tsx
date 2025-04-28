@@ -1,6 +1,5 @@
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs.tsx";
 import { Range } from "@/core/enums/Range.enum.ts";
-import WeightChart from "@/components/stats/WeightChart.tsx";
 import { Input } from "@/components/ui/Input.tsx";
 import { z } from "zod";
 import AppTooltip from "@/components/shared/Tooltip.tsx";
@@ -14,6 +13,7 @@ import useUserStore from "@/state/UserStore.ts";
 import { useShallow } from "zustand/react/shallow";
 import useEditStats from "@/hooks/api/useEditStats.ts";
 import StatsSectionWrapper from "@/components/stats/StatsSectionWrapper.tsx";
+import MeasurementsChart from "@/components/stats/MeasurementsChart.tsx";
 
 export default function WeightSection() {
 	const { mutateAsync: updateStats, isPending: isUpdating } = useUpdateStats();
@@ -81,7 +81,12 @@ export default function WeightSection() {
 							{t("GENERAL.year")}
 						</TabsTrigger>
 					</TabsList>
-					{stats && <WeightChart weightData={stats.weight.weightsInRange} />}
+					{stats && (
+						<MeasurementsChart
+							label={t("STATS.sections.weight")}
+							measurements={stats.weight.weightsInRange}
+						/>
+					)}
 				</Tabs>
 				<div className="flex flex-col gap-2 max-w-min">
 					<div className="flex gap-2 w-max">

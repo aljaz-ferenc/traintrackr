@@ -1,10 +1,10 @@
 import WidgetWrapper from "@/components/dashboard/WidgetWrapper.tsx";
-import WeightChart from "@/components/stats/WeightChart.tsx";
 import useStats from "@/hooks/api/useStats.ts";
 import { Range } from "@/core/enums/Range.enum.ts";
 import Spinner from "@/components/Spinner/Spinner.tsx";
 import { cn } from "@/lib/utils.ts";
 import { useTranslation } from "react-i18next";
+import MeasurementsChart from "@/components/stats/MeasurementsChart.tsx";
 
 type WeightCardsProps = {
 	className?: string;
@@ -93,7 +93,10 @@ export default function WeightCards({ className = "" }: WeightCardsProps) {
 					description={t("DASHBOARD.weight.thisWeek")}
 					className="@md:col-span-3 @lg:col-2 @lg:col-span-2 @lg:row-span-3"
 				>
-					<WeightChart weightData={stats.weight.weightsInRange} />
+					<MeasurementsChart
+						measurements={stats.weight.weightsInRange}
+						label={t("STATS.sections.weight")}
+					/>
 				</WidgetWrapper>
 			</div>
 		</div>

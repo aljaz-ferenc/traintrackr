@@ -7,7 +7,7 @@
 		"myMesocycles": "Moji mezocikli",
 		"completedWorkouts": "Opravljeni treningi",
 		"nutrition": "Prehrana",
-		"stats": "Statistika",
+		"stats": "Meritve",
 		"day": "dan"
 	},
 	"SIDEBAR": {
@@ -228,7 +228,23 @@
 		"finishEditing": "Zaključi urejanje",
 		"sections": {
 			"weight": "Teža",
-			"bodyParts": "Deli telesa"
+			"bodyParts": {
+				"title": "Deli telesa",
+				"belly": "Trebuh",
+				"chest": "Prsni koš",
+				"glutes": "Zadnjica",
+				"leftArm": "Leva roka",
+				"rightArm": "Desna roka",
+				"leftCalf": "Leva meča",
+				"rightCalf": "Desna meča",
+				"leftForearm": "Leva podlahet",
+				"rightForearm": "Desna podlahet",
+				"leftLeg": "Leva noga",
+				"rightLeg": "Desna noga",
+				"shoulders": "Ramena",
+				"neck": "Vrat",
+				"measurementsFor": "meritve za "
+			}
 		}
 	},
 	"TOASTS": {

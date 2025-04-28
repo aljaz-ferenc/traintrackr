@@ -1,21 +1,25 @@
 import StatsSectionWrapper from "@/components/stats/StatsSectionWrapper.tsx";
 import { useTranslation } from "react-i18next";
-import { bodyParts } from "@/constants/bodyParts.ts";
-import { Card, CardContent } from "@/components/ui/card.tsx";
 import useStats from "@/hooks/api/useStats.ts";
+import BodyPartModal from "@/components/stats/BodyPartModal.tsx";
 
 export default function BodyPartsSection() {
 	const { t } = useTranslation();
 	const { data: stats } = useStats();
 
 	return (
-		<StatsSectionWrapper title={t("STATS.sections.bodyParts")}>
+		<StatsSectionWrapper
+			className="@container"
+			title={t("STATS.sections.bodyParts.title")}
+		>
 			{stats?.bodyParts ? (
-				<div className="flex flex-wrap gap-2">
-					{bodyParts.map((part) => (
-						<Card className="capitalize border rounded" key={part}>
-							<CardContent>{part}</CardContent>
-						</Card>
+				<div className="grid-cols-2 @md:grid-cols-3 grid @lg:grid-cols-4 gap-2">
+					{Object.entries(stats.bodyParts).map((part) => (
+						<BodyPartModal
+							key={part[0]}
+							name={part[0]}
+							measurements={part[1]}
+						/>
 					))}
 				</div>
 			) : (

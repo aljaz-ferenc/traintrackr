@@ -7,7 +7,7 @@
 		"myMesocycles": "My Mesocycles",
 		"completedWorkouts": "Completed Workouts",
 		"nutrition": "Nutrition",
-		"stats": "Stats"
+		"stats": "Measurements"
 	},
 	"SIDEBAR": {
 		"title": "App sidebar",
@@ -227,7 +227,23 @@
 		"finishEditing": "Finish editing",
 		"sections": {
 			"weight": "Weight",
-			"bodyParts": "Body parts"
+			"bodyParts": {
+				"title": "Body parts",
+				"belly": "Belly",
+				"chest": "Chest",
+				"glutes": "Glutes",
+				"leftArm": "Left arm",
+				"rightArm": "Right arm",
+				"leftCalf": "Left calf",
+				"rightCalf": "Right calf",
+				"leftForearm": "Left forearm",
+				"rightForearm": "Right forearm",
+				"leftLeg": "Left leg",
+				"rightLeg": "Right leg",
+				"shoulders": "Shoulders",
+				"neck": "Neck",
+				"measurementsFor": "measurements for "
+			}
 		}
 	},
 	"TOASTS": {
