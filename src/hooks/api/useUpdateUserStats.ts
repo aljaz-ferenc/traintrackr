@@ -3,14 +3,14 @@ import useUserStore from "@/state/UserStore.ts";
 import { useShallow } from "zustand/react/shallow";
 import { Endpoints } from "@/core/endpoints.ts";
 import { useAuth } from "@clerk/clerk-react";
-import type { Gender, UserWeight } from "@/core/types.ts";
+import type { Gender, Measurement } from "@/core/types.ts";
 import type { ActivityLevels } from "@/core/enums/ActivityLevel.enum.ts";
 
 type UpdateUserPayload = {
 	gender: Gender;
 	dob: Date;
 	height: number;
-	weight: UserWeight;
+	weight: Measurement;
 	tdee: number;
 	activityLevel: ActivityLevels;
 };

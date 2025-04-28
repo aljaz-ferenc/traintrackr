@@ -4,7 +4,7 @@ import type {
 	Macros,
 	Nutrition,
 	User,
-	UserWeight,
+	Measurement,
 } from "@/core/types.ts";
 import { useQuery } from "@tanstack/react-query";
 import useUserStore from "@/state/UserStore.ts";
@@ -27,14 +27,14 @@ export type StatsResponse = {
 		nutritionsThisWeek: Nutrition[];
 	};
 	weight: {
-		current: UserWeight;
-		starting: UserWeight;
+		current: Measurement;
+		starting: Measurement;
 		changeInRange: number;
 		averageWeeklyChangeInRange: 1;
 		startingThisMeso: number;
 		changeThisMeso: number;
 		averageWeeklyChangeThisMeso: number;
-		weightsInRange: UserWeight[];
+		weightsInRange: Measurement[];
 	};
 	workouts: {
 		completed: number;
