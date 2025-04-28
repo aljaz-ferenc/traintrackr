@@ -1,7 +1,7 @@
 {
 	"ROUTES": {
 		"dashboard": "Nadzorna plošča",
-		"todaysWorkout": "Današnja vaja",
+		"todaysWorkout": "Današnji trening",
 		"newMesocycle": "Novi mezocikel",
 		"editMesocycle": "Uredi mezocikel",
 		"myMesocycles": "Moji mezocikli",
@@ -196,6 +196,8 @@
 		"update": "Uredi mezocikel"
 	},
 	"COMPLETED_WORKOUTS": {
+		"title": "Nimaš zalkjučenih treningov",
+		"text": "Nisi še zaključil nobenega treninga. Da to storiš, moraš imeti aktiven mezocikel, ki ga lahko aktiviraš na strani <myMesosLink>Moji mezocikli</myMesosLink> in zaključiš trening na strani <todaysWorkoutsLink>Današnji trening</todaysWorkoutsLink>.",
 		"reps": "repeticije",
 		"weight": "teža",
 		"deleteBtn": "Izbriši vnos"

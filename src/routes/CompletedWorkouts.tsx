@@ -14,7 +14,7 @@ import ErrorPage, {
 } from "@/components/shared/ErrorPage.tsx";
 import Button from "@/components/shared/Button.tsx";
 import { Route } from "@/core/enums/Routes.enum.ts";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import {
 	Popover,
 	PopoverContent,
@@ -44,18 +44,29 @@ export default function CompletedWorkouts() {
 	if (!logs?.length) {
 		return (
 			<ErrorPage>
-				<ErrorTitle>No completed workouts</ErrorTitle>
+				<ErrorTitle>{t("COMPLETED_WORKOUTS.title")}</ErrorTitle>
 				<ErrorDescription>
-					You have not yet completed any workouts. To do so, you need to have an
-					active mesocycle, which you can activate on the{" "}
-					<Button variant="link" to={`/${Route.MyMesocycles}`}>
-						My Mesocycles
-					</Button>{" "}
-					page and complete a workout on the{" "}
-					<Button variant="link" to={`/${Route.TodaysWorkout}`}>
-						Today's Workout
-					</Button>{" "}
-					page when scheduled.
+					<Trans
+						i18nKey="COMPLETED_WORKOUTS.text"
+						components={{
+							myMesosLink: (
+								<Button variant="link" to={`/${Route.MyMesocycles}`} />
+							),
+							todaysWorkoutsLink: (
+								<Button variant="link" to={`/${Route.TodaysWorkout}`} />
+							),
+						}}
+					/>
+					{/*You have not yet completed any workouts. To do so, you need to have an*/}
+					{/*active mesocycle, which you can activate on the{" "}*/}
+					{/*<Button variant="link" to={`/${Route.MyMesocycles}`}>*/}
+					{/*	My Mesocycles*/}
+					{/*</Button>{" "}*/}
+					{/*page and complete a workout on the{" "}*/}
+					{/*<Button variant="link" to={`/${Route.TodaysWorkout}`}>*/}
+					{/*	Today's Workout*/}
+					{/*</Button>{" "}*/}
+					{/*page when scheduled.*/}
 				</ErrorDescription>
 			</ErrorPage>
 		);

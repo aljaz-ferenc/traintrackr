@@ -195,6 +195,8 @@
 		"update": "Update mesocycle"
 	},
 	"COMPLETED_WORKOUTS": {
+		"title": "No completed workouts",
+		"text": "You have not yet completed any workouts. To do so, you need to have an active mesocycle, which you can activate on the <myMesosLink>My Mesocycles</myMesosLink> page and complete a workout on the <todaysWorkoutsLink>Today's Workout</todaysWorkoutsLink> page when scheduled.",
 		"reps": "reps",
 		"weight": "weight",
 		"deleteBtn": "Delete log"
