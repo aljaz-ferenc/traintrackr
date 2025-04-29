@@ -984,6 +984,12 @@ export const exercises: Exercise[] = [
 		primaryMuscle: "rearDelts",
 		secondaryMuscles: ["rhomboids"],
 	},
+	{
+		id: "rearDelts-11",
+		name: "Rear Delt Pulldown",
+		primaryMuscle: "rearDelts",
+		secondaryMuscles: ["rhomboids"],
+	},
 
 	// Rhomboids
 	{
