@@ -17,9 +17,11 @@ export default function AppLayout() {
 			/>
 			<main className="min-h-screen mx-auto w-full p-3 sm:p-5  lg:p-10 max-w-[1440px]">
 				<div className="flex items-center gap-3">
-					<MobileSidebar onOpenChange={setSidebarIsOpen} />
-					<div className="flex gap-3 items-center ml-auto">
-						<UserButton />
+					<div className="flex gap-3 w-full items-center ml-auto mb-5">
+						<MobileSidebar onOpenChange={setSidebarIsOpen} />
+						<div className="ml-auto">
+							<UserButton />
+						</div>
 						<ModeToggle />
 						<SelectLanguage />
 					</div>

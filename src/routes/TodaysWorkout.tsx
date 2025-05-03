@@ -220,6 +220,7 @@ export default function TodaysWorkout() {
 													<TableCell>{setIndex + 1}</TableCell>
 													<TableCell className="pr-2">
 														<Input
+															value={exercise.sets[setIndex].weight || 0}
 															className="bg-white"
 															onChange={(e) => {
 																updateSet(
@@ -233,6 +234,7 @@ export default function TodaysWorkout() {
 													</TableCell>
 													<TableCell className="p-0">
 														<Input
+															value={exercise.sets[setIndex].reps || 0}
 															className="bg-white"
 															onChange={(e) =>
 																updateSet(
