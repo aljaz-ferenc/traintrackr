@@ -163,6 +163,10 @@
 			"title": "Rest day.",
 			"text": "Today is your rest day."
 		},
+		"workoutCompleted": {
+			"title": "Workout completed",
+			"text": "You have completed your workout for today."
+		},
 		"mesoCompleted": {
 			"title": "Mesocycle completed",
 			"text": "You have completed this mesocycle! You can create a new one on the <newMesocycleLink>New Mesocycle</newMesocycleLink> page or activate an existing one on the <myMesocyclesLink>My Mesocycles</myMesocyclesLink> page."

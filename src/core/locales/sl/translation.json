@@ -164,6 +164,10 @@
 			"title": "Počitek",
 			"text": "Danes je dan za počitek."
 		},
+		"workoutCompleted": {
+			"title": "Trening opravljen",
+			"text": "Danes si že opravil načrtovan trening."
+		},
 		"mesoCompleted": {
 			"title": "Mezocikel zaključen",
 			"text": "Zaključil si ta mezocikel! Lahko ustavariš novega na strani <newMesocycleLink>Novi mezocikel</newMesocycleLink> ali pa aktiviraš že obstoječega na strani <myMesocyclesLink>Moji mezocikli</myMesocyclesLink>."

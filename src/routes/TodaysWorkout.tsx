@@ -169,7 +169,14 @@ export default function TodaysWorkout() {
 	}
 
 	if (user?.lastWorkout && isToday(new Date(user.lastWorkout))) {
-		return <>Today's workout completed.</>;
+		return (
+			<ErrorPage>
+				<ErrorTitle>{t("TODAYS_WORKOUT.workoutCompleted.title")}</ErrorTitle>
+				<ErrorDescription>
+					{t("TODAYS_WORKOUT.workoutCompleted.text")}
+				</ErrorDescription>
+			</ErrorPage>
+		);
 	}
 	return (
 		<section className="max-w-[600px] mx-auto">
