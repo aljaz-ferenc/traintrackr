@@ -39,6 +39,7 @@ import ErrorPage, {
 } from "@/components/shared/ErrorPage.tsx";
 import { Route } from "@/core/enums/Routes.enum.ts";
 import { Trans, useTranslation } from "react-i18next";
+import { z } from "zod";
 
 export default function TodaysWorkout() {
 	const [user] = useUserStore(useShallow((state) => [state.user]));
@@ -158,6 +159,7 @@ export default function TodaysWorkout() {
 
 		try {
 			await completeWorkout(log);
+			setExercises([]);
 			navigate("/completed-workouts");
 		} catch (err) {
 			console.log("Error completing workout: ", err);
@@ -220,30 +222,54 @@ export default function TodaysWorkout() {
 													<TableCell>{setIndex + 1}</TableCell>
 													<TableCell className="pr-2">
 														<Input
-															value={exercise.sets[setIndex].weight || 0}
+															value={exercise.sets[setIndex].weight || ""}
 															className="bg-white"
 															onChange={(e) => {
-																updateSet(
-																	exerciseIndex,
-																	set.id,
-																	"weight",
-																	e.target.value,
-																);
+																const value = e.target.value;
+																const { success } = z
+																	.string()
+																	.regex(
+																		/^\d*\.?\d?$/,
+																		"Only use numbers with up to one decimal place.",
+																	)
+																	.or(z.literal(""))
+																	.safeParse(value);
+
+																if (success) {
+																	updateSet(
+																		exerciseIndex,
+																		set.id,
+																		"weight",
+																		e.target.value,
+																	);
+																}
 															}}
 														/>
 													</TableCell>
 													<TableCell className="p-0">
 														<Input
-															value={exercise.sets[setIndex].reps || 0}
+															value={exercise.sets[setIndex].reps || ""}
 															className="bg-white"
-															onChange={(e) =>
-																updateSet(
-																	exerciseIndex,
-																	set.id,
-																	"reps",
-																	e.target.value,
-																)
-															}
+															onChange={(e) => {
+																const value = e.target.value;
+																const { success } = z
+																	.string()
+																	.regex(
+																		/^\d*\.?\d?$/,
+																		"Only use numbers with up to one decimal place.",
+																	)
+																	.or(z.literal(""))
+																	.safeParse(value);
+
+																if (success) {
+																	updateSet(
+																		exerciseIndex,
+																		set.id,
+																		"reps",
+																		value,
+																	);
+																}
+															}}
 														/>
 													</TableCell>
 													<TableCell className="p-0">
