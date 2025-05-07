@@ -5,7 +5,7 @@ import { z } from "zod";
 import AppTooltip from "@/components/shared/Tooltip.tsx";
 import Button from "@/components/shared/Button.tsx";
 import { useEffect, useState } from "react";
-import { isToday } from "date-fns";
+import { isSameDay, isToday } from "date-fns";
 import useUpdateStats from "@/hooks/api/useUpdateStats.ts";
 import useStats from "@/hooks/api/useStats.ts";
 import { useTranslation } from "react-i18next";
@@ -14,6 +14,7 @@ import { useShallow } from "zustand/react/shallow";
 import useEditStats from "@/hooks/api/useEditStats.ts";
 import StatsSectionWrapper from "@/components/stats/StatsSectionWrapper.tsx";
 import MeasurementsChart from "@/components/stats/MeasurementsChart.tsx";
+import SelectDate from "@/components/nutrition/SelectDate.tsx";
 
 export default function WeightSection() {
 	const { mutateAsync: updateStats, isPending: isUpdating } = useUpdateStats();
@@ -24,6 +25,7 @@ export default function WeightSection() {
 	const user = useUserStore(useShallow((state) => state.user));
 	const [isEditMode, setIsEditMode] = useState(false);
 	const { mutateAsync: editStats, isPending: isEditingStats } = useEditStats();
+	const [selectedDate, setSelectedDate] = useState(new Date());
 
 	const handleUpdateStats = async () => {
 		await updateStats({ weight: Number(weight) });
@@ -37,7 +39,15 @@ export default function WeightSection() {
 		}
 
 		if (hasWeighedToday && isEditMode) {
-			await editStats({ weight }).then(() => {
+			const editPayload: { weight: number; date?: Date } = {
+				weight: Number(weight),
+			};
+
+			if (!isToday(selectedDate)) {
+				editPayload.date = selectedDate;
+			}
+
+			await editStats(editPayload).then(() => {
 				setIsEditMode(false);
 			});
 		}
@@ -47,12 +57,16 @@ export default function WeightSection() {
 		? isToday(user.stats.weight[user.stats.weight.length - 1].date)
 		: false;
 
-	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
-		if (hasWeighedToday && !weight && user) {
-			setWeight(String(user.stats.weight[user.stats.weight.length - 1].value));
+		const weightOnSelectedDate =
+			stats?.weight.weightsInRange.find((weight) =>
+				isSameDay(weight.date, selectedDate),
+			)?.value || null;
+
+		if (hasWeighedToday && user) {
+			setWeight(String(weightOnSelectedDate || t("GENERAL.noData")));
 		}
-	}, [hasWeighedToday, user]);
+	}, [hasWeighedToday, user, selectedDate, stats, t]);
 
 	return (
 		<StatsSectionWrapper title={t("STATS.sections.weight")}>
@@ -88,13 +102,17 @@ export default function WeightSection() {
 						/>
 					)}
 				</Tabs>
-				<div className="flex flex-col gap-2 max-w-min">
+				<hr className="mt-10" />
+				<div className="flex flex-col gap-2 w-fit mx-auto items-center">
+					<SelectDate
+						className="my-10"
+						onDateChange={(date) => setSelectedDate(date)}
+					/>
 					<div className="flex gap-2 w-max">
 						<Input
 							type="text"
 							onChange={(e) => {
 								const value = e.target.value;
-
 								if (
 									z
 										.string()
@@ -117,7 +135,7 @@ export default function WeightSection() {
 					<Button
 						type={"button"}
 						onClick={hasWeighedToday ? handleEditStats : handleUpdateStats}
-						className="cursor-pointer px-4"
+						className="cursor-pointer px-4 w-full"
 						isLoading={isUpdating || isEditingStats}
 					>
 						{!hasWeighedToday

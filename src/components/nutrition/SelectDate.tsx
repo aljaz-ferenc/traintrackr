@@ -7,9 +7,13 @@ import { useTranslation } from "react-i18next";
 
 type SelectDateProps = {
 	onDateChange?: (date: Date) => void;
+	className?: string;
 };
 
-export default function SelectDate({ onDateChange }: SelectDateProps) {
+export default function SelectDate({
+	onDateChange,
+	className = "",
+}: SelectDateProps) {
 	const [date, setDate] = useState(new Date());
 	const { t, i18n } = useTranslation();
 
@@ -19,7 +23,12 @@ export default function SelectDate({ onDateChange }: SelectDateProps) {
 	};
 
 	return (
-		<div className="flex justify-between items-baseline relative my-16">
+		<div
+			className={cn([
+				"flex justify-between items-baseline relative my-16",
+				className,
+			])}
+		>
 			<div className="flex flex-col absolute top-1/2 left-1/2 -translate-1/2 items-center">
 				<div className="flex items-center">
 					<Button
