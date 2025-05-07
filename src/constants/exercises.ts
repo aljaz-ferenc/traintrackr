@@ -737,6 +737,12 @@ export const exercises: Exercise[] = [
 		primaryMuscle: "quads",
 		secondaryMuscles: ["glutes"],
 	},
+	{
+		id: "quads-11",
+		name: "Leg Extension",
+		primaryMuscle: "quads",
+		secondaryMuscles: [],
+	},
 
 	// Calves
 	{
@@ -1175,5 +1181,11 @@ export const exercises: Exercise[] = [
 		name: "Clamshells",
 		primaryMuscle: "glutes",
 		secondaryMuscles: ["abductors"],
+	},
+	{
+		id: "glutes-11",
+		name: "Hyperextension",
+		primaryMuscle: "glutes",
+		secondaryMuscles: ["hamstrings"],
 	},
 ] as const;
