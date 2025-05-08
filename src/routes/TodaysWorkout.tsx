@@ -17,6 +17,7 @@ import {
 	differenceInWeeks,
 	getDay,
 	isAfter,
+	isSameDay,
 	isToday,
 	startOfDay,
 } from "date-fns";
@@ -58,6 +59,8 @@ export default function TodaysWorkout() {
 		removeSetFromExercise,
 		updateSet,
 		constructLog,
+		day,
+		setDay,
 	] = useTodaysWorkoutStore(
 		useShallow((state) => [
 			state.exercises,
@@ -66,6 +69,8 @@ export default function TodaysWorkout() {
 			state.removeSetFromExercise,
 			state.updateSet,
 			state.constructLog,
+			state.day,
+			state.setDay,
 		]),
 	);
 
@@ -75,8 +80,11 @@ export default function TodaysWorkout() {
 
 	useEffect(() => {
 		if (!mesocycle || exercises.length || !todaysWorkout) return;
-		setExercises(todaysWorkout.exercises);
-	}, [mesocycle, exercises.length, setExercises, todaysWorkout]);
+		if (day && !isSameDay(todaysWorkout.day, day)) {
+			setExercises(todaysWorkout.exercises);
+			setDay(todaysWorkout.day);
+		}
+	}, [mesocycle, exercises.length, setExercises, todaysWorkout, day, setDay]);
 
 	const currentWeek =
 		differenceInWeeks(new Date(), user?.activeMesocycle?.startDate as Date) + 1;

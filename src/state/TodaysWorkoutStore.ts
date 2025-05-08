@@ -13,6 +13,8 @@ import { createJSONStorage, persist } from "zustand/middleware";
 type TodaysWorkoutStore = {
 	exercises: ExerciseWithSets[];
 	setExercises: (exercises: Exercise[]) => void;
+	day: number | null;
+	setDay: (day: number) => void;
 	addSetToExercise: (exerciseIndex: number) => void;
 	removeSetFromExercise: (exerciseIndex: number, setId: string) => void;
 	updateSet: (
@@ -33,6 +35,7 @@ export const useTodaysWorkoutStore = create<TodaysWorkoutStore>()(
 	persist(
 		(set, getState) => ({
 			exercises: [],
+			day: null,
 			setExercises: (exercises) =>
 				set((state) => {
 					const exercisesWithSets: ExerciseWithSets[] = exercises.map(
@@ -46,6 +49,7 @@ export const useTodaysWorkoutStore = create<TodaysWorkoutStore>()(
 
 					return { ...state, exercises: exercisesWithSets };
 				}),
+			setDay: (day) => set({ day }),
 			addSetToExercise: (exerciseIndex) =>
 				set((state) => {
 					const updatedExercises = state.exercises.map((exercise, i) => {
