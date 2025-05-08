@@ -16,7 +16,7 @@ export default function Dob({ setDob }: DobProps) {
 	const { t } = useTranslation();
 
 	return (
-		<>
+		<div className="h-full max-w-md flex flex-col justify-between gap-10">
 			<h2 className="text-3xl font-bold text-center mb-4">
 				{t("ONBOARDING.dob.title")}
 			</h2>
@@ -43,9 +43,6 @@ export default function Dob({ setDob }: DobProps) {
 					<InputOTPSlot index={7} />
 				</InputOTPGroup>
 			</InputOTP>
-			<p className="text-center max-w-[80%] mx-auto max-w-sm leading-8">
-				{t("ONBOARDING.dob.text")}
-			</p>
-		</>
+		</div>
 	);
 }

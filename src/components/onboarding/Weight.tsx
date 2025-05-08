@@ -23,21 +23,18 @@ export default function Weight({ weight, setWeight }: WeightProps) {
 	};
 
 	return (
-		<>
+		<div className="h-full flex items-center flex-col max-w-screen justify-between gap-10">
 			<h2 className="text-3xl font-bold text-center mb-4">
 				{t("ONBOARDING.weight.title")}
 			</h2>
 			<div className="flex items-center gap-2">
 				<Input
-					className="h-10 w-xs"
+					className="h-10 max-w-[100px]"
 					onChange={(e) => onWeightInput(e.target.value)}
 					value={weight}
 				/>
 				<span>kg</span>
 			</div>
-			<p className="text-center max-w-[80%] mx-auto max-w-sm leading-8">
-				{t("ONBOARDING.weight.text")}
-			</p>
-		</>
+		</div>
 	);
 }

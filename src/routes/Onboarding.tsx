@@ -6,7 +6,7 @@ import Dob from "@/components/onboarding/Dob";
 import Height from "@/components/onboarding/Height";
 import Weight from "@/components/onboarding/Weight";
 import { useState, useMemo, useEffect } from "react";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import { cn } from "@/lib/utils.ts";
 import type { Gender as TGender } from "@/core/types.ts";
 import { calcAgeFromDob, isUserOnboarded, isValidDate } from "@/utils/utils.ts";
@@ -129,17 +129,17 @@ export default function Onboarding() {
 
 	return (
 		<section className="grid place-items-center min-h-screen overflow-hidden">
-			<Card className="w-full max-w-5xl h-full max-h-[800px] relative p-15">
+			<Card className="w-full h-full relative p-0 border-none">
 				<div className="absolute top-3 right-3 z-20 flex gap-3">
 					<SelectLanguage />
 					<UserButton />
 				</div>
-				<CardContent className="flex justify-center items-center h-full w-full overflow-hidden">
+				<CardContent className="flex justify-center items-center h-full w-full overflow-hidden p-0 ">
 					{isUpdating ? (
 						<Spinner />
 					) : (
-						<div className="w-full h-full relative flex-col flex justify-center items-center">
-							<div>
+						<div className="w-full h-full pt-10 relative flex-col flex justify-center items-center md:max-h-[600px]">
+							<div className={""}>
 								<motion.div
 									initial={{ scaleX: 0 }}
 									animate={{
@@ -149,22 +149,33 @@ export default function Onboarding() {
 									className="mx-auto h-[3px] bg-primary origin-left"
 								/>
 							</div>
-							<div className="relative h-full w-screen">
+							<div className="relative h-full w-full justify-self-center">
 								<motion.div
-									className={`flex h-full w-[${onboardingScreens.length * 100}%] absolute`}
+									className="flex max-h-[500px] absolute items-center"
 									initial={{ x: 0 }}
 									animate={{ x: `-${current * 100}vw` }}
 									transition={{ ease: "easeInOut" }}
 								>
 									{onboardingScreens.map((screen, i) => (
-										// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-										<OnboardingScreenWrapper key={i}>
+										<OnboardingScreenWrapper key={`screen-${i + 1}`}>
 											{screen}
 										</OnboardingScreenWrapper>
 									))}
 								</motion.div>
 							</div>
-							<div className="text-center mt-10 flex flex-col min-w-md">
+							<AnimatePresence>
+								{current > 0 && current < onboardingScreens.length - 1 && (
+									<motion.p
+										initial={{ opacity: 0 }}
+										animate={{ opacity: 1 }}
+										exit={{ opacity: 0 }}
+										className="text-center mx-auto max-w-[80vw] leading-5 text-sm text-muted-foreground"
+									>
+										{t("ONBOARDING.privacy")}
+									</motion.p>
+								)}
+							</AnimatePresence>
+							<div className="text-center flex flex-col self-stretch p-5 max-w-md mx-auto">
 								<Button
 									disabled={disableContinue[current as 0 | 1 | 2 | 3]}
 									className={cn(["mt-5 cursor-pointer"])}
@@ -182,7 +193,7 @@ export default function Onboarding() {
 									<button
 										type="button"
 										className={cn([
-											"mt-5 cursor-pointer underline underline-offset-2",
+											"mt-3 cursor-pointer underline underline-offset-2",
 											current === 0 ? "invisible" : "visible",
 										])}
 										onClick={handleScrollPrev}

@@ -8,6 +8,7 @@ import { Triangle } from "lucide-react";
 import type React from "react";
 import { cn } from "@/lib/utils.ts";
 import { useTranslation } from "react-i18next";
+import useScreenSize from "@/hooks/useScreenSize.ts";
 
 const heights: number[] = [];
 
@@ -30,22 +31,24 @@ type HeightProps = {
 
 export default function Height({ setHeight }: HeightProps) {
 	const { t } = useTranslation();
+	const { width } = useScreenSize();
+	console.log(width);
 
 	return (
-		<>
+		<div className="h-full flex flex-col max-w-screen justify-between gap-10">
 			<h2 className="text-3xl font-bold text-center mb-4">
 				{t("ONBOARDING.height.title")}
 			</h2>
-			<Triangle className="-scale-y-100 absolute left-1/2 -translate-x-1/2 translate-y-30 fill-white" />
 			<Swiper
 				direction={"horizontal"}
-				className="w-full !cursor-pointer border"
-				slidesPerView={50}
+				className="w-full !cursor-pointer border relative"
+				slidesPerView={width / 40}
 				freeMode={true}
 				onSlideChange={(swiper) => setHeight(heights[swiper.activeIndex])}
 				centeredSlides={true}
 				slideToClickedSlide={true}
 			>
+				<Triangle className="-scale-y-100 absolute left-1/2 -translate-x-1/2 top-3  fill-white" />
 				{heights.map((height) => (
 					<SwiperSlide
 						className="select-none !py-10 text-sm text-center flex flex-col"
@@ -61,9 +64,6 @@ export default function Height({ setHeight }: HeightProps) {
 					</SwiperSlide>
 				))}
 			</Swiper>
-			<p className="text-center max-w-[80%] mx-auto max-w-sm leading-8">
-				{t("ONBOARDING.height.text")}
-			</p>
-		</>
+		</div>
 	);
 }

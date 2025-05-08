@@ -13,11 +13,11 @@ export default function Gender({ setGender, gender }: GenderProps) {
 	const { t } = useTranslation();
 
 	return (
-		<>
+		<div className="h-full max-w-md flex flex-col justify-between gap-10 mt-10">
 			<h2 className="text-3xl font-bold text-center mb-4">
 				{t("ONBOARDING.gender.title")}
 			</h2>
-			<div className="flex gap-[30%] mx-auto justify-center my-5">
+			<div className="flex gap-3 justify-around my-5">
 				<div>
 					<button
 						type="button"
@@ -49,9 +49,6 @@ export default function Gender({ setGender, gender }: GenderProps) {
 					</p>
 				</div>
 			</div>
-			<p className="text-center max-w-[80%] mx-auto max-w-sm leading-8">
-				{t("ONBOARDING.gender.text")}
-			</p>
-		</>
+		</div>
 	);
 }

@@ -45,8 +45,8 @@ export default function Tdee({
 	}
 
 	return (
-		<>
-			<h2 className="text-3xl font-bold text-center mb-4">
+		<div className="h-full flex flex-col max-w-screen items-center justify-between gap-10">
+			<h2 className="text-3xl font-bold text-center mb-4 self-center">
 				{t("ONBOARDING.tdee.title")}
 			</h2>
 			<div className="flex gap-2 items-center">
@@ -64,9 +64,6 @@ export default function Tdee({
 				</Button>
 				<AppTooltip content={t("ONBOARDING.tdee.calcTdeeBtnTooltip")} />
 			</div>
-			<p className="text-center mx-auto max-w-sm leading-8">
-				{t("ONBOARDING.weight.text")}
-			</p>
-		</>
+		</div>
 	);
 }

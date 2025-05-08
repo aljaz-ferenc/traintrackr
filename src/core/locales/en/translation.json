@@ -59,33 +59,29 @@
 		}
 	},
 	"ONBOARDING": {
+		"privacy": "This helps us fine-tune your experience. No worries — your info stays private and safe with us.",
 		"welcome": {
 			"title": "Welcome to TrainTrackr!",
 			"text": "We're excited to have you here. Let’s set up a few things to personalize your experience and help you get the most out of TrainTrackr."
 		},
 		"gender": {
 			"title": "What's your gender?",
-			"text": "This helps us fine-tune your experience. No worries — your info stays private and safe with us.",
 			"male": "Male",
 			"female": "Female"
 		},
 		"dob": {
-			"title": "When's your birthday?",
-			"text": "This helps us fine-tune your experience. No worries — your info stays private and safe with us."
+			"title": "When's your birthday?"
 		},
 		"units": {
 			"title": "Choose your preferred units",
-			"text": "This helps us fine-tune your experience. No worries — your info stays private and safe with us.",
 			"metric": "Metric",
 			"imperial": "Imperial"
 		},
 		"height": {
-			"title": "What's your height?",
-			"text": "This helps us fine-tune your experience. No worries — your info stays private and safe with us."
+			"title": "What's your height?"
 		},
 		"weight": {
-			"title": "What's your weight?",
-			"text": "This helps us fine-tune your experience. No worries — your info stays private and safe with us."
+			"title": "What's your weight?"
 		},
 		"activityLevel": {
 			"title": "What's your activity level?",
@@ -97,14 +93,12 @@
 		},
 		"tdee": {
 			"title": "What's your TDEE?",
-			"text": "This helps us fine-tune your experience. No worries — your info stays private and safe with us.",
 			"tooltip": "TDEE (Total Daily Energy Expenditure) is the estimated number of calories you burn each day through basic bodily functions, daily activities, and exercise. It represents the amount you'd need to eat to maintain your current weight aka maintenance calories.",
 			"calcBtn": "I'm not sure, calculate it for me",
 			"calcTdeeBtnTooltip": "TDEE will be calculated based on the data you provided in previous steps."
 		},
 		"letsGo": {
-			"title": "You're all set!",
-			"text": "This helps us fine-tune your experience. No worries — your info stays private and safe with us."
+			"title": "You're all set!"
 		},
 		"buttons": {
 			"continue": "Continue",

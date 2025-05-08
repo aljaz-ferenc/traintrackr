@@ -14,7 +14,7 @@ type ActivityLevelProps = {
 	setActivityLevel: React.Dispatch<React.SetStateAction<ActivityLevels | null>>;
 };
 
-const iconSize = 100;
+const iconSize = 30;
 
 const activityLevelsIcons = {
 	[ActivityLevels.SEDENTARY]: <FaCouch size={iconSize} />,
@@ -31,34 +31,33 @@ export default function ActivityLevel({
 	const { t } = useTranslation();
 
 	return (
-		<>
-			<h2 className="text-3xl font-bold text-center mb-4">
+		<div className="h-full w-full flex flex-col justify-between gap-10">
+			<h2 className="text-3xl font-bold text-center mt-5 md:mt-0">
 				{t("ONBOARDING.activityLevel.title")}
 			</h2>
-			<div className="flex justify-between gap-3">
+			<div className="grid grid-cols-3 md:grid-cols-5  max-w-[80%] mx-auto gap-3 h-full">
 				{Object.values(ActivityLevels).map((level) => (
 					<Button
 						onClick={() => setActivityLevel(level)}
 						className={cn([
-							"h-80 aspect-[0.6] bg-background border",
+							"aspect-square bg-background border w-full h-full",
 							activityLevel === level && "bg-secondary hover:bg-secondary",
 						])}
 						variant="secondary"
 						type="button"
 						key={level}
 					>
-						<div className="flex flex-col items-center">
-							<div>{activityLevelsIcons[level]}</div>
-							<div className="block mt-8 uppercase font-bold">
+						<div className="flex flex-col items-center gap-2">
+							<div className="justify-self-stretch">
+								{activityLevelsIcons[level]}
+							</div>
+							<div className="block uppercase font-bold text-sm">
 								{t(`ONBOARDING.activityLevel.${level}`)}
 							</div>
 						</div>
 					</Button>
 				))}
 			</div>
-			<p className="text-center mx-auto max-w-sm leading-8">
-				{t("ONBOARDING.weight.text")}
-			</p>
-		</>
+		</div>
 	);
 }
