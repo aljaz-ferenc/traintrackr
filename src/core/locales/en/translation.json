@@ -300,5 +300,13 @@
 		"deleteLog": {
 			"error": "Something went wrong. Couldn’t edit your log."
 		}
+	},
+	"FORM_ERRORS": {
+		"Required": "This field is required",
+		"Expected number, received nan": "Please enter a number",
+		"Invalid": "Invalid input",
+		"number": {
+			"valid": "Please enter a valid number"
+		}
 	}
 }

@@ -13,6 +13,7 @@ import {
 
 import { cn } from "@/lib/utils";
 import { Label } from "@/components/ui/label";
+import { useTranslation } from "react-i18next";
 
 const Form = FormProvider;
 
@@ -135,8 +136,11 @@ function FormDescription({ className, ...props }: React.ComponentProps<"p">) {
 }
 
 function FormMessage({ className, ...props }: React.ComponentProps<"p">) {
+	const { t } = useTranslation();
 	const { error, formMessageId } = useFormField();
 	const body = error ? String(error?.message ?? "") : props.children;
+
+	const translatedBody = t(`FORM_ERRORS.${body}`);
 
 	if (!body) {
 		return null;
@@ -149,7 +153,7 @@ function FormMessage({ className, ...props }: React.ComponentProps<"p">) {
 			className={cn("text-destructive text-sm", className)}
 			{...props}
 		>
-			{body}
+			{translatedBody.startsWith("FORM_ERRORS") ? body : translatedBody}
 		</p>
 	);
 }

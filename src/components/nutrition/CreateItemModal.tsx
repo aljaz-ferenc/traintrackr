@@ -34,23 +34,27 @@ import { useTranslation } from "react-i18next";
 import useDeleteFoodItem from "@/hooks/api/useDeleteFoodItem.ts";
 
 const formSchema = z.object({
-	name: z.string(),
-	calories: z.coerce.number().nonnegative({
-		message: "Calories must be a valid positive number",
-	}),
-	protein: z.coerce.number().nonnegative({
-		message: "Protein must be a valid positive number",
-	}),
-	carbs: z.coerce.number().nonnegative({
-		message: "Carbs must be a valid positive number",
-	}),
-	fat: z.coerce.number().nonnegative({
-		message: "Fat must be a valid positive number",
-	}),
+	name: z.string().min(1),
+	calories: z
+		.string()
+		.regex(/^\d*\.?\d?$/, { message: "number.valid" })
+		.refine((val) => !!val.length, { message: "Required" }),
+	protein: z
+		.string()
+		.regex(/^\d*\.?\d?$/, { message: "number.valid" })
+		.refine((val) => !!val.length, { message: "Required" }),
+	carbs: z
+		.string()
+		.regex(/^\d*\.?\d?$/, { message: "number.valid" })
+		.refine((val) => !!val.length, { message: "Required" }),
+	fat: z
+		.string()
+		.regex(/^\d*\.?\d?$/, { message: "number.valid" })
+		.refine((val) => !!val.length, { message: "Required" }),
 	portions: z
 		.array(
 			z.object({
-				name: z.string(),
+				name: z.string().min(1),
 				grams: z.coerce.number().nonnegative(),
 			}),
 		)
@@ -91,10 +95,10 @@ export default function CreateItemModal({
 	useEffect(() => {
 		if (defaultItem && isOpen) {
 			form.setValue("name", defaultItem.name);
-			form.setValue("calories", defaultItem.calories);
-			form.setValue("protein", defaultItem.protein);
-			form.setValue("fat", defaultItem.fat);
-			form.setValue("carbs", defaultItem.carbs);
+			form.setValue("calories", String(defaultItem.calories));
+			form.setValue("protein", String(defaultItem.protein));
+			form.setValue("fat", String(defaultItem.fat));
+			form.setValue("carbs", String(defaultItem.carbs));
 
 			if (defaultItem.portions?.length) {
 				for (const portion of defaultItem.portions) {
@@ -111,9 +115,20 @@ export default function CreateItemModal({
 					...values,
 					createdBy: userId as string,
 					_id: defaultItem?._id,
+					calories: +values.calories,
+					protein: +values.protein,
+					fat: +values.fat,
+					carbs: +values.carbs,
 				});
 			} else {
-				await createFoodItem({ ...values, createdBy: userId as string });
+				await createFoodItem({
+					...values,
+					calories: +values.calories,
+					protein: +values.protein,
+					fat: +values.fat,
+					carbs: +values.carbs,
+					createdBy: userId as string,
+				});
 			}
 			setIsOpen(false);
 			form.reset();

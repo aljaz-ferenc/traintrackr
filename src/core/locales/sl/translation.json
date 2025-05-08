@@ -301,5 +301,13 @@
 		"deleteLog": {
 			"error": "Prišlo je do napake. Vnosa ni bilo mogoče izbrisati."
 		}
+	},
+	"FORM_ERRORS": {
+		"Required": "To polje je obvezno",
+		"Expected number, received nan": "Vpiši številko",
+		"Invalid": "Neveljaven vnos",
+		"number": {
+			"valid": "Vpiši veljavno številko"
+		}
 	}
 }

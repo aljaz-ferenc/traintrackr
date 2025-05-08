@@ -37,7 +37,10 @@ type AddItemFormProps = {
 };
 
 const formSchema = z.object({
-	amount: z.coerce.number().nonnegative(),
+	amount: z
+		.string()
+		.regex(/^\d*\.?\d?$/, { message: "number.valid" })
+		.refine((val) => !!val.length, { message: "Required" }),
 	portion: z.string(),
 });
 
@@ -82,11 +85,11 @@ export default function AddItemForm({
 		if (edit && nutritionId) {
 			await updateNutrition({
 				nutritionId,
-				amount: values.amount * Number(values.portion.split("/")[0]),
+				amount: +values.amount * Number(values.portion.split("/")[0]),
 			});
 		} else {
 			await createNutrition({
-				amount: values.amount * Number(values.portion.split("/")[0]),
+				amount: +values.amount * Number(values.portion.split("/")[0]),
 				createdBy: userId,
 				item: getSelectedFoodItem() as FoodItem,
 			});
