@@ -3,6 +3,7 @@ import { Endpoints } from "@/core/endpoints.ts";
 import type { Mesocycle } from "@/core/types.ts";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
+import { useAuth } from "@clerk/clerk-react";
 
 async function fetchDeleteMeso(mesoId: Mesocycle["_id"]) {
 	const res = await fetch(Endpoints.mesocycle(mesoId), {
@@ -17,6 +18,7 @@ async function fetchDeleteMeso(mesoId: Mesocycle["_id"]) {
 export default function useDeleteMesocycle() {
 	const queryClient = useQueryClient();
 	const { t } = useTranslation();
+	const { userId } = useAuth();
 
 	return useMutation({
 		mutationKey: ["meso-delete"],
@@ -26,7 +28,11 @@ export default function useDeleteMesocycle() {
 				success: t("TOASTS.deleteMeso.success"),
 				error: t("TOASTS.deleteMeso.error"),
 			}),
-		onSuccess: () =>
-			queryClient.invalidateQueries({ queryKey: ["my-mesocycles"] }),
+		onSuccess: () => {
+			queryClient.invalidateQueries({ queryKey: ["my-mesocycles"] });
+			queryClient.invalidateQueries({
+				queryKey: ["user", { clerkId: userId }],
+			});
+		},
 	});
 }

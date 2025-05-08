@@ -4,6 +4,11 @@ import CaloriesChart from "@/components/nutrition/CaloriesChart.tsx";
 import MacrosPieChart from "@/components/nutrition/MacrosPieChart.tsx";
 import { useTranslation } from "react-i18next";
 import type { StatsResponse } from "@/hooks/api/useStats.ts";
+import { Edit } from "lucide-react";
+import useUserStore from "@/state/UserStore.ts";
+import { useShallow } from "zustand/react/shallow";
+import { useNavigate } from "react-router";
+import { Route } from "@/core/enums/Routes.enum.ts";
 
 type NutritionCardsProps = {
 	className?: string;
@@ -15,6 +20,10 @@ export default function NutritionCards({
 	nutrition,
 }: NutritionCardsProps) {
 	const { t } = useTranslation();
+	const [activeMeso] = useUserStore(
+		useShallow((state) => [state.user?.activeMesocycle]),
+	);
+	const navigate = useNavigate();
 
 	return (
 		<div className={cn(["@container", className])}>
@@ -53,9 +62,26 @@ export default function NutritionCards({
 					description={t("DASHBOARD.today")}
 					className="row-3 col-span-2 @sm:row-2 @sm:col-1  @md:row-1 @md:col-3"
 				>
-					<div>
-						<span className="text-3xl font-bold">{nutrition.caloriesGoal}</span>
-						<span className="text-xl"> kcal</span>
+					<div className="flex justify-between items-baseline">
+						<div>
+							<span className="text-3xl font-bold">
+								{nutrition.caloriesGoal}
+							</span>
+							<span className="text-xl"> kcal</span>
+						</div>
+						{!!activeMeso?.mesocycle && (
+							<button
+								type="button"
+								className="cursor-pointer text-muted hover:text-primary transition"
+								onClick={() =>
+									navigate(
+										`/${Route.MyMesocycles}/${activeMeso?.mesocycle._id}/edit`,
+									)
+								}
+							>
+								<Edit size={20} />
+							</button>
+						)}
 					</div>
 				</WidgetWrapper>
 				<WidgetWrapper

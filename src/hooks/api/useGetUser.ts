@@ -19,6 +19,7 @@ export default function useGetUser() {
 	return useQuery<User>({
 		queryKey: ["user", { clerkId }],
 		queryFn: () => fetchUser(clerkId as string),
+		staleTime: 0,
 		enabled: !!clerkId,
 	});
 }
