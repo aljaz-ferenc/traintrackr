@@ -80,7 +80,7 @@ export default function TodaysWorkout() {
 
 	useEffect(() => {
 		if (!mesocycle || exercises.length || !todaysWorkout) return;
-		if (day && !isSameDay(todaysWorkout.day, day)) {
+		if (!day || !isSameDay(todaysWorkout.day, day)) {
 			setExercises(todaysWorkout.exercises);
 			setDay(todaysWorkout.day);
 		}
