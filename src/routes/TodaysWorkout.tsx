@@ -79,12 +79,12 @@ export default function TodaysWorkout() {
 	);
 
 	useEffect(() => {
-		if (!mesocycle || exercises.length || !todaysWorkout) return;
-		if (day && !isSameDay(todaysWorkout.day, day)) {
+		if (!mesocycle || !todaysWorkout) return;
+		if (!day || !isSameDay(day, todaysWorkout.day)) {
 			setExercises(todaysWorkout.exercises);
 			setDay(todaysWorkout.day);
 		}
-	}, [mesocycle, exercises.length, setExercises, todaysWorkout, day, setDay]);
+	}, [mesocycle, setExercises, todaysWorkout, day, setDay]);
 
 	const currentWeek =
 		differenceInWeeks(new Date(), user?.activeMesocycle?.startDate as Date) + 1;
