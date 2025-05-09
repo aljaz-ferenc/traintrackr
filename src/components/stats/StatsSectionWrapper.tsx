@@ -1,5 +1,11 @@
 import type { PropsWithChildren } from "react";
 import { cn } from "@/lib/utils.ts";
+import {
+	Card,
+	CardContent,
+	CardHeader,
+	CardTitle,
+} from "@/components/ui/card.tsx";
 
 type StatsSectionWrapper = {
 	title: string;
@@ -12,9 +18,13 @@ export default function StatsSectionWrapper({
 	className = "",
 }: PropsWithChildren<StatsSectionWrapper>) {
 	return (
-		<section className={cn(["bg-secondary p-3 rounded-md", className])}>
-			<h2 className="text-2xl font-bold mb-5">{title}</h2>
-			{children}
-		</section>
+		<Card className={cn(["py-10 px-5 rounded-md", className])}>
+			<CardContent>
+				<CardHeader>
+					<CardTitle className="text-2xl font-bold mb-5">{title}</CardTitle>
+				</CardHeader>
+				{children}
+			</CardContent>
+		</Card>
 	);
 }

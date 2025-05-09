@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/Input.tsx";
 import { z } from "zod";
 import AppTooltip from "@/components/shared/Tooltip.tsx";
 import Button from "@/components/shared/Button.tsx";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { isSameDay, isToday } from "date-fns";
 import useUpdateStats from "@/hooks/api/useUpdateStats.ts";
 import useStats from "@/hooks/api/useStats.ts";
@@ -22,40 +22,39 @@ export default function WeightSection() {
 	const [range, setRange] = useState<Range>(Range.Week);
 	const { data: stats } = useStats(range);
 	const { t } = useTranslation();
-	const user = useUserStore(useShallow((state) => state.user));
 	const [isEditMode, setIsEditMode] = useState(false);
 	const { mutateAsync: editStats, isPending: isEditingStats } = useEditStats();
 	const [selectedDate, setSelectedDate] = useState(new Date());
 
 	const handleUpdateStats = async () => {
-		await updateStats({ weight: Number(weight) });
-		setWeight("");
+		await updateStats({ weight: Number(weight) }).then(() => {
+			setTimeout(() => {
+				setIsEditMode(false);
+			}, 200);
+			setWeight("");
+		});
 	};
 
 	const handleEditStats = async () => {
-		if (!isEditMode) {
-			setIsEditMode(true);
-			return;
-		}
+		const editPayload: { weight: number; date?: Date } = {
+			weight: Number(weight),
+			date: selectedDate,
+		};
 
-		if (hasWeighedToday && isEditMode) {
-			const editPayload: { weight: number; date?: Date } = {
-				weight: Number(weight),
-			};
-
-			if (!isToday(selectedDate)) {
-				editPayload.date = selectedDate;
-			}
-
-			await editStats(editPayload).then(() => {
-				setIsEditMode(false);
-			});
-		}
+		await editStats(editPayload).then(() => {
+			setIsEditMode(false);
+		});
 	};
 
-	const hasWeighedToday = user
-		? isToday(user.stats.weight[user.stats.weight.length - 1].date)
-		: false;
+	const hasWeighedToday = useMemo(() => {
+		if (!stats) return false;
+		return (
+			isToday(
+				stats.weight.weightsInRange[stats.weight.weightsInRange.length - 1]
+					.date as Date,
+			) || false
+		);
+	}, [stats]);
 
 	useEffect(() => {
 		const weightOnSelectedDate =
@@ -63,10 +62,21 @@ export default function WeightSection() {
 				isSameDay(weight.date, selectedDate),
 			)?.value || null;
 
-		if (hasWeighedToday && user) {
-			setWeight(String(weightOnSelectedDate || t("GENERAL.noData")));
+		setWeight(
+			weightOnSelectedDate ? String(weightOnSelectedDate) : t("GENERAL.noData"),
+		);
+
+		if (!hasWeighedToday && isToday(selectedDate)) {
+			setIsEditMode(true);
 		}
-	}, [hasWeighedToday, user, selectedDate, stats, t]);
+
+		if (
+			(isEditMode && !weightOnSelectedDate) ||
+			(isToday(selectedDate) && !weightOnSelectedDate)
+		) {
+			setWeight("0");
+		}
+	}, [selectedDate, stats, t, isEditMode, hasWeighedToday]);
 
 	return (
 		<StatsSectionWrapper title={t("STATS.sections.weight")}>
@@ -75,7 +85,7 @@ export default function WeightSection() {
 					defaultValue={"week"}
 					onValueChange={(val) => setRange(val as Range)}
 				>
-					<TabsList>
+					<TabsList className="bg-background">
 						<TabsTrigger
 							value={Range.Week}
 							className="capitalize cursor-pointer"
@@ -102,11 +112,14 @@ export default function WeightSection() {
 						/>
 					)}
 				</Tabs>
-				<hr className="mt-10" />
+				<hr />
 				<div className="flex flex-col gap-2 w-fit mx-auto items-center">
 					<SelectDate
-						className="my-10"
-						onDateChange={(date) => setSelectedDate(date)}
+						className="mt-5 mb-7"
+						onDateChange={(date) => {
+							setSelectedDate(date);
+							setIsEditMode(false);
+						}}
 					/>
 					<div className="flex gap-2 w-max">
 						<Input
@@ -128,17 +141,23 @@ export default function WeightSection() {
 							}}
 							value={weight}
 							className="w-full"
-							disabled={hasWeighedToday && !isEditMode}
+							disabled={!isEditMode}
 						/>
 						<AppTooltip content={t("NUTRITION.addWeightTooltip")} />
 					</div>
 					<Button
 						type={"button"}
-						onClick={hasWeighedToday ? handleEditStats : handleUpdateStats}
-						className="cursor-pointer px-4 w-full"
+						onClick={() => {
+							!hasWeighedToday && isToday(selectedDate)
+								? handleUpdateStats()
+								: isEditMode
+									? handleEditStats()
+									: setIsEditMode(true);
+						}}
+						className="cursor-pointer w-full"
 						isLoading={isUpdating || isEditingStats}
 					>
-						{!hasWeighedToday
+						{!hasWeighedToday && isToday(selectedDate)
 							? t("STATS.addMeasurement")
 							: isEditMode
 								? t("STATS.finishEditing")
