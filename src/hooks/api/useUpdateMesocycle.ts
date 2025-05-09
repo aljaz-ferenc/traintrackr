@@ -30,7 +30,9 @@ export default function useUpdateMesocycle() {
 				error: t("TOASTS.editMeso.error"),
 			}),
 		onSuccess: async () => {
-			await queryClient.invalidateQueries({ queryKey: ["mesocycles"] });
+			await queryClient.invalidateQueries({
+				queryKey: ["mesocycles"],
+			});
 			navigate("/my-mesocycles");
 		},
 	});

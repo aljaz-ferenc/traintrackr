@@ -39,6 +39,13 @@ export default function useUpdateUserStats() {
 		mutationFn: (payload: Partial<UpdateUserPayload>) =>
 			fetchUpdateUserStats(userId as string, payload),
 		onSuccess: async () =>
-			queryClient.invalidateQueries({ queryKey: ["user", { clerkId }] }),
+			queryClient.invalidateQueries({
+				queryKey: [
+					"user",
+					{
+						clerkId,
+					},
+				],
+			}),
 	});
 }

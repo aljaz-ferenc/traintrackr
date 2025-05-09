@@ -48,7 +48,14 @@ export default function Button({
 		}
 
 		return (
-			<Link className={cn([buttonStyles({ variant })])} to={to}>
+			<Link
+				className={cn([
+					buttonStyles({
+						variant,
+					}),
+				])}
+				to={to}
+			>
 				{children}
 			</Link>
 		);
@@ -59,7 +66,9 @@ export default function Button({
 			type={type}
 			{...props}
 			className={cn([
-				buttonStyles({ variant }),
+				buttonStyles({
+					variant,
+				}),
 				props.disabled && "cursor-not-allowed text-muted-foreground",
 				className,
 			])}

@@ -19,7 +19,9 @@ export default function useDeleteFoodItem() {
 		mutationKey: ["foodItem-delete"],
 		mutationFn: (itemId: FoodItem["_id"]) => fetchDeleteItem(itemId),
 		onSuccess: async () => {
-			await queryClient.invalidateQueries({ queryKey: ["foodItems-get"] });
+			await queryClient.invalidateQueries({
+				queryKey: ["foodItems-get"],
+			});
 		},
 	});
 }

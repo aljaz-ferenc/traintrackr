@@ -42,14 +42,26 @@ export const useTodaysWorkoutStore = create<TodaysWorkoutStore>()(
 						(exercise) => {
 							return {
 								...exercise,
-								sets: [{ weight: null, reps: null, id: crypto.randomUUID() }],
+								sets: [
+									{
+										weight: null,
+										reps: null,
+										id: crypto.randomUUID(),
+									},
+								],
 							};
 						},
 					);
 
-					return { ...state, exercises: exercisesWithSets };
+					return {
+						...state,
+						exercises: exercisesWithSets,
+					};
 				}),
-			setDay: (day) => set({ day }),
+			setDay: (day) =>
+				set({
+					day,
+				}),
 			addSetToExercise: (exerciseIndex) =>
 				set((state) => {
 					const updatedExercises = state.exercises.map((exercise, i) => {
@@ -58,14 +70,21 @@ export const useTodaysWorkoutStore = create<TodaysWorkoutStore>()(
 								...exercise,
 								sets: [
 									...exercise.sets,
-									{ weight: null, reps: null, id: crypto.randomUUID() },
+									{
+										weight: null,
+										reps: null,
+										id: crypto.randomUUID(),
+									},
 								],
 							};
 						}
 						return exercise;
 					});
 
-					return { ...state, exercises: updatedExercises };
+					return {
+						...state,
+						exercises: updatedExercises,
+					};
 				}),
 			removeSetFromExercise: (exerciseIndex, setId) =>
 				set((state) => {
@@ -76,13 +95,19 @@ export const useTodaysWorkoutStore = create<TodaysWorkoutStore>()(
 									(set) => set.id !== setId,
 								);
 
-								return { ...exercise, sets: filteredSets };
+								return {
+									...exercise,
+									sets: filteredSets,
+								};
 							}
 							return exercise;
 						},
 					);
 
-					return { ...state, exercises: updatedExercises };
+					return {
+						...state,
+						exercises: updatedExercises,
+					};
 				}),
 			updateSet: (exerciseIndex, setId, key, value) =>
 				set((state) => {
@@ -94,7 +119,10 @@ export const useTodaysWorkoutStore = create<TodaysWorkoutStore>()(
 									...exercise,
 									sets: exercise.sets.map((set) => {
 										if (set.id === setId) {
-											return { ...set, [key]: value };
+											return {
+												...set,
+												[key]: value,
+											};
 										}
 										return set;
 									}),
@@ -104,7 +132,10 @@ export const useTodaysWorkoutStore = create<TodaysWorkoutStore>()(
 						},
 					);
 
-					return { ...state, exercises: updatedExercises };
+					return {
+						...state,
+						exercises: updatedExercises,
+					};
 				}),
 
 			constructLog: (startDate, todaysWorkout, mesoId, userId) => {

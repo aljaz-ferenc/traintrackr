@@ -9,8 +9,6 @@ import { isSameDay, isToday } from "date-fns";
 import useUpdateStats from "@/hooks/api/useUpdateStats.ts";
 import useStats from "@/hooks/api/useStats.ts";
 import { useTranslation } from "react-i18next";
-import useUserStore from "@/state/UserStore.ts";
-import { useShallow } from "zustand/react/shallow";
 import useEditStats from "@/hooks/api/useEditStats.ts";
 import StatsSectionWrapper from "@/components/stats/StatsSectionWrapper.tsx";
 import MeasurementsChart from "@/components/stats/MeasurementsChart.tsx";
@@ -20,6 +18,7 @@ export default function WeightSection() {
 	const { mutateAsync: updateStats, isPending: isUpdating } = useUpdateStats();
 	const [weight, setWeight] = useState("");
 	const [range, setRange] = useState<Range>(Range.Week);
+
 	const { data: stats } = useStats(range);
 	const { t } = useTranslation();
 	const [isEditMode, setIsEditMode] = useState(false);
@@ -27,7 +26,9 @@ export default function WeightSection() {
 	const [selectedDate, setSelectedDate] = useState(new Date());
 
 	const handleUpdateStats = async () => {
-		await updateStats({ weight: Number(weight) }).then(() => {
+		await updateStats({
+			weight: Number(weight),
+		}).then(() => {
 			setTimeout(() => {
 				setIsEditMode(false);
 			}, 200);
@@ -36,7 +37,10 @@ export default function WeightSection() {
 	};
 
 	const handleEditStats = async () => {
-		const editPayload: { weight: number; date?: Date } = {
+		const editPayload: {
+			weight: number;
+			date?: Date;
+		} = {
 			weight: Number(weight),
 			date: selectedDate,
 		};

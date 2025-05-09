@@ -1,11 +1,17 @@
 import { useCallback, useEffect, useState } from "react";
 
 export default function useScreenSize() {
-	const [size, setSize] = useState({ width: 0, height: 0 });
+	const [size, setSize] = useState({
+		width: 0,
+		height: 0,
+	});
 
 	const handleResize = useCallback(() => {
 		console.log("resized");
-		setSize({ width: window.innerWidth, height: window.innerHeight });
+		setSize({
+			width: window.innerWidth,
+			height: window.innerHeight,
+		});
 	}, []);
 
 	useEffect(() => {

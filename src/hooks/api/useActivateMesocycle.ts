@@ -15,9 +15,15 @@ export type ActivateMesoPayload = {
 async function fetchActivateMeso({
 	userId,
 	activeMesocycle,
-}: { userId: User["_id"]; activeMesocycle: ActivateMesoPayload }) {
+}: {
+	userId: User["_id"];
+	activeMesocycle: ActivateMesoPayload;
+}) {
 	const res = await fetch(Endpoints.activateMeso, {
-		body: JSON.stringify({ userId, activeMesocycle }),
+		body: JSON.stringify({
+			userId,
+			activeMesocycle,
+		}),
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
@@ -36,21 +42,42 @@ export default function useActivateMesocycle() {
 		mutationFn: ({
 			userId,
 			activeMesocycle,
-		}: { userId: User["_id"]; activeMesocycle: ActivateMesoPayload }) =>
-			toast.promise(fetchActivateMeso({ userId, activeMesocycle }), {
-				error: t("TOASTS.activateMeso.error"),
-			}),
+		}: {
+			userId: User["_id"];
+			activeMesocycle: ActivateMesoPayload;
+		}) =>
+			toast.promise(
+				fetchActivateMeso({
+					userId,
+					activeMesocycle,
+				}),
+				{
+					error: t("TOASTS.activateMeso.error"),
+				},
+			),
 		onSuccess: async () => {
 			await queryClient.invalidateQueries({
-				queryKey: ["user", { clerkId: user?.clerkId }],
+				queryKey: [
+					"user",
+					{
+						clerkId: user?.clerkId,
+					},
+				],
 			});
 			await queryClient.invalidateQueries({
-				queryKey: ["stats", { range: "week" }],
+				queryKey: [
+					"stats",
+					{
+						range: "week",
+					},
+				],
 			});
 			await queryClient.invalidateQueries({
 				queryKey: [
 					"mesocycle",
-					{ mesoId: user?.activeMesocycle?.mesocycle._id },
+					{
+						mesoId: user?.activeMesocycle?.mesocycle._id,
+					},
 				],
 			});
 			await queryClient.invalidateQueries({

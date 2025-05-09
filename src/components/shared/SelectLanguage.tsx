@@ -11,8 +11,16 @@ import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils.ts";
 
 const languages = [
-	{ lng: "sl", label: "SLO", flag: <SI className="min-w-8 rounded-xl" /> },
-	{ lng: "en", label: "ENG", flag: <US className="min-w-8 rounded-xl" /> },
+	{
+		lng: "sl",
+		label: "SLO",
+		flag: <SI className="min-w-8 rounded-xl" />,
+	},
+	{
+		lng: "en",
+		label: "ENG",
+		flag: <US className="min-w-8 rounded-xl" />,
+	},
 ];
 
 type SelectLanguageProps = {

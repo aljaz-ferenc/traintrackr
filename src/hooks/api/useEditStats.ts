@@ -28,7 +28,12 @@ export default function useEditStats() {
 			}),
 		onSuccess: async () => {
 			await queryClient.invalidateQueries({
-				queryKey: ["stats", { range: "week" }],
+				queryKey: [
+					"stats",
+					{
+						range: "week",
+					},
+				],
 			});
 		},
 	});

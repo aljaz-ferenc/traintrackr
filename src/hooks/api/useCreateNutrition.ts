@@ -9,7 +9,10 @@ async function fetchCreateNutrition(
 	date: Date,
 ) {
 	await fetch(Endpoints.nutritions, {
-		body: JSON.stringify({ nutrition, date }),
+		body: JSON.stringify({
+			nutrition,
+			date,
+		}),
 		mode: "cors",
 		method: "POST",
 		headers: {
@@ -31,6 +34,8 @@ export default function useCreateNutrition(date?: Date) {
 				error: t("TOASTS.createNutrition.error"),
 			}),
 		onSuccess: async () =>
-			await queryClient.invalidateQueries({ queryKey: ["nutrition-get"] }),
+			await queryClient.invalidateQueries({
+				queryKey: ["nutrition-get"],
+			}),
 	});
 }

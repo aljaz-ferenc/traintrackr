@@ -5,7 +5,11 @@ import { isUserOnboarded } from "@/utils/utils.ts";
 import PageLoading from "@/components/shared/PageLoading.tsx";
 import Onboarding from "@/routes/Onboarding.tsx";
 
-export function ProtectedRoute({ children }: { children: React.ReactNode }) {
+export function ProtectedRoute({
+	children,
+}: {
+	children: React.ReactNode;
+}) {
 	const { isSignedIn, isLoaded } = useAuth();
 	const { data, isLoading: isLoadingUser } = useGetUser();
 

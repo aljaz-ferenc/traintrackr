@@ -37,20 +37,36 @@ const formSchema = z.object({
 	name: z.string().min(1),
 	calories: z
 		.string()
-		.regex(/^\d*\.?\d?$/, { message: "number.valid" })
-		.refine((val) => !!val.length, { message: "Required" }),
+		.regex(/^\d*\.?\d?$/, {
+			message: "number.valid",
+		})
+		.refine((val) => !!val.length, {
+			message: "Required",
+		}),
 	protein: z
 		.string()
-		.regex(/^\d*\.?\d?$/, { message: "number.valid" })
-		.refine((val) => !!val.length, { message: "Required" }),
+		.regex(/^\d*\.?\d?$/, {
+			message: "number.valid",
+		})
+		.refine((val) => !!val.length, {
+			message: "Required",
+		}),
 	carbs: z
 		.string()
-		.regex(/^\d*\.?\d?$/, { message: "number.valid" })
-		.refine((val) => !!val.length, { message: "Required" }),
+		.regex(/^\d*\.?\d?$/, {
+			message: "number.valid",
+		})
+		.refine((val) => !!val.length, {
+			message: "Required",
+		}),
 	fat: z
 		.string()
-		.regex(/^\d*\.?\d?$/, { message: "number.valid" })
-		.refine((val) => !!val.length, { message: "Required" }),
+		.regex(/^\d*\.?\d?$/, {
+			message: "number.valid",
+		})
+		.refine((val) => !!val.length, {
+			message: "Required",
+		}),
 	portions: z
 		.array(
 			z.object({
@@ -102,7 +118,10 @@ export default function CreateItemModal({
 
 			if (defaultItem.portions?.length) {
 				for (const portion of defaultItem.portions) {
-					append({ name: portion.name, grams: portion.grams });
+					append({
+						name: portion.name,
+						grams: portion.grams,
+					});
 				}
 			}
 		}
@@ -297,7 +316,12 @@ export default function CreateItemModal({
 							type="button"
 							variant="secondary"
 							className="cursor-pointer"
-							onClick={() => append({ name: "", grams: 0 })}
+							onClick={() =>
+								append({
+									name: "",
+									grams: 0,
+								})
+							}
 						>
 							{t("NUTRITION.addPortion")}
 						</Button>

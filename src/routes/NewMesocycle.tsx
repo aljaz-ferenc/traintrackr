@@ -26,7 +26,9 @@ const mesoDurationOptions = [4, 6, 8, 10, 12];
 
 export default function NewMesocycle() {
 	const [user] = useUserStore(useShallow((state) => [state.user]));
-	const { mesoId } = useParams<{ mesoId: string }>();
+	const { mesoId } = useParams<{
+		mesoId: string;
+	}>();
 	const { data: mesoToEdit, isLoading } = useGetMesocycleById(mesoId || "");
 	const { mutateAsync: updateMesocycle, isPending: isUpdating } =
 		useUpdateMesocycle();
@@ -77,7 +79,12 @@ export default function NewMesocycle() {
 		await createMesocycle(newMeso);
 		resetMesoStore();
 		await queryClient.invalidateQueries({
-			queryKey: ["mesocycle", { mesoId }],
+			queryKey: [
+				"mesocycle",
+				{
+					mesoId,
+				},
+			],
 		});
 	};
 
@@ -86,7 +93,12 @@ export default function NewMesocycle() {
 		await updateMesocycle(updatedMeso);
 		resetMesoStore();
 		await queryClient.invalidateQueries({
-			queryKey: ["mesocycle", { mesoId }],
+			queryKey: [
+				"mesocycle",
+				{
+					mesoId,
+				},
+			],
 		});
 	};
 
@@ -271,7 +283,11 @@ export default function NewMesocycle() {
 					variant="secondary"
 					className="cursor-pointer sticky top-0 left-0 w-fit px-4"
 					onClick={() =>
-						addWorkout({ id: crypto.randomUUID(), exercises: [], day: 0 })
+						addWorkout({
+							id: crypto.randomUUID(),
+							exercises: [],
+							day: 0,
+						})
 					}
 				>
 					{t("NEW_MESOCYCLE.addWorkout")}

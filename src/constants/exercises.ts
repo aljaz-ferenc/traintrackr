@@ -559,7 +559,12 @@ export const exercises: Exercise[] = [
 	},
 
 	// Abs
-	{ id: "abs-1", name: "Crunches", primaryMuscle: "abs", secondaryMuscles: [] },
+	{
+		id: "abs-1",
+		name: "Crunches",
+		primaryMuscle: "abs",
+		secondaryMuscles: [],
+	},
 	{
 		id: "abs-2",
 		name: "Hanging Leg Raise",

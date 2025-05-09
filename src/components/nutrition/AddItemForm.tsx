@@ -39,8 +39,12 @@ type AddItemFormProps = {
 const formSchema = z.object({
 	amount: z
 		.string()
-		.regex(/^\d*\.?\d?$/, { message: "number.valid" })
-		.refine((val) => !!val.length, { message: "Required" }),
+		.regex(/^\d*\.?\d?$/, {
+			message: "number.valid",
+		})
+		.refine((val) => !!val.length, {
+			message: "Required",
+		}),
 	portion: z.string(),
 });
 

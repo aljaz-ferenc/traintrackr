@@ -61,8 +61,16 @@ export default function Heatmap({
 		},
 		xaxis: {
 			type: "category",
-			categories: Object.values(t("GENERAL.days", { returnObjects: true })).map(
-				({ short }: { short: string }) => short.toUpperCase(),
+			categories: Object.values(
+				t("GENERAL.days", {
+					returnObjects: true,
+				}),
+			).map(
+				({
+					short,
+				}: {
+					short: string;
+				}) => short.toUpperCase(),
 			),
 		},
 		yaxis: {

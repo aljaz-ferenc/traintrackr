@@ -34,7 +34,12 @@ export default function useCreateMesocycle() {
 			}),
 		onSuccess: async () => {
 			await queryClient.invalidateQueries({
-				queryKey: ["my-mesocycles", { userId }],
+				queryKey: [
+					"my-mesocycles",
+					{
+						userId,
+					},
+				],
 			});
 			navigate("/my-mesocycles");
 		},

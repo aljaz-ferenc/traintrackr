@@ -210,8 +210,7 @@ export default function TodaysWorkout() {
 				</Card>
 				<ul className="flex flex-col gap-5">
 					{exercises.map((exercise, exerciseIndex) => (
-						// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-						<li key={exerciseIndex}>
+						<li key={`exercise-${exerciseIndex + 1}`}>
 							<Card>
 								<CardContent>
 									<span className="uppercase font-bold">{exercise.name}</span>

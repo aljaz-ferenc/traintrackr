@@ -25,6 +25,8 @@ export default function useDeleteNutrition() {
 				error: t("TOASTS.deleteNutrition.error"),
 			}),
 		onSuccess: async () =>
-			await queryClient.invalidateQueries({ queryKey: ["nutrition-get"] }),
+			await queryClient.invalidateQueries({
+				queryKey: ["nutrition-get"],
+			}),
 	});
 }

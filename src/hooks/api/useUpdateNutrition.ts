@@ -24,15 +24,22 @@ export default function useUpdateNutrition() {
 		mutationFn: ({
 			nutritionId,
 			amount,
-		}: { nutritionId: Nutrition["_id"]; amount: Nutrition["amount"] }) =>
+		}: {
+			nutritionId: Nutrition["_id"];
+			amount: Nutrition["amount"];
+		}) =>
 			toast.promise(fetchUpdateNutrition(nutritionId, amount), {
 				pending: t("TOASTS.updateNutrition.pending"),
 				success: t("TOASTS.updateNutrition.success"),
 				error: t("TOASTS.updateNutrition.error"),
 			}),
 		onSuccess: async () => {
-			await queryClient.invalidateQueries({ queryKey: ["foodItems-get"] });
-			await queryClient.invalidateQueries({ queryKey: ["nutrition-get"] });
+			await queryClient.invalidateQueries({
+				queryKey: ["foodItems-get"],
+			});
+			await queryClient.invalidateQueries({
+				queryKey: ["nutrition-get"],
+			});
 		},
 	});
 }

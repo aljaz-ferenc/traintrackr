@@ -57,7 +57,15 @@ export default function Tdee({
 				<Button
 					variant="secondary"
 					onClick={() =>
-						setTdee(calcTdee({ gender, age, weight, height, activityLevel }))
+						setTdee(
+							calcTdee({
+								gender,
+								age,
+								weight,
+								height,
+								activityLevel,
+							}),
+						)
 					}
 				>
 					{t("ONBOARDING.tdee.calcBtn")}

@@ -6,7 +6,9 @@ import { useShallow } from "zustand/react/shallow";
 
 async function fetchUpdateStats(
 	userId: User["_id"],
-	stats: { weight: number },
+	stats: {
+		weight: number;
+	},
 ) {
 	const res = await fetch(Endpoints.stats(userId), {
 		method: "POST",
@@ -24,9 +26,12 @@ export default function useUpdateStats() {
 
 	return useMutation({
 		mutationKey: ["stats-update", { userId }],
-		mutationFn: (stats: { weight: number }) =>
-			fetchUpdateStats(userId as string, stats),
+		mutationFn: (stats: {
+			weight: number;
+		}) => fetchUpdateStats(userId as string, stats),
 		onSuccess: async () =>
-			queryClient.invalidateQueries({ queryKey: ["stats"] }),
+			queryClient.invalidateQueries({
+				queryKey: ["stats"],
+			}),
 	});
 }

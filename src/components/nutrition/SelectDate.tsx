@@ -40,7 +40,9 @@ export default function SelectDate({
 					<span className="capitalize w-max">
 						{isToday(date)
 							? t("GENERAL.today")
-							: intlFormat(date, { locale: i18n.language })}
+							: intlFormat(date, {
+									locale: i18n.language,
+								})}
 					</span>
 					<Button
 						variant="ghost"

@@ -8,7 +8,10 @@ type UserStore = {
 
 const useUserStore = create<UserStore>((set) => ({
 	user: null,
-	setUser: (user) => set({ user }),
+	setUser: (user) =>
+		set({
+			user,
+		}),
 }));
 
 export default useUserStore;

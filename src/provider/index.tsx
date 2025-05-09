@@ -6,9 +6,17 @@ import { ToastContainer } from "react-toastify";
 
 type ProviderProps = {} & PropsWithChildren;
 
-const composeProviders = (providers: React.FC<{ children: ReactNode }>[]) => {
+const composeProviders = (
+	providers: React.FC<{
+		children: ReactNode;
+	}>[],
+) => {
 	if (!providers?.length) {
-		return ({ children }: { children?: ReactNode }) => children;
+		return ({
+			children,
+		}: {
+			children?: ReactNode;
+		}) => children;
 	}
 
 	return providers.reduce((Prev, Curr) => ({ children }) => {

@@ -28,7 +28,9 @@ export default function useCreateFoodItem() {
 				error: t("TOASTS.createFoodItem.error"),
 			}),
 		onSuccess: async () => {
-			await queryClient.invalidateQueries({ queryKey: ["foodItems-get"] });
+			await queryClient.invalidateQueries({
+				queryKey: ["foodItems-get"],
+			});
 		},
 	});
 }

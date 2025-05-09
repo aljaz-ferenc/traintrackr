@@ -52,14 +52,31 @@ export const useNewMesoStore = create<NewMesoStore>((set, getState) => ({
 					: state.calorieGoal,
 			};
 		}),
-	updateMesoTitle: (mesoTitle) => set((state) => ({ ...state, mesoTitle })),
+	updateMesoTitle: (mesoTitle) =>
+		set((state) => ({
+			...state,
+			mesoTitle,
+		})),
 	updateMesoDuration: (mesoDuration) =>
-		set((state) => ({ ...state, mesoDuration })),
+		set((state) => ({
+			...state,
+			mesoDuration,
+		})),
 	toggleIncludeDeload: (value) =>
-		set((state) => ({ ...state, includeDeload: value })),
-	setMesoSplitType: (splitType) => set((state) => ({ ...state, splitType })),
+		set((state) => ({
+			...state,
+			includeDeload: value,
+		})),
+	setMesoSplitType: (splitType) =>
+		set((state) => ({
+			...state,
+			splitType,
+		})),
 	addWorkout: (workout) =>
-		set((state) => ({ ...state, workouts: [...state.workouts, workout] })),
+		set((state) => ({
+			...state,
+			workouts: [...state.workouts, workout],
+		})),
 	removeWorkout: (workoutId) =>
 		set((state) => ({
 			...state,
@@ -73,7 +90,10 @@ export const useNewMesoStore = create<NewMesoStore>((set, getState) => ({
 				w.id === workoutId ? updatedWorkout : w,
 			),
 		})),
-	setFocusedWorkout: (workoutId) => set({ focusedWorkout: workoutId }),
+	setFocusedWorkout: (workoutId) =>
+		set({
+			focusedWorkout: workoutId,
+		}),
 	constructMesocycle: (createdBy: Mesocycle["createdBy"]) => {
 		const {
 			mesoTitle,
@@ -135,13 +155,18 @@ export const useNewMesoStore = create<NewMesoStore>((set, getState) => ({
 			}
 			return w;
 		});
-		set({ workouts: updatedWorkouts });
+		set({
+			workouts: updatedWorkouts,
+		});
 	},
 	addExerciseToWorkout: (workoutId, exercise) =>
 		set((state) => ({
 			workouts: state.workouts.map((workout) =>
 				workout.id === workoutId
-					? { ...workout, exercises: [...workout.exercises, exercise] }
+					? {
+							...workout,
+							exercises: [...workout.exercises, exercise],
+						}
 					: workout,
 			),
 		})),
@@ -169,9 +194,15 @@ export const useNewMesoStore = create<NewMesoStore>((set, getState) => ({
 			const workout = state.workouts.find((w) => w.id === workoutId);
 			if (!workout) return state;
 
-			const clonedWorkout = { ...workout, id: crypto.randomUUID() };
+			const clonedWorkout = {
+				...workout,
+				id: crypto.randomUUID(),
+			};
 
-			return { ...state, workouts: [...state.workouts, clonedWorkout] };
+			return {
+				...state,
+				workouts: [...state.workouts, clonedWorkout],
+			};
 		}),
 	setMesoToEdit: (meso) =>
 		set({

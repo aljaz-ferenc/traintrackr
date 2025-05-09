@@ -141,10 +141,14 @@ export default function Onboarding() {
 						<div className="w-full h-full pt-10 relative flex-col flex justify-center items-center md:max-h-[600px]">
 							<div className={""}>
 								<motion.div
-									initial={{ scaleX: 0 }}
+									initial={{
+										scaleX: 0,
+									}}
 									animate={{
 										scaleX: current / (onboardingScreens.length - 1),
-										transition: { duration: 1 },
+										transition: {
+											duration: 1,
+										},
 									}}
 									className="mx-auto h-[3px] bg-primary origin-left"
 								/>
@@ -152,9 +156,15 @@ export default function Onboarding() {
 							<div className="relative h-full w-full justify-self-center">
 								<motion.div
 									className="flex max-h-[500px] absolute items-center"
-									initial={{ x: 0 }}
-									animate={{ x: `-${current * 100}vw` }}
-									transition={{ ease: "easeInOut" }}
+									initial={{
+										x: 0,
+									}}
+									animate={{
+										x: `-${current * 100}vw`,
+									}}
+									transition={{
+										ease: "easeInOut",
+									}}
 								>
 									{onboardingScreens.map((screen, i) => (
 										<OnboardingScreenWrapper key={`screen-${i + 1}`}>
@@ -166,9 +176,15 @@ export default function Onboarding() {
 							<AnimatePresence>
 								{current > 0 && current < onboardingScreens.length - 1 && (
 									<motion.p
-										initial={{ opacity: 0 }}
-										animate={{ opacity: 1 }}
-										exit={{ opacity: 0 }}
+										initial={{
+											opacity: 0,
+										}}
+										animate={{
+											opacity: 1,
+										}}
+										exit={{
+											opacity: 0,
+										}}
 										className="text-center mx-auto max-w-[80vw] leading-5 text-sm text-muted-foreground"
 									>
 										{t("ONBOARDING.privacy")}

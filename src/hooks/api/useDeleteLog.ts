@@ -28,7 +28,14 @@ export default function useDeleteLog() {
 				error: t("TOASTS.deleteLog.error"),
 			}),
 		onSuccess: () => {
-			queryClient.invalidateQueries({ queryKey: ["logs", { userId }] });
+			queryClient.invalidateQueries({
+				queryKey: [
+					"logs",
+					{
+						userId,
+					},
+				],
+			});
 		},
 	});
 }

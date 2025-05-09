@@ -31,7 +31,12 @@ function ToggleGroup({
 			)}
 			{...props}
 		>
-			<ToggleGroupContext.Provider value={{ variant, size }}>
+			<ToggleGroupContext.Provider
+				value={{
+					variant,
+					size,
+				}}
+			>
 				{children}
 			</ToggleGroupContext.Provider>
 		</ToggleGroupPrimitive.Root>

@@ -28,8 +28,12 @@ export default function useUpdateFoodItem() {
 				error: t("TOASTS.updateFoodItem.error"),
 			}),
 		onSuccess: async () => {
-			queryClient.invalidateQueries({ queryKey: ["foodItems-get"] });
-			queryClient.invalidateQueries({ queryKey: ["nutrition-get"] });
+			queryClient.invalidateQueries({
+				queryKey: ["foodItems-get"],
+			});
+			queryClient.invalidateQueries({
+				queryKey: ["nutrition-get"],
+			});
 		},
 	});
 }

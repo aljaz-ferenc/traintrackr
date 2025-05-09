@@ -40,7 +40,9 @@ function Spinner({
 			<div
 				className={cn([
 					`min-h-${size} min-w-${size} aspect-square animate-spin rounded-full border-4 duration-1000`,
-					spinnerStyles({ variant }),
+					spinnerStyles({
+						variant,
+					}),
 				])}
 			/>
 		</div>

@@ -83,7 +83,10 @@ export default function Body({ muscleGroups }: BodyProps) {
 		<div className="flex gap-10 max-w-full" ref={containerRef}>
 			{/* biome-ignore lint/a11y/noSvgWithoutTitle: <explanation> */}
 			<svg
-				style={{ height: 300, width: 150 }}
+				style={{
+					height: 300,
+					width: 150,
+				}}
 				ref={svgFrontRef}
 				width="609"
 				height="1216"
@@ -691,7 +694,10 @@ export default function Body({ muscleGroups }: BodyProps) {
 			{/* biome-ignore lint/a11y/noSvgWithoutTitle: <explanation> */}
 			<svg
 				ref={svgBackRef}
-				style={{ height: 300, width: 150 }}
+				style={{
+					height: 300,
+					width: 150,
+				}}
 				width="609"
 				height="1244"
 				viewBox="0 0 609 1244"

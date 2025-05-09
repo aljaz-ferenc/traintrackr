@@ -12,7 +12,9 @@ async function fetchAllMesocycles() {
 }
 
 export default function useGetAllMesocycles() {
-	return useQuery<{ mesocycles: Mesocycle[] }>({
+	return useQuery<{
+		mesocycles: Mesocycle[];
+	}>({
 		//TODO: invalidate query that fetches mesos by user
 		queryKey: ["mesocycles"],
 		queryFn: fetchAllMesocycles,

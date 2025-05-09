@@ -46,16 +46,28 @@ export default function useCompleteWorkout() {
 			}),
 		onSuccess: async () => {
 			await queryClient.invalidateQueries({
-				queryKey: ["user", { clerkId: userId }],
+				queryKey: [
+					"user",
+					{
+						clerkId: userId,
+					},
+				],
 			});
 			await queryClient.invalidateQueries({
-				queryKey: ["logs", { userId: user?._id }],
+				queryKey: [
+					"logs",
+					{
+						userId: user?._id,
+					},
+				],
 			});
 			if (user?.activeMesocycle) {
 				await queryClient.invalidateQueries({
 					queryKey: [
 						"mesocycle",
-						{ mesoId: user?.activeMesocycle.mesocycle._id },
+						{
+							mesoId: user?.activeMesocycle.mesocycle._id,
+						},
 					],
 				});
 			}

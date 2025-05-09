@@ -25,7 +25,11 @@ export function getMuscleIntensities(workouts: Workout[]) {
 				muscles[indexPrimary].intensity += 3;
 				muscles[indexPrimary].volume += 1;
 			} else {
-				muscles.push({ muscle: ex.primaryMuscle, intensity: 2, volume: 1 });
+				muscles.push({
+					muscle: ex.primaryMuscle,
+					intensity: 2,
+					volume: 1,
+				});
 			}
 
 			for (const m of ex.secondaryMuscles) {
@@ -36,7 +40,11 @@ export function getMuscleIntensities(workouts: Workout[]) {
 					muscles[indexSecondary].intensity += 1;
 					muscles[indexSecondary].volume += 0.5;
 				} else {
-					muscles.push({ muscle: m, intensity: 1, volume: 0.5 });
+					muscles.push({
+						muscle: m,
+						intensity: 1,
+						volume: 0.5,
+					});
 				}
 			}
 		});
@@ -69,7 +77,13 @@ export function getApexHeatmapData(
 		upcoming: 3,
 	};
 
-	const dataByWeek: Record<string, { x: string; y: number }[]> = {};
+	const dataByWeek: Record<
+		string,
+		{
+			x: string;
+			y: number;
+		}[]
+	> = {};
 
 	for (const entry of statuses) {
 		const week = format(entry.date, "yyyy-'W'II");
@@ -78,7 +92,10 @@ export function getApexHeatmapData(
 
 		if (!dataByWeek[week]) dataByWeek[week] = [];
 
-		dataByWeek[week].push({ x: day, y: count });
+		dataByWeek[week].push({
+			x: day,
+			y: count,
+		});
 	}
 
 	return Object.entries(dataByWeek).map(([week, data]) => ({

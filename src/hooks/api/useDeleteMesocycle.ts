@@ -29,9 +29,16 @@ export default function useDeleteMesocycle() {
 				error: t("TOASTS.deleteMeso.error"),
 			}),
 		onSuccess: () => {
-			queryClient.invalidateQueries({ queryKey: ["my-mesocycles"] });
 			queryClient.invalidateQueries({
-				queryKey: ["user", { clerkId: userId }],
+				queryKey: ["my-mesocycles"],
+			});
+			queryClient.invalidateQueries({
+				queryKey: [
+					"user",
+					{
+						clerkId: userId,
+					},
+				],
 			});
 		},
 	});
