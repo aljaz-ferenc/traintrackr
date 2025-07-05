@@ -495,6 +495,12 @@ export const exercises: Exercise[] = [
 		primaryMuscle: "chest",
 		secondaryMuscles: [],
 	},
+	{
+		id: "chest-11",
+		name: "Incline Machine Press",
+		primaryMuscle: "chest",
+		secondaryMuscles: ["triceps", "frontDelts"],
+	},
 
 	// Lats
 	{

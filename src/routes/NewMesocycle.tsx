@@ -305,7 +305,7 @@ export default function NewMesocycle() {
 				disabled={createBtnDisabled}
 			>
 				{allowEdit
-					? t("NEW_MESOCYCLE.updateMeso")
+					? t("NEW_MESOCYCLE.finishEditing")
 					: t("NEW_MESOCYCLE.createMeso")}
 			</Button>
 		</section>
