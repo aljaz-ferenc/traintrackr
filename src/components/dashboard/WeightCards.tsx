@@ -32,10 +32,18 @@ export default function WeightCards({ className = "" }: WeightCardsProps) {
 					className="@lg:row-1"
 				>
 					<div>
-						<span className="text-3xl font-bold">
-							{stats.weight.current.value.toFixed(1)}
-						</span>
-						<span className="text-xl"> kg</span>
+						{stats.weight.current?.value ? (
+							<span className="text-3xl font-bold">
+								{stats.weight.current.value.toFixed(1)}
+							</span>
+						) : (
+							<span className="text-2xl text-muted-foreground font-bold">
+								{t("GENERAL.noData")}
+							</span>
+						)}
+						{stats.weight.current?.value && (
+							<span className="text-xl"> kg</span>
+						)}
 					</div>
 				</WidgetWrapper>
 				<WidgetWrapper
@@ -44,10 +52,18 @@ export default function WeightCards({ className = "" }: WeightCardsProps) {
 					className="@lg:row-2"
 				>
 					<div>
-						<span className="text-3xl font-bold">
-							{stats.weight.starting.value.toFixed(1)}
-						</span>
-						<span className="text-xl"> kg</span>
+						{stats.weight.starting?.value ? (
+							<span className="text-3xl font-bold">
+								{stats.weight.starting.value.toFixed(1)}
+							</span>
+						) : (
+							<span className="text-2xl text-muted-foreground font-bold">
+								{t("GENERAL.noData")}
+							</span>
+						)}
+						{stats.weight.starting?.value && (
+							<span className="text-xl"> kg</span>
+						)}
 					</div>
 				</WidgetWrapper>
 				<WidgetWrapper
@@ -58,7 +74,7 @@ export default function WeightCards({ className = "" }: WeightCardsProps) {
 					<div>
 						<span className="text-3xl font-bold">
 							{(
-								stats.weight.current.value - stats.weight.starting.value
+								stats.weight.current?.value - stats.weight.starting?.value || 0
 							).toFixed(1)}
 						</span>
 						<span className="text-xl"> kg</span>
