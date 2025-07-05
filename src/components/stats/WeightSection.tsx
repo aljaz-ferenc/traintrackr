@@ -55,7 +55,7 @@ export default function WeightSection() {
 		return (
 			isToday(
 				stats.weight.weightsInRange[stats.weight.weightsInRange.length - 1]
-					.date as Date,
+					?.date as Date,
 			) || false
 		);
 	}, [stats]);
