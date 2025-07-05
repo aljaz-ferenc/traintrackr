@@ -7,10 +7,7 @@ import type {
 	WorkoutLog,
 } from "@/core/types.ts";
 
-const BASE_URL =
-	process.env.NODE_ENV === "development"
-		? "http://localhost:3000/api/v1"
-		: import.meta.env.VITE_API_BASE_URL;
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 // biome-ignore lint/complexity/noStaticOnlyClass: <explanation>
 export class Endpoints {
