@@ -8,7 +8,6 @@ import type {
 import type { CompleteWorkoutPayload } from "@/hooks/api/useCompleteWorkout.ts";
 import { differenceInWeeks } from "date-fns";
 import { create } from "zustand";
-import { createJSONStorage } from "zustand/middleware";
 
 type TodaysWorkoutStore = {
 	exercises: ExerciseWithSets[];
