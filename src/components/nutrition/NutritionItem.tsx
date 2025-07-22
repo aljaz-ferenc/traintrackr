@@ -31,7 +31,7 @@ export default function NutritionItem({ nutrition }: NutritionItemProps) {
 		<Dialog open={isOpen} onOpenChange={setIsOpen}>
 			<DialogTrigger asChild>
 				<Card className="p-1">
-					<CardContent className="p-1 flex justify-between">
+					<CardContent className="p-1 flex justify-between h-[2em]">
 						<p>{nutrition.item.name}</p>
 						<p className="ml-auto mr-3">
 							{Math.round((nutrition.amount * nutrition.item.calories) / 100)}{" "}
@@ -46,7 +46,7 @@ export default function NutritionItem({ nutrition }: NutritionItemProps) {
 							}}
 						>
 							{isDeleting ? (
-								<Spinner size={5} />
+								<Spinner className="h-[23px] pl-px" />
 							) : (
 								<X className="text-red-500" />
 							)}

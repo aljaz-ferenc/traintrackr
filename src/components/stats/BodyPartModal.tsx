@@ -34,7 +34,7 @@ export default function BodyPartModal({
 	const [value, setValue] = useState("");
 	const displayedValue = measurements[measurements.length - 1]?.value || 0;
 	const [isOpen, setIsOpen] = useState(false);
-	const { mutateAsync: editStats } = useEditStats();
+	const { mutateAsync: editStats, isPending: isEditing } = useEditStats();
 	const { t } = useTranslation();
 
 	const handleAddMeasurement = async () => {
@@ -107,7 +107,7 @@ export default function BodyPartModal({
 					/>
 					<span className="ml-1">cm</span>
 				</div>
-				<Button onClick={handleAddMeasurement}>
+				<Button onClick={handleAddMeasurement} isLoading={isEditing}>
 					{t("STATS.addMeasurement")}
 				</Button>
 			</DialogContent>

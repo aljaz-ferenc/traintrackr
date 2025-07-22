@@ -32,7 +32,7 @@ type AddItemFormProps = {
 	selectedItemId: string;
 	edit?: boolean;
 	date?: Date;
-	nutritionId?: Nutrition["_id"];
+	nutrition?: Nutrition;
 	onMutate?: () => void;
 };
 
@@ -51,7 +51,7 @@ const formSchema = z.object({
 export default function AddItemForm({
 	selectedItemId,
 	edit = false,
-	nutritionId,
+	nutrition,
 	onMutate,
 	date,
 }: AddItemFormProps) {
@@ -71,6 +71,7 @@ export default function AddItemForm({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
 			portion: "1",
+			amount: nutrition?.amount.toString() || "",
 		},
 	});
 
@@ -86,9 +87,9 @@ export default function AddItemForm({
 			return;
 		}
 
-		if (edit && nutritionId) {
+		if (edit && nutrition?._id) {
 			await updateNutrition({
-				nutritionId,
+				nutritionId: nutrition._id,
 				amount: +values.amount * Number(values.portion.split("/")[0]),
 			});
 		} else {

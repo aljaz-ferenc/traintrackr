@@ -84,7 +84,7 @@ export default function Button({
 				}
 				className={cn([
 					!isLoading && "invisible",
-					"absolute top-1/2 left-1/2 -translate-1/2 border-black/40 border-t-black",
+					"absolute top-1/2 left-1/2 -translate-1/2 border-black/40 border-t-black h-full p-2",
 				])}
 			/>
 		</button>

@@ -15,7 +15,7 @@ export default function AppLayout() {
 				onLinkClick={() => setSidebarIsOpen(false)}
 				className="hidden lg:block"
 			/>
-			<main className="min-h-screen mx-auto w-full p-3 sm:p-5  lg:p-10 max-w-[1440px]">
+			<main className="min-h-screen mx-auto w-full p-3 sm:p-5 relative lg:p-10 max-w-[1440px]">
 				<div className="flex items-center gap-3">
 					<div className="flex gap-3 w-full items-center ml-auto mb-5">
 						<MobileSidebar onOpenChange={setSidebarIsOpen} />

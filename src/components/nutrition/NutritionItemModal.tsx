@@ -17,10 +17,11 @@ export default function NutritionItemModal({
 	nutrition,
 	setIsOpen,
 }: NutritionItemModalProps) {
-	const { amount, item, _id } = nutrition;
+	const { amount, item } = nutrition;
 	const macros = calcMacros(item, amount);
 	const [isEditable, setIsEditable] = useState(false);
 	const { t } = useTranslation();
+	console.log(nutrition);
 
 	if (isEditable) {
 		return (
@@ -35,7 +36,7 @@ export default function NutritionItemModal({
 						<AddItemForm
 							edit
 							selectedItemId={item._id}
-							nutritionId={_id}
+							nutrition={nutrition}
 							onMutate={() => setIsOpen(false)}
 						/>
 					</CardContent>
