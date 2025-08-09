@@ -78,3 +78,6 @@ On the `Measurements` page, you can log your body weight once per day and record
 
 ### Recommendation
 Track your nutrition and body weight every day. This way, you will know exactly how your weight changes and how many calories you are consuming, so you can adjust your intake to gain or lose weight as desired.
+
+## Try It Out
+[Live Page](https://traintrackr-swart.vercel.app/)
