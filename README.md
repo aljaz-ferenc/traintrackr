@@ -20,34 +20,34 @@ By combining nutrition tracking, body weight monitoring, and workout progress, y
 ### Onboarding
 You will be asked to provide some basic information such as gender, age, height, and current activity level. This will be used to calculate your TDEE (Total Daily Energy Expenditure).
 
-<img src="./src/assets/screenshots/onboarding.png" alt="onboarding" width="200" />
+<img src="./src/assets/screenshots/onboarding.png" alt="onboarding" width="500" />
 
 - **Dashboard**: Once you start tracking your progress, the dashboard will display:
   - Your daily and weekly calorie intake, averages, and macronutrients
   - Weight tracking with a chart showing daily changes
   - Mesocycle progress, including completed or missed workouts (requires an active mesocycle)
 
-<img src="./src/assets/screenshots/dashboard.png" alt="dashboard" width="200"/>
+<img src="./src/assets/screenshots/dashboard.png" alt="dashboard" width="300"/>
 
 ## Mesocycle
 1. **Create a new Mesocycle**:
    - On the `New Mesocycle` page, enter the mesocycle name, duration, calorie goal, and select exercises for each day. The graphic will show which muscles are trained and how often.
    - Click `Create Mesocycle`
    
-<img src="./src/assets/screenshots/new-mesocycle.png" width="200"/>
+<img src="./src/assets/screenshots/new-mesocycle.png" width="400"/>
 
 2. Activate a Mesocycle
     - All mesocycles are saved in the `My Mesocycles` page.
     - Click the `Activate` button to activate your mesocycle. The mesocycle will start the following Monday.
    
-<img src="./src/assets/screenshots/my-mesocycles.png" width="200"/>
+<img src="./src/assets/screenshots/my-mesocycles.png" width="400"/>
 
 3. Workout
     - When a mesocycle is active, the app shows your scheduled workout for the day. For each exercise, you can log sets with weight and reps performed.
     - When you're done with your workout, click `Complete Workout` and you will be redirected to `Completed Workouts`.
     - There you can review every exercise and rep you’ve logged for reference and progress tracking.
 
-<img src="./src/assets/screenshots/completed-workouts.png" width="200"/>
+<img src="./src/assets/screenshots/completed-workouts.png" width="400"/>
 
 ## Nutrition
 1. Create New Items
@@ -64,16 +64,17 @@ You will be asked to provide some basic information such as gender, age, height,
 
 3. The items will be added, and daily macronutrients will be calculated for that day.
 
-<img src="src/assets/screenshots/nutrition-with-items.png" width="200"/>
+<img src="src/assets/screenshots/nutrition-with-items.png" width="400"/>
 
 4. Check the `Dashboard` to see nutrition values and averages.
 
-<img src="src/assets/screenshots/dashboard-nutrition.png" width="200"/>
+<img src="src/assets/screenshots/dashboard-nutrition.png" width="500"/>
 
 
 ## Measurements
 On the `Measurements` page, you can log your body weight once per day and record measurements for different body parts. This data is used to calculate weight changes on the `Dashboard`.
-<img src="src/assets/screenshots/measurements.png" width="200"/>
+
+<img src="src/assets/screenshots/measurements.png" width="400"/>
 
 ### Recommendation
 Track your nutrition and body weight every day. This way, you will know exactly how your weight changes and how many calories you are consuming, so you can adjust your intake to gain or lose weight as desired.
