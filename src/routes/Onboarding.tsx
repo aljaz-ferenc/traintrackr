@@ -135,8 +135,8 @@ export default function Onboarding() {
 					<UserButton />
 				</div>
 				<CardContent className="flex justify-center items-center h-full w-full overflow-hidden p-0 ">
-					{isUpdating ? (
-						<Spinner />
+					{!isUpdating ? (
+						<Spinner className="h-8" />
 					) : (
 						<div className="w-full h-full pt-10 relative flex-col flex justify-center items-center md:max-h-[600px]">
 							<div className={""}>
