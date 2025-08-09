@@ -167,7 +167,10 @@ export default function Onboarding() {
 									}}
 								>
 									{onboardingScreens.map((screen, i) => (
-										<OnboardingScreenWrapper key={`screen-${i + 1}`}>
+										<OnboardingScreenWrapper
+											key={`screen-${i + 1}`}
+											isHidden={i !== current}
+										>
 											{screen}
 										</OnboardingScreenWrapper>
 									))}
