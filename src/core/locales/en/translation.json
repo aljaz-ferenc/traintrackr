@@ -99,7 +99,8 @@
 			"calcTdeeBtnTooltip": "TDEE will be calculated based on the data you provided in previous steps."
 		},
 		"letsGo": {
-			"title": "You're all set!"
+			"title": "You're all set!",
+            "text": "You have successfully set up your profile and we are ready for training! You are now one step closer to achieving your fitness goals. Let's start tracking workouts and progress. You will do great!"
 		},
 		"buttons": {
 			"continue": "Continue",
