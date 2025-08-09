@@ -15,6 +15,7 @@ import AppLayout from "./components/layouts/AppLayout.tsx";
 import Provider from "./provider";
 import SignIn from "./routes/SignIn.tsx";
 import SignUp from "./routes/SignUp.tsx";
+import NotFound from "@/routes/NotFound.tsx";
 
 const router = createBrowserRouter([
 	{
@@ -83,6 +84,10 @@ const router = createBrowserRouter([
 			},
 		],
 	},
+    {
+        path: '*',
+        element: <NotFound/>,
+    }
 ]);
 
 function App() {
