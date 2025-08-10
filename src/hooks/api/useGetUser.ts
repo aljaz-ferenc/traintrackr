@@ -4,7 +4,6 @@ import { useAuth } from "@clerk/clerk-react";
 import { useQuery } from "@tanstack/react-query";
 import useUserStore from "@/state/UserStore.ts";
 
-//find user in DB by clerkId
 async function fetchUser(clerkId: string) {
 	const res = await fetch(Endpoints.user(clerkId));
 	if (!res.ok) throw new Error("Failed to fetch user");

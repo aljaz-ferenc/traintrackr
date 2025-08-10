@@ -7,7 +7,6 @@ import {
 	CardTitle,
 	CardContent,
 } from "@/components/ui/card.tsx";
-import { weekDays } from "@/components/workout/Workout.tsx";
 import type { Exercise, Set as TSet, Workout } from "@/core/types.ts";
 import useCompleteWorkout from "@/hooks/api/useCompleteWorkout.ts";
 import useGetMesocycleById from "@/hooks/api/useGetMesocyleById.ts";
@@ -43,6 +42,7 @@ import ErrorPage, {
 import { useTranslation } from "react-i18next";
 import { z } from "zod";
 import { Guards } from "@/components/workout/TodaysWorkoutGuards.tsx";
+import { weekDays } from "@/constants/weekDays.ts";
 
 export default function TodaysWorkout() {
 	const [user] = useUserStore(useShallow((state) => [state.user]));

@@ -68,11 +68,7 @@ export default function SelectExerciseModal({
 				</DialogDescription>
 			</VisuallyHidden>
 			<DialogTrigger asChild>
-				<Button
-					className="cursor-pointer"
-					variant="secondary"
-					// disabled={!!workouts.find((workout) => workout.id === workoutId)?.day}
-				>
+				<Button className="cursor-pointer" variant="secondary">
 					+ {t("NEW_MESOCYCLE.addExercise")}
 				</Button>
 			</DialogTrigger>

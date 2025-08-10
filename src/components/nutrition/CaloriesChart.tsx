@@ -7,8 +7,8 @@ import {
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
 import { useMemo } from "react";
 import { getDay } from "date-fns";
-import { weekDays } from "@/components/workout/Workout.tsx";
 import { useTranslation } from "react-i18next";
+import { weekDays } from "@/constants/weekDays.ts";
 
 type CaloriesChart = {
 	nutritions: Nutrition[];

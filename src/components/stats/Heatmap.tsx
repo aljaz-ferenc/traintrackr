@@ -86,7 +86,6 @@ export default function Heatmap({
 			series={chartData}
 			type="heatmap"
 			height={350}
-			// width={100}
 		/>
 	);
 }

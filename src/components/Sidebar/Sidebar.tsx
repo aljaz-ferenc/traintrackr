@@ -5,7 +5,6 @@ import {
 	FilePlus,
 	Files,
 	LayoutDashboard,
-	// Settings,
 	SquareCheckBig,
 	Utensils,
 } from "lucide-react";
@@ -69,11 +68,6 @@ export default function AppSidebar({
 			title: t("ROUTES.stats"),
 			icon: <ChartNoAxesCombined size={iconSize} />,
 		},
-		// {
-		// 	path: Route.Settings,
-		// 	title: "Settings",
-		// 	icon: <Settings size={iconSize} />,
-		// },
 	];
 
 	return (

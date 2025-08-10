@@ -16,43 +16,13 @@ import { useOnClickOutside } from "usehooks-ts";
 import WorkoutActions from "@/components/workout/WorkoutActions.tsx";
 import { Card, CardContent } from "@/components/ui/card.tsx";
 import { useTranslation } from "react-i18next";
+import { weekDays } from "@/constants/weekDays.ts";
 
 type WorkoutProps = {
 	workout: TWorkout;
 	editable: boolean;
 	focusable?: boolean;
 };
-
-export const weekDays = [
-	{
-		day: "Monday",
-		value: 1,
-	},
-	{
-		day: "Tuesday",
-		value: 2,
-	},
-	{
-		day: "Wednesday",
-		value: 3,
-	},
-	{
-		day: "Thursday",
-		value: 4,
-	},
-	{
-		day: "Friday",
-		value: 5,
-	},
-	{
-		day: "Saturday",
-		value: 6,
-	},
-	{
-		day: "Sunday",
-		value: 0,
-	},
-];
 
 export default function Workout({
 	workout,

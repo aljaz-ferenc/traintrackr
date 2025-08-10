@@ -152,8 +152,6 @@ export function calcTdee({
 	height: number;
 	activityLevel: ActivityLevels;
 }) {
-	//uses Mifflin-St Jeor formula
-
 	const activityFactors = {
 		[ActivityLevels.SEDENTARY]: 1.2,
 		[ActivityLevels.LIGHT]: 1.375,

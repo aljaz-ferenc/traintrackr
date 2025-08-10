@@ -308,5 +308,6 @@
 		"number": {
 			"valid": "Please enter a valid number"
 		}
-	}
+	},
+	"MUSCLE_GROUPS": {}
 }
