@@ -173,6 +173,10 @@
 			"title": "Mezocikel zaključen",
 			"text": "Zaključil si ta mezocikel! Lahko ustavariš novega na strani <newMesocycleLink>Novi mezocikel</newMesocycleLink> ali pa aktiviraš že obstoječega na strani <myMesocyclesLink>Moji mezocikli</myMesocyclesLink>."
 		},
+		"mesoStartsMonday": {
+			"title": "Začneš v ponedeljek",
+			"text": "Tvoj mezocikel se začne v ponedeljek."
+		},
 		"set": "serija",
 		"weight": "teža",
 		"reps": "repeticije",

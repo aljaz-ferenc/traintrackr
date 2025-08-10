@@ -132,9 +132,9 @@ export default function TodaysWorkout() {
 	) {
 		return (
 			<ErrorPage>
-				<ErrorTitle>You start on Monday</ErrorTitle>
+				<ErrorTitle>{t("TODAYS_WORKOUT.mesoStartsMonday.title")}</ErrorTitle>
 				<ErrorDescription>
-					Your mesocycle is scheduled to start on Monday.
+					{t("TODAYS_WORKOUT.mesoStartsMonday.text")}
 				</ErrorDescription>
 			</ErrorPage>
 		);
@@ -146,7 +146,7 @@ export default function TodaysWorkout() {
 	) {
 		return (
 			<ErrorPage>
-				<ErrorTitle>Mesocycle completed</ErrorTitle>
+				<ErrorTitle>{t("TODAYS_WORKOUT.mesoCompleted.title")}</ErrorTitle>
 				<ErrorDescription>
 					<Trans
 						i18nKey="TODAYS_WORKOUT.mesoCompleted.text"

@@ -100,7 +100,7 @@
 		},
 		"letsGo": {
 			"title": "You're all set!",
-            "text": "You have successfully set up your profile and we are ready for training! You are now one step closer to achieving your fitness goals. Let's start tracking workouts and progress. You will do great!"
+			"text": "You have successfully set up your profile and we are ready for training! You are now one step closer to achieving your fitness goals. Let's start tracking workouts and progress. You will do great!"
 		},
 		"buttons": {
 			"continue": "Continue",
@@ -166,6 +166,10 @@
 		"mesoCompleted": {
 			"title": "Mesocycle completed",
 			"text": "You have completed this mesocycle! You can create a new one on the <newMesocycleLink>New Mesocycle</newMesocycleLink> page or activate an existing one on the <myMesocyclesLink>My Mesocycles</myMesocyclesLink> page."
+		},
+		"mesoStartsMonday": {
+			"title": "You start on Monday",
+			"text": "Your mesocycle is scheduled to start on Monday."
 		},
 		"set": "set",
 		"weight": "weight",
