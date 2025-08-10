@@ -17,9 +17,11 @@ import {
 	differenceInWeeks,
 	getDay,
 	isAfter,
+	isBefore,
 	isSameDay,
 	isToday,
 	startOfDay,
+	startOfToday,
 } from "date-fns";
 import { X } from "lucide-react";
 import { useEffect } from "react";
@@ -125,8 +127,22 @@ export default function TodaysWorkout() {
 	}
 
 	if (
+		user?.activeMesocycle?.startDate &&
+		isBefore(startOfToday(), new Date(user?.activeMesocycle?.startDate))
+	) {
+		return (
+			<ErrorPage>
+				<ErrorTitle>You start on Monday</ErrorTitle>
+				<ErrorDescription>
+					Your mesocycle is scheduled to start on Monday.
+				</ErrorDescription>
+			</ErrorPage>
+		);
+	}
+
+	if (
 		user?.activeMesocycle?.endDate &&
-		isAfter(startOfDay(new Date()), startOfDay(user?.activeMesocycle?.endDate))
+		isAfter(startOfToday(), startOfDay(user?.activeMesocycle?.endDate))
 	) {
 		return (
 			<ErrorPage>
