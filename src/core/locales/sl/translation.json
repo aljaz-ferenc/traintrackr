@@ -314,5 +314,25 @@
 		"number": {
 			"valid": "Vpiši veljavno številko"
 		}
+	},
+	"MUSCLE_GROUPS": {
+		"sideDelts": "Srednje rame",
+		"rearDelts": "Zadnje rame",
+		"frontDelts": "Sprednje rame",
+		"biceps": "Bicepsi",
+		"triceps": "Tricepsi",
+		"traps": "Trapez",
+		"lats": "Lati",
+		"chest": "Prsa",
+		"abs": "Trebuh",
+		"obliques": "Poševne",
+		"neck": "Vrat",
+		"abductors": "Abduktorji",
+		"adductors": "Adduktorji",
+		"forearms": "Podlakti",
+		"glutes": "Glutei",
+		"quads": "Kvadri",
+		"hamstrings": "Stegna",
+		"calves": "Meča"
 	}
 }

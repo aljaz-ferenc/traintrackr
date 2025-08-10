@@ -6,6 +6,7 @@ import { Reorder, useDragControls } from "motion/react";
 import { useShallow } from "zustand/react/shallow";
 import type { Exercise, Workout } from "@/core/types.ts";
 import { Card, CardContent } from "@/components/ui/card.tsx";
+import { useTranslation } from "react-i18next";
 
 type ExercisesListProps = {
 	exercises: Exercise[];
@@ -25,6 +26,7 @@ export default function ExercisesList({
 		]),
 	);
 	const controls = useDragControls();
+	const { t } = useTranslation();
 
 	return (
 		<Reorder.Group
@@ -50,7 +52,7 @@ export default function ExercisesList({
 							>
 								<div className="flex flex-col gap-2 select-none">
 									<Badge variant="default" className="uppercase font-bold">
-										{exercise.primaryMuscle}
+										{t(`MUSCLE_GROUPS.${exercise.primaryMuscle}`)}
 									</Badge>
 									{exercise.name}
 								</div>

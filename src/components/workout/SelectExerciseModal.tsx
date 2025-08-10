@@ -91,7 +91,7 @@ export default function SelectExerciseModal({
 								value={mg}
 								className="cursor-pointer capitalize"
 							>
-								{mg}
+								{t(`MUSCLE_GROUPS.${mg}`)}
 							</SelectItem>
 						))}
 					</SelectContent>

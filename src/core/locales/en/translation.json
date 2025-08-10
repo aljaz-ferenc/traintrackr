@@ -309,5 +309,24 @@
 			"valid": "Please enter a valid number"
 		}
 	},
-	"MUSCLE_GROUPS": {}
+	"MUSCLE_GROUPS": {
+		"sideDelts": "Side Delts",
+		"rearDelts": "Rear Delts",
+		"frontDelts": "Front Delts",
+		"biceps": "Biceps",
+		"triceps": "Triceps",
+		"traps": "Traps",
+		"lats": "Lats",
+		"chest": "Chest",
+		"abs": "Abs",
+		"obliques": "Obliques",
+		"neck": "Neck",
+		"abductors": "Abductors",
+		"adductors": "Adductors",
+		"forearms": "Forearms",
+		"glutes": "Glutes",
+		"quads": "Quads",
+		"hamstrings": "Hamstrings",
+		"calves": "Calves"
+	}
 }
