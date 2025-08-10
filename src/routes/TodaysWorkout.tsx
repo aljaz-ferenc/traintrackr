@@ -40,9 +40,9 @@ import ErrorPage, {
 	ErrorDescription,
 	ErrorTitle,
 } from "@/components/shared/ErrorPage.tsx";
-import { Route } from "@/core/enums/Routes.enum.ts";
-import { Trans, useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import { z } from "zod";
+import { Guards } from "@/components/workout/TodaysWorkoutGuards.tsx";
 
 export default function TodaysWorkout() {
 	const [user] = useUserStore(useShallow((state) => [state.user]));
@@ -52,7 +52,7 @@ export default function TodaysWorkout() {
 		data: mesocycle,
 		isLoading,
 		error,
-	} = useGetMesocycleById(user?.activeMesocycle?.mesocycle._id as string);
+	} = useGetMesocycleById(user?.activeMesocycle?.mesocycle?._id as string);
 	const { mutateAsync: completeWorkout, isPending } = useCompleteWorkout();
 	const [
 		exercises,
@@ -106,71 +106,25 @@ export default function TodaysWorkout() {
 	}
 
 	if (!mesocycle) {
-		return (
-			<ErrorPage>
-				<ErrorTitle>{t("TODAYS_WORKOUT.noActiveMeso.title")}</ErrorTitle>
-				<ErrorDescription>
-					<Trans
-						i18nKey="TODAYS_WORKOUT.noActiveMeso.text"
-						components={{
-							myMesocyclesLink: (
-								<Button variant="link" to={`/${Route.MyMesocycles}`} />
-							),
-							newMesocycleLink: (
-								<Button variant="link" to={`/${Route.NewMesocycle}`} />
-							),
-						}}
-					/>
-				</ErrorDescription>
-			</ErrorPage>
-		);
+		return <Guards.NoActiveMeso />;
 	}
 
 	if (
 		user?.activeMesocycle?.startDate &&
 		isBefore(startOfToday(), new Date(user?.activeMesocycle?.startDate))
 	) {
-		return (
-			<ErrorPage>
-				<ErrorTitle>{t("TODAYS_WORKOUT.mesoStartsMonday.title")}</ErrorTitle>
-				<ErrorDescription>
-					{t("TODAYS_WORKOUT.mesoStartsMonday.text")}
-				</ErrorDescription>
-			</ErrorPage>
-		);
+		return <Guards.StartsMonday />;
 	}
 
 	if (
 		user?.activeMesocycle?.endDate &&
 		isAfter(startOfToday(), startOfDay(user?.activeMesocycle?.endDate))
 	) {
-		return (
-			<ErrorPage>
-				<ErrorTitle>{t("TODAYS_WORKOUT.mesoCompleted.title")}</ErrorTitle>
-				<ErrorDescription>
-					<Trans
-						i18nKey="TODAYS_WORKOUT.mesoCompleted.text"
-						components={{
-							newMesocycleLink: (
-								<Button variant="link" to={`/${Route.NewMesocycle}`} />
-							),
-							myMesocyclesLink: (
-								<Button variant="link" to={`/${Route.MyMesocycles}`} />
-							),
-						}}
-					/>
-				</ErrorDescription>
-			</ErrorPage>
-		);
+		return <Guards.MesoCompleted />;
 	}
 
 	if (mesocycle && !todaysWorkout) {
-		return (
-			<ErrorPage>
-				<ErrorTitle>{t("TODAYS_WORKOUT.restDay.title")}</ErrorTitle>
-				<ErrorDescription>{t("TODAYS_WORKOUT.restDay.text")}</ErrorDescription>
-			</ErrorPage>
-		);
+		return <Guards.RestDay />;
 	}
 
 	const handleCompleteWorkout = async () => {
@@ -190,19 +144,8 @@ export default function TodaysWorkout() {
 		}
 	};
 
-	if (!todaysWorkout) {
-		return <div>No workout?</div>;
-	}
-
 	if (user?.lastWorkout && isToday(new Date(user.lastWorkout))) {
-		return (
-			<ErrorPage>
-				<ErrorTitle>{t("TODAYS_WORKOUT.workoutCompleted.title")}</ErrorTitle>
-				<ErrorDescription>
-					{t("TODAYS_WORKOUT.workoutCompleted.text")}
-				</ErrorDescription>
-			</ErrorPage>
-		);
+		return <Guards.WorkoutCompleted />;
 	}
 	return (
 		<section className="max-w-[600px] mx-auto">
@@ -219,7 +162,7 @@ export default function TodaysWorkout() {
 							<span className="text-3xl font-bold"> {currentWeek}</span>/
 							{mesocycle.duration} -{" "}
 							{t(
-								`GENERAL.days.${weekDays.find((day) => day.value === todaysWorkout.day)?.day.toLowerCase()}.long`,
+								`GENERAL.days.${weekDays.find((day) => day.value === todaysWorkout?.day)?.day.toLowerCase()}.long`,
 							)}
 						</span>
 					</CardContent>
