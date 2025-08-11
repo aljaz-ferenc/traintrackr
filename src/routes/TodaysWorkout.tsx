@@ -104,14 +104,13 @@ export default function TodaysWorkout() {
 			</ErrorPage>
 		);
 	}
-
 	if (!mesocycle) {
 		return <Guards.NoActiveMeso />;
 	}
 
 	if (
 		user?.activeMesocycle?.startDate &&
-		isBefore(startOfToday(), new Date(user?.activeMesocycle?.startDate))
+		isBefore(new Date(), new Date(user?.activeMesocycle?.startDate))
 	) {
 		return <Guards.StartsMonday />;
 	}
