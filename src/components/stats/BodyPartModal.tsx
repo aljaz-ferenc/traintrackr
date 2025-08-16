@@ -1,3 +1,12 @@
+import Button from "@/components/shared/Button.tsx";
+import MeasurementsChart from "@/components/stats/MeasurementsChart.tsx";
+import { Input } from "@/components/ui/Input.tsx";
+import {
+	Card,
+	CardContent,
+	CardHeader,
+	CardTitle,
+} from "@/components/ui/card.tsx";
 import {
 	Dialog,
 	DialogContent,
@@ -6,21 +15,12 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from "@/components/ui/dialog.tsx";
-import {
-	Card,
-	CardContent,
-	CardHeader,
-	CardTitle,
-} from "@/components/ui/card.tsx";
 import type { Measurement } from "@/core/types.ts";
-import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
-import Button from "@/components/shared/Button.tsx";
-import { Input } from "@/components/ui/Input.tsx";
-import { useState } from "react";
-import { z } from "zod";
 import useEditStats from "@/hooks/api/useEditStats.ts";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import MeasurementsChart from "@/components/stats/MeasurementsChart.tsx";
+import { z } from "zod";
 
 type BodyPartModalProps = {
 	name: string;

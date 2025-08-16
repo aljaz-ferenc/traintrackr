@@ -1,14 +1,14 @@
 import AddItemModal from "@/components/nutrition/AddItemModal";
 import CreateItemModal from "@/components/nutrition/CreateItemModal";
+import Macros from "@/components/nutrition/Macros.tsx";
 import NutritionItem from "@/components/nutrition/NutritionItem.tsx";
+import SelectDate from "@/components/nutrition/SelectDate.tsx";
+import PageLoading from "@/components/shared/PageLoading.tsx";
 import RouteTitle from "@/components/shared/RouteTitle.tsx";
 import useNutrition from "@/hooks/api/useNutrition.ts";
-import { useState } from "react";
-import Macros from "@/components/nutrition/Macros.tsx";
-import { useTranslation } from "react-i18next";
 import { startOfDay } from "date-fns";
-import PageLoading from "@/components/shared/PageLoading.tsx";
-import SelectDate from "@/components/nutrition/SelectDate.tsx";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function Nutrition() {
 	const [createItemIsOpen, setCreateItemIsOpen] = useState(false);

@@ -1,12 +1,27 @@
+import Button from "@/components/shared/Button.tsx";
+import ErrorPage, {
+	ErrorDescription,
+	ErrorTitle,
+} from "@/components/shared/ErrorPage.tsx";
+import PageLoading from "@/components/shared/PageLoading.tsx";
 import RouteTitle from "@/components/shared/RouteTitle.tsx";
 import { Input } from "@/components/ui/Input.tsx";
-import Button from "@/components/shared/Button.tsx";
 import {
 	Card,
+	CardContent,
 	CardHeader,
 	CardTitle,
-	CardContent,
 } from "@/components/ui/card.tsx";
+import {
+	Table,
+	TableBody,
+	TableCell,
+	TableHead,
+	TableHeader,
+	TableRow,
+} from "@/components/ui/table.tsx";
+import { Guards } from "@/components/workout/TodaysWorkoutGuards.tsx";
+import { weekDays } from "@/constants/weekDays.ts";
 import type { Exercise, Set as TSet, Workout } from "@/core/types.ts";
 import useCompleteWorkout from "@/hooks/api/useCompleteWorkout.ts";
 import useGetMesocycleById from "@/hooks/api/useGetMesocyleById.ts";
@@ -24,25 +39,10 @@ import {
 } from "date-fns";
 import { X } from "lucide-react";
 import { useEffect } from "react";
-import { useShallow } from "zustand/react/shallow";
-import {
-	Table,
-	TableBody,
-	TableRow,
-	TableCell,
-	TableHeader,
-	TableHead,
-} from "@/components/ui/table.tsx";
-import { useNavigate } from "react-router";
-import PageLoading from "@/components/shared/PageLoading.tsx";
-import ErrorPage, {
-	ErrorDescription,
-	ErrorTitle,
-} from "@/components/shared/ErrorPage.tsx";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router";
 import { z } from "zod";
-import { Guards } from "@/components/workout/TodaysWorkoutGuards.tsx";
-import { weekDays } from "@/constants/weekDays.ts";
+import { useShallow } from "zustand/react/shallow";
 
 export default function TodaysWorkout() {
 	const [user] = useUserStore(useShallow((state) => [state.user]));

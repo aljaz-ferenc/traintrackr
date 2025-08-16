@@ -1,9 +1,9 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import type { WorkoutLog } from "@/core/types.ts";
 import { Endpoints } from "@/core/endpoints.ts";
-import { toast } from "react-toastify";
-import { useTranslation } from "react-i18next";
+import type { WorkoutLog } from "@/core/types.ts";
 import useUserStore from "@/state/UserStore.ts";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
 import { useShallow } from "zustand/react/shallow";
 
 async function fetchDeleteLog(logId: WorkoutLog["_id"]) {

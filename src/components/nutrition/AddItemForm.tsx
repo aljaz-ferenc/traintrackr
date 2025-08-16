@@ -1,6 +1,6 @@
 import Spinner from "@/components/Spinner/Spinner.tsx";
-import { Input } from "@/components/ui/Input.tsx";
 import Button from "@/components/shared/Button.tsx";
+import { Input } from "@/components/ui/Input.tsx";
 import {
 	Form,
 	FormControl,
@@ -24,9 +24,9 @@ import useUserStore from "@/state/UserStore.ts";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCallback } from "react";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { z } from "zod";
 import { useShallow } from "zustand/react/shallow";
-import { useTranslation } from "react-i18next";
 
 type AddItemFormProps = {
 	selectedItemId: string;

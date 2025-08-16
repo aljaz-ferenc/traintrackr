@@ -1,7 +1,7 @@
 import RouteTitle from "@/components/shared/RouteTitle.tsx";
-import { useTranslation } from "react-i18next";
-import WeightSection from "@/components/stats/WeightSection.tsx";
 import BodyPartsSection from "@/components/stats/BodyPartsSection.tsx";
+import WeightSection from "@/components/stats/WeightSection.tsx";
+import { useTranslation } from "react-i18next";
 
 export default function Stats() {
 	const { t } = useTranslation();

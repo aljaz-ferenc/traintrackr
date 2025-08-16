@@ -1,7 +1,7 @@
 import { Endpoints } from "@/core/endpoints.ts";
 import type { User } from "@/core/types.ts";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import useUserStore from "@/state/UserStore.ts";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useShallow } from "zustand/react/shallow";
 
 async function fetchUpdateStats(

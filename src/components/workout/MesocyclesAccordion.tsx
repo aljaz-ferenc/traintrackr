@@ -1,29 +1,29 @@
+import Button from "@/components/shared/Button.tsx";
 import {
 	Accordion,
 	AccordionContent,
 	AccordionItem,
 	AccordionTrigger,
 } from "@/components/ui/accordion.tsx";
-import Workout from "@/components/workout/Workout.tsx";
-import { Ellipsis } from "lucide-react";
 import {
 	Popover,
 	PopoverContent,
 	PopoverTrigger,
 } from "@/components/ui/popover.tsx";
-import Button from "@/components/shared/Button.tsx";
-import { useState } from "react";
-import useDeleteMesocycle from "@/hooks/api/useDeleteMesocycle.ts";
-import type { Workout as TWorkout, Mesocycle } from "@/core/types.ts";
+import Workout from "@/components/workout/Workout.tsx";
+import type { Mesocycle, Workout as TWorkout } from "@/core/types.ts";
 import useActivateMesocycle, {
 	type ActivateMesoPayload,
 } from "@/hooks/api/useActivateMesocycle.ts";
-import { addWeeks, nextMonday, subDays } from "date-fns";
-import { useNavigate } from "react-router";
-import useUserStore from "@/state/UserStore.ts";
-import { useShallow } from "zustand/react/shallow";
+import useDeleteMesocycle from "@/hooks/api/useDeleteMesocycle.ts";
 import useUpdateUser from "@/hooks/api/useUpdateUser.ts";
+import useUserStore from "@/state/UserStore.ts";
+import { addWeeks, nextMonday, subDays } from "date-fns";
+import { Ellipsis } from "lucide-react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router";
+import { useShallow } from "zustand/react/shallow";
 
 type MesocyclesAccordionProps = {
 	mesocycles: Mesocycle[];

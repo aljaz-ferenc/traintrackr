@@ -1,10 +1,10 @@
-import WidgetWrapper from "@/components/dashboard/WidgetWrapper.tsx";
-import useStats from "@/hooks/api/useStats.ts";
-import { Range } from "@/core/enums/Range.enum.ts";
 import Spinner from "@/components/Spinner/Spinner.tsx";
+import WidgetWrapper from "@/components/dashboard/WidgetWrapper.tsx";
+import MeasurementsChart from "@/components/stats/MeasurementsChart.tsx";
+import { Range } from "@/core/enums/Range.enum.ts";
+import useStats from "@/hooks/api/useStats.ts";
 import { cn } from "@/lib/utils.ts";
 import { useTranslation } from "react-i18next";
-import MeasurementsChart from "@/components/stats/MeasurementsChart.tsx";
 
 type WeightCardsProps = {
 	className?: string;

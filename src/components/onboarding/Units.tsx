@@ -1,7 +1,7 @@
-import { cn } from "@/lib/utils.ts";
 import type { Units as TUnits } from "@/core/types.ts";
-import type React from "react";
+import { cn } from "@/lib/utils.ts";
 import { Apple } from "lucide-react";
+import type React from "react";
 import { useTranslation } from "react-i18next";
 
 type UnitsProps = {

@@ -1,7 +1,7 @@
+import type { Gender as TGender } from "@/core/types.ts";
+import { cn } from "@/lib/utils.ts";
 import { Mars, Venus } from "lucide-react";
 import type React from "react";
-import { cn } from "@/lib/utils.ts";
-import type { Gender as TGender } from "@/core/types.ts";
 import { useTranslation } from "react-i18next";
 
 type GenderProps = {

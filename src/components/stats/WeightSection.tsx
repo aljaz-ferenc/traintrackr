@@ -1,18 +1,18 @@
+import SelectDate from "@/components/nutrition/SelectDate.tsx";
+import Button from "@/components/shared/Button.tsx";
+import AppTooltip from "@/components/shared/Tooltip.tsx";
+import MeasurementsChart from "@/components/stats/MeasurementsChart.tsx";
+import StatsSectionWrapper from "@/components/stats/StatsSectionWrapper.tsx";
+import { Input } from "@/components/ui/Input.tsx";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs.tsx";
 import { Range } from "@/core/enums/Range.enum.ts";
-import { Input } from "@/components/ui/Input.tsx";
-import { z } from "zod";
-import AppTooltip from "@/components/shared/Tooltip.tsx";
-import Button from "@/components/shared/Button.tsx";
-import { useEffect, useMemo, useState } from "react";
-import { isSameDay, isToday } from "date-fns";
-import useUpdateStats from "@/hooks/api/useUpdateStats.ts";
-import useStats from "@/hooks/api/useStats.ts";
-import { useTranslation } from "react-i18next";
 import useEditStats from "@/hooks/api/useEditStats.ts";
-import StatsSectionWrapper from "@/components/stats/StatsSectionWrapper.tsx";
-import MeasurementsChart from "@/components/stats/MeasurementsChart.tsx";
-import SelectDate from "@/components/nutrition/SelectDate.tsx";
+import useStats from "@/hooks/api/useStats.ts";
+import useUpdateStats from "@/hooks/api/useUpdateStats.ts";
+import { isSameDay, isToday } from "date-fns";
+import { useEffect, useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { z } from "zod";
 
 export default function WeightSection() {
 	const { mutateAsync: updateStats, isPending: isUpdating } = useUpdateStats();

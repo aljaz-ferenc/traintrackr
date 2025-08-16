@@ -1,13 +1,13 @@
-import MesocyclesAccordion from "@/components/workout/MesocyclesAccordion.tsx";
-import RouteTitle from "@/components/shared/RouteTitle.tsx";
-import useMyMesocycles from "@/hooks/api/useMyMesocycles.ts";
-import PageLoading from "@/components/shared/PageLoading.tsx";
+import Button from "@/components/shared/Button.tsx";
 import ErrorPage, {
 	ErrorDescription,
 	ErrorTitle,
 } from "@/components/shared/ErrorPage.tsx";
-import Button from "@/components/shared/Button.tsx";
+import PageLoading from "@/components/shared/PageLoading.tsx";
+import RouteTitle from "@/components/shared/RouteTitle.tsx";
+import MesocyclesAccordion from "@/components/workout/MesocyclesAccordion.tsx";
 import { Route } from "@/core/enums/Routes.enum.ts";
+import useMyMesocycles from "@/hooks/api/useMyMesocycles.ts";
 import { Trans, useTranslation } from "react-i18next";
 export default function MyMesocycles() {
 	const { data: myMesos, isLoading } = useMyMesocycles();

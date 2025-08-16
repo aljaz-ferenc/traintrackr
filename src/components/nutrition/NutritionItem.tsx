@@ -1,3 +1,4 @@
+import Spinner from "@/components/Spinner/Spinner.tsx";
 import NutritionItemModal from "@/components/nutrition/NutritionItemModal.tsx";
 import { Card, CardContent } from "@/components/ui/card.tsx";
 import {
@@ -12,7 +13,6 @@ import useDeleteNutrition from "@/hooks/api/useDeleteNutrition.ts";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { X } from "lucide-react";
 import { useState } from "react";
-import Spinner from "@/components/Spinner/Spinner.tsx";
 
 type NutritionItemProps = {
 	nutrition: Nutrition;

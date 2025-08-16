@@ -1,4 +1,3 @@
-import type { Workout, ExerciseWithSets } from "@/core/types";
 import {
 	Card,
 	CardContent,
@@ -8,13 +7,14 @@ import {
 import {
 	Table,
 	TableBody,
-	TableRow,
 	TableCell,
 	TableHead,
 	TableHeader,
+	TableRow,
 } from "@/components/ui/table.tsx";
-import { useTranslation } from "react-i18next";
 import { weekDays } from "@/constants/weekDays.ts";
+import type { ExerciseWithSets, Workout } from "@/core/types";
+import { useTranslation } from "react-i18next";
 
 type WorkoutLogProps = {
 	workout: Workout<ExerciseWithSets>;

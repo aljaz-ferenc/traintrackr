@@ -1,5 +1,5 @@
-import { useEffect, useRef } from "react";
 import { useTheme } from "@/provider/ThemeProvider";
+import { useEffect, useRef } from "react";
 
 type BodyProps = {
 	muscleGroups: {

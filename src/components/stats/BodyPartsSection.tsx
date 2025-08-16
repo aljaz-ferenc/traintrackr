@@ -1,7 +1,7 @@
-import StatsSectionWrapper from "@/components/stats/StatsSectionWrapper.tsx";
-import { useTranslation } from "react-i18next";
-import useStats from "@/hooks/api/useStats.ts";
 import BodyPartModal from "@/components/stats/BodyPartModal.tsx";
+import StatsSectionWrapper from "@/components/stats/StatsSectionWrapper.tsx";
+import useStats from "@/hooks/api/useStats.ts";
+import { useTranslation } from "react-i18next";
 
 export default function BodyPartsSection() {
 	const { t } = useTranslation();

@@ -1,3 +1,4 @@
+import Sidebar from "@/components/Sidebar/Sidebar.tsx";
 import {
 	Sheet,
 	SheetContent,
@@ -5,9 +6,8 @@ import {
 	SheetTitle,
 	SheetTrigger,
 } from "@/components/ui/sheet.tsx";
-import { Menu } from "lucide-react";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
-import Sidebar from "@/components/Sidebar/Sidebar.tsx";
+import { Menu } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 

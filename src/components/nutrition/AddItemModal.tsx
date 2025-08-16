@@ -1,4 +1,6 @@
+import Spinner from "@/components/Spinner/Spinner.tsx";
 import AddItemForm from "@/components/nutrition/AddItemForm.tsx";
+import Macros from "@/components/nutrition/Macros.tsx";
 import Button from "@/components/shared/Button.tsx";
 import { Card, CardContent } from "@/components/ui/card.tsx";
 import {
@@ -21,8 +23,6 @@ import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import type React from "react";
 import { useMemo } from "react";
 import { useState } from "react";
-import Macros from "@/components/nutrition/Macros.tsx";
-import Spinner from "@/components/Spinner/Spinner.tsx";
 import { useTranslation } from "react-i18next";
 
 type AddItemModalProps = {

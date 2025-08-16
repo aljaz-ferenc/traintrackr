@@ -1,11 +1,11 @@
 import AddItemForm from "@/components/nutrition/AddItemForm.tsx";
 import MacroCard from "@/components/nutrition/MacroCard.tsx";
+import Macros from "@/components/nutrition/Macros.tsx";
+import { Card, CardContent } from "@/components/ui/card.tsx";
 import type { Nutrition } from "@/core/types.ts";
 import { calcMacros } from "@/utils/utils.ts";
 import { FilePen } from "lucide-react";
 import { useState } from "react";
-import Macros from "@/components/nutrition/Macros.tsx";
-import { Card, CardContent } from "@/components/ui/card.tsx";
 import { useTranslation } from "react-i18next";
 
 type NutritionItemModalProps = {

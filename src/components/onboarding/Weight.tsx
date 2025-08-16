@@ -1,7 +1,7 @@
-import type React from "react";
 import { Input } from "@/components/ui/Input.tsx";
-import { z } from "zod";
+import type React from "react";
 import { useTranslation } from "react-i18next";
+import { z } from "zod";
 
 type WeightProps = {
 	weight: string;

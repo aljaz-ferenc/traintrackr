@@ -1,9 +1,9 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Endpoints } from "@/core/endpoints.ts";
-import useUserStore from "@/state/UserStore.ts";
-import { useShallow } from "zustand/react/shallow";
 import type { User } from "@/core/types.ts";
+import useUserStore from "@/state/UserStore.ts";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
+import { useShallow } from "zustand/react/shallow";
 
 async function fetchEditStats(userId: User["_id"], stats: object) {
 	const res = await fetch(Endpoints.editStats(userId), {

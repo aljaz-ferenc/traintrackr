@@ -1,3 +1,4 @@
+import { Card, CardContent } from "@/components/ui/card.tsx";
 import {
 	Select,
 	SelectContent,
@@ -7,16 +8,15 @@ import {
 } from "@/components/ui/select.tsx";
 import ExercisesList from "@/components/workout/ExercisesList.tsx";
 import SelectExerciseModal from "@/components/workout/SelectExerciseModal.tsx";
+import WorkoutActions from "@/components/workout/WorkoutActions.tsx";
+import { weekDays } from "@/constants/weekDays.ts";
 import type { Workout as TWorkout } from "@/core/types.ts";
 import { useNewMesoStore } from "@/state/NewMesoStore.ts";
-import { type RefObject, useRef } from "react";
-import { useShallow } from "zustand/react/shallow";
 import { cn } from "@/utils/utils.ts";
-import { useOnClickOutside } from "usehooks-ts";
-import WorkoutActions from "@/components/workout/WorkoutActions.tsx";
-import { Card, CardContent } from "@/components/ui/card.tsx";
+import { type RefObject, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { weekDays } from "@/constants/weekDays.ts";
+import { useOnClickOutside } from "usehooks-ts";
+import { useShallow } from "zustand/react/shallow";
 
 type WorkoutProps = {
 	workout: TWorkout;

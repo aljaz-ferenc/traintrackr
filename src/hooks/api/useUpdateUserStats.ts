@@ -1,10 +1,10 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import useUserStore from "@/state/UserStore.ts";
-import { useShallow } from "zustand/react/shallow";
 import { Endpoints } from "@/core/endpoints.ts";
-import { useAuth } from "@clerk/clerk-react";
-import type { Gender, Measurement } from "@/core/types.ts";
 import type { ActivityLevels } from "@/core/enums/ActivityLevel.enum.ts";
+import type { Gender, Measurement } from "@/core/types.ts";
+import useUserStore from "@/state/UserStore.ts";
+import { useAuth } from "@clerk/clerk-react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useShallow } from "zustand/react/shallow";
 
 type UpdateUserPayload = {
 	gender: Gender;

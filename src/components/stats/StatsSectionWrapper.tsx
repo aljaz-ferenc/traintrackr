@@ -1,11 +1,11 @@
-import type { PropsWithChildren } from "react";
-import { cn } from "@/lib/utils.ts";
 import {
 	Card,
 	CardContent,
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card.tsx";
+import { cn } from "@/lib/utils.ts";
+import type { PropsWithChildren } from "react";
 
 type StatsSectionWrapper = {
 	title: string;

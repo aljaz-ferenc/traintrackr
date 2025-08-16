@@ -1,6 +1,6 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import type { FoodItem } from "@/core/types.ts";
 import { Endpoints } from "@/core/endpoints.ts";
+import type { FoodItem } from "@/core/types.ts";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 async function fetchDeleteItem(itemId: FoodItem["_id"]) {
 	const res = await fetch(Endpoints.foodItem(itemId), {

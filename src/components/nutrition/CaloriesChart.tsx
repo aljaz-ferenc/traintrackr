@@ -1,14 +1,14 @@
-import type { Nutrition } from "@/core/types.ts";
 import {
 	ChartContainer,
 	ChartTooltip,
 	ChartTooltipContent,
 } from "@/components/ui/chart.tsx";
-import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
-import { useMemo } from "react";
-import { getDay } from "date-fns";
-import { useTranslation } from "react-i18next";
 import { weekDays } from "@/constants/weekDays.ts";
+import type { Nutrition } from "@/core/types.ts";
+import { getDay } from "date-fns";
+import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
+import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
 
 type CaloriesChart = {
 	nutritions: Nutrition[];

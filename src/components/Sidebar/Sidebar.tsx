@@ -1,4 +1,5 @@
 import { Route } from "@/core/enums/Routes.enum.ts";
+import { cn } from "@/lib/utils.ts";
 import {
 	ChartNoAxesCombined,
 	Dumbbell,
@@ -9,9 +10,8 @@ import {
 	Utensils,
 } from "lucide-react";
 import type React from "react";
-import SidebarItem from "./SidebarItem.tsx";
-import { cn } from "@/lib/utils.ts";
 import { useTranslation } from "react-i18next";
+import SidebarItem from "./SidebarItem.tsx";
 
 export type TSidebarItem = {
 	path: string;

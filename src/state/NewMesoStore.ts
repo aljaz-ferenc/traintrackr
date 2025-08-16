@@ -1,6 +1,6 @@
 import type { Exercise, Mesocycle, SplitType, Workout } from "@/core/types.ts";
-import { create } from "zustand";
 import { z } from "zod";
+import { create } from "zustand";
 
 type NewMesoStore = {
 	_id: Mesocycle["_id"];

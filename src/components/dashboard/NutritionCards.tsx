@@ -1,14 +1,14 @@
 import WidgetWrapper from "@/components/dashboard/WidgetWrapper.tsx";
-import { cn } from "@/lib/utils.ts";
 import CaloriesChart from "@/components/nutrition/CaloriesChart.tsx";
 import MacrosPieChart from "@/components/nutrition/MacrosPieChart.tsx";
-import { useTranslation } from "react-i18next";
-import type { StatsResponse } from "@/hooks/api/useStats.ts";
-import { Edit } from "lucide-react";
-import useUserStore from "@/state/UserStore.ts";
-import { useShallow } from "zustand/react/shallow";
-import { useNavigate } from "react-router";
 import { Route } from "@/core/enums/Routes.enum.ts";
+import type { StatsResponse } from "@/hooks/api/useStats.ts";
+import { cn } from "@/lib/utils.ts";
+import useUserStore from "@/state/UserStore.ts";
+import { Edit } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router";
+import { useShallow } from "zustand/react/shallow";
 
 type NutritionCardsProps = {
 	className?: string;

@@ -1,8 +1,8 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Endpoints } from "@/core/endpoints.ts";
 import type { FoodItem } from "@/core/types.ts";
-import { toast } from "react-toastify";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
 
 async function fetchCreateFoodItem(foodItem: Omit<FoodItem, "_id">) {
 	await fetch(Endpoints.allFoodItems, {

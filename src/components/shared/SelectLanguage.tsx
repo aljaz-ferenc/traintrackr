@@ -6,9 +6,9 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select.tsx";
-import { US, SI } from "country-flag-icons/react/3x2";
-import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils.ts";
+import { SI, US } from "country-flag-icons/react/3x2";
+import { useTranslation } from "react-i18next";
 
 const languages = [
 	{

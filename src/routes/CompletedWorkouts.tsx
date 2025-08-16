@@ -1,3 +1,9 @@
+import Button from "@/components/shared/Button.tsx";
+import ErrorPage, {
+	ErrorDescription,
+	ErrorTitle,
+} from "@/components/shared/ErrorPage.tsx";
+import PageLoading from "@/components/shared/PageLoading.tsx";
 import RouteTitle from "@/components/shared/RouteTitle.tsx";
 import {
 	Accordion,
@@ -5,25 +11,19 @@ import {
 	AccordionItem,
 	AccordionTrigger,
 } from "@/components/ui/accordion.tsx";
-import WorkoutLog from "@/components/workout/WorkoutLog.tsx";
-import useWorkoutLogs from "@/hooks/api/useWorkoutLogs.ts";
-import PageLoading from "@/components/shared/PageLoading.tsx";
-import ErrorPage, {
-	ErrorDescription,
-	ErrorTitle,
-} from "@/components/shared/ErrorPage.tsx";
-import Button from "@/components/shared/Button.tsx";
-import { Route } from "@/core/enums/Routes.enum.ts";
-import { Trans, useTranslation } from "react-i18next";
 import {
 	Popover,
 	PopoverContent,
 	PopoverTrigger,
 } from "@/components/ui/popover.tsx";
-import { Ellipsis } from "lucide-react";
-import { useState } from "react";
+import WorkoutLog from "@/components/workout/WorkoutLog.tsx";
+import { Route } from "@/core/enums/Routes.enum.ts";
 import type { WorkoutLog as TLog } from "@/core/types.ts";
 import useDeleteLog from "@/hooks/api/useDeleteLog.ts";
+import useWorkoutLogs from "@/hooks/api/useWorkoutLogs.ts";
+import { Ellipsis } from "lucide-react";
+import { useState } from "react";
+import { Trans, useTranslation } from "react-i18next";
 
 export default function CompletedWorkouts() {
 	const { data: logs, isLoading } = useWorkoutLogs();

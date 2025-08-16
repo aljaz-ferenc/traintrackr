@@ -1,14 +1,14 @@
-import RouteTitle from "@/components/shared/RouteTitle.tsx";
-import { Range } from "@/core/enums/Range.enum.ts";
-import useStats from "@/hooks/api/useStats.ts";
-import useNutrition from "@/hooks/api/useNutrition.ts";
+import MesocycleCards from "@/components/dashboard/MesocycleCards.tsx";
 import NutritionCards from "@/components/dashboard/NutritionCards.tsx";
 import WeightCards from "@/components/dashboard/WeightCards.tsx";
-import MesocycleCards from "@/components/dashboard/MesocycleCards.tsx";
-import useUserStore from "@/state/UserStore.ts";
-import { useShallow } from "zustand/react/shallow";
 import PageLoading from "@/components/shared/PageLoading.tsx";
+import RouteTitle from "@/components/shared/RouteTitle.tsx";
+import { Range } from "@/core/enums/Range.enum.ts";
+import useNutrition from "@/hooks/api/useNutrition.ts";
+import useStats from "@/hooks/api/useStats.ts";
+import useUserStore from "@/state/UserStore.ts";
 import { useTranslation } from "react-i18next";
+import { useShallow } from "zustand/react/shallow";
 
 export default function Dashboard() {
 	const {

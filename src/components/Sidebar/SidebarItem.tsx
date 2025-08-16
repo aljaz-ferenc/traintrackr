@@ -1,8 +1,8 @@
-import type { TSidebarItem } from "./Sidebar.tsx";
-import { NavLink, useLocation } from "react-router";
 import { cn } from "@/utils/utils.ts";
-import { useMemo } from "react";
 import { motion } from "motion/react";
+import { useMemo } from "react";
+import { NavLink, useLocation } from "react-router";
+import type { TSidebarItem } from "./Sidebar.tsx";
 
 type MenuItemProps = {
 	item: TSidebarItem;

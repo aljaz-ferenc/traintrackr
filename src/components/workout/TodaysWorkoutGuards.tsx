@@ -3,9 +3,9 @@ import ErrorPage, {
 	ErrorTitle,
 } from "@/components/shared/ErrorPage.tsx";
 
-import { Trans, useTranslation } from "react-i18next";
 import Button from "@/components/shared/Button.tsx";
 import { Route } from "@/core/enums/Routes.enum.ts";
+import { Trans, useTranslation } from "react-i18next";
 
 function RestDay() {
 	const { t } = useTranslation();

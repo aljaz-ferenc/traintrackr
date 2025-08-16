@@ -1,3 +1,5 @@
+import AppTooltip from "@/components/shared/Tooltip.tsx";
+import { Card, CardContent } from "@/components/ui/card.tsx";
 import {
 	Table,
 	TableBody,
@@ -6,8 +8,6 @@ import {
 	TableHeader,
 	TableRow,
 } from "@/components/ui/table.tsx";
-import { Card, CardContent } from "@/components/ui/card.tsx";
-import AppTooltip from "@/components/shared/Tooltip.tsx";
 
 type VolumeTableProps = {
 	muscleGroups: {

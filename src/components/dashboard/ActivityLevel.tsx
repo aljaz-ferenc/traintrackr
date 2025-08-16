@@ -1,13 +1,13 @@
-import { ActivityLevels } from "@/core/enums/ActivityLevel.enum.ts";
-import type React from "react";
 import Button from "@/components/shared/Button.tsx";
-import { useTranslation } from "react-i18next";
+import { ActivityLevels } from "@/core/enums/ActivityLevel.enum.ts";
 import { cn } from "@/lib/utils.ts";
-import { FaCouch } from "react-icons/fa";
-import { GrYoga } from "react-icons/gr";
-import { BsPersonWalking } from "react-icons/bs";
-import { GiWeightLiftingUp } from "react-icons/gi";
+import type React from "react";
+import { useTranslation } from "react-i18next";
 import { BiRun } from "react-icons/bi";
+import { BsPersonWalking } from "react-icons/bs";
+import { FaCouch } from "react-icons/fa";
+import { GiWeightLiftingUp } from "react-icons/gi";
+import { GrYoga } from "react-icons/gr";
 
 type ActivityLevelProps = {
 	activityLevel: ActivityLevels | null;

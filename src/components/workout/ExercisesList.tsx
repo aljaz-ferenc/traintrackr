@@ -1,12 +1,12 @@
 import { Badge } from "@/components/ui/badge.tsx";
+import { Card, CardContent } from "@/components/ui/card.tsx";
+import type { Exercise, Workout } from "@/core/types.ts";
 import { useNewMesoStore } from "@/state/NewMesoStore.ts";
 import { cn } from "@/utils/utils.ts";
 import { X } from "lucide-react";
 import { Reorder, useDragControls } from "motion/react";
-import { useShallow } from "zustand/react/shallow";
-import type { Exercise, Workout } from "@/core/types.ts";
-import { Card, CardContent } from "@/components/ui/card.tsx";
 import { useTranslation } from "react-i18next";
+import { useShallow } from "zustand/react/shallow";
 
 type ExercisesListProps = {
 	exercises: Exercise[];

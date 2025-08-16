@@ -1,8 +1,8 @@
 import { Endpoints } from "@/core/endpoints.ts";
 import type { Nutrition } from "@/core/types.ts";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
 
 async function fetchCreateNutrition(
 	nutrition: Omit<Nutrition, "_id" | "createdAt" | "updatedAt">,

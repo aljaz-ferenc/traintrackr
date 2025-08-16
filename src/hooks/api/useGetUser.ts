@@ -1,8 +1,8 @@
 import { Endpoints } from "@/core/endpoints.ts";
 import type { User } from "@/core/types.ts";
+import useUserStore from "@/state/UserStore.ts";
 import { useAuth } from "@clerk/clerk-react";
 import { useQuery } from "@tanstack/react-query";
-import useUserStore from "@/state/UserStore.ts";
 
 async function fetchUser(clerkId: string) {
 	const res = await fetch(Endpoints.user(clerkId));

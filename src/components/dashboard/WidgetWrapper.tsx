@@ -1,4 +1,3 @@
-import type { PropsWithChildren } from "react";
 import {
 	Card,
 	CardContent,
@@ -7,6 +6,7 @@ import {
 	CardTitle,
 } from "@/components/ui/card.tsx";
 import { cn } from "@/lib/utils.ts";
+import type { PropsWithChildren } from "react";
 
 type WidgetWrapperProps = {
 	title: string;

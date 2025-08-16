@@ -1,6 +1,6 @@
+import Button from "@/components/shared/Button.tsx";
 import AppTooltip from "@/components/shared/Tooltip.tsx";
 import { Input } from "@/components/ui/Input";
-import Button from "@/components/shared/Button.tsx";
 import { Card, CardContent, CardTitle } from "@/components/ui/card.tsx";
 import {
 	Dialog,
@@ -18,20 +18,20 @@ import {
 	FormLabel,
 	FormMessage,
 } from "@/components/ui/form";
+import type { FoodItem } from "@/core/types.ts";
 import useCreateFoodItem from "@/hooks/api/useCreateFoodItem";
+import useDeleteFoodItem from "@/hooks/api/useDeleteFoodItem.ts";
+import useUpdateFoodItem from "@/hooks/api/useUpdateFoodItem.ts";
 import useUserStore from "@/state/UserStore.ts";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
+import { FilePen } from "lucide-react";
 import type React from "react";
 import { useEffect } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { z } from "zod";
 import { useShallow } from "zustand/react/shallow";
-import { FilePen } from "lucide-react";
-import type { FoodItem } from "@/core/types.ts";
-import useUpdateFoodItem from "@/hooks/api/useUpdateFoodItem.ts";
-import { useTranslation } from "react-i18next";
-import useDeleteFoodItem from "@/hooks/api/useDeleteFoodItem.ts";
 
 const formSchema = z.object({
 	name: z.string().min(1),

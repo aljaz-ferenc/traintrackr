@@ -1,15 +1,15 @@
 import { Endpoints } from "@/core/endpoints.ts";
+import type { Range } from "@/core/enums/Range.enum.ts";
 import type {
 	BodyParts,
 	Macros,
+	Measurement,
 	Nutrition,
 	User,
-	Measurement,
 } from "@/core/types.ts";
-import { useQuery } from "@tanstack/react-query";
 import useUserStore from "@/state/UserStore.ts";
+import { useQuery } from "@tanstack/react-query";
 import { useShallow } from "zustand/react/shallow";
-import type { Range } from "@/core/enums/Range.enum.ts";
 
 async function fetchStats(userId: User["_id"], range?: Range) {
 	const res = await fetch(Endpoints.stats(userId, range));

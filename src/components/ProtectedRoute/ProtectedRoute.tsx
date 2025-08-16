@@ -1,8 +1,8 @@
-import { Navigate } from "react-router-dom";
-import { useAuth } from "@clerk/clerk-react";
 import useGetUser from "@/hooks/api/useGetUser.ts";
-import { isUserOnboarded } from "@/utils/utils.ts";
 import Onboarding from "@/routes/Onboarding.tsx";
+import { isUserOnboarded } from "@/utils/utils.ts";
+import { useAuth } from "@clerk/clerk-react";
+import { Navigate } from "react-router-dom";
 
 export function ProtectedRoute({
 	children,

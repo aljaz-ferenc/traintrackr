@@ -1,13 +1,13 @@
-import type { Measurement } from "@/core/types.ts";
 import {
 	type ChartConfig,
 	ChartContainer,
 	ChartTooltip,
 	ChartTooltipContent,
 } from "@/components/ui/chart.tsx";
-import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
+import type { Measurement } from "@/core/types.ts";
 import { formatDate } from "date-fns";
 import { useTranslation } from "react-i18next";
+import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
 
 type WeightChartProps = {
 	measurements: Measurement[];

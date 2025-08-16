@@ -16,12 +16,12 @@ import {
 } from "@/components/ui/select.tsx";
 import { exercises } from "@/constants/exercises.ts";
 import { muscleGroups } from "@/constants/muscleGroups.ts";
+import type { Exercise, Workout } from "@/core/types.ts";
 import { useNewMesoStore } from "@/state/NewMesoStore.ts";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { useMemo, useState } from "react";
-import { useShallow } from "zustand/react/shallow";
-import type { Exercise, Workout } from "@/core/types.ts";
 import { useTranslation } from "react-i18next";
+import { useShallow } from "zustand/react/shallow";
 
 type SelectExerciseModalProps = {
 	workoutId: Workout["id"];

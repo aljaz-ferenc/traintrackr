@@ -1,9 +1,9 @@
+import { ActivityLevels } from "@/core/enums/ActivityLevel.enum.ts";
 import type { Gender, Nutrition, User, Workout } from "@/core/types.ts";
 import clsx, { type ClassValue } from "clsx";
-import { twMerge } from "tailwind-merge";
 import { differenceInYears, format, isBefore } from "date-fns";
+import { twMerge } from "tailwind-merge";
 import { z } from "zod";
-import { ActivityLevels } from "@/core/enums/ActivityLevel.enum.ts";
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));

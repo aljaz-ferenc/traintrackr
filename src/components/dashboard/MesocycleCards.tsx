@@ -1,11 +1,11 @@
+import Spinner from "@/components/Spinner/Spinner.tsx";
 import WidgetWrapper from "@/components/dashboard/WidgetWrapper.tsx";
 import Heatmap from "@/components/stats/Heatmap.tsx";
-import useStats from "@/hooks/api/useStats.ts";
 import { Range } from "@/core/enums/Range.enum.ts";
-import Spinner from "@/components/Spinner/Spinner.tsx";
+import useStats from "@/hooks/api/useStats.ts";
 import { cn } from "@/lib/utils.ts";
-import { useTranslation } from "react-i18next";
 import useUserStore from "@/state/UserStore.ts";
+import { useTranslation } from "react-i18next";
 import { useShallow } from "zustand/react/shallow";
 
 type MesocycleCardsProps = {

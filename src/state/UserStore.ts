@@ -1,5 +1,5 @@
-import { create } from "zustand";
 import type { User } from "@/core/types.ts";
+import { create } from "zustand";
 
 type UserStore = {
 	user: User | null;

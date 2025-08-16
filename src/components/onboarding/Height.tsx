@@ -4,11 +4,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 // @ts-ignore
 import "swiper/css/free-mode";
+import useScreenSize from "@/hooks/useScreenSize.ts";
+import { cn } from "@/lib/utils.ts";
 import { Triangle } from "lucide-react";
 import type React from "react";
-import { cn } from "@/lib/utils.ts";
 import { useTranslation } from "react-i18next";
-import useScreenSize from "@/hooks/useScreenSize.ts";
 
 const heights: number[] = [];
 

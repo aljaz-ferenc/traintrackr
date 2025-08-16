@@ -1,12 +1,12 @@
-import type React from "react";
-import { Input } from "@/components/ui/Input.tsx";
-import { z } from "zod";
-import { useTranslation } from "react-i18next";
-import AppTooltip from "@/components/shared/Tooltip.tsx";
 import Button from "@/components/shared/Button.tsx";
-import type { Gender } from "@/core/types.ts";
+import AppTooltip from "@/components/shared/Tooltip.tsx";
+import { Input } from "@/components/ui/Input.tsx";
 import type { ActivityLevels } from "@/core/enums/ActivityLevel.enum.ts";
+import type { Gender } from "@/core/types.ts";
 import { calcTdee } from "@/utils/utils.ts";
+import type React from "react";
+import { useTranslation } from "react-i18next";
+import { z } from "zod";
 
 type TdeeProps = {
 	tdee: number;

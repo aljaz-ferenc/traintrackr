@@ -1,7 +1,7 @@
-import { useMutation } from "@tanstack/react-query";
 import { Endpoints } from "@/core/endpoints.ts";
 import type { User } from "@/core/types.ts";
 import useUserStore from "@/state/UserStore.ts";
+import { useMutation } from "@tanstack/react-query";
 import { useShallow } from "zustand/react/shallow";
 
 async function fetchUpdateUser(userId: User["_id"], payload: Partial<User>) {

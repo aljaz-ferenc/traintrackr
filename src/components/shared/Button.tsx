@@ -1,7 +1,7 @@
-import type { ComponentProps, PropsWithChildren } from "react";
-import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "@/lib/utils.ts";
 import Spinner from "@/components/Spinner/Spinner.tsx";
+import { cn } from "@/lib/utils.ts";
+import { type VariantProps, cva } from "class-variance-authority";
+import type { ComponentProps, PropsWithChildren } from "react";
 import { Link } from "react-router";
 
 const buttonStyles = cva(

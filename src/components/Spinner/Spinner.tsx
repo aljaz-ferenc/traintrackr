@@ -1,6 +1,6 @@
-import React from "react";
 import { cn } from "@/utils/utils.ts";
-import { cva, type VariantProps } from "class-variance-authority";
+import { type VariantProps, cva } from "class-variance-authority";
+import React from "react";
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
 	center?: boolean;

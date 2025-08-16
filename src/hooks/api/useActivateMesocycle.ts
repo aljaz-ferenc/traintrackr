@@ -1,10 +1,10 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Endpoints } from "@/core/endpoints.ts";
 import type { Mesocycle, User } from "@/core/types.ts";
 import useUserStore from "@/state/UserStore.ts";
-import { useShallow } from "zustand/react/shallow";
-import { toast } from "react-toastify";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
+import { useShallow } from "zustand/react/shallow";
 
 export type ActivateMesoPayload = {
 	mesocycle: Mesocycle["_id"];

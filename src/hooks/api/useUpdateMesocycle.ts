@@ -1,9 +1,9 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useNavigate } from "react-router";
 import { Endpoints } from "@/core/endpoints.ts";
 import type { Mesocycle } from "@/core/types.ts";
-import { toast } from "react-toastify";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 
 async function fetchUpdateMesocycle(mesocycle: Mesocycle) {
 	await fetch(Endpoints.mesocycle(mesocycle._id), {

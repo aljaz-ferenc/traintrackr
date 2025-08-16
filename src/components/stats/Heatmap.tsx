@@ -1,6 +1,6 @@
-import ApexCharts from "react-apexcharts";
 import { getApexHeatmapData } from "@/utils/utils.ts";
 import type { ApexOptions } from "apexcharts";
+import ApexCharts from "react-apexcharts";
 import { useTranslation } from "react-i18next";
 
 export default function Heatmap({

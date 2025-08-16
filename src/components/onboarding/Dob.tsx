@@ -1,4 +1,3 @@
-import type React from "react";
 import {
 	InputOTP,
 	InputOTPGroup,
@@ -6,6 +5,7 @@ import {
 	InputOTPSlot,
 } from "@/components/ui/input-otp";
 import { REGEXP_ONLY_DIGITS } from "input-otp";
+import type React from "react";
 import { useTranslation } from "react-i18next";
 
 type DobProps = {

@@ -1,7 +1,7 @@
+import CreateItemModal from "@/components/nutrition/CreateItemModal.tsx";
 import type { FoodItem, Macros as TMacros } from "@/core/types";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
-import CreateItemModal from "@/components/nutrition/CreateItemModal.tsx";
 import { useTranslation } from "react-i18next";
 
 type MacrosProps = {

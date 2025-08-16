@@ -5,12 +5,12 @@ import type {
 	User,
 	Workout,
 } from "@/core/types.ts";
+import useUserStore from "@/state/UserStore.ts";
 import { useAuth } from "@clerk/clerk-react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import useUserStore from "@/state/UserStore.ts";
-import { useShallow } from "zustand/react/shallow";
-import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
+import { useShallow } from "zustand/react/shallow";
 
 export type CompleteWorkoutPayload = {
 	weekNumber: number;

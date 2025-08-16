@@ -1,13 +1,13 @@
-import type { Macros } from "@/core/types.ts";
-import { useMemo } from "react";
 import {
 	type ChartConfig,
 	ChartContainer,
 	ChartTooltip,
 	ChartTooltipContent,
 } from "@/components/ui/chart.tsx";
-import { LabelList, Pie, PieChart } from "recharts";
+import type { Macros } from "@/core/types.ts";
+import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
+import { LabelList, Pie, PieChart } from "recharts";
 
 type MacrosPieChartProps = {
 	macros: Macros;
