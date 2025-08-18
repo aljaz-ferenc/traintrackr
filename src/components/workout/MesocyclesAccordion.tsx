@@ -92,7 +92,7 @@ export default function MesocyclesAccordion({
 					</AccordionTrigger>
 					<AccordionContent>
 						<div className="flex justify-between">
-							<ul key={meso._id} className="flex gap-2  overflow-auto">
+							<ul key={meso._id} className="flex gap-2 pb-5 overflow-auto">
 								{meso.workouts?.map((workout: TWorkout) => (
 									<li key={workout.id}>
 										<Workout workout={workout} editable={false} />
@@ -100,7 +100,7 @@ export default function MesocyclesAccordion({
 								))}
 							</ul>
 							<Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
-								<PopoverTrigger className="z-20 self-start cursor-pointer">
+								<PopoverTrigger className="z-20 self-start cursor-pointer ml-10">
 									<Ellipsis />
 								</PopoverTrigger>
 								<PopoverContent

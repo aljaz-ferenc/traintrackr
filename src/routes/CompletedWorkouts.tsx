@@ -65,7 +65,7 @@ export default function CompletedWorkouts() {
 	return (
 		<section>
 			<RouteTitle title={t("ROUTES.completedWorkouts")} />
-			<Accordion type="multiple" className="w-full">
+			<Accordion type="single" className="w-full">
 				{logs?.map((log) => (
 					<AccordionItem value={log._id} key={log._id}>
 						<AccordionTrigger className="w-full cursor-pointer font-bold uppercase">
