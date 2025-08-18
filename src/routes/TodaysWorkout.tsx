@@ -110,7 +110,7 @@ export default function TodaysWorkout() {
 
 	if (
 		user?.activeMesocycle?.startDate &&
-		isBefore(new Date(), new Date(user?.activeMesocycle?.startDate))
+		isBefore(new Date(), startOfDay(new Date(user?.activeMesocycle?.startDate)))
 	) {
 		return <Guards.StartsMonday />;
 	}
