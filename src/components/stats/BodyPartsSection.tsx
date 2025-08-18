@@ -2,6 +2,7 @@ import BodyPartModal from "@/components/stats/BodyPartModal.tsx";
 import StatsSectionWrapper from "@/components/stats/StatsSectionWrapper.tsx";
 import useStats from "@/hooks/api/useStats.ts";
 import { useTranslation } from "react-i18next";
+import Spinner from "@/components/Spinner/Spinner.tsx";
 
 export default function BodyPartsSection() {
 	const { t } = useTranslation();
@@ -23,7 +24,9 @@ export default function BodyPartsSection() {
 					))}
 				</div>
 			) : (
-				<p>No data</p>
+				<div className="h-20 relative">
+					<Spinner className="w-10 aspect-square" center />
+				</div>
 			)}
 		</StatsSectionWrapper>
 	);
