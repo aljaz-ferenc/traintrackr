@@ -1,8 +1,8 @@
+import Spinner from "@/components/Spinner/Spinner.tsx";
 import BodyPartModal from "@/components/stats/BodyPartModal.tsx";
 import StatsSectionWrapper from "@/components/stats/StatsSectionWrapper.tsx";
 import useStats from "@/hooks/api/useStats.ts";
 import { useTranslation } from "react-i18next";
-import Spinner from "@/components/Spinner/Spinner.tsx";
 
 export default function BodyPartsSection() {
 	const { t } = useTranslation();

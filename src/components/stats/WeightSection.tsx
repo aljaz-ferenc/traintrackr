@@ -1,3 +1,4 @@
+import Spinner from "@/components/Spinner/Spinner.tsx";
 import SelectDate from "@/components/nutrition/SelectDate.tsx";
 import Button from "@/components/shared/Button.tsx";
 import AppTooltip from "@/components/shared/Tooltip.tsx";
@@ -13,7 +14,6 @@ import { isSameDay, isToday } from "date-fns";
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { z } from "zod";
-import Spinner from "@/components/Spinner/Spinner.tsx";
 
 export default function WeightSection() {
 	const { mutateAsync: updateStats, isPending: isUpdating } = useUpdateStats();

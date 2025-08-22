@@ -7,7 +7,8 @@
 		"dev": "vite",
 		"build": "tsc -b && vite build",
 		"preview": "vite preview",
-		"biome": "biome lint ./src && biome format --write ./src"
+		"biome": "biome lint ./src && biome format --write ./src",
+		"prepare": "husky"
 	},
 	"dependencies": {
 		"@clerk/clerk-react": "^5.26.0",
@@ -67,6 +68,7 @@
 		"@types/react-dom": "^19.0.4",
 		"@vitejs/plugin-react-swc": "^3.8.0",
 		"globals": "^15.15.0",
+		"husky": "^9.1.7",
 		"typescript": "~5.7.2",
 		"typescript-eslint": "^8.24.1",
 		"vite": "^6.2.0"
