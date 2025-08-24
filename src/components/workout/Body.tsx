@@ -1,5 +1,5 @@
-import { useTheme } from "@/provider/ThemeProvider";
 import { useEffect, useRef } from "react";
+import { useModeAnimation } from "react-theme-switch-animation";
 
 type BodyProps = {
 	muscleGroups: {
@@ -13,9 +13,9 @@ export default function Body({ muscleGroups }: BodyProps) {
 	const svgFrontRef = useRef<SVGSVGElement>(null);
 	const svgBackRef = useRef<SVGSVGElement>(null);
 	const containerRef = useRef<HTMLDivElement>(null);
-	const { theme } = useTheme();
+	const { isDarkMode } = useModeAnimation();
 
-	const strokeColor = theme === "light" ? "#aaa" : "#fff";
+	const strokeColor = isDarkMode ? "#aaa" : "#fff";
 	const strokeWidth = 2;
 	const strokeLinecap = "round";
 	const strokeLinejoin = "round";
