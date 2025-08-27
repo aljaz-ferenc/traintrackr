@@ -22,6 +22,7 @@ import {
 } from "@/components/ui/table.tsx";
 import { Guards } from "@/components/workout/TodaysWorkoutGuards.tsx";
 import { weekDays } from "@/constants/weekDays.ts";
+import { Route } from "@/core/enums/Routes.enum.ts";
 import type { Exercise, Set as TSet, Workout } from "@/core/types.ts";
 import useCompleteWorkout from "@/hooks/api/useCompleteWorkout.ts";
 import useGetMesocycleById from "@/hooks/api/useGetMesocyleById.ts";
@@ -137,7 +138,7 @@ export default function TodaysWorkout() {
 		try {
 			await completeWorkout(log);
 			setExercises([]);
-			navigate("/completed-workouts");
+			navigate(`/app/${Route.CompletedWorkouts}`);
 		} catch (err) {
 			console.log("Error completing workout: ", err);
 		}

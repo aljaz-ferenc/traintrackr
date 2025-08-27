@@ -75,7 +75,7 @@ export default function NutritionCards({
 								className="cursor-pointer text-muted hover:text-primary transition"
 								onClick={() =>
 									navigate(
-										`/${Route.MyMesocycles}/${activeMeso?.mesocycle._id}/edit`,
+										`/app/${Route.MyMesocycles}/${activeMeso?.mesocycle._id}/edit`,
 									)
 								}
 							>

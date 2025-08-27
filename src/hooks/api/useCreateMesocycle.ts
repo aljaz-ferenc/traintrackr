@@ -1,4 +1,5 @@
 import { Endpoints } from "@/core/endpoints.ts";
+import { Route } from "@/core/enums/Routes.enum.ts";
 import type { Mesocycle } from "@/core/types.ts";
 import useUserStore from "@/state/UserStore.ts";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -41,7 +42,7 @@ export default function useCreateMesocycle() {
 					},
 				],
 			});
-			navigate("/my-mesocycles");
+			navigate(`/app/${Route.MyMesocycles}`);
 		},
 	});
 }

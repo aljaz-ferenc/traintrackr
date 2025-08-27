@@ -19,7 +19,7 @@ export default function AppLayout() {
 				<div className="flex items-center gap-3">
 					<div className="flex gap-3 w-full items-center ml-auto mb-5">
 						<MobileSidebar onOpenChange={setSidebarIsOpen} />
-						<div className="ml-auto">
+						<div className="ml-auto grid place-items-center">
 							<UserButton />
 						</div>
 						<ModeToggle />

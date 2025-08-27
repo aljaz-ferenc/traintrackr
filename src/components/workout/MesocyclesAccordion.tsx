@@ -11,6 +11,7 @@ import {
 	PopoverTrigger,
 } from "@/components/ui/popover.tsx";
 import Workout from "@/components/workout/Workout.tsx";
+import { Route } from "@/core/enums/Routes.enum.ts";
 import type { Mesocycle, Workout as TWorkout } from "@/core/types.ts";
 import useActivateMesocycle, {
 	type ActivateMesoPayload,
@@ -70,7 +71,7 @@ export default function MesocyclesAccordion({
 	};
 
 	const handleUpdateMesocycle = (mesoId: Mesocycle["_id"]) => {
-		navigate(`/my-mesocycles/${mesoId}/edit`);
+		navigate(`/app/${Route.MyMesocycles}/${mesoId}/edit`);
 	};
 
 	return (

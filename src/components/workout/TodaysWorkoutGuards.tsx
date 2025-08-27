@@ -28,10 +28,10 @@ function MesoCompleted() {
 					i18nKey="TODAYS_WORKOUT.mesoCompleted.text"
 					components={{
 						newMesocycleLink: (
-							<Button variant="link" to={`/${Route.NewMesocycle}`} />
+							<Button variant="link" to={`/app/${Route.NewMesocycle}`} />
 						),
 						myMesocyclesLink: (
-							<Button variant="link" to={`/${Route.MyMesocycles}`} />
+							<Button variant="link" to={`/app/${Route.MyMesocycles}`} />
 						),
 					}}
 				/>
@@ -62,10 +62,10 @@ function NoActiveMeso() {
 					i18nKey="TODAYS_WORKOUT.noActiveMeso.text"
 					components={{
 						myMesocyclesLink: (
-							<Button variant="link" to={`/${Route.MyMesocycles}`} />
+							<Button variant="link" to={`/app/${Route.MyMesocycles}`} />
 						),
 						newMesocycleLink: (
-							<Button variant="link" to={`/${Route.NewMesocycle}`} />
+							<Button variant="link" to={`/app/${Route.NewMesocycle}`} />
 						),
 					}}
 				/>
