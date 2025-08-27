@@ -12,6 +12,7 @@ import SelectLanguage from "@/components/shared/SelectLanguage.tsx";
 import { Button } from "@/components/ui/button.tsx";
 import { Card, CardContent } from "@/components/ui/card.tsx";
 import type { ActivityLevels } from "@/core/enums/ActivityLevel.enum.ts";
+import { Route } from "@/core/enums/Routes.enum.ts";
 import type { Gender as TGender } from "@/core/types.ts";
 import useUpdateUserStats from "@/hooks/api/useUpdateUserStats.ts";
 import { cn } from "@/lib/utils.ts";
@@ -124,7 +125,7 @@ export default function Onboarding() {
 				date: new Date(),
 			},
 		});
-		navigate("/");
+		navigate(`/${Route.App}`);
 	};
 
 	return (

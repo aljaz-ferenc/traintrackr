@@ -2,6 +2,7 @@ import { ProtectedRoute } from "@/components/ProtectedRoute/ProtectedRoute.tsx";
 import { Route } from "@/core/enums/Routes.enum.ts";
 import CompletedWorkouts from "@/routes/CompletedWorkouts.tsx";
 import Dashboard from "@/routes/Dashboard.tsx";
+import LandingPage from "@/routes/LandingPage.tsx";
 import MyMesocycles from "@/routes/MyMesocycles.tsx";
 import NewMesocycle from "@/routes/NewMesocycle.tsx";
 import NotFound from "@/routes/NotFound.tsx";
@@ -19,12 +20,16 @@ import SignUp from "./routes/SignUp.tsx";
 
 const router = createBrowserRouter([
 	{
-		path: "/sign-in/*",
+		path: `/${Route.SignIn}/*`,
 		Component: SignIn,
 	},
 	{
-		path: "/sign-up/*",
+		path: `/${Route.SignUp}/*`,
 		Component: SignUp,
+	},
+	{
+		path: "/",
+		element: <LandingPage />,
 	},
 	{
 		path: Route.Onboarding,
@@ -35,7 +40,7 @@ const router = createBrowserRouter([
 		),
 	},
 	{
-		path: "/",
+		path: "/app",
 		element: (
 			<ProtectedRoute>
 				<AppLayout />
@@ -44,7 +49,7 @@ const router = createBrowserRouter([
 		children: [
 			{
 				index: true,
-				element: <Navigate to="/dashboard" replace />,
+				element: <Navigate to={`${Route.Dashboard}`} replace />,
 			},
 			{
 				path: Route.Dashboard,

@@ -8,4 +8,8 @@ export enum Route {
 	Nutrition = "nutrition",
 	Stats = "stats",
 	Settings = "settings",
+	SignIn = "sign-in",
+	SignUp = "sign-up",
+	Home = "/",
+	App = "app",
 }
