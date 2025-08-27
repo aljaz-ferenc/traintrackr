@@ -1,4 +1,4 @@
-import Spinner from "@/components/Spinner/Spinner.tsx";
+import Spinner from "@/components/shared/Spinner.tsx";
 import Button from "@/components/shared/Button.tsx";
 import { Input } from "@/components/ui/Input.tsx";
 import {

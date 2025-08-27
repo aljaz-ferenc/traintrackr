@@ -1,4 +1,4 @@
-import Spinner from "@/components/Spinner/Spinner.tsx";
+import Spinner from "@/components/shared/Spinner.tsx";
 
 export default function PageLoading() {
 	return (

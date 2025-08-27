@@ -1,4 +1,4 @@
-import DemoUserCredentials from "@/components/SignIn/DemoUserCredentials.tsx";
+import DemoUserCredentials from "@/components/signIn/DemoUserCredentials.tsx";
 import { SignIn } from "@clerk/clerk-react";
 
 const showDemoUserCredentials = import.meta.env.VITE_SHOW_DEMO_USER_CREDENTIALS;

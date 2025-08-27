@@ -1,4 +1,4 @@
-import Spinner from "@/components/Spinner/Spinner.tsx";
+import Spinner from "@/components/shared/Spinner.tsx";
 import WidgetWrapper from "@/components/dashboard/WidgetWrapper.tsx";
 import MeasurementsChart from "@/components/stats/MeasurementsChart.tsx";
 import { Range } from "@/core/enums/Range.enum.ts";

@@ -1,4 +1,4 @@
-import Spinner from "@/components/Spinner/Spinner.tsx";
+import Spinner from "@/components/shared/Spinner.tsx";
 import NutritionItemModal from "@/components/nutrition/NutritionItemModal.tsx";
 import { Card, CardContent } from "@/components/ui/card.tsx";
 import {

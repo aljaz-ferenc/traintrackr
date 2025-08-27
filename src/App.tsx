@@ -1,4 +1,3 @@
-import { ProtectedRoute } from "@/components/ProtectedRoute/ProtectedRoute.tsx";
 import { Route } from "@/core/enums/Routes.enum.ts";
 import CompletedWorkouts from "@/routes/CompletedWorkouts.tsx";
 import Dashboard from "@/routes/Dashboard.tsx";
@@ -8,6 +7,7 @@ import NewMesocycle from "@/routes/NewMesocycle.tsx";
 import NotFound from "@/routes/NotFound.tsx";
 import Nutrition from "@/routes/Nutrition.tsx";
 import Onboarding from "@/routes/Onboarding.tsx";
+import { ProtectedRoute } from "@/routes/ProtectedRoute.tsx";
 import Settings from "@/routes/Settings.tsx";
 import Stats from "@/routes/Stats.tsx";
 import TodaysWorkout from "@/routes/TodaysWorkout.tsx";

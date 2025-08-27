@@ -1,4 +1,4 @@
-import Spinner from "@/components/Spinner/Spinner.tsx";
+import Spinner from "@/components/shared/Spinner.tsx";
 import BodyPartModal from "@/components/stats/BodyPartModal.tsx";
 import StatsSectionWrapper from "@/components/stats/StatsSectionWrapper.tsx";
 import useStats from "@/hooks/api/useStats.ts";

@@ -1,4 +1,4 @@
-import Spinner from "@/components/Spinner/Spinner.tsx";
+import Spinner from "@/components/shared/Spinner.tsx";
 import ActivityLevel from "@/components/dashboard/ActivityLevel.tsx";
 import Tdee from "@/components/dashboard/Tdee.tsx";
 import Dob from "@/components/onboarding/Dob";

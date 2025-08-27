@@ -1,4 +1,4 @@
-import Spinner from "@/components/Spinner/Spinner.tsx";
+import Spinner from "@/components/shared/Spinner.tsx";
 import { cn } from "@/lib/utils.ts";
 import { type VariantProps, cva } from "class-variance-authority";
 import type { ComponentProps, PropsWithChildren } from "react";

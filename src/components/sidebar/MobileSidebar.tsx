@@ -1,4 +1,4 @@
-import Sidebar from "@/components/Sidebar/Sidebar.tsx";
+import Sidebar from "@/components/sidebar/Sidebar.tsx";
 import {
 	Sheet,
 	SheetContent,

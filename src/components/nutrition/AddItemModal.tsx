@@ -1,4 +1,4 @@
-import Spinner from "@/components/Spinner/Spinner.tsx";
+import Spinner from "@/components/shared/Spinner.tsx";
 import AddItemForm from "@/components/nutrition/AddItemForm.tsx";
 import Macros from "@/components/nutrition/Macros.tsx";
 import Button from "@/components/shared/Button.tsx";

@@ -1,10 +1,10 @@
-import MobileSidebar from "@/components/Sidebar/MobileSidebar.tsx";
+import MobileSidebar from "@/components/sidebar/MobileSidebar.tsx";
 import ModeToggle from "@/components/shared/ModeToggle";
 import SelectLanguage from "@/components/shared/SelectLanguage.tsx";
 import { UserButton } from "@clerk/clerk-react";
 import { useState } from "react";
 import { Outlet } from "react-router";
-import Sidebar from "../Sidebar/Sidebar";
+import Sidebar from "@/components/sidebar/Sidebar";
 
 export default function AppLayout() {
 	const [_, setSidebarIsOpen] = useState(false);
