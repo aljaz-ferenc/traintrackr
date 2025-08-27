@@ -1,7 +1,6 @@
 "use client";
 import { type Variants, motion } from "motion/react";
-import type { ReactNode } from "react";
-import React from "react";
+import React, { type ElementType, type ReactNode } from "react";
 
 export type PresetType =
 	| "fade"
@@ -15,7 +14,7 @@ export type PresetType =
 	| "rotate"
 	| "swing";
 
-export type AnimatedGroupProps = {
+type AnimatedGroupBaseProps = {
 	children: ReactNode;
 	className?: string;
 	variants?: {
@@ -23,16 +22,12 @@ export type AnimatedGroupProps = {
 		item?: Variants;
 	};
 	preset?: PresetType;
-	as?: React.ElementType;
-	asChild?: React.ElementType;
+	as?: ElementType; // can be "div" | "section" | CustomComponent
+	asChild?: ElementType; // same as above
 };
 
 const defaultContainerVariants: Variants = {
-	visible: {
-		transition: {
-			staggerChildren: 0.1,
-		},
-	},
+	visible: { transition: { staggerChildren: 0.1 } },
 };
 
 const defaultItemVariants: Variants = {
@@ -42,18 +37,9 @@ const defaultItemVariants: Variants = {
 
 const presetVariants: Record<PresetType, Variants> = {
 	fade: {},
-	slide: {
-		hidden: { y: 20 },
-		visible: { y: 0 },
-	},
-	scale: {
-		hidden: { scale: 0.8 },
-		visible: { scale: 1 },
-	},
-	blur: {
-		hidden: { filter: "blur(4px)" },
-		visible: { filter: "blur(0px)" },
-	},
+	slide: { hidden: { y: 20 }, visible: { y: 0 } },
+	scale: { hidden: { scale: 0.8 }, visible: { scale: 1 } },
+	blur: { hidden: { filter: "blur(4px)" }, visible: { filter: "blur(0px)" } },
 	"blur-slide": {
 		hidden: { filter: "blur(4px)", y: 20 },
 		visible: { filter: "blur(0px)", y: 0 },
@@ -100,14 +86,15 @@ const addDefaultVariants = (variants: Variants) => ({
 	visible: { ...defaultItemVariants.visible, ...variants.visible },
 });
 
-function AnimatedGroup({
+export function AnimatedGroup({
 	children,
 	className,
 	variants,
 	preset,
 	as = "div",
 	asChild = "div",
-}: AnimatedGroupProps) {
+	...rest // allow passing extra DOM props to the container
+}: AnimatedGroupBaseProps & Record<string, unknown>) {
 	const selectedVariants = {
 		item: addDefaultVariants(preset ? presetVariants[preset] : {}),
 		container: addDefaultVariants(defaultContainerVariants),
@@ -115,14 +102,25 @@ function AnimatedGroup({
 	const containerVariants = variants?.container || selectedVariants.container;
 	const itemVariants = variants?.item || selectedVariants.item;
 
-	const MotionComponent = React.useMemo(
-		() => motion.create(as as keyof JSX.IntrinsicElements),
-		[as],
-	);
-	const MotionChild = React.useMemo(
-		() => motion.create(asChild as keyof JSX.IntrinsicElements),
-		[asChild],
-	);
+	// IMPORTANT: branch by runtime type to keep types sane and avoid the keyof-widening pitfall.
+	const MotionComponent =
+		typeof as === "string"
+			? // index into `motion` for intrinsic tags
+				// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+				((motion as unknown as Record<string, React.ComponentType<any>>)[as] ??
+				motion.div)
+			: // wrap custom components
+				// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+				motion.create(as as React.ComponentType<any>);
+
+	const MotionChild =
+		typeof asChild === "string"
+			? // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+				((motion as unknown as Record<string, React.ComponentType<any>>)[
+					asChild
+				] ?? motion.div)
+			: // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+				motion.create(asChild as React.ComponentType<any>);
 
 	return (
 		<MotionComponent
@@ -130,6 +128,7 @@ function AnimatedGroup({
 			animate="visible"
 			variants={containerVariants}
 			className={className}
+			{...rest}
 		>
 			{React.Children.map(children, (child, index) => (
 				<MotionChild key={`child-${index + 1}`} variants={itemVariants}>
@@ -139,5 +138,3 @@ function AnimatedGroup({
 		</MotionComponent>
 	);
 }
-
-export { AnimatedGroup };

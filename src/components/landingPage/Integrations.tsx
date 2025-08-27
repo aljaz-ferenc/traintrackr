@@ -16,7 +16,7 @@ export default function IntegrationsSection() {
 	const { isSignedIn } = useAuth();
 
 	return (
-		<section>
+		<section id="#tech">
 			<div className="bg-muted dark:bg-background py-24 md:py-32">
 				<div className="mx-auto max-w-5xl px-6">
 					<div className="relative mx-auto flex max-w-sm items-center justify-between">

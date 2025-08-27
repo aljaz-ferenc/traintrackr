@@ -7,7 +7,6 @@ export default function useScreenSize() {
 	});
 
 	const handleResize = useCallback(() => {
-		console.log("resized");
 		setSize({
 			width: window.innerWidth,
 			height: window.innerHeight,

@@ -32,7 +32,6 @@ type HeightProps = {
 export default function Height({ setHeight }: HeightProps) {
 	const { t } = useTranslation();
 	const { width } = useScreenSize();
-	console.log(width);
 
 	return (
 		<div className="h-full flex flex-col max-w-screen justify-between gap-10">

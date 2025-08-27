@@ -179,6 +179,5 @@ export function calcAgeFromDob(dob: Date) {
 	if (isBefore(today, thisYearBirthday)) {
 		age--;
 	}
-	console.log("CALCULATED_AGE: ", age);
 	return age;
 }
