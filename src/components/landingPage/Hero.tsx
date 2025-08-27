@@ -50,7 +50,7 @@ export default function HeroSection() {
 									as="h1"
 									className="mt-8 text-balance text-6xl md:text-7xl lg:mt-16 xl:text-[5.25rem]"
 								>
-									Plan your path to Fitness Success
+									Track Your Way to Fitness Success
 								</TextEffect>
 								<TextEffect
 									per="line"
