@@ -101,6 +101,12 @@ export default function NewMesocycle() {
 		setMesoToEdit(mesoToEdit);
 	}, [isLoading, mesoToEdit, setMesoToEdit]);
 
+	useEffect(() => {
+		if (!allowEdit) {
+			resetMesoStore();
+		}
+	}, [allowEdit, resetMesoStore]);
+
 	const muscleGroups = useMemo(() => {
 		return getMuscleIntensities(workouts);
 	}, [workouts]);
@@ -128,7 +134,7 @@ export default function NewMesocycle() {
 					<Label className="mb-2">{t("NEW_MESOCYCLE.name")}</Label>
 					<Input
 						value={mesoTitle}
-						className="w-full"
+						className="max-w-sm"
 						onChange={(e) => updateMesoTitle(e.target.value)}
 					/>
 				</div>
@@ -154,6 +160,7 @@ export default function NewMesocycle() {
 				<div className="flex flex-col gap-2">
 					<Label>{t("NEW_MESOCYCLE.calorieGoal")}</Label>
 					<Input
+						className="max-w-sm"
 						value={calorieGoal.toString()}
 						onChange={(e) => setCalorieGoal(e.target.value)}
 					/>
@@ -243,14 +250,23 @@ export default function NewMesocycle() {
 					))}
 				</div>
 			</div>
-			<Button
-				variant="primary"
-				onClick={allowEdit ? handleUpdateMeso : handleCreateMeso}
-				isLoading={isCreating || isUpdating}
-				disabled={createBtnDisabled}
-			>
-				{allowEdit ? t("GENERAL.finishEditing") : t("NEW_MESOCYCLE.createMeso")}
-			</Button>
+			<div className="flex gap-4">
+				<Button
+					variant="primary"
+					onClick={allowEdit ? handleUpdateMeso : handleCreateMeso}
+					isLoading={isCreating || isUpdating}
+					disabled={createBtnDisabled}
+				>
+					{allowEdit
+						? t("GENERAL.finishEditing")
+						: t("NEW_MESOCYCLE.createMeso")}
+				</Button>
+				{!allowEdit && (
+					<Button onClick={() => resetMesoStore()} variant="secondary">
+						Clear
+					</Button>
+				)}
+			</div>
 		</section>
 	);
 }
