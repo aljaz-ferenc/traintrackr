@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card.tsx";
-import { Dumbbell, Settings2, Sparkles } from "lucide-react";
+import { Dumbbell, Scale } from "lucide-react";
 import type { ReactNode } from "react";
+import { AiFillFire } from "react-icons/ai";
 
 export default function Features() {
 	return (
@@ -36,7 +37,7 @@ export default function Features() {
 					<div className="group shadow-zinc-950/5">
 						<CardHeader className="pb-3">
 							<CardDecorator>
-								<Settings2 className="size-6" aria-hidden />
+								<Scale className="size-6" aria-hidden />
 							</CardDecorator>
 
 							<h3 className="mt-6 font-medium">Body Measurements</h3>
@@ -53,7 +54,7 @@ export default function Features() {
 					<div className="group shadow-zinc-950/5">
 						<CardHeader className="pb-3">
 							<CardDecorator>
-								<Sparkles className="size-6" aria-hidden />
+								<AiFillFire className="size-6" aria-hidden />
 							</CardDecorator>
 
 							<h3 className="mt-6 font-medium">Diet</h3>
