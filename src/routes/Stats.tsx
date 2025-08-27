@@ -7,7 +7,7 @@ export default function Stats() {
 	const { t } = useTranslation();
 
 	return (
-		<section>
+		<section className="max-w-[1440px] mx-auto">
 			<RouteTitle title={t("ROUTES.stats")} />
 			<div className="flex flex-col gap-5">
 				<WeightSection />

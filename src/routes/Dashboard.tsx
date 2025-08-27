@@ -34,7 +34,7 @@ export default function Dashboard() {
 	}
 
 	return (
-		<section className="mx-auto">
+		<section className="mx-auto max-w-[1440px]">
 			<RouteTitle title={t("ROUTES.dashboard")} />
 			{
 				<div className="flex flex-col gap-10">
