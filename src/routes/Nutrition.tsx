@@ -22,7 +22,7 @@ export default function Nutrition() {
 	}
 
 	return (
-		<section>
+		<section className=" max-w-[1440px] mx-auto">
 			<RouteTitle title={t("ROUTES.nutrition")} />
 			<SelectDate onDateChange={(newDate) => setDate(newDate)} />
 			{data && <Macros macros={data.totalMacros} className="my-10" />}
