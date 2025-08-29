@@ -32,7 +32,7 @@ export class Endpoints {
 	static foodItem = (itemId: FoodItem["_id"]) =>
 		`${BASE_URL}/foodItems/${itemId}`;
 	static nutritions = `${BASE_URL}/nutritions`;
-	static nutritionsByDate = (userId: string, date?: string) =>
+	static nutritionsByDate = (userId: string, date?: Date) =>
 		`${BASE_URL}/users/${userId}/nutritions${date ? `?date=${date}` : ""}`;
 	static nutrition = (nutritionId: Nutrition["_id"]) =>
 		`${BASE_URL}/nutritions/${nutritionId}`;

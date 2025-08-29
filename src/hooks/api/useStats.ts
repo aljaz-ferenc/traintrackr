@@ -5,16 +5,11 @@ import type {
 	Macros,
 	Measurement,
 	Nutrition,
-	User,
 } from "@/core/types.ts";
 import useUserStore from "@/state/UserStore.ts";
+import { createRequest } from "@/utils/createRequest.ts";
 import { useQuery } from "@tanstack/react-query";
 import { useShallow } from "zustand/react/shallow";
-
-async function fetchStats(userId: User["_id"], range?: Range) {
-	const res = await fetch(Endpoints.stats(userId, range));
-	return await res.json();
-}
 
 export type StatsResponse = {
 	nutrition: {
@@ -53,7 +48,8 @@ export default function useStats(range?: Range) {
 
 	return useQuery<StatsResponse>({
 		queryKey: ["stats", { range }],
-		queryFn: () => fetchStats(userId as string, range),
+		queryFn: () =>
+			createRequest({ url: Endpoints.stats(userId as string, range) }),
 		enabled: !!userId,
 		gcTime: 60 * 1000 * 10,
 		placeholderData: (prev) => prev,

@@ -6,6 +6,7 @@ import type {
 	Workout,
 } from "@/core/types.ts";
 import useUserStore from "@/state/UserStore.ts";
+import { createRequest } from "@/utils/createRequest.ts";
 import { useAuth } from "@clerk/clerk-react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
@@ -19,17 +20,6 @@ export type CompleteWorkoutPayload = {
 	userId: User["_id"];
 };
 
-async function fetchCompleteWorkout(payload: CompleteWorkoutPayload) {
-	const res = await fetch(Endpoints.logs, {
-		body: JSON.stringify(payload),
-		method: "PUT",
-		headers: {
-			"Content-Type": "application/json",
-		},
-	});
-	return await res.json();
-}
-
 export default function useCompleteWorkout() {
 	const queryClient = useQueryClient();
 	const { userId } = useAuth();
@@ -39,11 +29,14 @@ export default function useCompleteWorkout() {
 	return useMutation({
 		mutationKey: ["workout-complete"],
 		mutationFn: (payload: CompleteWorkoutPayload) =>
-			toast.promise(fetchCompleteWorkout(payload), {
-				pending: t("TOASTS.completeWorkout.pending"),
-				success: t("TOASTS.completeWorkout.success"),
-				error: t("TOASTS.completeWorkout.error"),
-			}),
+			toast.promise(
+				createRequest({ url: Endpoints.logs, method: "PUT", payload }),
+				{
+					pending: t("TOASTS.completeWorkout.pending"),
+					success: t("TOASTS.completeWorkout.success"),
+					error: t("TOASTS.completeWorkout.error"),
+				},
+			),
 		onSuccess: async () => {
 			await queryClient.invalidateQueries({
 				queryKey: [

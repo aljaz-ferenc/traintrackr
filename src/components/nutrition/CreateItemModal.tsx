@@ -157,7 +157,8 @@ export default function CreateItemModal({
 	};
 
 	const handleDeleteItem = async (itemId: FoodItem["_id"]) => {
-		await deleteItem(itemId).then(() => setIsOpen(false));
+		await deleteItem(itemId);
+		setIsOpen(false);
 	};
 
 	return (

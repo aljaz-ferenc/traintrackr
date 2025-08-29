@@ -1,18 +1,9 @@
 import { Endpoints } from "@/core/endpoints.ts";
 import type { Nutrition } from "@/core/types.ts";
+import { createRequest } from "@/utils/createRequest.ts";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
-
-async function fetchDeleteNutrition(nutritionId: Nutrition["_id"]) {
-	const res = await fetch(`${Endpoints.nutritions}/${nutritionId}`, {
-		method: "DELETE",
-		headers: {
-			"Content-Type": "application/json",
-		},
-	});
-	return await res.json();
-}
 
 export default function useDeleteNutrition() {
 	const queryClient = useQueryClient();
@@ -21,9 +12,15 @@ export default function useDeleteNutrition() {
 	return useMutation({
 		mutationKey: ["nutrition-delete"],
 		mutationFn: (nutritionId: Nutrition["_id"]) =>
-			toast.promise(fetchDeleteNutrition(nutritionId), {
-				error: t("TOASTS.deleteNutrition.error"),
-			}),
+			toast.promise(
+				createRequest({
+					url: `${Endpoints.nutritions}/${nutritionId}`,
+					method: "DELETE",
+				}),
+				{
+					error: t("TOASTS.deleteNutrition.error"),
+				},
+			),
 		onSuccess: async () =>
 			await queryClient.invalidateQueries({
 				queryKey: ["nutrition-get"],

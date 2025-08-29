@@ -1,20 +1,11 @@
 import { Endpoints } from "@/core/endpoints.ts";
 import type { WorkoutLog } from "@/core/types.ts";
 import useUserStore from "@/state/UserStore.ts";
+import { createRequest } from "@/utils/createRequest.ts";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import { useShallow } from "zustand/react/shallow";
-
-async function fetchDeleteLog(logId: WorkoutLog["_id"]) {
-	const res = await fetch(Endpoints.log(logId), {
-		method: "DELETE",
-		headers: {
-			"Content-Type": "application/json",
-		},
-	});
-	return await res.json();
-}
 
 export default function useDeleteLog() {
 	const { t } = useTranslation();
@@ -24,9 +15,12 @@ export default function useDeleteLog() {
 	return useMutation({
 		mutationKey: ["log-delete"],
 		mutationFn: (logId: WorkoutLog["_id"]) =>
-			toast.promise(fetchDeleteLog(logId), {
-				error: t("TOASTS.deleteLog.error"),
-			}),
+			toast.promise(
+				createRequest({ url: Endpoints.log(logId), method: "DELETE" }),
+				{
+					error: t("TOASTS.deleteLog.error"),
+				},
+			),
 		onSuccess: () => {
 			queryClient.invalidateQueries({
 				queryKey: [

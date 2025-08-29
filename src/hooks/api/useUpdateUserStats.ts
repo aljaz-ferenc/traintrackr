@@ -2,6 +2,7 @@ import { Endpoints } from "@/core/endpoints.ts";
 import type { ActivityLevels } from "@/core/enums/ActivityLevel.enum.ts";
 import type { Gender, Measurement } from "@/core/types.ts";
 import useUserStore from "@/state/UserStore.ts";
+import { createRequest } from "@/utils/createRequest.ts";
 import { useAuth } from "@clerk/clerk-react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useShallow } from "zustand/react/shallow";
@@ -15,20 +16,6 @@ type UpdateUserPayload = {
 	activityLevel: ActivityLevels;
 };
 
-async function fetchUpdateUserStats(
-	userId: string,
-	payload: Partial<UpdateUserPayload>,
-) {
-	const res = await fetch(`${Endpoints.user(userId)}/stats`, {
-		body: JSON.stringify(payload),
-		headers: {
-			"Content-Type": "application/json",
-		},
-		method: "PATCH",
-	});
-	return await res.json();
-}
-
 export default function useUpdateUserStats() {
 	const userId = useUserStore(useShallow((state) => state.user?._id));
 	const queryClient = useQueryClient();
@@ -37,7 +24,11 @@ export default function useUpdateUserStats() {
 	return useMutation({
 		mutationKey: ["userStats-update", { userId }],
 		mutationFn: (payload: Partial<UpdateUserPayload>) =>
-			fetchUpdateUserStats(userId as string, payload),
+			createRequest({
+				url: `${Endpoints.user(userId as string)}/stats`,
+				method: "PATCH",
+				payload,
+			}),
 		onSuccess: async () =>
 			queryClient.invalidateQueries({
 				queryKey: [

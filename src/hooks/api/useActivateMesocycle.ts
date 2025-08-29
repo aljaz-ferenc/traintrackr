@@ -1,6 +1,7 @@
 import { Endpoints } from "@/core/endpoints.ts";
 import type { Mesocycle, User } from "@/core/types.ts";
 import useUserStore from "@/state/UserStore.ts";
+import { createRequest } from "@/utils/createRequest.ts";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
@@ -11,26 +12,6 @@ export type ActivateMesoPayload = {
 	startDate: Date;
 	endDate: Date;
 };
-
-async function fetchActivateMeso({
-	userId,
-	activeMesocycle,
-}: {
-	userId: User["_id"];
-	activeMesocycle: ActivateMesoPayload;
-}) {
-	const res = await fetch(Endpoints.activateMeso, {
-		body: JSON.stringify({
-			userId,
-			activeMesocycle,
-		}),
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-		},
-	});
-	return await res.json();
-}
 
 export default function useActivateMesocycle() {
 	const queryClient = useQueryClient();
@@ -47,9 +28,10 @@ export default function useActivateMesocycle() {
 			activeMesocycle: ActivateMesoPayload;
 		}) =>
 			toast.promise(
-				fetchActivateMeso({
-					userId,
-					activeMesocycle,
+				createRequest({
+					url: Endpoints.activateMeso,
+					method: "POST",
+					payload: { userId, activeMesocycle },
 				}),
 				{
 					error: t("TOASTS.activateMeso.error"),
