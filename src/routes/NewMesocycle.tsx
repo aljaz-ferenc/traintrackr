@@ -13,9 +13,9 @@ import useUpdateMesocycle from "@/hooks/api/useUpdateMesocycle.ts";
 import { useNewMesoStore } from "@/state/NewMesoStore.ts";
 import useUserStore from "@/state/UserStore.ts";
 import { getMuscleIntensities } from "@/utils/utils.ts";
-import {useEffect, useLayoutEffect, useMemo} from "react";
+import { useEffect, useLayoutEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { useParams} from "react-router";
+import { useParams } from "react-router";
 import { useShallow } from "zustand/react/shallow";
 
 const mesoDurationOptions = [4, 6, 8, 10, 12];
@@ -77,9 +77,9 @@ export default function NewMesocycle() {
 		return !!mesoToEdit;
 	}, [mesoToEdit, isLoading]);
 
-    useLayoutEffect(() => {
-        resetMesoStore()
-    }, [resetMesoStore]);
+	useLayoutEffect(() => {
+		resetMesoStore();
+	}, [resetMesoStore]);
 
 	useEffect(() => {
 		if (isLoading || !mesoToEdit) return;

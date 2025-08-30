@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import type { NutritionResponse } from "@/hooks/api/useNutrition.ts";
 import { startOfDay } from "date-fns";
-import {getNutritionMacros} from "@/utils/getNutritionMacros.ts";
+import { getNutritionMacros } from "@/utils/getNutritionMacros.ts";
 
 export default function useCreateNutrition(date: Date) {
 	const queryClient = useQueryClient();
@@ -43,7 +43,7 @@ export default function useCreateNutrition(date: Date) {
 				{ date },
 			]);
 
-            const newNutritionMacros = getNutritionMacros(newNutrition)
+			const newNutritionMacros = getNutritionMacros(newNutrition);
 
 			queryClient.setQueryData(
 				["nutrition-get", { date }],
@@ -52,23 +52,20 @@ export default function useCreateNutrition(date: Date) {
 						totalMacros: {
 							...old.totalMacros,
 							calories: Math.round(
-								old.totalMacros.calories +
-									newNutritionMacros.calories
+								old.totalMacros.calories + newNutritionMacros.calories,
 							),
 							protein: Math.round(
-								old.totalMacros.protein +
-									newNutritionMacros.protein,
+								old.totalMacros.protein + newNutritionMacros.protein,
 							),
-							fat: Math.round(
-								old.totalMacros.fat +
-									newNutritionMacros.fat,
-							),
+							fat: Math.round(old.totalMacros.fat + newNutritionMacros.fat),
 							carbs: Math.round(
-								old.totalMacros.carbs +
-									newNutritionMacros.carbs,
+								old.totalMacros.carbs + newNutritionMacros.carbs,
 							),
 						},
-						nutritions: [...old.nutritions, {...newNutrition, _id: crypto.randomUUID()}],
+						nutritions: [
+							...old.nutritions,
+							{ ...newNutrition, _id: crypto.randomUUID() },
+						],
 					};
 				},
 			);

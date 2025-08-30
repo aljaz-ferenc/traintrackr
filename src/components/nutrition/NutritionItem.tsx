@@ -18,12 +18,14 @@ type NutritionItemProps = {
 };
 
 export default function NutritionItem({ nutrition }: NutritionItemProps) {
-	const { mutateAsync: deleteNutrition} =
-		useDeleteNutrition();
+	const { mutateAsync: deleteNutrition } = useDeleteNutrition();
 	const [isOpen, setIsOpen] = useState(false);
 
 	const handleDeleteNutrition = async () => {
-		await deleteNutrition({nutritionId: nutrition._id, date:new Date(nutrition.createdAt)});
+		await deleteNutrition({
+			nutritionId: nutrition._id,
+			date: new Date(nutrition.createdAt),
+		});
 	};
 
 	return (
@@ -44,9 +46,7 @@ export default function NutritionItem({ nutrition }: NutritionItemProps) {
 								await handleDeleteNutrition();
 							}}
 						>
-
-								<X className="text-red-500" />
-
+							<X className="text-red-500" />
 						</button>
 					</CardContent>
 				</Card>

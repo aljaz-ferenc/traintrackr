@@ -17,9 +17,9 @@ export default function MyMesocycles() {
 		return <PageLoading />;
 	}
 
-    if(!myMesos){
-        return console.log('Error fetching mesocycles')
-    }
+	if (!myMesos) {
+		return <></>
+	}
 
 	if (!myMesos.length) {
 		return (

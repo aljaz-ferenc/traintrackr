@@ -10,11 +10,7 @@ import { useTranslation } from "react-i18next";
 import { useShallow } from "zustand/react/shallow";
 
 export default function Dashboard() {
-	const {
-		data: stats,
-		error: statsError,
-        isFetched
-	} = useStats(Range.Week);
+	const { data: stats, error: statsError, isFetched } = useStats(Range.Week);
 
 	const user = useUserStore(useShallow((state) => state.user));
 	const { t } = useTranslation();
@@ -32,7 +28,7 @@ export default function Dashboard() {
 			<RouteTitle title={t("ROUTES.dashboard")} />
 			{
 				<div className="flex flex-col gap-10">
-                    {stats && <NutritionCards nutrition={stats.nutrition}/>}
+					{stats && <NutritionCards nutrition={stats.nutrition} />}
 					<WeightCards />
 					{user?.activeMesocycle && <MesocycleCards />}
 				</div>

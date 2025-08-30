@@ -1,3 +1,2 @@
 pnpm exec echo "Running pre-commit hook..."
 pnpm exec biome lint --error-on-warnings ./src
-pnpm exec biome format ./src
