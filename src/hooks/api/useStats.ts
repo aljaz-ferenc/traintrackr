@@ -51,7 +51,8 @@ export default function useStats(range?: Range) {
 		queryFn: () =>
 			createRequest({ url: Endpoints.stats(userId as string, range) }),
 		enabled: !!userId,
-		gcTime: 60 * 1000 * 10,
+		staleTime: 60 * 1000 * 5,
+		gcTime: 60 * 1000 * 5,
 		placeholderData: (prev) => prev,
 	});
 }

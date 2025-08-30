@@ -34,6 +34,7 @@ type AddItemFormProps = {
 	date?: Date;
 	nutrition?: Nutrition;
 	onMutate?: () => void;
+    onSave?: () => void;
 };
 
 const formSchema = z.object({
@@ -58,7 +59,7 @@ export default function AddItemForm({
 	const { t } = useTranslation();
 	const [userId] = useUserStore(useShallow((state) => [state.user?._id]));
 	const { mutateAsync: createNutrition, isPending: isCreating } =
-		useCreateNutrition(date);
+		useCreateNutrition(date || new Date);
 	const { data: foodItems, isLoading } = useFoodItems();
 	const { mutateAsync: updateNutrition, isPending: isUpdating } =
 		useUpdateNutrition();
@@ -86,6 +87,9 @@ export default function AddItemForm({
 			console.log("userId not found");
 			return;
 		}
+        if (onMutate) {
+            onMutate();
+        }
 
 		if (edit && nutrition?._id) {
 			await updateNutrition({
@@ -100,9 +104,7 @@ export default function AddItemForm({
 			});
 		}
 		form.reset();
-		if (onMutate) {
-			onMutate();
-		}
+
 	};
 
 	return (

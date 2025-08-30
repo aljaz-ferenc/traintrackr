@@ -21,9 +21,15 @@ export default function useDeleteNutrition() {
 					error: t("TOASTS.deleteNutrition.error"),
 				},
 			),
-		onSuccess: async () =>
+		onSuccess: async () => {
 			await queryClient.invalidateQueries({
 				queryKey: ["nutrition-get"],
-			}),
+			});
+			await queryClient.refetchQueries({
+				queryKey: ["stats", {range: 'week'}],
+				// exact: false,
+			});
+            console.log('done deleting')
+		},
 	});
 }

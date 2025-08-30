@@ -23,7 +23,7 @@ export default function useEditStats() {
 				},
 			),
 		onSuccess: async () => {
-			await queryClient.invalidateQueries({
+			await queryClient.refetchQueries({
 				queryKey: ["stats"],
 			});
 		},

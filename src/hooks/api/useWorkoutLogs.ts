@@ -12,5 +12,8 @@ export default function useWorkoutLogs() {
 		queryKey: ["logs", { userId }],
 		queryFn: () => createRequest({ url: Endpoints.myLogs(userId as string) }),
 		enabled: !!userId,
+        staleTime: 60 * 1000 * 5,
+        gcTime: 60 * 1000 * 5,
+        placeholderData: (prev) => prev,
 	});
 }

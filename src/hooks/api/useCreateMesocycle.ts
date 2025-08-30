@@ -31,7 +31,7 @@ export default function useCreateMesocycle() {
 				},
 			),
 		onSuccess: async () => {
-			await queryClient.invalidateQueries({
+			await queryClient.refetchQueries({
 				queryKey: [
 					"my-mesocycles",
 					{

@@ -6,7 +6,6 @@ import SelectDate from "@/components/nutrition/SelectDate.tsx";
 import PageLoading from "@/components/shared/PageLoading.tsx";
 import RouteTitle from "@/components/shared/RouteTitle.tsx";
 import useNutrition from "@/hooks/api/useNutrition.ts";
-import { startOfDay } from "date-fns";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -14,7 +13,7 @@ export default function Nutrition() {
 	const [createItemIsOpen, setCreateItemIsOpen] = useState(false);
 	const [addItemIsOpen, setAddItemIsOpen] = useState(false);
 	const [date, setDate] = useState(new Date());
-	const { data, isLoading } = useNutrition(startOfDay(date));
+	const { data, isLoading } = useNutrition(date);
 	const { t } = useTranslation();
 
 	if (isLoading) {

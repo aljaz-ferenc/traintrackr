@@ -5,20 +5,23 @@ import { createRequest } from "@/utils/createRequest.ts";
 import { useQuery } from "@tanstack/react-query";
 import { useShallow } from "zustand/react/shallow";
 
-export default function useNutrition(date?: Date) {
+export type NutritionResponse = {
+    nutritions: Nutrition[];
+    totalMacros: Macros;
+}
+
+export default function useNutrition(date?: Date){
 	const userId = useUserStore(useShallow((state) => state.user?._id));
 
-	return useQuery<{
-		nutritions: Nutrition[];
-		totalMacros: Macros;
-		nutritionsThisWeek: Nutrition[];
-	}>({
+	return useQuery<NutritionResponse>({
 		queryKey: ["nutrition-get", { date }],
 		queryFn: () =>
 			createRequest({
 				url: `${Endpoints.nutritionsByDate(userId as string, date || undefined)}`,
 			}),
 		enabled: !!userId,
-		placeholderData: (previousData) => previousData,
+        staleTime: 60 * 1000 * 5,
+        gcTime: 60 * 1000 * 5,
+        placeholderData: (prev) => prev,
 	});
 }

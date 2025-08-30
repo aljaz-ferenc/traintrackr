@@ -9,5 +9,8 @@ export default function useGetMesocycleById(mesoId: Mesocycle["_id"]) {
 		queryFn: () =>
 			createRequest<Mesocycle>({ url: Endpoints.mesocycle(mesoId) }),
 		enabled: !!mesoId,
+        staleTime: 60 * 1000 * 5,
+        gcTime: 60 * 1000 * 5,
+        placeholderData: (prev) => prev,
 	});
 }

@@ -22,7 +22,6 @@ import {
 } from "@/components/ui/table.tsx";
 import { Guards } from "@/components/workout/TodaysWorkoutGuards.tsx";
 import { weekDays } from "@/constants/weekDays.ts";
-import { Route } from "@/core/enums/Routes.enum.ts";
 import type { Exercise, Set as TSet, Workout } from "@/core/types.ts";
 import useCompleteWorkout from "@/hooks/api/useCompleteWorkout.ts";
 import useGetMesocycleById from "@/hooks/api/useGetMesocyleById.ts";
@@ -41,17 +40,15 @@ import {
 import { X } from "lucide-react";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router";
 import { z } from "zod";
 import { useShallow } from "zustand/react/shallow";
 
 export default function TodaysWorkout() {
 	const [user] = useUserStore(useShallow((state) => [state.user]));
-	const navigate = useNavigate();
 	const { t } = useTranslation();
 	const {
 		data: mesocycle,
-		isLoading,
+		isFetched,
 		error,
 	} = useGetMesocycleById(user?.activeMesocycle?.mesocycle?._id as string);
 	const { mutateAsync: completeWorkout, isPending } = useCompleteWorkout();
@@ -92,7 +89,7 @@ export default function TodaysWorkout() {
 	const currentWeek =
 		differenceInWeeks(new Date(), user?.activeMesocycle?.startDate as Date) + 1;
 
-	if (isLoading) {
+	if (!isFetched) {
 		return <PageLoading />;
 	}
 
@@ -138,7 +135,6 @@ export default function TodaysWorkout() {
 		try {
 			await completeWorkout(log);
 			setExercises([]);
-			navigate(`/app/${Route.CompletedWorkouts}`);
 		} catch (err) {
 			console.log("Error completing workout: ", err);
 		}

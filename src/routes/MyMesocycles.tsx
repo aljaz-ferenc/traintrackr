@@ -10,12 +10,16 @@ import { Route } from "@/core/enums/Routes.enum.ts";
 import useMyMesocycles from "@/hooks/api/useMyMesocycles.ts";
 import { Trans, useTranslation } from "react-i18next";
 export default function MyMesocycles() {
-	const { data: myMesos, isLoading } = useMyMesocycles();
+	const { data: myMesos, isFetched } = useMyMesocycles();
 	const { t } = useTranslation();
 
-	if (isLoading || !myMesos) {
+	if (!isFetched) {
 		return <PageLoading />;
 	}
+
+    if(!myMesos){
+        return console.log('Error fetching mesocycles')
+    }
 
 	if (!myMesos.length) {
 		return (

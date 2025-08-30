@@ -13,10 +13,9 @@ import useUpdateMesocycle from "@/hooks/api/useUpdateMesocycle.ts";
 import { useNewMesoStore } from "@/state/NewMesoStore.ts";
 import useUserStore from "@/state/UserStore.ts";
 import { getMuscleIntensities } from "@/utils/utils.ts";
-import { useQueryClient } from "@tanstack/react-query";
-import { useEffect, useMemo } from "react";
+import {useEffect, useLayoutEffect, useMemo} from "react";
 import { useTranslation } from "react-i18next";
-import { useParams } from "react-router";
+import { useParams} from "react-router";
 import { useShallow } from "zustand/react/shallow";
 
 const mesoDurationOptions = [4, 6, 8, 10, 12];
@@ -31,8 +30,8 @@ export default function NewMesocycle() {
 		useUpdateMesocycle();
 	const { mutateAsync: createMesocycle, isPending: isCreating } =
 		useCreateMesocycle();
-	const queryClient = useQueryClient();
 	const { t } = useTranslation();
+
 	const [
 		mesoTitle,
 		mesoDuration,
@@ -66,29 +65,11 @@ export default function NewMesocycle() {
 	const handleCreateMeso = async () => {
 		const newMeso = constructMesocycle(user._id as string);
 		await createMesocycle(newMeso);
-		resetMesoStore();
-		await queryClient.invalidateQueries({
-			queryKey: [
-				"mesocycle",
-				{
-					mesoId,
-				},
-			],
-		});
 	};
 
 	const handleUpdateMeso = async () => {
 		const updatedMeso = constructMesocycle(user._id as string);
 		await updateMesocycle(updatedMeso);
-		resetMesoStore();
-		await queryClient.invalidateQueries({
-			queryKey: [
-				"mesocycle",
-				{
-					mesoId,
-				},
-			],
-		});
 	};
 
 	const allowEdit = useMemo(() => {
@@ -96,16 +77,14 @@ export default function NewMesocycle() {
 		return !!mesoToEdit;
 	}, [mesoToEdit, isLoading]);
 
+    useLayoutEffect(() => {
+        resetMesoStore()
+    }, [resetMesoStore]);
+
 	useEffect(() => {
 		if (isLoading || !mesoToEdit) return;
 		setMesoToEdit(mesoToEdit);
 	}, [isLoading, mesoToEdit, setMesoToEdit]);
-
-	useEffect(() => {
-		if (!allowEdit) {
-			resetMesoStore();
-		}
-	}, [allowEdit, resetMesoStore]);
 
 	const muscleGroups = useMemo(() => {
 		return getMuscleIntensities(workouts);

@@ -12,6 +12,8 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import { useShallow } from "zustand/react/shallow";
+import {Route} from "@/core/enums/Routes.enum.ts";
+import {useNavigate} from "react-router";
 
 export type CompleteWorkoutPayload = {
 	weekNumber: number;
@@ -25,9 +27,11 @@ export default function useCompleteWorkout() {
 	const { userId } = useAuth();
 	const user = useUserStore(useShallow((state) => state.user));
 	const { t } = useTranslation();
+    const navigate = useNavigate()
 
 	return useMutation({
 		mutationKey: ["workout-complete"],
+
 		mutationFn: (payload: CompleteWorkoutPayload) =>
 			toast.promise(
 				createRequest({ url: Endpoints.logs, method: "PUT", payload }),
@@ -37,6 +41,7 @@ export default function useCompleteWorkout() {
 					error: t("TOASTS.completeWorkout.error"),
 				},
 			),
+
 		onSuccess: async () => {
 			await queryClient.invalidateQueries({
 				queryKey: [
@@ -46,7 +51,7 @@ export default function useCompleteWorkout() {
 					},
 				],
 			});
-			await queryClient.invalidateQueries({
+			await queryClient.refetchQueries({
 				queryKey: [
 					"logs",
 					{
@@ -54,6 +59,8 @@ export default function useCompleteWorkout() {
 					},
 				],
 			});
+            navigate(`/app/${Route.CompletedWorkouts}`);
+
 			if (user?.activeMesocycle) {
 				await queryClient.invalidateQueries({
 					queryKey: [

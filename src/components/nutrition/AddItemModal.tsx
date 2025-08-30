@@ -96,8 +96,8 @@ export default function CreateItemModal({
 								selectedItemId={selectedItemId}
 								onMutate={() => {
 									setIsOpen(false);
-									setTimeout(() => {
 										setSelectedItemId("");
+									setTimeout(() => {
 									}, 500);
 								}}
 							/>
