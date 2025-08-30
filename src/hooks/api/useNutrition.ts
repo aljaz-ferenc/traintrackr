@@ -6,11 +6,11 @@ import { useQuery } from "@tanstack/react-query";
 import { useShallow } from "zustand/react/shallow";
 
 export type NutritionResponse = {
-    nutritions: Nutrition[];
-    totalMacros: Macros;
-}
+	nutritions: Nutrition[];
+	totalMacros: Macros;
+};
 
-export default function useNutrition(date?: Date){
+export default function useNutrition(date?: Date) {
 	const userId = useUserStore(useShallow((state) => state.user?._id));
 
 	return useQuery<NutritionResponse>({
@@ -20,8 +20,8 @@ export default function useNutrition(date?: Date){
 				url: `${Endpoints.nutritionsByDate(userId as string, date || undefined)}`,
 			}),
 		enabled: !!userId,
-        staleTime: 60 * 1000 * 5,
-        gcTime: 60 * 1000 * 5,
-        placeholderData: (prev) => prev,
+		staleTime: 60 * 1000 * 5,
+		gcTime: 60 * 1000 * 5,
+		placeholderData: (prev) => prev,
 	});
 }

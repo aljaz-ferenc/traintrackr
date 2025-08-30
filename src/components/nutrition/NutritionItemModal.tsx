@@ -21,7 +21,6 @@ export default function NutritionItemModal({
 	const macros = calcMacros(item, amount);
 	const [isEditable, setIsEditable] = useState(false);
 	const { t } = useTranslation();
-	console.log(nutrition);
 
 	if (isEditable) {
 		return (

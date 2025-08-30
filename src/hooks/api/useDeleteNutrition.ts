@@ -26,10 +26,9 @@ export default function useDeleteNutrition() {
 				queryKey: ["nutrition-get"],
 			});
 			await queryClient.refetchQueries({
-				queryKey: ["stats", {range: 'week'}],
-				// exact: false,
+				queryKey: ["stats", { range: "week" }],
 			});
-            console.log('done deleting')
+			console.log("done deleting");
 		},
 	});
 }

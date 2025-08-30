@@ -7,13 +7,13 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import useUserStore from "@/state/UserStore.ts";
-import {useShallow} from "zustand/react/shallow";
+import { useShallow } from "zustand/react/shallow";
 
 export default function useUpdateMesocycle() {
 	const queryClient = useQueryClient();
 	const navigate = useNavigate();
 	const { t } = useTranslation();
-    const userId = useUserStore(useShallow((state) => state.user?._id));
+	const userId = useUserStore(useShallow((state) => state.user?._id));
 
 	return useMutation({
 		mutationKey: ["meso-update"],
@@ -32,10 +32,12 @@ export default function useUpdateMesocycle() {
 			),
 		onSuccess: async () => {
 			await queryClient.refetchQueries({
-				queryKey: ["my-mesocycles",
-                    {
-                        userId,
-                    },],
+				queryKey: [
+					"my-mesocycles",
+					{
+						userId,
+					},
+				],
 			});
 			navigate(`/app/${Route.MyMesocycles}`);
 		},
