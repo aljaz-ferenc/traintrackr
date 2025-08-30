@@ -1,4 +1,3 @@
-import Spinner from "@/components/shared/Spinner.tsx";
 import NutritionItemModal from "@/components/nutrition/NutritionItemModal.tsx";
 import { Card, CardContent } from "@/components/ui/card.tsx";
 import {
@@ -19,12 +18,12 @@ type NutritionItemProps = {
 };
 
 export default function NutritionItem({ nutrition }: NutritionItemProps) {
-	const { mutateAsync: deleteNutrition, isPending: isDeleting } =
+	const { mutateAsync: deleteNutrition} =
 		useDeleteNutrition();
 	const [isOpen, setIsOpen] = useState(false);
 
 	const handleDeleteNutrition = async () => {
-		await deleteNutrition(nutrition._id);
+		await deleteNutrition({nutritionId: nutrition._id, date:new Date(nutrition.createdAt)});
 	};
 
 	return (
@@ -45,11 +44,9 @@ export default function NutritionItem({ nutrition }: NutritionItemProps) {
 								await handleDeleteNutrition();
 							}}
 						>
-							{isDeleting ? (
-								<Spinner className="h-[23px] pl-px" />
-							) : (
+
 								<X className="text-red-500" />
-							)}
+
 						</button>
 					</CardContent>
 				</Card>
