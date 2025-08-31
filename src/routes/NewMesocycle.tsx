@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/Input.tsx";
 import { Label } from "@/components/ui/label.tsx";
 import { Separator } from "@/components/ui/separator";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group.tsx";
+import AIGenerateMesocycle from "@/components/workout/AIGenerateMesocycle.tsx";
 import Body from "@/components/workout/Body.tsx";
 import Workout from "@/components/workout/Workout.tsx";
 import useCreateMesocycle from "@/hooks/api/useCreateMesocycle.ts";
@@ -210,19 +211,22 @@ export default function NewMesocycle() {
 				<Body muscleGroups={muscleGroups} />
 			</div>
 			<div className="flex flex-col overflow-auto relative">
-				<Button
-					variant="secondary"
-					className="cursor-pointer sticky top-0 left-0 w-fit px-4"
-					onClick={() =>
-						addWorkout({
-							id: crypto.randomUUID(),
-							exercises: [],
-							day: 0,
-						})
-					}
-				>
-					{t("NEW_MESOCYCLE.addWorkout")}
-				</Button>
+				<div className="flex items-center gap-5">
+					<Button
+						variant="secondary"
+						className="cursor-pointer sticky top-0 left-0 w-fit px-4"
+						onClick={() =>
+							addWorkout({
+								id: crypto.randomUUID(),
+								exercises: [],
+								day: 0,
+							})
+						}
+					>
+						{t("NEW_MESOCYCLE.addWorkout")}
+					</Button>
+					<AIGenerateMesocycle />
+				</div>
 				<div className="flex gap-5 mt-2">
 					{workouts.map((workout) => (
 						<Workout key={workout.id} workout={workout} editable focusable />
@@ -242,7 +246,7 @@ export default function NewMesocycle() {
 				</Button>
 				{!allowEdit && (
 					<Button onClick={() => resetMesoStore()} variant="secondary">
-						Clear
+						{t("NEW_MESOCYCLE.clear")}
 					</Button>
 				)}
 			</div>

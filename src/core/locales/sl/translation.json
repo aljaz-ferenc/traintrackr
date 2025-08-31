@@ -192,7 +192,17 @@
 		"addExercise": "Dodaj vajo",
 		"selectMuscleGroup": "Izberi mišično skupino...",
 		"calorieGoal": "Kalorični cilj",
-		"maintenance": "Vzdrževalne kalorije"
+		"maintenance": "Vzdrževalne kalorije",
+		"clear": "Počisti",
+		"generateWithAIDialog": {
+			"trigger": "Generiraj z AI",
+			"title": "Generiraj z AI",
+			"description": "Generiraj mezocikel s pomočjo umetne inteligence",
+			"form": {
+				"workoutsPerWeek": "Dni na teden",
+				"userPrompt": "Navodila"
+			}
+		}
 	},
 	"MY_MESOCYCLES": {
 		"error": {
@@ -305,6 +315,9 @@
 		},
 		"deleteLog": {
 			"error": "Prišlo je do napake. Vnosa ni bilo mogoče izbrisati."
+		},
+		"generateMeso": {
+			"error": "Prišlo je do napake. Mezocikla ni bilo mogoče generirati."
 		}
 	},
 	"FORM_ERRORS": {
@@ -313,7 +326,11 @@
 		"Invalid": "Neveljaven vnos",
 		"number": {
 			"valid": "Vpiši veljavno številko"
-		}
+		},
+		"minOneWorkoutPerWeek": "Mezocikel mora vsebovati vsaj eno vajo na teden",
+		"maxSevenWorkoutsPerWeek": "Mezocikel ima lahko največ 7 vaj na teden",
+		"promptMinChar": "Navodilo naj vsebuje najmanj {{minChars}} znakov",
+		"promptMaxChar": "Navodilo ne sme vsebovati več kot {{maxChars}} znakov"
 	},
 	"MUSCLE_GROUPS": {
 		"sideDelts": "Srednje rame",
@@ -333,6 +350,7 @@
 		"glutes": "Glutei",
 		"quads": "Kvadri",
 		"hamstrings": "Stegna",
-		"calves": "Meča"
+		"calves": "Meča",
+		"rhomboids": "Romboidi"
 	}
 }

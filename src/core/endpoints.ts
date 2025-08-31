@@ -36,4 +36,5 @@ export class Endpoints {
 		`${BASE_URL}/users/${userId}/nutritions${date ? `?date=${date}` : ""}`;
 	static nutrition = (nutritionId: Nutrition["_id"]) =>
 		`${BASE_URL}/nutritions/${nutritionId}`;
+	static generateMesocycle = `${BASE_URL}/mesocycles/ai-generate`;
 }

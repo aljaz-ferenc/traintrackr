@@ -186,7 +186,17 @@
 		"addExercise": "Add exercise",
 		"selectMuscleGroup": "Select muscle group...",
 		"calorieGoal": "Calorie goal",
-		"maintenance": "Maintenance"
+		"maintenance": "Maintenance",
+		"clear": "Clear",
+		"generateWithAIDialog": {
+			"trigger": "Generate with AI",
+			"title": "Generate with AI",
+			"description": "Generate a mesocycle with artificial intelligence by providing a prompt",
+			"form": {
+				"workoutsPerWeek": "Workouts per week",
+				"userPrompt": "Prompt"
+			}
+		}
 	},
 	"MY_MESOCYCLES": {
 		"error": {
@@ -299,6 +309,9 @@
 		},
 		"deleteLog": {
 			"error": "Something went wrong. Couldn’t edit your log."
+		},
+		"generateMeso": {
+			"error": "Something went wrong. Couldn't generate your mesocycle."
 		}
 	},
 	"FORM_ERRORS": {
@@ -307,7 +320,11 @@
 		"Invalid": "Invalid input",
 		"number": {
 			"valid": "Please enter a valid number"
-		}
+		},
+		"minOneWorkoutPerWeek": "A mesocycle requires at least one workout per week",
+		"maxSevenWorkoutsPerWeek": "A mesocycle cannot have more than 7 workouts per week",
+		"promptMinChar": "The prompt must be at least {{minChars}} characters long",
+		"promptMaxChar": "The prompt should not be longer than {{maxChars}} characters"
 	},
 	"MUSCLE_GROUPS": {
 		"sideDelts": "Side Delts",
@@ -327,6 +344,7 @@
 		"glutes": "Glutes",
 		"quads": "Quads",
 		"hamstrings": "Hamstrings",
-		"calves": "Calves"
+		"calves": "Calves",
+		"rhomboids": "Rhomboids"
 	}
 }

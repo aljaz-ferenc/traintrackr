@@ -31,6 +31,7 @@ type NewMesoStore = {
 	cloneWorkout: (workoutId: Workout["id"]) => void;
 	setMesoToEdit: (meso: Mesocycle) => void;
 	resetMesoStore: () => void;
+	setWorkouts: (workouts: Workout[]) => void;
 };
 
 export const useNewMesoStore = create<NewMesoStore>((set, getState) => ({
@@ -225,4 +226,9 @@ export const useNewMesoStore = create<NewMesoStore>((set, getState) => ({
 			focusedWorkout: "",
 			calorieGoal: 0,
 		}),
+	setWorkouts: (workouts) =>
+		set((state) => ({
+			...state,
+			workouts,
+		})),
 }));
