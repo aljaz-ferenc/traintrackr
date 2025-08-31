@@ -120,7 +120,9 @@ export default function AIGenerateMesocycle() {
 										<Textarea
 											id="userPrompt"
 											maxLength={PROMPT_MAX_CHARS}
-											placeholder="Generate a push pull legs mesocycle. Every workout should begin mostly with compound exercises and finish with isolations. Make sure to give each muscle group at least one day of rest if it was working as a primary muscle the day before. Only one leg day. Nobody likes leg days."
+											placeholder={t(
+												"NEW_MESOCYCLE.generateWithAIDialog.promptPlaceholder",
+											)}
 										/>
 										<span className="text-muted-foreground text-xs">
 											{field.value.length} / {PROMPT_MAX_CHARS}

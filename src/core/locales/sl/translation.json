@@ -198,6 +198,7 @@
 			"trigger": "Generiraj z AI",
 			"title": "Generiraj z AI",
 			"description": "Generiraj mezocikel s pomočjo umetne inteligence",
+			"promptPlaceholder": "Primer: Ustvari mesocikel “push-pull-legs”. Vsak trening naj se začne s kompleksnimi vajami in konča z izolacijskimi. Poskrbi, da bo vsaka mišična skupina imela vsaj en dan počitka, če je bila prejšnji dan trenirana kot primarna. Samo en dan za noge.",
 			"form": {
 				"workoutsPerWeek": "Dni na teden",
 				"userPrompt": "Navodila"

@@ -192,6 +192,7 @@
 			"trigger": "Generate with AI",
 			"title": "Generate with AI",
 			"description": "Generate a mesocycle with artificial intelligence by providing a prompt",
+			"promptPlaceholder": "Example: Generate a push pull legs mesocycle. Every workout should begin mostly with compound exercises and finish with isolations. Make sure to give each muscle group at least one day of rest if it was working as a primary muscle the day before. Only one leg day. Nobody likes leg days.",
 			"form": {
 				"workoutsPerWeek": "Workouts per week",
 				"userPrompt": "Prompt"
