@@ -32,9 +32,16 @@ You will be asked to provide some basic information such as gender, age, height,
 ## Mesocycle
 1. **Create a new Mesocycle**:
    - On the `New Mesocycle` page, enter the mesocycle name, duration, calorie goal, and select exercises for each day. The graphic will show which muscles are trained and how often.
+
+<img src="./src/assets/screenshots/new-mesocycle.png" width="400"/>
+   
+   - You can also generate a mesocycle with AI - set the number of days per week you want to train, and add a prompt for the model. You can request the structure of a mesocycle in terms of rest days, which muscle groups to focus on, volume, frequency, compound/isolation exercises etc.
+   
+<img src="./src/assets/screenshots/generate-with-ai-modal.png" width="400"/>
+     
+   - Adjust the generated workouts if needed. 
    - Click `Create Mesocycle`
    
-<img src="./src/assets/screenshots/new-mesocycle.png" width="400"/>
 
 2. Activate a Mesocycle
     - All mesocycles are saved in the `My Mesocycles` page.
