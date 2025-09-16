@@ -8,6 +8,7 @@ import type {
 } from "@/core/types.ts";
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const DROPLET_BASE_URL = import.meta.env.VITE_DROPLET_BASE_URL;
 
 // biome-ignore lint/complexity/noStaticOnlyClass: <explanation>
 export class Endpoints {
@@ -36,5 +37,5 @@ export class Endpoints {
 		`${BASE_URL}/users/${userId}/nutritions${date ? `?date=${date}` : ""}`;
 	static nutrition = (nutritionId: Nutrition["_id"]) =>
 		`${BASE_URL}/nutritions/${nutritionId}`;
-	static generateMesocycle = `${BASE_URL}/mesocycles/ai-generate`;
+	static generateMesocycle = `${DROPLET_BASE_URL}/mesocycles/ai-generate`;
 }

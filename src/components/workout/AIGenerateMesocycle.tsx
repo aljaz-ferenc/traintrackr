@@ -18,6 +18,7 @@ import { Label } from "@/components/ui/label.tsx";
 import { Textarea } from "@/components/ui/textarea.tsx";
 import i18n from "@/core/i18n.ts";
 import useGenerateMesocycle from "@/hooks/api/useGenerateMesocycle.ts";
+import { cn } from "@/lib/utils.ts";
 import { useNewMesoStore } from "@/state/NewMesoStore.ts";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Sparkles } from "lucide-react";
@@ -65,7 +66,7 @@ export default function AIGenerateMesocycle() {
 
 	const onSubmit = async (values: z.infer<typeof formSchema>) => {
 		const generatedWorkouts = await mutateAsync(values);
-		setWorkouts(generatedWorkouts);
+		setWorkouts(generatedWorkouts.filter((w) => w.exercises.length > 0));
 		setIsDialogOpen(false);
 	};
 
@@ -103,7 +104,12 @@ export default function AIGenerateMesocycle() {
 											"NEW_MESOCYCLE.generateWithAIDialog.form.workoutsPerWeek",
 										)}
 									</Label>
-									<Input type="number" id="daysPerWeek" className="w-20" />
+									<Input
+										type="number"
+										id="daysPerWeek"
+										className="w-20"
+										disabled={isPending}
+									/>
 									<FormMessage />
 								</FormItem>
 							)}
@@ -118,6 +124,7 @@ export default function AIGenerateMesocycle() {
 									</Label>
 									<div className="flex flex-col items-end gap-1">
 										<Textarea
+											disabled={isPending}
 											id="userPrompt"
 											maxLength={PROMPT_MAX_CHARS}
 											placeholder={t(
@@ -139,9 +146,17 @@ export default function AIGenerateMesocycle() {
 						>
 							<div className="flex items-center gap-3">
 								{isPending ? "Generating..." : "Generate"}
-								<Sparkles size={20} />
+								<Sparkles
+									size={20}
+									className={cn(isPending && "animate-pulse")}
+								/>
 							</div>
 						</Button>
+						{isPending && (
+							<span className="text-center text-xs absolute bottom-1 left-1/2 -translate-x-1/2 text-muted-foreground italic">
+								This might take some time
+							</span>
+						)}
 					</form>
 				</Form>
 			</DialogContent>
