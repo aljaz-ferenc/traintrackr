@@ -48,7 +48,7 @@ export default function TodaysWorkout() {
 	const { t } = useTranslation();
 	const {
 		data: mesocycle,
-		isFetched,
+		isLoading,
 		error,
 	} = useGetMesocycleById(user?.activeMesocycle?.mesocycle?._id as string);
 	const { mutateAsync: completeWorkout, isPending } = useCompleteWorkout();
@@ -89,12 +89,11 @@ export default function TodaysWorkout() {
 	const currentWeek =
 		differenceInWeeks(new Date(), user?.activeMesocycle?.startDate as Date) + 1;
 
-	if (!isFetched) {
+	if (isLoading) {
 		return <PageLoading />;
 	}
 
 	if (error) {
-		console.error(error.message);
 		return (
 			<ErrorPage>
 				<ErrorTitle>{t("TODAYS_WORKOUT.error.title")}</ErrorTitle>
